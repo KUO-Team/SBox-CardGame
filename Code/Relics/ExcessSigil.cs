@@ -12,19 +12,19 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 		{
 			return;
 		}
-		
+
 		foreach ( var card in Owner.HandComponent.Hand )
 		{
 			switch ( card.Type )
 			{
 				case Card.CardType.Spell:
 					{
-						var t = new PowerModifier( 2, action => action.Type == Action.ActionType.Effect, 1 );
+						card.Modifiers.AddModifier( new PowerModifier( 2, action => action.Type == Action.ActionType.Effect, 1 ) );
 						break;
 					}
 				case Card.CardType.Attack:
 					{
-						var t = new PowerModifier( -2, action => action.Type == Action.ActionType.Attack, 1 );
+						card.Modifiers.AddModifier( new PowerModifier( -2, action => action.Type == Action.ActionType.Attack, 1 ) );
 						break;
 					}
 				case Card.CardType.Defense:
@@ -34,7 +34,7 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 					throw new ArgumentOutOfRangeException( card.Type.ToString() );
 			}
 		}
-		
+
 		base.OnTurnStart();
 	}
 }
