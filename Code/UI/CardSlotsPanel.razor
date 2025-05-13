@@ -1,0 +1,26 @@
+@inherits PanelComponent
+@namespace CardGame.UI
+
+@if ( !Slots.IsValid() || !Slots.Owner.IsValid() )
+{
+	return;
+}
+
+@if ( !Slots.Owner.HealthComponent.IsValid() )
+{
+	return;
+}
+
+@if ( Slots.Owner.HealthComponent.IsDead )
+{
+	return;
+}
+
+<root>
+	<div class="main" @ref="_main">
+		@foreach ( var slot in Slots )
+		{
+			<CardSlotPanel class="@(slot.IsAvailable ? "available" : "")" Slot="@slot"></CardSlotPanel>
+		}
+	</div>
+</root>

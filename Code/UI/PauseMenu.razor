@@ -1,0 +1,18 @@
+@using Sandbox.UI
+
+@inherits PanelComponent
+@namespace CardGame.UI
+
+<root>
+	<div class="main hidden" @ref="_main">
+		<label class="title">Paused</label>
+		<div class="button-container">
+			<button onclick="@PauseManager.Instance.Unpause">Continue</button>
+			<button onclick="@Settings">Settings</button>
+			<button onclick="@SaveAndQuit">Save & Quit</button>
+			<button onclick="@ToMenu">Quit Game</button>
+		</div>
+	</div>
+	
+	<SettingsPanel class="hidden" @ref="_settingsPanel"></SettingsPanel>
+</root>

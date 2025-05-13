@@ -1,0 +1,182 @@
+{
+  "RootObject": {
+    "__guid": "a056282f-8508-43f2-8579-e8587536d574",
+    "Flags": 0,
+    "Name": "witchgirl",
+    "Tags": "player",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "CardGame.Units.PlayerCharacter",
+        "__guid": "76ca555c-cb18-48d8-86ba-81be741d3454",
+        "CanInteract": true,
+        "Controller": {
+          "_type": "component",
+          "component_id": "8ca16fe2-4e83-4b1e-839d-ba649da90aa1",
+          "go": "a056282f-8508-43f2-8579-e8587536d574",
+          "component_type": "PlayerController"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "SpriteComponent": {
+          "_type": "component",
+          "component_id": "38129f60-b3cf-41a4-8c6d-57413ab97200",
+          "go": "d42a0f04-caf4-4184-af04-a1b3ae36c012",
+          "component_type": "SpriteComponent"
+        }
+      },
+      {
+        "__type": "CardGame.Controllers.PlayerController",
+        "__guid": "8ca16fe2-4e83-4b1e-839d-ba649da90aa1",
+        "Acceleration": 10,
+        "BounceAmount": 0.5,
+        "BounceSpeed": 1,
+        "CameraOffset": "0,-120,0",
+        "CanRun": false,
+        "CanWalk": true,
+        "Friction": 15,
+        "IsMoving": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "RunInput": null,
+        "RunSpeed": 150,
+        "Sprite": {
+          "_type": "component",
+          "component_id": "38129f60-b3cf-41a4-8c6d-57413ab97200",
+          "go": "d42a0f04-caf4-4184-af04-a1b3ae36c012",
+          "component_type": "SpriteComponent"
+        },
+        "Velocity": "0,0",
+        "WalkSpeed": 120
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "228401cb-c340-495c-94cc-86a412ddc1de",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": true,
+          "Y": true,
+          "Z": true,
+          "Pitch": true,
+          "Yaw": true,
+          "Roll": true
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": "DisableCollisionSounds",
+        "StartAsleep": false
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "d42a0f04-caf4-4184-af04-a1b3ae36c012",
+        "Flags": 0,
+        "Name": "Sprite",
+        "Scale": "0.35,0.35,1",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SpriteTools.SpriteComponent",
+            "__guid": "38129f60-b3cf-41a4-8c6d-57413ab97200",
+            "__version": 1,
+            "BroadcastEvents": {},
+            "CastShadows": "On",
+            "CreateAttachPoints": false,
+            "FlashTint": "1,1,1,0",
+            "MaterialOverride": null,
+            "OnAnimationComplete": null,
+            "OnBroadcastEvent": null,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "PlaybackSpeed": 1,
+            "Sprite": "sprites/witchgirl.sprite",
+            "SpriteFlags": "HorizontalFlip, DrawBackface",
+            "StartingAnimationName": "idle",
+            "Tint": "1,1,1,1",
+            "UpDirection": "YPositive",
+            "UsePixelScale": false
+          }
+        ],
+        "Children": []
+      },
+      {
+        "__guid": "f78addee-3f27-4d70-a293-a58cb398c926",
+        "Flags": 0,
+        "Name": "Collider",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "e40b1a5d-a095-4c99-b52b-e939b8b3717a",
+            "Center": "6,1.900002,0",
+            "Friction": null,
+            "IsTrigger": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Scale": "22.19997,29.39998,5",
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          }
+        ],
+        "Children": []
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

@@ -1,0 +1,246 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Icon": "",
+      "Name": "Echo Core",
+      "Description": "At the start of the turn, for each card that was discarded last turn, gain 1 Power Up. (Max. 3) If you discarded no cards last turn, gain 1 Power Down.",
+      "Flavor": [
+        "Echoes of past decisions reverberate, fueling your power with every discarded thought."
+      ],
+      "Keywords": "Discard",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "EchoCore"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Icon": "",
+      "Name": "Sigil of Excess",
+      "Description": "All spell cards have +2 added to their effects, but all attack cards have -2 power.",
+      "Flavor": [
+        "An ancient sigil, one that amplifies everything it touches, even the simplest incantation."
+      ],
+      "Keywords": "",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "ExcessSigil"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Icon": "",
+      "Name": "Desperation",
+      "Description": "While below 20% of Max HP, all cards cost 1 less MP to play.",
+      "Flavor": [
+        "When the heart races against time, every breath is a bargain with the inevitable."
+      ],
+      "Keywords": "",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "Desperation"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Icon": "",
+      "Name": "Mirror Spark",
+      "Description": "When you play a spell card, it has a 50% chance to duplicate. Duplicated effects have a 50% chance to target randomly.",
+      "Flavor": [
+        "Reflection is more than mere image—sometimes it multiplies, sometimes it misleads."
+      ],
+      "Keywords": "",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "MirrorSpark"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Icon": "",
+      "Name": "Witchglass Vial",
+      "Description": "At the start of the turn, copy a random status affecting you.",
+      "Flavor": [
+        "A vial filled with remnants of spells and curses, capturing the essence of your suffering and luck."
+      ],
+      "Keywords": "",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "WitchVial"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Icon": "",
+      "Name": "Pact Brand",
+      "Description": "When you play a card, if it's an attack card add +2 power, but lose 1 HP.",
+      "Flavor": [
+        "A scar on your soul, offering power at the cost of your own vitality."
+      ],
+      "Keywords": "",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "PactBrand"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 7
+      },
+      "Icon": "",
+      "Name": "Ring of Power",
+      "Description": "At the start of the turn, gain X Power Up and X Fragile. (X is the turn count (Max. 5))",
+      "Flavor": [
+        "Time spirals into your favor, but each passing moment chips away at your resolve."
+      ],
+      "Keywords": "",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "PowerRing"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 8
+      },
+      "Icon": "",
+      "Name": "Loose Pockets",
+      "Description": "At the start of the turn, draw 2 extra cards, then discard 1 card randomly from your hand.",
+      "Flavor": [
+        "Bountiful distractions in your hands, but only chaos remains when the cards fall."
+      ],
+      "Keywords": "Discard",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Script": "LoosePockets"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 9
+      },
+      "Icon": "",
+      "Name": "Twilight Band",
+      "Description": "Gain +1 Card Slot. Max HP reduced by 15%, and you gain 1 Fragile at the start of every turn.",
+      "Flavor": [
+        "The band glows with the waning light of a forgotten promise, a weight both empowering and destructive."
+      ],
+      "Keywords": "",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Script": "TwilightBand"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 10
+      },
+      "Icon": "",
+      "Name": "Memory Chain",
+      "Description": "Gain +2 Card Slots. At the start of combat, if all card slots aren't filled, lose 2 HP for each unfilled slot.",
+      "Flavor": [
+        "The past is a chain around your wrist, pulling you toward both your potential and your downfall."
+      ],
+      "Keywords": "",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Script": "MemoryChain"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 11
+      },
+      "Icon": "",
+      "Name": "Lone Vigil",
+      "Description": "At the start of the turn, if enemies outnumber allies, gain 1 Power Up per extra enemy; if allies outnumber enemies, a random ally gains 1 Fragile per extra ally.",
+      "Flavor": [
+        "The lone sentinel stands unwavering, outnumbered but undaunted. Yet every battle takes its toll."
+      ],
+      "Keywords": "",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Script": "LoneVigil"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 12
+      },
+      "Icon": "",
+      "Name": "Hexbound Catalyst",
+      "Description": "At the start of the turn, if any of your units are Enchanted, they gain 2 Power Up. If they aren't, they gain 2 Power Down.",
+      "Flavor": [
+        "Magic gives with one hand and takes with the other."
+      ],
+      "Keywords": "Enchanted",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Script": "HexboundCatalyst"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 13
+      },
+      "Icon": "",
+      "Name": "Echo of One",
+      "Description": "At the start of the turn, if you are the only alive ally, gain +1 Card Slot and 3 Power Up.",
+      "Flavor": [
+        "In silence, the lone echo grows louder, until all that’s left is purpose."
+      ],
+      "Keywords": "",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Script": "EchoOfOne"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 14
+      },
+      "Icon": "",
+      "Name": "Last Light",
+      "Description": "When an ally would die, instead restore them to half of max HP with 1 Fragile. Can only trigger once per battle.",
+      "Flavor": [
+        "Even the dimmest flame resists the dark… if only for a moment."
+      ],
+      "Keywords": "",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Script": "LastLight"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 15
+      },
+      "Icon": "",
+      "Name": "Recursive Heart",
+      "Description": "The first card any of your units play each turn is returned to their hand.",
+      "Flavor": [
+        "It beats again. And again. And again."
+      ],
+      "Keywords": "",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Script": "RecursiveHeart"
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

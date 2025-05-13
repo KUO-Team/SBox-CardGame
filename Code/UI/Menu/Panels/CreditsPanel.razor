@@ -1,0 +1,27 @@
+﻿@using Sandbox.Audio
+@using Sandbox.UI
+
+@inherits MenuSubPanel
+@namespace CardGame.UI
+
+<root>
+	<div class="credits">
+		<label class="title" style="font-size: 50px;">Credits</label>
+
+		<label class="title">Game By KUO</label>
+		<div class="credit-group">
+			<label class="credit-label">kEllie</label>
+			<label class="credit-value">Game Design, Programming, Art</label>
+		</div>
+		
+		<label class="title">Playtesters</label>
+		
+		<div class="credit-group">
+			<label class="credit-label">Alex Downer</label>
+			<label class="credit-label">Bozy</label>
+		</div>
+	</div>
+	<div class="button-container">
+		<button onclick="@this.Hide">Close</button>
+	</div>
+</root>

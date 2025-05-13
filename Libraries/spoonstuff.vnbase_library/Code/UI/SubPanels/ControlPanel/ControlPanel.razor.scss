@@ -1,0 +1,7 @@
+@import "/UI/Styles/Control.scss";
+
+ControlPanel {
+    &.hidden {
+        display: none;
+    }
+}

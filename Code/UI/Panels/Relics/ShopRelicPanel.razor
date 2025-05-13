@@ -1,0 +1,16 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Relic is null )
+{
+	return;
+}
+
+<root class="relic">
+	@if ( !string.IsNullOrEmpty( Relic.Icon ) )
+	{
+		<img class="relic-icon" src="@Relic.Icon" alt="Relic Icon"/>
+	}
+</root>

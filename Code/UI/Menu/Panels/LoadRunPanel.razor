@@ -1,0 +1,19 @@
+﻿@using Sandbox.UI
+
+@inherits MenuSubPanel
+@namespace CardGame.UI
+
+<root>
+	<label class="title">Saved Runs</label>
+	
+	<div class="main">
+		@foreach ( var run in Data.Runs )
+		{
+			<RunPanel Data="@run"></RunPanel>
+		}
+	</div>
+	
+	<div class="button-container">
+		<button onclick="@this.Hide">Close</button>
+	</div>
+</root>

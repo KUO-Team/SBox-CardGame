@@ -1,0 +1,68 @@
+﻿$border-radius: 4px;
+
+RunPanel {
+  width: 500px;
+  height: 95%;
+  background-color: rgba(50,50,50,0.9);
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Pixel Operator";
+  color: white;
+  border-radius: $border-radius;
+  
+  .row {
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .header {
+    width: 100%;
+    padding: 2px;
+    background-color: gray;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    
+    .run-name {
+      font-size: 40px;
+    }
+    
+    .run-date {
+      font-size: 30px;
+    }
+  }
+
+  .run-floor {
+    font-size: 35px;
+  }
+
+  .relics {
+    width: 90%;
+    height: 50px;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-grow: 1;
+    gap: 20px;
+  }
+  
+  >.button-container {
+    width: 99%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+    gap: 5px;
+    
+    .button {
+      width: 100%;
+    }
+  }
+}

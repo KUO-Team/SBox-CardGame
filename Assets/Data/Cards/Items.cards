@@ -1,0 +1,122 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 100
+      },
+      "Name": "Health Potion",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Item",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Heal,Recovery",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 20,
+            "Max": 20
+          },
+          "Script": "HealPercent"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 101
+      },
+      "Name": "Mana Potion",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Item",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Recovery",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": "ManaRecover"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 102
+      },
+      "Name": "Strength Potion",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Item",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Power Up",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "PowerUp"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 103
+      },
+      "Name": "",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Item",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 9,
+            "Max": 9
+          },
+          "Script": "DrawDeck"
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

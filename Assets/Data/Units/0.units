@@ -1,0 +1,112 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 99
+      },
+      "Name": "Player",
+      "Description": "",
+      "Sprite": {
+        "Resource": "sprites/witchgirl.sprite",
+        "Portrait": "materials/units/portraits/witchgirl.png"
+      },
+      "Prefab": null,
+      "Level": 1,
+      "LevelScaling": true,
+      "Hp": 55,
+      "Ep": 0,
+      "UseMp": true,
+      "Mp": 3,
+      "MinSpeed": 2,
+      "MaxSpeed": 6,
+      "Slots": 1,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        }
+      ],
+      "Passives": []
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 100
+      },
+      "Name": "Player",
+      "Description": "",
+      "Sprite": {
+        "Resource": "sprites/witchgirl.sprite",
+        "Portrait": "materials/units/portraits/witchgirl.png"
+      },
+      "Prefab": null,
+      "Level": 1,
+      "LevelScaling": true,
+      "Hp": 55,
+      "Ep": 0,
+      "UseMp": true,
+      "Mp": 3,
+      "MinSpeed": 1,
+      "MaxSpeed": 6,
+      "Slots": 1,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        }
+      ],
+      "Passives": []
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

@@ -1,0 +1,80 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "Simple Pack",
+      "Rarity": "Common",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 0
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "Zombie Pack",
+      "Rarity": "Common",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 4
+        },
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 6
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "Knight Pack",
+      "Rarity": "Common",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 11
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

@@ -1,0 +1,17 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Status is null )
+{
+	return;
+}
+
+<root>
+	@if ( !Status.IsHiddenStack )
+	{
+		<label class="status-stack">@Status.Stack</label>
+	}
+	<img class="status-icon" src="@Status.Icon" alt="Status icon"/>
+</root>

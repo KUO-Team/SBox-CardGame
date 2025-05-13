@@ -1,0 +1,31 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Relic is null )
+{
+	return;
+}
+
+<root class="hidden">
+	@if ( !string.IsNullOrEmpty( Relic.Icon ) )
+	{
+		<img class="relic-icon" src="@Relic.Icon" alt="Relic Icon"/>
+	}
+	
+	<div class="information">
+		<div class="row">
+			<label class="relic-name">@Relic.Name</label>
+			<label class="relic-rarity @( Relic.Rarity )">@Relic.Rarity</label>
+		</div>
+		<label class="relic-description">@Relic.Description</label>
+		<div class="relic-flavortexts">
+			@foreach ( var flavor in Relic.Flavor )
+			{
+				<label class="relic-flavor">@flavor</label>
+			}
+		</div>
+	</div>
+</root>
+

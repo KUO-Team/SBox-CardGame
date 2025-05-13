@@ -1,0 +1,78 @@
+﻿@using System
+@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+<root>
+	<label class="title">Cards</label>
+	<div class="cards">
+		@foreach ( var item in Cards.OrderBy( x => x.Card!.Rarity ).ThenBy( x => x.Cost ) )
+		{
+			var purchased = item.Card == LastPurchasedItem ? "purchased" : "";
+			<div class="shop-item @( CanBuyCard( item ) ? "" : "cant-afford" ) @( purchased )">
+				<CardPanel Card="@item.Card" onclick="@( () => BuyCard( item ) )"></CardPanel>
+				<label class="cost">@( item.Cost )g</label>
+			</div>
+		}
+	</div>
+
+	<label class="title">Relics</label>
+	<div class="relics">
+		@foreach ( var item in Relics.OrderBy( x => x.Relic!.Rarity ).ThenBy( x => x.Cost ) )
+		{
+			var purchased = item.Relic == LastPurchasedItem ? "purchased" : "";
+			<div class="shop-item @( CanBuyRelic( item ) ? "" : "cant-afford" ) @( purchased )">
+				<ShopRelicPanel Relic="@item.Relic" onclick="@( () => BuyRelic( item ) )"></ShopRelicPanel>
+				<label class="cost">@( item.Cost )g</label>
+			</div>
+		}
+	</div>
+
+	<div class="button-container">
+		<button class="@( CanReroll() ? "" : "disabled" )" onclick="@Reroll">Reroll (@( RerollCost )g)</button>
+		<div class="row">
+			<button class="@( CanRerollByKeyword() ? "" : "disabled" )" onclick="@OpenRerollKeywordMenu">Reroll By
+				Keyword (@( RerollKeywordCost )g)
+			</button>
+			<button class="@( CanRerollByType() ? "" : "disabled" )" onclick="@OpenTypeSelection">Reroll By Type
+				(@( RerollKeywordCost )g)
+			</button>
+		</div>
+		<button class="@( CanHeal() ? "" : "disabled" )" onclick="@Heal">Heal (@( HealCost )g)</button>
+		<button onclick="@OpenSellMenu">Sell</button>
+		<button onclick="@Close">Close</button>
+	</div>
+
+	<div class="sell-menu hidden" @ref="_sellMenu">
+		<div class="cards">
+			@foreach ( var card in Player.Local.Cards )
+			{
+				<CardPanel Card="@card" onclick="@( () => SellCard( card ) )"></CardPanel>
+			}
+		</div>
+		<div class="button-container">
+			<button onclick="@HideSellMenu">Close</button>
+		</div>
+	</div>
+
+	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
+		<div class="keywords">
+			@foreach ( var t in _keywords )
+			{
+				<button onclick="@( () => RerollByKeyword( t ) )">@t</button>
+			}
+			<button onclick="@HideRerollKeywordMenu">Close</button>
+		</div>
+	</div>
+
+	<div class="type-reroll-selection selection hidden" @ref="_typeSelection">
+		<div class="keywords">
+			@foreach ( var t in Enum.GetValues<Card.CardType>() )
+			{
+				<button onclick="@( () => RerollByType( t ) )">@t</button>
+			}
+			<button onclick="@HideTypeSelection">Close</button>
+		</div>
+	</div>
+</root>

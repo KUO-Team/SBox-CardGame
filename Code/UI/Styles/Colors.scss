@@ -1,0 +1,24 @@
+﻿$health-color: red;
+$mana-color: #6987ff;
+
+// Rarities
+$common-color: #3d883d;
+$uncommon-color: #509de8;
+$rare-color: #7b1bd8;
+$epic-color: #c4c40c;
+
+.common {
+  background-color: $common-color;
+}
+
+.uncommon {
+  background-color: $uncommon-color;
+}
+
+.rare {
+  background-color: $rare-color;
+}
+
+.epic {
+  background-color: $epic-color;
+}

@@ -1,0 +1,7 @@
+@import "/UI/Styles/History.scss";
+
+DialogueHistory {
+    &.hidden {
+        opacity: 0;
+    }
+}

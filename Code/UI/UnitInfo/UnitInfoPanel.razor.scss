@@ -1,0 +1,71 @@
+﻿@import "/UI/Styles/Colors.scss";
+@import "/UI/Styles/Buttons.scss";
+
+UnitInfoPanel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-stroke: 3px black;
+  font-family: "VT323";
+  flex-direction: column;
+  background-color: rgba(0,0,0,1);
+
+  * {
+    flex-shrink: 0;
+  }
+
+  .row {
+    width: 100%;
+    color: white;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .unit-name {
+    font-size: 20px;
+  }
+
+  .unit-level {
+    font-size: 20px;
+  }
+
+  .health {
+    font-size: 20px;
+    color: $health-color;
+  }
+
+  .mana {
+    font-size: 20px;
+    color: $mana-color;
+  }
+
+  .health-bar, .mana-bar {
+    width: 100%;
+    background-color: rgba(0,0,0,0.9);
+
+    > .inner-bar {
+      transition: width 0.2s ease;
+      border-right: 2px solid white;
+    }
+  }
+
+  .health-bar {
+    height: 10px;
+    >.inner-bar {
+      background-color: darkred;
+    }
+  }
+
+  .mana-bar {
+    height: 2px;
+    >.inner-bar {
+      background-color: $mana-color;
+    }
+  }
+
+  .status-container {
+    pointer-events: all;
+    width: 100%;
+    flex-grow: 1;
+  }
+}

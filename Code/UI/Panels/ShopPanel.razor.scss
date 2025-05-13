@@ -1,0 +1,197 @@
+﻿@import "/UI/Styles/Buttons.scss";
+
+@keyframes purchaseFlash {
+  0% {
+    transform: scale(1);
+    background-color: gray;
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: #66ff66; // glowy green success color
+  }
+  100% {
+    transform: scale(1);
+    background-color: gray;
+  }
+}
+
+ShopPanel {
+  position: relative;
+  pointer-events: all;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px;
+  font-family: "Pixel Operator";
+  z-index: 10;
+  gap: 30px;
+
+  > .title {
+    font-size: 48px;
+    font-weight: 800;
+    color: white;
+    text-stroke: 2px black;
+    flex-shrink: 0;
+  }
+
+  > .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    flex-shrink: 0;
+
+    > .card {
+      cursor: default;
+      pointer-events: all;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .relics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    flex-shrink: 0;
+
+    .relic {
+      pointer-events: all;
+      cursor: default;
+      width: 60px;
+      height: 60px;
+      background-color: #333;
+      border-radius: 50%;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+  }
+
+  .shop-item {
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 8px;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    &.purchased {
+      animation: purchaseFlash 0.4s ease;
+    }
+    
+    &.cant-afford {
+      CardPanel, ShopRelicPanel {
+        opacity: 0.35;
+        filter: grayscale(0.2);
+      }
+    }
+
+    &:not(.cant-afford) {
+      CardPanel,
+      ShopRelicPanel {
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.03);
+        }
+      }
+    }
+  }
+
+  .cost {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 1px black;
+  }
+
+  > .button-container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    .row {
+      gap: 5px;
+    }
+
+    .button {
+      font-size: 23px;
+      width: 100%;
+    }
+  }
+  
+  .selection {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(2px);
+
+    .keywords {
+      width: 100%;
+      gap: 5px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .button {
+        width: 50%;
+      }
+    }
+    
+    &.hidden {
+      display: none;
+      opacity: 0;
+    }
+  }
+  
+  .sell-menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+    > .cards {
+      gap: 10px;
+      
+      > .card {
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.02);
+        }
+      }
+    }
+    
+    .button-container {
+      width: 50%;
+      flex-direction: column;
+    }
+    
+    &.hidden {
+      display: none;
+      opacity: 0;
+    }
+  }
+  
+  .keyword-reroll-selection {
+  }
+
+  &.hidden {
+    display: none;
+    opacity: 0;
+  }
+}

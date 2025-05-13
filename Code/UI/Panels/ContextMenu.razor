@@ -1,0 +1,28 @@
+@using System
+@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+<root class="context-menu">
+	@foreach ( var item in _menuItems )
+	{
+		<div class="menu-item" onclick="@(() => HandleItemClick( item ))">
+			<span>@item.Name</span>
+
+			@if ( item.SubMenu != null )
+			{
+				<span class="submenu-arrow">&#9656;</span>
+
+				<div class="submenu" style="display: @( item.IsSubMenuOpen ? "flex" : "none" )">
+					@foreach ( var subItem in item.SubMenu )
+					{
+						<div class="submenu-item" onclick="@(() => HandleItemClick( subItem ))">
+							@subItem.Name
+						</div>
+					}
+				</div>
+			}
+		</div>
+	}
+</root>

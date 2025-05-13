@@ -1,0 +1,122 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 8
+      },
+      "Name": "Sword Slash",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "None",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 4,
+            "Max": 4
+          },
+          "Script": null
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 9
+      },
+      "Name": "Shields Up!",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Defense",
+      "Rarity": "Uncommon",
+      "Availabilities": "None",
+      "Keywords": "Protection",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 4
+          },
+          "Script": "Protection"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 10
+      },
+      "Name": "Heavy Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Uncommon",
+      "Availabilities": "None",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 4,
+            "Max": 8
+          },
+          "Script": null
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 11
+      },
+      "Name": "Fetch Arsenal",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Defense",
+      "Rarity": "Uncommon",
+      "Availabilities": "None",
+      "Keywords": "Protection",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Protection"
+        },
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Draw"
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

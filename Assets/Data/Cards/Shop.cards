@@ -1,0 +1,650 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 50
+      },
+      "Name": "Focus Within",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "Power Up",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": "PowerUp"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 51
+      },
+      "Name": "Knife Stab",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Bleed",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Bleed"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 52
+      },
+      "Name": "High Card",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Discard",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "DiscardHand"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 53
+      },
+      "Name": "Discarded",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Discard",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "DiscardDraw"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 2,
+            "Max": 4
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 54
+      },
+      "Name": "Powerful Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 3
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "LowerCostSameCard"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 2,
+            "Max": 15
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 55
+      },
+      "Name": "Swipe",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 3,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 4,
+            "Max": 4
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 56
+      },
+      "Name": "Healing Spell",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "Heal,Recovery",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 10,
+            "Max": 10
+          },
+          "Script": "HealPercent"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 57
+      },
+      "Name": "Ep",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "PowerInHand"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 0,
+            "Max": 0
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 58
+      },
+      "Name": "Discarded 2",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Defense",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "Discard,Protection",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "DiscardPower"
+        },
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 3
+          },
+          "Script": "Protection"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 59
+      },
+      "Name": "Incantation",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 10
+          },
+          "Script": "InflictRandomBleedBurn"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 60
+      },
+      "Name": "Discarded 3",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Discard",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "DiscardMana"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 61
+      },
+      "Name": "Sleight-Of-Hand",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Draw"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 62
+      },
+      "Name": "Clone",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Clone"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 63
+      },
+      "Name": "Enchant 2",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "EnchantNextTurn"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 5,
+            "Max": 8
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 64
+      },
+      "Name": "Burn It All",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 3
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 4,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Epic",
+      "Availabilities": "Shop",
+      "Keywords": "Burn",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 6,
+            "Max": 6
+          },
+          "Script": "Burn"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 3,
+            "Max": 6
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 65
+      },
+      "Name": "",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "Discard",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": "DiscardXManaAdd"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 66
+      },
+      "Name": "",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "Singleton",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": "SingletonDraw"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 67
+      },
+      "Name": "Protect",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Defense",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 5,
+            "Max": 5
+          },
+          "Script": "Protection"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 68
+      },
+      "Name": "",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "Protection",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": "DiscardXProtection"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 69
+      },
+      "Name": "",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Discard",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 4
+          },
+          "Script": "DiscardHealth"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 1,
+            "Max": 3
+          },
+          "Script": ""
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

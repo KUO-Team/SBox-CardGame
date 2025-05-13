@@ -1,0 +1,12 @@
+﻿InputGlyph {
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: all 0.1s ease;
+  image-rendering: pixelated;
+  transform: scale(1); 
+
+  &.pressed {
+    transform: scale(0.95);
+    background-tint: gray;
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "RootObject": {
+    "__guid": "cc05b0fa-0b0b-4a13-bc57-7c1e4601b116",
+    "Flags": 0,
+    "Name": "damagenumbers",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "CardGame.DamageNumbers",
+        "__guid": "beb91bef-69dc-4d3d-aee4-1185f6c5c1a7",
+        "FadeSpeed": 5,
+        "MoveSpeed": 15,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Text": {
+          "_type": "component",
+          "component_id": "12fbbbcf-c7cd-401a-8e9d-5f047f331fb9",
+          "go": "c949dd63-2238-4d43-b23c-275cac346c5d",
+          "component_type": "TextRenderer"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "c949dd63-2238-4d43-b23c-275cac346c5d",
+        "Flags": 0,
+        "Name": "Text",
+        "Position": "0,0,5",
+        "Rotation": "-0.5,0.5,0.5,0.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.TextRenderer",
+            "__guid": "12fbbbcf-c7cd-401a-8e9d-5f047f331fb9",
+            "__version": 1,
+            "BlendMode": "Normal",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "Scale": 1,
+            "TextAlignment": "Center",
+            "TextScope": {
+              "Text": "-0",
+              "TextColor": "0.88837,0.16528,0.16528,1",
+              "FontName": "Pixel Operator",
+              "FontSize": 60,
+              "FontWeight": 200,
+              "FontItalic": false,
+              "LineHeight": 1,
+              "LetterSpacing": 0,
+              "WordSpacing": 0,
+              "Outline": {
+                "Enabled": false,
+                "Size": 4,
+                "Color": "0,0,1,1"
+              },
+              "Shadow": {
+                "Enabled": true,
+                "Size": 1,
+                "Color": "0,0,0,1",
+                "Offset": "1,1"
+              },
+              "OutlineUnder": {
+                "Enabled": false,
+                "Size": 4,
+                "Color": "0,1,0,1"
+              },
+              "ShadowUnder": {
+                "Enabled": false,
+                "Size": 4,
+                "Color": "0,0,0,1",
+                "Offset": "4,4"
+              }
+            }
+          }
+        ],
+        "Children": []
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

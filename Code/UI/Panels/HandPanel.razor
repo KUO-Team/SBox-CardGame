@@ -1,0 +1,42 @@
+﻿@using CardGame.Data
+@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( !HandComponent.IsValid() )
+{
+	return;
+}
+
+<root class="@( InputComponent.SelectedSlot is not null ? "" : "hidden" )">
+	@foreach ( var card in HandComponent.Hand )
+	{
+		<CardPanel class="@(SelectedCard == card ? "selected" : "")" Card="@card" onclick="@(() => SelectCard( card ))"></CardPanel>
+		
+		@if ( card.Keywords.Any() )
+		{
+			<div class="keywords hidden">
+				@foreach ( var k in card.Keywords )
+				{
+					var keyword = KeywordLookup.FindKeyword( k );
+					Log.EditorLog( keyword );
+					if ( keyword is not null )
+					{
+						<div class="keyword">
+							<label class="keyword-name">@keyword.Name</label>
+							<label class="keyword-description">@keyword.Description</label>
+						</div>
+					}
+				}
+			</div>
+		}
+	}
+	
+	@if ( IsInDiscardMode )
+	{
+		<div class="discard-mode">
+			<button onclick="@ConfirmDiscard">Discard</button>
+		</div>
+	}
+</root>

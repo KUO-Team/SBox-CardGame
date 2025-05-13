@@ -1,0 +1,44 @@
+﻿@using Sandbox
+
+@inherits MenuSubPanel
+@namespace CardGame.UI
+
+@if ( !Player.IsValid() )
+{
+	return;
+}
+
+<root>
+	<div class="owned-packs @(_isOpening ? "hidden" : "")">
+		<div class="packs-container">
+			@foreach ( var pack in Player.CardPacks )
+			{
+				<CardPackPanel Pack="@pack" onclick="@( () => StartPackOpening( pack ) )"></CardPackPanel>
+			}
+		</div>
+
+		<div class="button-container">
+			<button icon="close" onclick="@Return">Close</button>
+		</div>
+	</div>
+
+	<div class="pack-opening @(!_isOpening ? "hidden" : "")" @ref="_openingPanel">
+		<div class="pack-animation @(_animationInProgress ? "glow-pulse" : "")" @ref="_packAnimationPanel">
+			<div class="particle-container" @ref="_particleContainer"></div>
+		</div>
+
+		<div class="opened-cards @( !_cardsRevealed ? "hidden" : "" )" @ref="_openedCardsPanel">
+			<h1 class="title">Opened Cards</h1>
+			<div class="cards" @ref="_openedCardsContainer">
+				@foreach ( var card in _openedCards )
+				{
+					<CardPanel Card="@card"></CardPanel>
+				}
+			</div>
+		</div>
+
+		<div class="bottom-controls">
+			<button class="fancy-button @(!_animationComplete ? "hidden" : "")" onclick="@ClosePackOpening">Continue</button>
+		</div>
+	</div>
+</root>

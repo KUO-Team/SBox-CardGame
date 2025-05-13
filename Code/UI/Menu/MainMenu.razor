@@ -1,0 +1,43 @@
+@using CardGame.Data
+@using Sandbox.UI
+
+@inherits PanelComponent
+@namespace CardGame.UI
+
+<root>
+	<div class="main">
+		<label class="title">Untitled Card Game</label>
+
+		<div class="button-container">
+			<button class="@(PlayerData.Data.Runs.Count > 0 ? "" : "disabled")" onclick="@LoadRun">Load Run</button>
+			<button onclick="@NewRun">New Run</button>
+			<button onclick="@Tutorial">Tutorial</button>
+			<button onclick="@Statistics">Statistics</button>
+			<button onclick="@OpenCredits">Credits</button>
+			<button onclick="@OpenSettings">Settings</button>
+			<button onclick="@Game.Close">Quit</button>
+		</div>
+	</div>
+
+	<div class="game-info">
+		<div class="version">v@( GameInfo.Version )</div>
+		<div class="build">@( GameInfo.Build ) Build</div>
+	</div>
+
+	<div class="socials">
+		<img src="/materials/icons/discord.svg" alt="Discord" onclick="@( () => OpenWebPanel( DiscordInvite ) )" tooltip="Discord"/>
+		<i onclick="@( () => OpenWebPanel( "https://sbox.game/spoonstuff/card_game/news" ) )" tooltip="News">article</i>
+		<i onclick="@ClearData" tooltip="Clear Data">data_saver_off</i>
+	</div>
+
+	<div class="web-container hidden" @ref="_webContainer">
+		<WebPanel @ref="_webPanel"></WebPanel>
+		<button class="close" onclick="@CloseWebPanel">X</button>
+	</div>
+
+	<SettingsPanel class="hidden" Menu="@this" @ref="_settings"></SettingsPanel>
+	<PackOpeningPanel class="hidden" Menu="@this" @ref="_packOpening"></PackOpeningPanel>
+	<LoadRunPanel class="hidden" Menu="@this" @ref="_runs"></LoadRunPanel>
+	<StatisticsPanel class="hidden" Menu="@this" @ref="_statistics"></StatisticsPanel>
+	<CreditsPanel class="hidden" Menu="@this" @ref="_credits"></CreditsPanel>
+</root>

@@ -1,0 +1,17 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Status is null )
+{
+	return;
+}
+
+<root class="hidden">
+	<img class="status-icon" src="@Status.Icon" alt="Status icon"/>
+	<div class="information">
+		<label class="status-name">@Status.Name</label>
+		<label class="status-description">@Status.Description</label>
+	</div>
+</root>

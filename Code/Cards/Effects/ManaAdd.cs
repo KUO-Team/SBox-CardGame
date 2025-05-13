@@ -1,0 +1,18 @@
+﻿namespace CardGame.Effects;
+
+public class ManaAdd( Card card ) : CardEffect( card )
+{
+	public override string Description => $"Add {Power.Value} MP";
+	
+	public override void OnPlay( CardEffectDetail detail )
+	{
+		if ( !detail.Unit.IsValid() )
+		{
+			return;
+		}
+
+		detail.Unit.Mana += Power.Value;
+		
+		base.OnPlay( detail );
+	}
+}

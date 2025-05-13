@@ -1,0 +1,43 @@
+﻿BattleEndPanel {
+  position: absolute;
+  pointer-events: all;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  color: white;
+  background-color: rgba(0,0,0,0.99);
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: opacity 0.5s ease;
+  
+  .main {
+    width: 100%;
+    height: 25%;
+    background-color: rgba(50,50,50,0.9);
+    box-shadow: 0 0 4px 4px rgba(50,50,50,0.9);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    .title {
+      font-size: 85px;
+      font-weight: 600;
+    }
+    
+    .input {
+      font-size: 40px;
+      align-items: center;
+    }
+    
+    InputGlyph {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &.hidden {
+    opacity: 0;
+    display: none;
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "List": [
+    {
+      "Name": "Power Up",
+      "Description": "Attack Power +X for this turn.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Power Down",
+      "Description": "Attack Power -X for this turn.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Protection",
+      "Description": "Block X damage for this turn.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Fragile",
+      "Description": "Take X additional damage from attacks for this turn.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Burn",
+      "Description": "At the end of your turn, take X damage.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Bleed",
+      "Description": "Upon playing an attack card, take X damage. Then decrement the stack by 1.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Immobilized",
+      "Description": "All card slots become unavailable for X turns.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
+      "Name": "Silenced",
+      "Description": "The left-most available card slot becomes unavailable.",
+      "Markers": null
+    },
+    {
+      "Name": "Enchanted",
+      "Description": "Used for certain card effects.",
+      "Markers": null
+    },
+    {
+      "Name": "Discard",
+      "Description": "Return a card from your hand to the deck.",
+      "Markers": null
+    },
+    {
+      "Name": "Exhaust",
+      "Description": "Remove a card for the rest of the battle.",
+      "Markers": null
+    },
+    {
+      "Name": "Item",
+      "Description": "Card is removed from the deck when played.",
+      "Markers": null
+    },
+    {
+      "Name": "Instant",
+      "Description": "Card is played immediately upon being assigned to a card slot.",
+      "Markers": null
+    },
+    {
+      "Name": "Singleton",
+      "Description": "Active if the deck does not contain duplicate copies of cards.",
+      "Markers": null
+    },
+    {
+      "Name": "Indiscriminate",
+      "Description": "Card targets randomly; including allies.",
+      "Markers": null
+    }
+  ]
+}

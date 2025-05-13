@@ -1,0 +1,13 @@
+{
+  "Title": "kEllie's Utils",
+  "Type": "library",
+  "Org": "spoonstuff",
+  "Ident": "utils",
+  "Schema": 1,
+  "IncludeSourceFiles": false,
+  "Resources": null,
+  "PackageReferences": [],
+  "EditorReferences": null,
+  "IsWhitelistDisabled": false,
+  "Metadata": {}
+}

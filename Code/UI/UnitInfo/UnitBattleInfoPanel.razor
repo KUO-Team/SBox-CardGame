@@ -1,0 +1,50 @@
+@inherits PanelComponent
+@namespace CardGame.UI
+
+@if ( !Unit.IsValid() || !Unit.HealthComponent.IsValid() )
+{
+	return;
+}
+
+@if ( Unit.HealthComponent.IsDead )
+{
+	return;
+}
+
+<root>
+	<div class="main" @ref="_main">
+		<div class="row">
+			<label class="unit-name">@( Unit.Name )</label>
+			<label class="unit-level">Lv.@( Unit.Level )</label>
+		</div>
+
+		<div class="health-bar">
+			<div class="inner-bar" style="width: @( Unit.HealthComponent.HealthPercentage )%"></div>
+		</div>
+
+		<div class="mana-bar">
+			<div class="inner-bar" style="width: @( (float)Unit.Mana / Unit.MaxMana * 100 )%"></div>
+		</div>
+		
+		<div class="row">
+			@if ( Unit?.HealthComponent is not null )
+			{
+				<label class="health">@( Unit.HealthComponent.Health )/@( Unit.HealthComponent.MaxHealth )</label>
+				@if ( Unit.Data?.UseMp == true )
+				{
+					<label class="mana">@( Unit.Mana )/@( Unit.MaxMana )</label>
+				}
+			}
+		</div>
+
+		@if ( Unit?.StatusEffects is not null )
+		{
+			<div class="status-container">
+				@foreach ( var status in Unit.StatusEffects.Items.GroupBy( x => x.Id ) )
+				{
+					<StatusEffectPanel Status="@status.First()"></StatusEffectPanel>
+				}
+			</div>
+		}
+	</div>
+</root>

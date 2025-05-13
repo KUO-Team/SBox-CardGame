@@ -1,0 +1,13 @@
+@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( !Slot.IsValid() )
+{
+	return;
+}
+
+<root class="slot @( IsAssigned ? "assigned" : "" ) @( InputComponent.SelectedSlot == Slot ? "selected" : "" )">
+	<label class="speed">@( Slot.Speed )</label>
+</root>

@@ -1,0 +1,221 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "Tutorial",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [
+        {
+          "Source": "",
+          "LocalId": 100
+        }
+      ],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": false,
+          "Level": 2,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 0
+      },
+      "Script": "BattleTutorial"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "The Undead",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 20
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "The Undead",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 25
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Name": "The Knight",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 2
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 30
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Name": "The Knights",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 2
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 2
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 35
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Name": "The Elite Knight",
+      "Bgm": null,
+      "IsBoss": true,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 2
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 2
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "Level": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 3
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 50
+      },
+      "Script": ""
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

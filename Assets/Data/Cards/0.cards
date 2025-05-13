@@ -1,0 +1,90 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop, Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": null
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "Strong Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop, Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 5,
+            "Max": 5
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "Mystic Ward",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Shop, Starter",
+      "Keywords": "Protection",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Protection"
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

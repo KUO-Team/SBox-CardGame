@@ -1,0 +1,76 @@
+﻿BattleInfoPanel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: "Pixel Operator";
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.9);
+  gap: 8px;
+
+  .battle {
+    width: 100%;
+    height: 120px;
+    color: white;
+    font-size: 50px;
+    background-color: rgba(10, 10, 10, 1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .group {
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 6px;
+
+    > .title {
+      font-size: 50px;
+      color: white;
+    }
+  }
+
+  .units {
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    .unit {
+      pointer-events: all;
+      background-color: rgba(10, 10, 10, 1);
+      width: 200px;
+      height: 290px;
+      color: white;
+      padding: 8px;
+      font-size: 24px;
+      font-family: "Pixel Operator";
+      border-radius: 4px;
+      flex-direction: column;
+      align-items: center;
+
+      .unit-portrait {
+        width: 50%;
+        flex-grow: 1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+  
+  > .button-container {
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+
+    .button {
+      width: 100%;
+    }
+  }
+}

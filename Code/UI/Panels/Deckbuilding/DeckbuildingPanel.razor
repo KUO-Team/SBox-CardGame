@@ -1,0 +1,45 @@
+@using Sandbox.UI
+@using CardGame.Data
+
+@inherits Panel
+@namespace CardGame.UI
+
+@{
+	var sortedDeck = UnitData?.Deck
+		?.Select( CardDataList.GetById )
+		?.Where( card => card is not null )
+		?.OrderByDescending( card => card?.Rarity )
+		?.ToList();
+}
+
+<root class="hidden">
+	<div class="deck">
+		<label class="title">Deck</label>
+		<div class="slots">
+			@for ( var row = 0; row < 3; row++ )
+			{
+				<div class="row">
+					@for ( var col = 0; col < 3; col++ )
+					{
+						var i = row * 3 + col;
+						<div class="slot">
+							@if ( sortedDeck is not null && i < sortedDeck.Count )
+							{
+								var card = sortedDeck[i];
+								<CardPanel Card="@card" onclick="@( () => Remove( card ) )"/>
+							}
+						</div>
+					}
+				</div>
+			}
+
+		</div>
+
+		<div class="button-container">
+			<button onclick="@RandomDeck">Random Deck</button>
+			<button onclick="@ClearDeck">Clear Deck</button>
+		</div>
+	</div>
+
+	<CardsPanel class="cards" @ref="_cardsPanel"></CardsPanel>
+</root>

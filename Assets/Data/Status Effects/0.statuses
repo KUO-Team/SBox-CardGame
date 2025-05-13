@@ -1,0 +1,123 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Icon": "materials/statuses/powerup.png",
+      "Name": "Power Up",
+      "Description": "Attack Power +X for this turn.",
+      "IsNegative": false,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Icon": "materials/statuses/powerdown.png",
+      "Name": "Power Down",
+      "Description": "Attack Power -X for this turn.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Icon": "materials/statuses/protection.png",
+      "Name": "Protection",
+      "Description": "Block X damage for this turn.",
+      "IsNegative": false,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Icon": "materials/statuses/fragile.png",
+      "Name": "Fragile",
+      "Description": "Take X additional damage from attacks for this turn.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Icon": "materials/statuses/burn.png",
+      "Name": "Burn",
+      "Description": "At the end of your turn, take X damage.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Icon": "materials/statuses/bleed.png",
+      "Name": "Bleed",
+      "Description": "Upon playing an attack card, take X damage. Then decrement the stack by 1.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 7
+      },
+      "Icon": "materials/statuses/immobilized.png",
+      "Name": "Immobilized",
+      "Description": "All card slots become unavailable for X turns.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 8
+      },
+      "Icon": "materials/statuses/immobilized.png",
+      "Name": "Silenced",
+      "Description": "The left-most available card slot becomes unavailable.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 9
+      },
+      "Icon": "materials/statuses/enchanted.png",
+      "Name": "Enchanted",
+      "Description": "Used for certain card effects.",
+      "IsNegative": false,
+      "IsHiddenStack": true,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

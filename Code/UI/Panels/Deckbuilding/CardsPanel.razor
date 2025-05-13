@@ -1,0 +1,50 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+<root>
+	<label class="title">Owned Cards</label>
+	
+	<div class="row">
+		<h2>Filter</h2>
+		<select class="filter" onchange="@OnFilterChanged" @ref="_filter">
+			<option>All</option>
+			<option>Rarity</option>
+			<option>Cost</option>
+			<option>Type</option>
+		</select>
+	</div>
+	
+	<div class="inner-box">
+		<div class="box">
+			<div class="slots" @ref="_slots">
+				@if ( CurrentPlayer?.Cards != null )
+				{
+					foreach ( var rowGroup in GetGroupedCards() )
+					{
+						<div class="row">
+							@foreach ( var item in rowGroup )
+							{
+								<div class="slot">
+									<div class="card-stack">
+										<CardPanel Card="@item.Card" onclick="@( () => AddCard( item.Card ) )"/>
+										<div class="card-count">@item.Count</div>
+									</div>
+								</div>
+							}
+						</div>
+					}
+				}
+			</div>
+
+			<div class="button-container">
+				<button onclick="@Close">Close</button>
+			</div>
+		</div>
+
+		<div class="scrollbar">
+			<div class="scrollbar-thumb" style="margin-top: @CalculateScrollThumbOffset()px; height: @CalculateScrollThumbHeight()%;"></div>
+		</div>
+	</div>
+</root>

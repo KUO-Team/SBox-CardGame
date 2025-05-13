@@ -1,0 +1,175 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "Zombie",
+      "Description": "",
+      "Sprite": {
+        "Resource": "sprites/zombie.sprite",
+        "Portrait": "materials/units/portraits/zombie.png"
+      },
+      "Prefab": null,
+      "Level": 1,
+      "LevelScaling": true,
+      "Hp": 5,
+      "Ep": 0,
+      "UseMp": true,
+      "Mp": 3,
+      "MinSpeed": 2,
+      "MaxSpeed": 3,
+      "Slots": 1,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 6
+        },
+        {
+          "Source": "",
+          "LocalId": 6
+        },
+        {
+          "Source": "",
+          "LocalId": 7
+        },
+        {
+          "Source": "",
+          "LocalId": 7
+        }
+      ],
+      "Passives": []
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "Knight",
+      "Description": "",
+      "Sprite": {
+        "Resource": "sprites/knight.sprite",
+        "Portrait": "materials/units/portraits/knight.png"
+      },
+      "Prefab": null,
+      "Level": 1,
+      "LevelScaling": true,
+      "Hp": 15,
+      "Ep": 0,
+      "UseMp": true,
+      "Mp": 5,
+      "MinSpeed": 1,
+      "MaxSpeed": 6,
+      "Slots": 2,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 11
+        }
+      ],
+      "Passives": []
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "Knight Captain",
+      "Description": "",
+      "Sprite": {
+        "Resource": "sprites/eliteknight.sprite",
+        "Portrait": "materials/units/portraits/eliteknight.png"
+      },
+      "Prefab": null,
+      "Level": 1,
+      "LevelScaling": true,
+      "Hp": 35,
+      "Ep": 0,
+      "UseMp": true,
+      "Mp": 5,
+      "MinSpeed": 1,
+      "MaxSpeed": 6,
+      "Slots": 2,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 11
+        },
+        {
+          "Source": "",
+          "LocalId": 11
+        }
+      ],
+      "Passives": [
+        "BulkyArmor"
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

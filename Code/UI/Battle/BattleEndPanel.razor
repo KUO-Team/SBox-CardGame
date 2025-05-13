@@ -1,0 +1,21 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+<root class="hidden">
+	<div class="main">
+		@if ( IsWin )
+		{
+			<label class="title">VICTORY</label>
+		}
+		else
+		{
+			<label class="title">DEFEAT</label>
+		}
+		
+		<div class="input">
+			Press <InputGlyph action="attack1"></InputGlyph> To Continue
+		</div>
+	</div>
+</root>

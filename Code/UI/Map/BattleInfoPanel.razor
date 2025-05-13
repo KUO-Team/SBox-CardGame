@@ -1,0 +1,40 @@
+﻿@using Sandbox.UI
+@using CardGame.Data
+
+@inherits Panel
+@namespace CardGame.UI.Map
+
+@if ( Battle is null )
+{
+	return;
+}
+
+<root>
+	<div class="battle">
+		<label class="battle-name">@Battle.Name</label>
+	</div>
+	
+	<div class="group">
+		<label class="title">Enemies</label>
+		<div class="units">
+			@foreach ( var unit in Battle.EnemyUnits )
+			{
+				var unitData = UnitDataList.GetById( unit.Id );
+				if ( unitData is not null )
+				{
+					<div class="unit" @( /*onclick="@( () => ShowInfo( unitData ) )"*/ )>
+						<img class="unit-portrait" src="@unitData.Sprite?.Portrait" alt="@unitData.Name"/>
+						<label class="unit-name">@unitData.Name</label>
+					</div>
+				}
+			}
+		</div>
+	</div>
+	
+	<div class="button-container">
+		<button onclick="@EditDeck">Edit Deck</button>
+		<button onclick="@StartBattle">Start Battle</button>
+	</div>
+
+	<DeckbuildingPanel class="hidden" @ref="_deckbuildingPanel"></DeckbuildingPanel>
+</root>

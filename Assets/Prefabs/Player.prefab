@@ -1,0 +1,56 @@
+{
+  "RootObject": {
+    "__guid": "696fffcb-dcfd-4c95-975f-da4741250762",
+    "Flags": 0,
+    "Name": "player",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "CardGame.Player",
+        "__guid": "cd83fa49-ad7c-4183-be07-7775a4755f86",
+        "CardPacks": [],
+        "Cards": [],
+        "Local": null,
+        "Money": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Unit": {
+          "Hp": 0,
+          "Deck": []
+        },
+        "Units": []
+      }
+    ],
+    "Children": [],
+    "__variables": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

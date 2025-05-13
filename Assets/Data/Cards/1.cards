@@ -1,0 +1,111 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Name": "Scratch",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "None",
+      "Keywords": "Bleed",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Bleed"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": null
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Name": "Bite",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "None",
+      "Keywords": "Bleed",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Bleed"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 1,
+            "Max": 3
+          },
+          "Script": null
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 7
+      },
+      "Name": "Gnaw",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Uncommon",
+      "Availabilities": "None",
+      "Keywords": "Bleed",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 2
+          },
+          "Script": "Bleed"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": null
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

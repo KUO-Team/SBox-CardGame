@@ -1,0 +1,28 @@
+{
+  "Title": "kEllie's Extensions",
+  "Type": "library",
+  "Org": "spoonstuff",
+  "Ident": "extensions",
+  "Schema": 1,
+  "IncludeSourceFiles": false,
+  "Resources": null,
+  "PackageReferences": [],
+  "EditorReferences": null,
+  "IsStandaloneOnly": false,
+  "Metadata": {
+    "CsProjName": "",
+    "Compiler": {
+      "RootNamespace": "Sandbox",
+      "DefineConstants": "SANDBOX;ADDON;DEBUG",
+      "NoWarn": "1701;1702;1591;",
+      "WarningsAsErrors": "",
+      "TreatWarningsAsErrors": false,
+      "Nullables": false,
+      "Whitelist": true,
+      "ReleaseMode": "Debug",
+      "AssemblyReferences": [],
+      "IgnoreFolders": [],
+      "DistinctAssemblyReferences": []
+    }
+  }
+}

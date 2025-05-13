@@ -1,0 +1,18 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI.Map
+
+<root class="hidden">
+	<div class="main">
+		<label class="event-text">@Event.Text</label>
+		<div class="choices">
+			@foreach ( var choice in Event.Choices )
+			{
+				<div class="choice @(choice.Enabled ? "" : "disabled")" onclick="@( () => SelectChoice( choice ) )">
+					@( choice.Text )
+				</div>
+			}
+		</div>
+	</div>
+</root>

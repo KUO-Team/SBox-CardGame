@@ -1,0 +1,10 @@
+﻿KeyBind {
+  pointer-events: all;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+}

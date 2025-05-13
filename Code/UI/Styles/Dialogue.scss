@@ -1,0 +1,97 @@
+﻿@import "Fonts.scss";
+
+$dialogue-font: "Pixel Operator";
+$dialogue-color: white;
+$dialogue-text-shadow: 0 2px 2px black;
+$dialogue-font-size: 35px;
+$dialogue-font-size-small: 30px;
+$dialogue-text-padding: 6px;
+
+$dialogue-box-background-color: rgba(45,45,45,0.5);
+$dialogue-box-shadow: 0 2px 2px black;
+$dialogue-box-border-radius: 0px;
+$dialogue-box-padding: 10px;
+
+DialogueBox {
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-stroke: 3px black;
+  padding: $dialogue-box-padding;
+  opacity: 1;
+  transition: opacity 1s ease;
+
+  .characterPanel {
+    top: 0;
+    left: 0;
+    text-shadow: $dialogue-text-shadow;
+    flex-direction: column;
+    border-bottom: 2px solid gray;
+
+    .character {
+      font-family: $dialogue-font;
+      font-size: 50px;
+      font-weight: bold;
+      color: $dialogue-color;
+      margin-bottom: 2px;
+    }
+
+    .title {
+      font-family: $dialogue-font;
+      font-size: 28px;
+      font-style: italic;
+      color: lighten($dialogue-color, 20%);
+    }
+  }
+
+  .dialoguePanel {
+    width: 50%;
+    height: 280px;
+    font-family: $dialogue-font;
+    background-color: $dialogue-box-background-color;
+    border-radius: $dialogue-box-border-radius;
+    box-shadow: $dialogue-box-shadow;
+    border: 1px solid gray;
+    padding: 12px;
+    flex-direction: column;
+
+    .finished-icon {
+      width: 35px;
+      height: 35px;
+      bottom: 45px;
+      align-self: center;
+      margin: 8px;
+      filter: drop-shadow(0 0 8px black);
+      animation: blink 1.5s infinite;
+
+      @keyframes blink {
+        50% {
+          opacity: 0.5;
+        }
+      }
+    }
+    
+    .dialogueText {
+      flex-grow: 1;
+      margin-top: 6px;
+    }
+  }
+  
+  &.hidden {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.dialoguePanel {
+  .label {
+    color: $dialogue-color;
+    font-family: $dialogue-font;
+    font-size: $dialogue-font-size;
+    text-shadow: $dialogue-text-shadow;
+  }
+}

@@ -1,0 +1,23 @@
+﻿@inherits PanelComponent
+@namespace CardGame.UI
+
+<root>
+	<div class="main">
+		<label class="title">YOU DIED</label>
+
+		@if (!string.IsNullOrEmpty(_quote))
+		{
+			<label class="quote">“@_quote”</label>
+		}
+
+		<div class="stats">
+			<label class="floor">Floor: @(GameManager.Instance?.Floor)</label>
+			<label class="money">Gold: @(Player.Local?.Money)g</label>
+		</div>
+
+		<div class="button-container">
+			<button class="button" onclick="@ReturnToMenu">Return to Menu</button>
+		</div>
+	</div>
+</root>
+

@@ -1,0 +1,38 @@
+﻿@using Sandbox.UI
+@using CardGame.Data
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Pack?.Cards is null )
+{
+	return;
+}
+
+<root class="cardpack">
+	<div class="header @( Pack.Rarity )">
+		<label class="pack-name">@Pack.Name</label>
+	</div>
+	<div class="possible-cards">
+		@{
+			List<Card> cards = [];
+
+			foreach ( var cardId in Pack.Cards )
+			{
+				var card = CardDataList.GetById( cardId );
+				if ( card != null )
+				{
+					cards.Add( card );
+				}
+			}
+
+			cards.Sort( ( a, b ) => a.Rarity.CompareTo( b.Rarity ) );
+
+			foreach ( var card in cards )
+			{
+				<label class="@card.Rarity">@card.Name</label>
+			}
+		}
+	</div>
+	<div class="footer @( Pack.Rarity )"></div>
+</root>

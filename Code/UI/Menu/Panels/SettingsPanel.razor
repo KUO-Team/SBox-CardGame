@@ -1,0 +1,67 @@
+﻿@using Sandbox.Audio
+@using Sandbox.UI
+
+@inherits MenuSubPanel
+@namespace CardGame.UI
+
+<root>
+	<div class="tab-selection">
+		<button class="@( OpenedTab?.Id == "audio" ? "disabled" : "" )" onclick="@( () => OpenTab( "audio" ) )">Audio
+		</button>
+		<button class="@( OpenedTab?.Id == "controls" ? "disabled" : "" )" onclick="@( () => OpenTab( "controls" ) )">
+			Controls
+		</button>
+	</div>
+
+	<div class="tabs" @ref="Tabs">
+		<div class="tab hidden" id="audio">
+			<label class="title">Audio</label>
+
+			<div class="setting-group">
+				<div class="setting">
+					<label class="setting-label">Master Volume</label>
+					<SliderControl Value:bind="@Mixer.Master.Volume" Step="@( 0.1f )" Max="@( 1 )"></SliderControl>
+				</div>
+
+				@foreach ( var mixer in Mixers )
+				{
+					<div class="setting">
+						<label class="setting-label">@( mixer.Name ) Volume</label>
+						<SliderControl Value:bind="@mixer.Volume" Step="@( 0.1f )" Max="@( 1 )"></SliderControl>
+					</div>
+				}
+			</div>
+		</div>
+		
+		<div class="tab hidden" id="controls">
+			<label class="title">Controls</label>
+
+			<div class="setting-group">
+				@{
+					var groupedActions = Input.GetActions()
+						.GroupBy( action => action.GroupName )
+						.ToList();
+				}
+
+				@foreach ( var group in groupedActions )
+				{
+					<div class="action-group">
+						<label class="group-name">@group.Key</label>
+
+						@foreach ( var action in group )
+						{
+							<div class="action">
+								<label class="action-name">@action.Title</label>
+								<KeyBind Action="@action"></KeyBind>
+							</div>
+						}
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
+	<div class="button-container">
+		<button onclick="@this.Hide">Close</button>
+	</div>
+</root>

@@ -1,0 +1,41 @@
+@inherits PanelSingleton<BattleHud>
+@namespace CardGame.UI
+
+@if ( !BattleManager.IsValid() )
+{
+	return;
+}
+
+<root>
+	<div class="header">
+		@if ( BattleManager.State == TurnState.Start )
+		{
+			<button class="@(BattleManager.CanEndTurn ? "" : "disabled")" onclick="@EndTurn">End Turn</button>
+		}
+		
+		<div class="turn">
+			<label>Turn @BattleManager.Turn</label>
+		</div>
+		
+		@if ( RelicManager.Instance.IsValid() )
+		{
+			var relics = RelicManager.Instance.Relics;
+			@if ( relics.Any() )
+			{
+				<div class="relic-container">
+					@foreach ( var relic in relics )
+					{
+						<RelicPanel Relic="@relic.Data"></RelicPanel>
+					}
+				</div>
+			}
+		}
+
+		<div class="card-showcase" @ref="_cardShowcase"></div>
+	</div>
+	
+	<HandPanel></HandPanel>
+	<BattleEndPanel @ref="BattleEndPanel"></BattleEndPanel>
+	<BattleStartPanel @ref="BattleStartPanel"></BattleStartPanel>
+	<TurnStartPanel @ref="TurnStartPanel"></TurnStartPanel>
+</root>

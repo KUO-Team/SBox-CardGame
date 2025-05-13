@@ -1,0 +1,19 @@
+﻿StatusEffectDisplay {
+  margin: 0 2px;
+  
+  * {
+    pointer-events: none;
+  }
+  
+  .status-name {
+    text-shadow: 0 2px 2px black;
+  }
+  
+  .status-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    background-position: center;
+    background-size: contain;
+  }
+}

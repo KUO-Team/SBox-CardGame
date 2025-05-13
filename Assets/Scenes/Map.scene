@@ -1,0 +1,162 @@
+{
+  "__guid": "5075d905-b5e7-4e48-8d6d-f841d67f181d",
+  "GameObjects": [
+    {
+      "__guid": "2974b949-6c51-4a05-8a80-1308d74bbec0",
+      "Flags": 0,
+      "Name": "Map",
+      "Position": "149.3263,149.3264,-211.1794",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "bcfb184b-54a2-48d4-aaee-2a55e02705df",
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 200
+        },
+        {
+          "__type": "CardGame.UI.Map.MapPanel",
+          "__guid": "eb63b48c-1c17-4f5f-a10c-3ca37d3c2331",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "49d3234a-f0b0-4dc0-8518-0ae7da5897fa",
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "130.2813,130.7393,-234.8044",
+      "Tags": "maincamera",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "365e8e54-13d4-46df-9ad9-2f77d5541a55",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "7c6a8556-9e68-4308-8c8f-8f5564a67291",
+      "Flags": 0,
+      "Name": "Pause Manager",
+      "Position": "138.8555,111.9125,-239.58",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "CardGame.PauseManager",
+          "__guid": "0a8c647e-7889-492a-ac02-9e73b5402f40",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PauseMenu": {
+            "_type": "component",
+            "component_id": "5a9abe3f-9c6c-4de4-acfb-98c28d796243",
+            "go": "cd83f601-9234-4726-a9bd-dedad1f6976e",
+            "component_type": "PauseMenu"
+          }
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "cd83f601-9234-4726-a9bd-dedad1f6976e",
+          "Flags": 0,
+          "Name": "Pause Menu",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ScreenPanel",
+              "__guid": "e2b6db67-c1ba-4100-80e0-a0101d730400",
+              "AutoScreenScale": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Opacity": 1,
+              "Scale": 1,
+              "ScaleStrategy": "ConsistentHeight",
+              "TargetCamera": null,
+              "ZIndex": 400
+            },
+            {
+              "__type": "CardGame.UI.PauseMenu",
+              "__guid": "5a9abe3f-9c6c-4de4-acfb-98c28d796243",
+              "__enabled": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 2
+}

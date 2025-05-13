@@ -1,0 +1,12 @@
+﻿namespace CardGame.Effects;
+
+public class EnchantNextTurn( Card card ) : CardEffect( card )
+{
+	public override string Description => "Become Enchanted next turn";
+
+	public override void OnPlay( CardEffectDetail detail )
+	{
+		detail.Unit?.StatusEffects?.AddStatusEffectNextTurn<StatusEffects.Enchanted>();
+		base.OnPlay( detail );
+	}
+}

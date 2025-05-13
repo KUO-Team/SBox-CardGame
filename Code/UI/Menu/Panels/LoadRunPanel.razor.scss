@@ -1,0 +1,37 @@
+﻿@import "/UI/Styles/Buttons.scss";
+
+LoadRunPanel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,1);
+  flex-direction: column;
+  
+  >.main {
+    width: 90%;
+    height: 90%;
+    background-color: rgba(0,0,0,0.9);
+    gap: 10px;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    
+    runpanel {
+      flex-shrink: 0;
+    }
+  }
+  
+  >.button-container {
+    width: 90%;
+    
+    .button {
+      width: 100%;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}

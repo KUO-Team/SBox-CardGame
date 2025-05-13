@@ -1,0 +1,462 @@
+{
+  "FilePath": "tilesets/overworldtileset.png",
+  "TileSize": "16,16",
+  "TileSeparation": "0,0",
+  "TileScale": 1,
+  "Tiles": [
+    {
+      "Id": "f98f2430-0be3-468a-8f87-5ba43d1a8550",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "67ffbdeb-6965-46b6-8f99-cb0b9851114a",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "ae25902a-3755-4004-8815-8371e81d441d",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "d3b26ebd-bac8-4d9c-999c-b7207800c3a5",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "bc61b504-2bc0-4261-ab46-661ea563c692",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "fab808d8-3a9a-4f9a-aa73-ca7049a6bd30",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "a37a6653-139f-448f-ae07-9004693fbd9b",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "4117a46e-1375-4600-8a19-cab1793e838d",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,0",
+      "Size": "1,1"
+    },
+    {
+      "Id": "cd3c555c-9bc8-47ed-867d-0b6cc2cfb2a6",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "66113ba5-7f58-4006-a4cb-3e4818543cc2",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "fc92aa86-bd07-4d57-93c8-1793e3af5a95",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "8c5c98bf-bd0a-4ea5-b801-99c60f1ccfa7",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "d5cc6cfc-acf9-45fe-9607-5670a4aab5bd",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "0d1d6078-b510-4803-9972-47b8f88dadfb",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "d9b3289a-d18c-4184-afac-d0f038eee4f6",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "a0b9efb9-870f-4de5-a8cf-2e9a3f8703f6",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,1",
+      "Size": "1,1"
+    },
+    {
+      "Id": "232e30b6-37e8-48c5-a570-25337deaf3d3",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "6ceec1da-323c-456a-8742-980543bd7751",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "df1269f3-9d93-4ecb-9bba-4b4fd8e8eb1b",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "5c824bf0-6a51-482b-b2f7-aa4cb01e8f74",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "c1ae2b8a-ac3f-4a55-8ed2-82d13bf45454",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "33afa7f8-d9fc-427a-beff-869d2d6c2034",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "cf332425-58a8-4b60-9913-0749bf7e6fc6",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "1b150f4e-4799-4ca9-a1ae-b74ef989fecd",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,2",
+      "Size": "1,1"
+    },
+    {
+      "Id": "f7730d43-0038-4516-84b8-bcc79b640da3",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "35a13b82-bd40-437b-9a21-c87a09c3953f",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "37febf4b-d048-485a-b46f-5642b1f4941f",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "dddd89a4-8349-4735-a290-923e8c8fe2dc",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "a07a95fa-76f0-429e-ac3d-0f559e333ee0",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "62f656db-6731-4888-9a99-dae690c56826",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "09903c32-a3d0-473e-9218-2ca2a71d9da4",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "f5dd42a2-4269-4f73-8e39-422843904646",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,3",
+      "Size": "1,1"
+    },
+    {
+      "Id": "d5afeaf8-66f1-41a0-9142-10cb1a4d53c7",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "1d5db349-6197-4db8-addb-f2fe91b36f03",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "773b1190-3e0a-4f76-bfde-2cc5f6c1254c",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "a92ff4c1-3b60-4f84-beb2-5b455bab7ffb",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "4698361a-61c6-4b86-8342-46e3922723eb",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "fa4ba97f-747d-4185-a519-4a41ab2d4785",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "016f303e-602b-4963-95e1-e13bbf196af5",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "612b5bdb-6569-4f90-9058-c83c91c48c1f",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,4",
+      "Size": "1,1"
+    },
+    {
+      "Id": "b92f5e58-9bc8-43f9-bda9-252518e9c2c0",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "1e478091-83b3-480f-bfef-daaa071debee",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "cdfc8eeb-9850-411b-9d36-feaf450ccd19",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "6759bb2a-fd0f-4399-a642-e8092ed236bc",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "e02cf141-9402-47aa-b628-e20aa86cec0d",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "53bf1e46-3318-4e26-849f-1f1db3bd0120",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "012fbca3-2a65-4ee8-9e78-f735c7e4f97f",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "2c49f61d-6762-4fd6-8505-75e2e9a23cc3",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,5",
+      "Size": "1,1"
+    },
+    {
+      "Id": "0abf1269-3a48-4711-9a48-bb89a749e036",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "9568e3d2-3498-4985-a5c9-15c6c6b2314e",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "2763a254-9b7c-4c32-9b23-0fc140881dbd",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "1c073ad9-532c-45bc-8596-1832554c428e",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "6f4394b3-475a-48e8-9338-0f9726e67dfc",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "917a13ad-9059-404a-94cd-badc1c4f93c8",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "ef220629-2252-467f-931c-440da4904a52",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "709c31f1-862d-4d60-afc1-ad31cab499b3",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,6",
+      "Size": "1,1"
+    },
+    {
+      "Id": "81cac43b-574d-4687-8106-441fa426e162",
+      "Name": "",
+      "Tags": null,
+      "Position": "0,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "198f0030-38f0-4005-8b6e-51201505f88c",
+      "Name": "",
+      "Tags": null,
+      "Position": "1,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "e5ba75eb-0a2f-48d9-abd0-3b25dadd2156",
+      "Name": "",
+      "Tags": null,
+      "Position": "2,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "8452f897-8150-47e6-8fcc-343344f79023",
+      "Name": "",
+      "Tags": null,
+      "Position": "3,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "63fa2770-8ee1-429e-9c17-b296caf233b3",
+      "Name": "",
+      "Tags": null,
+      "Position": "4,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "53b9aba4-8dfe-4f6b-a3a6-0953e3b4e181",
+      "Name": "",
+      "Tags": null,
+      "Position": "5,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "5c78e4e6-34c0-471a-a363-685927d82a55",
+      "Name": "",
+      "Tags": null,
+      "Position": "6,7",
+      "Size": "1,1"
+    },
+    {
+      "Id": "35dcc5eb-5bc5-4cb1-b3d3-485fe39beb9a",
+      "Name": "",
+      "Tags": null,
+      "Position": "7,7",
+      "Size": "1,1"
+    }
+  ],
+  "InheritAutotileFrom": null,
+  "AutotileBrushes": [],
+  "CurrentTextureSize": "128,128",
+  "CurrentTileSize": "16,16",
+  "__references": [],
+  "__version": 0
+}

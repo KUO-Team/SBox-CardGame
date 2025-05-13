@@ -1,0 +1,168 @@
+{
+  "RootObject": {
+    "__guid": "790f6728-6992-41cc-9aa9-055475c436a4",
+    "Flags": 0,
+    "Name": "cat",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "CardGame.BaseCharacter",
+        "__guid": "bb18d509-9b60-4c40-b056-b96da78327e8",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "SpriteComponent": {
+          "_type": "component",
+          "component_id": "86efea9d-160b-4141-b75c-cf1c5c0276b4",
+          "go": "1fb9a08f-48b3-4a24-bedd-63f11ec96d5e",
+          "component_type": "SpriteComponent"
+        }
+      },
+      {
+        "__type": "CardGame.DialogueComponent",
+        "__guid": "7fece250-41ef-4460-a268-340c04dc63ca",
+        "DialogueText": "(label test\n(text \"Hello!\")\n)\n\n(start-dialogue test)",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "1fb9a08f-48b3-4a24-bedd-63f11ec96d5e",
+        "Flags": 0,
+        "Name": "blackcat",
+        "Scale": "0.3,0.3,1",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SpriteTools.SpriteComponent",
+            "__guid": "86efea9d-160b-4141-b75c-cf1c5c0276b4",
+            "__version": 1,
+            "BroadcastEvents": {},
+            "CastShadows": "On",
+            "CreateAttachPoints": false,
+            "FlashTint": "1,1,1,0",
+            "MaterialOverride": null,
+            "OnAnimationComplete": null,
+            "OnBroadcastEvent": null,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "PlaybackSpeed": 1,
+            "Sprite": "sprites/blackcat.sprite",
+            "SpriteFlags": "None",
+            "StartingAnimationName": "default",
+            "Tint": "1,1,1,1",
+            "UpDirection": "YPositive",
+            "UsePixelScale": false
+          }
+        ]
+      },
+      {
+        "__guid": "16690117-02ee-4858-86b5-8fb494aee089",
+        "Flags": 0,
+        "Name": "Interaction",
+        "Position": "0,37.57018,0",
+        "Rotation": "-0.5000001,-0.5,-0.4999999,0.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "50489fe7-2ca1-40dd-b218-0401486edb92",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "PanelSize": "512,512",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "CardGame.UI.InteractionPrompt",
+            "__guid": "4b4f2f0e-c95c-4b1f-b0d5-6ce7c4fa2f49",
+            "DialogueComponent": {
+              "_type": "component",
+              "component_id": "7fece250-41ef-4460-a268-340c04dc63ca",
+              "go": "790f6728-6992-41cc-9aa9-055475c436a4",
+              "component_type": "DialogueComponent"
+            },
+            "InteractKey": "attack1",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Type": "Dialogue"
+          }
+        ]
+      }
+    ],
+    "__variables": [
+      {
+        "Id": "Dialogue Text",
+        "Title": "Dialogue Text",
+        "Description": null,
+        "Group": null,
+        "Order": 0,
+        "Targets": [
+          {
+            "Id": "7fece250-41ef-4460-a268-340c04dc63ca",
+            "Property": "DialogueText"
+          }
+        ]
+      }
+    ],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

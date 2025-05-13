@@ -1,0 +1,88 @@
+﻿@import "/UI/Styles/Buttons.scss";
+
+HandPanel {
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  bottom: 0;
+  flex-grow: 1;
+  opacity: 1;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+  
+  .discard-mode {
+    pointer-events: all;
+    padding: 5px;
+    
+    .button {
+      width: 200px;
+      font-size: 24px;
+    }
+  }
+  
+  .card {
+    position: relative;
+    bottom: -6px;
+    margin-left: -50px;
+    transform: rotateZ(3deg);
+    flex-shrink: 0;
+    transition: transform 0.14s ease;
+    z-index: 1;
+
+    &:hover {
+      z-index: 4;
+      transform: rotate(0deg);
+      top: -10px;
+    }
+    
+    &.selected {
+      z-index: 5;
+      position: relative;
+      top: -10px;
+      border: 1px solid gold;
+    }
+  }
+  
+  .keywords {
+    width: 300px;
+    height: 100%;
+    color: white;
+    margin-right: 5px;
+    
+    .keyword {
+      width: 100%;
+      height: 85px;
+      flex-direction: column;
+      padding: 8px;
+      font-size: 20px;
+      flex-shrink: 0;
+      background-color: rgba(0,0,0,0.9);
+      border: 1px solid white;
+      max-width: 450px;
+      
+      .keyword-name {
+        font-size: 24px;
+        font-weight: 600;
+        text-shadow: 0 1px 1px black;
+        transform: scale(1, 1); // Prevent anti-aliasing
+      }
+      
+      .keyword-description {
+        font-size: 20px;
+        font-weight: 400;
+        text-shadow: 0 1px 1px black;
+        transform: scale(1, 1); // Prevent anti-aliasing
+      }
+    }
+    
+    &.hidden {
+      display: none;
+    }
+  }
+  
+  &.hidden {
+    opacity: 0;
+    display: none;
+  }
+}

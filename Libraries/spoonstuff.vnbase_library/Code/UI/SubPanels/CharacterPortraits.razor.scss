@@ -1,0 +1,7 @@
+@import "/UI/Styles/Characters.scss";
+
+CharacterPortraits {
+    &.hidden {
+        display: none;
+    }
+}

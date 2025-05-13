@@ -1,0 +1,38 @@
+﻿TurnStartPanel {
+  position: absolute;
+  pointer-events: all;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-family: "Pixel Operator";
+  background-color: rgba(0, 0, 0, 0.2);
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 100;
+
+  > .main {
+    width: 100%;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+
+    > .title {
+      font-size: 65px;
+      font-weight: 600;
+    }
+
+    > .subtitle {
+      font-size: 40px;
+    }
+  }
+
+  &.hidden {
+    display: none;
+    opacity: 0;
+  }
+}

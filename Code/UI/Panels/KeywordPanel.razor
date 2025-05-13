@@ -1,0 +1,14 @@
+﻿@using Sandbox.UI
+
+@namespace CardGame.UI
+@inherits Panel
+
+@if ( Keyword is null )
+{
+	return;
+}
+
+<root class="keyword">
+	<label class="keyword-name">@Keyword.Name</label>
+	<label class="keyword-description">@Keyword.Description</label>
+</root>

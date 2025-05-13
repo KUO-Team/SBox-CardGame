@@ -1,0 +1,85 @@
+﻿CardsPanel {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: rgba(25,25,25,1);
+  
+  .row {
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 8px;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .dropdown {
+    option {
+      display: none;
+    }
+  }
+  
+  .filter {
+    width: 250px;
+    padding: 8px;
+    font-size: 30px;
+    color: white;
+    border-radius: 6px;
+    align-items: center;
+    background-color: rgba(0,0,0,0.9);
+  }
+
+  .scrollbar {
+    width: 10px;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+
+    .scrollbar-thumb {
+      position: absolute;
+      width: 100%;
+      min-height: 100px;
+      background-color: white;
+      transition: all 0.1s linear;
+    }
+  }
+  
+  .card-stack {
+    position: relative;
+    transition: transform 0.05s ease;
+    
+    .card {
+      cursor: pointer;
+    }
+    
+    .card-count {
+      position: absolute;
+      right: -10px;
+      bottom: -10px;
+      width: 50px;
+      height: 50px;
+      color: white;
+      font-size: 30px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      background-color: rgba(0,0,0,0.9);
+    }
+  }
+
+  .button-container {
+    width: 100%;
+    padding: 8px;
+    flex-shrink: 0;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .slots {
+    flex-direction: column;
+  }
+}

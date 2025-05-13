@@ -1,0 +1,23 @@
+﻿@inherits PanelComponent
+@namespace CardGame.UI.Map
+
+<root>
+	<div class="header">
+		<div class="player-bar">
+			<div class="player">
+				<label>@(Connection.Local.DisplayName)</label>
+				<div class="health">
+					<label class="health-value">@( Player.Local?.Unit?.Hp ?? 0 )hp</label>
+				</div>
+				<label class="money">@( Player.Local?.Money ?? 0 )g</label>
+			</div>
+			<label class="floor">Floor: @( GameManager?.Floor )</label>
+		</div>
+	</div>
+
+	<div class="map-container">
+		<div class="map" @ref="Map"></div>
+	</div>
+	
+	<EventPanel class="hidden" @ref="_eventPanel"></EventPanel>
+</root>

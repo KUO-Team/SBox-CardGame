@@ -1,0 +1,46 @@
+@import "/UI/Styles/Buttons.scss";
+
+PauseMenu
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.9);
+	justify-content: center;
+	font-family: "Pixel Operator";
+	align-items: center;
+	opacity: 1;
+	backdrop-filter: blur(4px);
+	transition: opacity 0.5s ease;
+
+	>.main
+	{
+		width: 90%;
+		height: 90%;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 8px;
+		
+		.title {
+			width: 20%;
+			color: white;
+			font-weight: 600;
+			font-size: 85px;
+			text-align: center;
+			text-stroke: 4px black;
+			border-bottom: 2px solid white;
+		}
+		
+		>.button-container {
+			width: 20%;
+			flex-direction: column;
+			gap: 10px;
+		}
+	}
+	
+	&.hidden {
+		opacity: 0;
+		display: none;
+	}
+}

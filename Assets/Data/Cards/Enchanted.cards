@@ -1,0 +1,129 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 90
+      },
+      "Name": "Enchant",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Enchant"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 91
+      },
+      "Name": "Enchanted Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 3
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Epic",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "EnchantedOnly"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 24,
+            "Max": 24
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 92
+      },
+      "Name": "Enchanted Blast",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 3
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 5,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Epic",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "EnchantedOnly"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 12,
+            "Max": 12
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 93
+      },
+      "Name": "Ebps",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "None",
+      "Keywords": "",
+      "Actions": []
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

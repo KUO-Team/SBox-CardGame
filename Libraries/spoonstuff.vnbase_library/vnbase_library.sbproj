@@ -1,0 +1,31 @@
+{
+  "Title": "Visual Novel Base",
+  "Type": "library",
+  "Org": "spoonstuff",
+  "Ident": "vnbase_library",
+  "Schema": 1,
+  "IncludeSourceFiles": false,
+  "Resources": null,
+  "PackageReferences": [],
+  "EditorReferences": null,
+  "IsStandaloneOnly": false,
+  "Metadata": {
+    "CsProjName": "",
+    "Compiler": {
+      "RootNamespace": "Sandbox",
+      "DefineConstants": "SANDBOX;ADDON;DEBUG",
+      "NoWarn": "1701;1702;1591;",
+      "WarningsAsErrors": "",
+      "TreatWarningsAsErrors": false,
+      "Nullables": true,
+      "Whitelist": true,
+      "ReleaseMode": "Debug",
+      "AssemblyReferences": [],
+      "IgnoreFolders": [
+        "editor",
+        "unittest"
+      ],
+      "DistinctAssemblyReferences": []
+    }
+  }
+}

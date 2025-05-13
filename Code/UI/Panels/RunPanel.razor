@@ -1,0 +1,45 @@
+﻿@using Sandbox.UI
+@using CardGame.Data
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Data is null )
+{
+	return;
+}
+
+<root>
+	<div class="header">
+		<label class="run-name">Run #@( Data.Index + 1 )</label>
+		<div class="row run-date">
+			<i>schedule</i>
+			<label>@( Data.Date )</label>
+		</div>
+	</div>
+
+	<label class="run-floor">Floor @( Data.Floor )</label>
+	
+	<div class="unit-data">
+		@if ( Data.UnitData is {} unit )
+		{
+			<label>@(unit.Hp)hp</label>
+		}
+	</div>
+	
+	<div class="relics">
+		@foreach ( var relicId in Data.Relics )
+		{
+			var relic = RelicDataList.GetById( relicId );
+			if ( relic is not null )
+			{
+				<RelicPanel Relic="@relic"></RelicPanel>
+			}
+		}
+	</div>
+
+	<div class="button-container">
+		<button onclick="@LoadRun">Load Run</button>
+		<button onclick="@DeleteData">Delete Run</button>
+	</div>
+</root>

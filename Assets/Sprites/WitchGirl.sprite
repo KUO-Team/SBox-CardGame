@@ -1,0 +1,69 @@
+{
+  "ResourceVersion": 1,
+  "Animations": [
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,0.5",
+      "Looping": true,
+      "LoopMode": "Forward",
+      "Name": "idle",
+      "Frames": [
+        {
+          "FilePath": "spritesheets/witchgirl-sheet.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "32,32"
+          }
+        }
+      ],
+      "Attachments": []
+    },
+    {
+      "FrameRate": 5,
+      "Origin": "0.5,0.5",
+      "Looping": false,
+      "LoopMode": "Forward",
+      "Name": "walk",
+      "Frames": [
+        {
+          "FilePath": "spritesheets/witchgirl-sheet.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "0,0",
+            "Size": "32,32"
+          }
+        },
+        {
+          "FilePath": "spritesheets/witchgirl-sheet.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "32,0",
+            "Size": "32,32"
+          }
+        }
+      ],
+      "Attachments": []
+    },
+    {
+      "FrameRate": 15,
+      "Origin": "0.5,0.5",
+      "Looping": false,
+      "LoopMode": "Forward",
+      "Name": "dead",
+      "Frames": [
+        {
+          "FilePath": "spritesheets/witchgirl-sheet.png",
+          "Events": [],
+          "SpriteSheetRect": {
+            "Position": "64,0",
+            "Size": "32,32"
+          }
+        }
+      ],
+      "Attachments": []
+    }
+  ],
+  "__references": [],
+  "__version": 1
+}

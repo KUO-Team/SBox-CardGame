@@ -1,0 +1,15 @@
+﻿@using Sandbox.UI
+
+@namespace CardGame.UI
+@inherits Panel
+
+<root>
+    @if ( HasFocus )
+    {
+        <label @ref="_label">Press A Key</label>
+    }
+    else
+    {
+        <label @ref="_label">@( Input )</label>
+    }
+</root>
