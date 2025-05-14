@@ -31,7 +31,6 @@ public class MirrorSpark( Data.Relic data ) : Relic( data )
 			// 50% chance to randomize targeting
 			if ( ShouldRandomizeTarget() )
 			{
-				// Just pretend your game isn’t going to explode when you randomize like this
 				var randomTarget = BattleManager.AliveUnits
 					.Select( x => x.Slots )
 					.OrderBy( _ => Game.Random.Next() )

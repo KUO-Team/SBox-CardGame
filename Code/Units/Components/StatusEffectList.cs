@@ -30,6 +30,16 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		AddOrUpdateQueued( statusEffect, stack );
 	}
 
+	public bool HasStatusEffect<T>() where T : StatusEffect
+	{
+		return Items.Any( x => x is T );
+	}
+	
+	public bool HasQueuedStatusEffect<T>() where T : StatusEffect
+	{
+		return _nextTurnItems.Any( x => x.StatusEffect is T );
+	}
+
 	private void AddOrUpdate<T>( T statusEffect, int stack ) where T : StatusEffect
 	{
 		var existing = Items.FirstOrDefault( x => x is T );

@@ -11,7 +11,7 @@ public class HexboundCatalyst( Data.Relic data ) : Relic( data )
 				continue;
 			}
 
-			if ( unit.StatusEffects.OfType<StatusEffects.Enchanted>().Any() )
+			if ( unit.StatusEffects.HasStatusEffect<StatusEffects.Enchanted>() )
 			{
 				unit.StatusEffects.AddStatusEffect<StatusEffects.PowerUp>( 2 );
 			}

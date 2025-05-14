@@ -12,7 +12,7 @@ public class BloodFeeding : PassiveAbility
 
 	public override void OnDealDamage( BattleUnit target )
 	{
-		if ( target.StatusEffects.IsValid() && target.StatusEffects.OfType<Bleed>().Any() )
+		if ( target.StatusEffects.IsValid() && target.StatusEffects.HasStatusEffect<Bleed>() )
 		{
 			Owner?.HealthComponent?.Heal( 2 );
 		}
