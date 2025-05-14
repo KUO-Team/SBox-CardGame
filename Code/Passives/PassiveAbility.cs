@@ -55,22 +55,27 @@ public abstract class PassiveAbility : IResource, IOwnable
 		
 	}
 
+	public virtual void OnPlayCard( Card card )
+	{
+
+	}
+	
+	public virtual void AfterPlayCard( Card card )
+	{
+
+	}
+	
+	public virtual void OnDiscardCard( Card card )
+	{
+
+	}
+
 	public virtual void OnTakeDamage( BattleUnit dealer )
 	{
 
 	}
 
 	public virtual void OnDealDamage( BattleUnit target )
-	{
-
-	}
-
-	public virtual void OnPlayCard( Card card )
-	{
-
-	}
-	
-	public virtual void OnDiscardCard( Card card )
 	{
 
 	}
@@ -92,13 +97,5 @@ public abstract class PassiveAbility : IResource, IOwnable
 		}
 		
 		Owner?.Passives?.Remove( this );
-	}
-	
-	public bool IsValid
-	{
-		get
-		{
-			return this != null;
-		}
 	}
 }

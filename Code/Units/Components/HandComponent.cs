@@ -251,6 +251,11 @@ public class HandComponent : Component, IOwnable
 
 	public void Discard( Card card )
 	{
+		if ( !Owner.IsValid() )
+		{
+			return;
+		}
+		
 		if ( !Hand.Contains( card ) )
 		{
 			return;
@@ -283,11 +288,19 @@ public class HandComponent : Component, IOwnable
 				}
 			}
 
-			if ( Owner.IsValid() && Owner.StatusEffects.IsValid() )
+			if ( Owner.StatusEffects.IsValid() )
 			{
 				foreach ( var statusEffect in Owner.StatusEffects )
 				{
 					statusEffect.OnDiscardCard( card );
+				}
+			}
+
+			if ( Owner.Passives.IsValid() )
+			{
+				foreach ( var passive in Owner.Passives )
+				{
+					passive.OnDiscardCard( card );
 				}
 			}
 		}

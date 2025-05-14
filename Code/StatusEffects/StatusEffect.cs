@@ -119,14 +119,6 @@ public abstract class StatusEffect : IResource, IOwnable
 		Owner?.StatusEffects?.Remove( this );
 	}
 	
-	public bool IsValid
-	{
-		get
-		{
-			return this != null;
-		}
-	}
-
 	public enum StatusKey
 	{
 		Bleed,

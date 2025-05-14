@@ -167,6 +167,11 @@ public class Card : IResource, IDeepCopyable<Card>
 			status.OnPlayCard( this );
 		}
 
+		foreach ( var passive in owner.Passives?.ToList() ?? [] )
+		{
+			passive.OnPlayCard( this );
+		}
+
 		if ( RelicManager.Instance.IsValid() )
 		{
 			foreach ( var relic in RelicManager.Instance.Relics )
@@ -192,6 +197,11 @@ public class Card : IResource, IDeepCopyable<Card>
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
 		{
 			status.AfterPlayCard( this );
+		}
+
+		foreach ( var passive in owner.Passives?.ToList() ?? [] )
+		{
+			passive.AfterPlayCard( this );
 		}
 
 		if ( RelicManager.Instance.IsValid() )

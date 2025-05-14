@@ -29,6 +29,11 @@ public abstract class CardEffect( Card card )
 	{
 		
 	}
+	
+	public virtual void OnDiscardModeCardDiscard( CardEffectDetail detail, Card card )
+	{
+		
+	}
 
 	public virtual int DamageModifier( CardEffectDetail detail )
 	{
@@ -44,12 +49,7 @@ public abstract class CardEffect( Card card )
 	{
 		return true;
 	}
-
-	public virtual void OnDiscardModeCardDiscard( CardEffectDetail detail, Card card )
-	{
-		
-	}
-
+	
 	public struct CardEffectDetail
 	{
 		public BattleUnit? Unit { get; set; }
