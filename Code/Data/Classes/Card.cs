@@ -138,7 +138,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		return targets;
 	}
 
-	private static List<BattleUnit> GetValidTargets( BattleUnit user, CardTargets targeting )
+	public static List<BattleUnit> GetValidTargets( BattleUnit user, CardTargets targeting )
 	{
 		var targets = new List<BattleUnit>();
 
