@@ -116,6 +116,19 @@
       "IsHiddenStack": true,
       "Color": "1,0.84314,0,1",
       "Maximum": null
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 10
+      },
+      "Icon": "materials/statuses/powerdown.png",
+      "Name": "Cold",
+      "Description": "Speed -X for this turn.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null
     }
   ],
   "__references": [],
