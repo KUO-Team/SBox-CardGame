@@ -124,7 +124,7 @@ public sealed partial class BattleManager
 
 	public static List<BattleUnit> GetAliveUnits( Faction faction )
 	{
-		return GetUnits( faction ).Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
+		return AliveUnits.Where( x => x.Faction == faction ).ToList();
 	}
 
 	public static BattleUnit? GetRandomUnit( Faction faction )
