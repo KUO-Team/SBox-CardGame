@@ -75,19 +75,7 @@ public class HealthComponent : Component
 
 		Health = Math.Max( Health - damage, 0 );
 		OnTakeDamage?.Invoke( Health );
-
-		if ( DamageNumbersPrefab.IsValid() )
-		{
-			var damageNumbers = DamageNumbersPrefab.Clone();
-			var component = damageNumbers.GetComponent<DamageNumbers>();
-
-			if ( component.IsValid() && component.Text.IsValid() )
-			{
-				component.Init( GameObject );
-				component.Text.Text = $"-{damage}HP";
-				component.Text.Color = Color.Red;
-			}
-		}
+		DamageNumbers( damage );
 
 		if ( Health == 0 )
 		{
@@ -95,7 +83,7 @@ public class HealthComponent : Component
 		}
 	}
 
-	public void TakeFixedDamage( int damage, BattleUnit? attacker = null, Card? card = null, StatusEffect? statusEffect = null )
+	public void TakeFixedDamage( int damage, BattleUnit? attacker = null, StatusEffect? statusEffect = null )
 	{
 		if ( !GameObject.IsValid() || !IsValid )
 		{
@@ -139,19 +127,7 @@ public class HealthComponent : Component
 
 		Health = Math.Max( Health - damage, 0 );
 		OnTakeDamage?.Invoke( Health );
-
-		if ( DamageNumbersPrefab.IsValid() )
-		{
-			var damageNumbers = DamageNumbersPrefab.Clone();
-			var component = damageNumbers.GetComponent<DamageNumbers>();
-
-			if ( component.IsValid() && component.Text.IsValid() )
-			{
-				component.Init( GameObject );
-				component.Text.Text = $"-{damage}HP";
-				component.Text.Color = Color.Red;
-			}
-		}
+		DamageNumbers( damage );
 
 		if ( Health == 0 )
 		{
@@ -163,7 +139,11 @@ public class HealthComponent : Component
 	{
 		Health = Math.Min( Health + amount, MaxHealth );
 		OnHeal?.Invoke( amount );
+		DamageNumbers( amount, true );
+	}
 
+	private void DamageNumbers( int amount, bool healing = false )
+	{
 		if ( !DamageNumbersPrefab.IsValid() )
 		{
 			return;
@@ -176,10 +156,19 @@ public class HealthComponent : Component
 		{
 			return;
 		}
-
+		
 		component.Init( GameObject );
-		component.Text.Text = $"+{amount}HP";
-		component.Text.Color = Color.Green;
+
+		if ( !healing )
+		{				
+			component.Text.Text = $"-{amount}HP";
+			component.Text.Color = Color.Red;
+		}
+		else
+		{
+			component.Text.Text = $"+{amount}HP";
+			component.Text.Color = Color.Green;
+		}
 	}
 
 	public async Task Die()

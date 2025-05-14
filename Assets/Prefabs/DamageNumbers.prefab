@@ -16,6 +16,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "Target": null,
         "Text": {
           "_type": "component",
           "component_id": "12fbbbcf-c7cd-401a-8e9d-5f047f331fb9",
@@ -29,7 +30,6 @@
         "__guid": "c949dd63-2238-4d43-b23c-275cac346c5d",
         "Flags": 0,
         "Name": "Text",
-        "Position": "0,0,5",
         "Rotation": "-0.5,0.5,0.5,0.5",
         "Enabled": true,
         "Components": [
@@ -46,14 +46,14 @@
             "OnComponentUpdate": null,
             "RenderOptions": {
               "GameLayer": true,
-              "OverlayLayer": false,
+              "OverlayLayer": true,
               "BloomLayer": false,
               "AfterUILayer": false
             },
-            "Scale": 1,
+            "Scale": 0.5,
             "TextAlignment": "Center",
             "TextScope": {
-              "Text": "-0",
+              "Text": "0",
               "TextColor": "0.88837,0.16528,0.16528,1",
               "FontName": "Pixel Operator",
               "FontSize": 60,

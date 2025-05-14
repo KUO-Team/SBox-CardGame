@@ -16,16 +16,16 @@ public sealed class DamageNumbers : Component
 	[Property] 
 	public float FadeSpeed { get; set; } = 2f;
 
-	private float _timer = 0f;
+	private float _timer;
 	private Vector3 _initialPosition;
 
 	public void Init( GameObject target )
 	{
 		Target = target;
-		_initialPosition = new Vector3( target.WorldPosition.x, target.WorldPosition.y, WorldPosition.z );
+		_initialPosition = target.WorldPosition;
 	}
 
-	protected override void OnUpdate()
+	protected override void OnFixedUpdate()
 	{
 		if ( !Target.IsValid() )
 		{
@@ -33,20 +33,30 @@ public sealed class DamageNumbers : Component
 		}
 
 		_timer += Time.Delta;
-		GameObject.WorldPosition = _initialPosition + new Vector3( 0, MoveSpeed * _timer, WorldPosition.z );
+		GameObject.WorldPosition = _initialPosition + new Vector3( 0, MoveSpeed * _timer, 2 );
 
-		// Gradually fade the text
-		if ( Text.IsValid() )
-		{
-			var alpha = 1 - _timer * FadeSpeed;
-			alpha = Math.Clamp( alpha, 0, 1 );
-		}
+		//FadeText();
 
 		// Destroy the damage number after it fades out completely
 		if ( _timer > 2 / FadeSpeed )
 		{
 			GameObject.Destroy();
 		}
-		base.OnUpdate();
+		
+		base.OnFixedUpdate();
+	}
+
+	private void FadeText()
+	{
+		if ( !Text.IsValid() )
+		{
+			return;
+		}
+		
+		var alpha = 1 - _timer * FadeSpeed;
+		alpha = Math.Clamp( alpha, 0, 1 );
+		var color = Text.Color;
+		color.a = alpha;
+		Text.Color = color;
 	}
 }
