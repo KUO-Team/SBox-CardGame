@@ -12,7 +12,7 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 			return;
 		}
 		
-		Owner?.HealthComponent?.TakeDamage( 1 );
+		Owner?.HealthComponent?.TakeFixedDamage( 1 );
 		Owner?.StatusEffects?.AddStatusEffect<PowerUp>( 2 );
 	}
 }
