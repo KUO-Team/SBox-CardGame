@@ -17,11 +17,8 @@
 			<button class="@( SelectedTab?.Id == "achievements" ? "disabled" : "" )"
 			        onclick="@( () => ChangeTabs( "achievements" ) )">Achievements
 			</button>
-			<button class="@( SelectedTab?.Id == "globalstats" ? "disabled" : "" )"
-			        onclick="@( () => ChangeTabs( "globalstats" ) )">Global Stats
-			</button>
-			<button class="@( SelectedTab?.Id == "localstats" ? "disabled" : "" )"
-			        onclick="@( () => ChangeTabs( "localstats" ) )">Local Stats
+			<button class="@( SelectedTab?.Id == "stats" ? "disabled" : "" )"
+			        onclick="@( () => ChangeTabs( "stats" ) )">Statistics
 			</button>
 		</div>
 
@@ -153,19 +150,16 @@
 				</div>
 			</div>
 
-			<div class="tab" id="globalstats">
+			<div class="tab" id="stats">
 				<div class="tab-title">Global Stats</div>
-				<div class="global-stats item-container">
+				<div class="stats item-container">
 					@foreach ( var stat in _globalStatEntries )
 					{
 						<div class="stat">@stat.Name: @stat.Value</div>
 					}
 				</div>
-			</div>
-
-			<div class="tab" id="localstats">
 				<div class="tab-title">Local Stats</div>
-				<div class="local-stats item-container">
+				<div class="stats item-container">
 					@foreach ( var stat in _localStatEntries )
 					{
 						<div class="stat">@stat.Name: @stat.Value</div>
