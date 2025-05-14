@@ -60,6 +60,13 @@
       "Markers": null
     },
     {
+      "Name": "Cold",
+      "Description": "Speed -X for this turn.",
+      "Markers": {
+        "X": "Stack"
+      }
+    },
+    {
       "Name": "Discard",
       "Description": "Return a card from your hand to the deck.",
       "Markers": null
