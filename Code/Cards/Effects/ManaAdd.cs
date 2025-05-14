@@ -2,7 +2,7 @@
 
 public class ManaAdd( Card card ) : CardEffect( card )
 {
-	public override string Description => $"Add {Power.Value} MP";
+	public override string Description => "Add @ MP";
 	
 	public override void OnPlay( CardEffectDetail detail )
 	{
