@@ -74,6 +74,18 @@ public class WitchVial( Data.Relic data ) : Relic( data )
 			{
 				Owner = Owner, Stack = stack
 			},
+			StatusEffect.StatusKey.Immobilized => new Immobilized()
+			{
+				Owner = Owner, Stack = stack
+			},
+			StatusEffect.StatusKey.Silenced => new Silenced()
+			{
+				Owner = Owner, Stack = stack
+			},
+			StatusEffect.StatusKey.Cold => new Cold()
+			{
+				Owner = Owner, Stack = stack
+			},
 			_ => throw new ArgumentOutOfRangeException( nameof( key ), key, "Unsupported status key." )
 		};
 

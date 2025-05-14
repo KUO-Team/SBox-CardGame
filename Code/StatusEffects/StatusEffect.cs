@@ -129,6 +129,7 @@ public abstract class StatusEffect : IResource, IOwnable
 		PowerDown,
 		PowerUp,
 		Immobilized,
-		Silenced
+		Silenced,
+		Cold
 	}
 }
