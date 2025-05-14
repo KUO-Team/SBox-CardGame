@@ -32,7 +32,7 @@ public abstract class CardEffect( Card card )
 	
 	public virtual void OnDiscardModeCardDiscard( CardEffectDetail detail, Card card )
 	{
-		
+
 	}
 
 	public virtual int DamageModifier( CardEffectDetail detail )

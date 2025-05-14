@@ -87,6 +87,11 @@ public class HandComponent : Component, IOwnable
 	
 	public void ConfirmDiscard()
 	{
+		if ( !Owner.IsValid() )
+		{
+			return;
+		}
+		
 		if ( DiscardModeActivator is null )
 		{
 			return;
@@ -117,6 +122,24 @@ public class HandComponent : Component, IOwnable
 				};
 				
 				action.Effect?.OnDiscard( detail );
+			}
+
+			foreach ( var status in Owner?.StatusEffects ?? [] )
+			{
+				status.OnDiscardCard( card );
+			}
+
+			foreach ( var passive in Owner?.Passives ?? [] )
+			{
+				passive.OnDiscardCard( card );
+			}
+
+			foreach ( var relic in RelicManager.Instance?.Relics ?? [] )
+			{
+				if ( Owner.IsValid() )
+				{
+					relic.OnDiscardCard( card, Owner );
+				}
 			}
 			
 			Hand.Remove( card );
