@@ -189,12 +189,13 @@ StatisticsPanel {
         margin: 10px 0;
 
         RelicPanel {
-          width: 60px;
-          height: 60px;
-          background-color: red;
-          border-radius: 50%;
           flex-shrink: 0;
           transition: transform 0.2s ease;
+          
+          &:hover {
+            border: 1px solid white;
+            transform: scale(1.05);
+          }
 
           &.hide {
             pointer-events: none;
