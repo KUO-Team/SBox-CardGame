@@ -102,26 +102,6 @@
           "Script": ""
         }
       ]
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 93
-      },
-      "Name": "Ebps",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
-      "IsInstant": false,
-      "IsIndiscriminate": false,
-      "Targets": 1,
-      "Targeting": "Enemy",
-      "Type": "Attack",
-      "Rarity": "Common",
-      "Availabilities": "None",
-      "Keywords": "",
-      "Actions": []
     }
   ],
   "__references": [],
