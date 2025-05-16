@@ -16,7 +16,8 @@ public sealed class DamageNumbers : Component
 	[Property] 
 	public float FadeSpeed { get; set; } = 2f;
 
-	private float _timer;
+	public TimeUntil Lifetime { get; set; } = 1f;
+	
 	private Vector3 _initialPosition;
 
 	public void Init( GameObject target )
@@ -32,13 +33,11 @@ public sealed class DamageNumbers : Component
 			return;
 		}
 
-		_timer += Time.Delta;
-		GameObject.WorldPosition = _initialPosition + new Vector3( 0, MoveSpeed * _timer, 2 );
+		GameObject.WorldPosition = _initialPosition + new Vector3( 0, MoveSpeed * Lifetime.Passed, 2 );
 
 		//FadeText();
 
-		// Destroy the damage number after it fades out completely
-		if ( _timer > 2 / FadeSpeed )
+		if ( Lifetime )
 		{
 			GameObject.Destroy();
 		}
@@ -53,7 +52,7 @@ public sealed class DamageNumbers : Component
 			return;
 		}
 		
-		var alpha = 1 - _timer * FadeSpeed;
+		var alpha = 1 - Lifetime.Passed * FadeSpeed;
 		alpha = Math.Clamp( alpha, 0, 1 );
 		var color = Text.Color;
 		color.a = alpha;
