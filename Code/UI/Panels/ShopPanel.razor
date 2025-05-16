@@ -23,7 +23,7 @@
 		{
 			var purchased = item.Relic == LastPurchasedItem ? "purchased" : "";
 			<div class="shop-item @( CanBuyRelic( item ) ? "" : "cant-afford" ) @( purchased )">
-				<ShopRelicPanel Relic="@item.Relic" onclick="@( () => BuyRelic( item ) )"></ShopRelicPanel>
+				<RelicPanel Relic="@item.Relic" onclick="@( () => BuyRelic( item ) )"></RelicPanel>
 				<label class="cost">@( item.Cost )g</label>
 			</div>
 		}
