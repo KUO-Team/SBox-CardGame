@@ -11,7 +11,6 @@ public partial class StatisticsPanel
 	public Panel? SelectedTab { get; private set; }
 
 	private static PlayerData Data => PlayerData.Data;
-	private Panel? _tabs;
 
 	private Stats.GlobalStats? _globalStats;
 	private Stats.PlayerStats? _playerStats;
@@ -19,20 +18,19 @@ public partial class StatisticsPanel
 	private List<StatEntry> _globalStatEntries = [];
 	private List<StatEntry> _localStatEntries = [];
 
-	private const string GameIdent = "spoonstuff.card_game";
-
 	private Dictionary<string, Leaderboards.Board2> _leaderboards = new()
 	{
 		{
-			"Runs Won", Leaderboards.GetFromStat( GameIdent, "game-over-win" )
+			"Runs Won", Leaderboards.GetFromStat( Game.Ident, "game-over-win" )
 		},
 		{
-			"Runs", Leaderboards.GetFromStat( GameIdent, "runs" )
+			"Runs", Leaderboards.GetFromStat( Game.Ident, "runs" )
 		}
 	};
 
+	private Panel? _tabContainer;
+	private Panel? _leaderboardContainer;
 	private Panel? _openLeaderboard;
-	private Panel? _l;
 
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
@@ -46,18 +44,21 @@ public partial class StatisticsPanel
 
 		_globalStatEntries = CreateStatEntries( _globalStats );
 		_localStatEntries = CreateStatEntries( _playerStats );
+		_globalStats.Refresh();
+		_playerStats.Refresh();
+		StateHasChanged();
 
 		foreach ( var value in _leaderboards.Values )
 		{
 			value.Refresh();
 		}
 
-		if ( !_tabs.IsValid() )
+		if ( !_tabContainer.IsValid() )
 		{
 			return;
 		}
 
-		if ( !_l.IsValid() )
+		if ( !_leaderboardContainer.IsValid() )
 		{
 			return;
 		}
@@ -65,13 +66,13 @@ public partial class StatisticsPanel
 		HideAllTabs();
 		HideAllLeaderboards();
 
-		var firstTab = _tabs.Children.FirstOrDefault();
+		var firstTab = _tabContainer.Children.FirstOrDefault();
 		if ( firstTab.IsValid() )
 		{
 			ChangeTabs( firstTab.Id );
 		}
 		
-		var firstLeaderboard = _l.Children.FirstOrDefault();
+		var firstLeaderboard = _leaderboardContainer.Children.FirstOrDefault();
 		if ( firstLeaderboard.IsValid() )
 		{
 			ChangeLeaderboard( firstLeaderboard.Id );
@@ -82,7 +83,7 @@ public partial class StatisticsPanel
 
 	public void ChangeTabs( string id )
 	{
-		if ( !_tabs.IsValid() )
+		if ( !_tabContainer.IsValid() )
 		{
 			return;
 		}
@@ -99,7 +100,7 @@ public partial class StatisticsPanel
 
 	public void ChangeLeaderboard( string id )
 	{
-		if ( !_l.IsValid() )
+		if ( !_leaderboardContainer.IsValid() )
 		{
 			return;
 		}
@@ -116,15 +117,15 @@ public partial class StatisticsPanel
 
 	public Panel? GetTabById( string id )
 	{
-		return _tabs?.Children.FirstOrDefault( tab => tab.Id == id );
+		return _tabContainer?.Children.FirstOrDefault( tab => tab.Id == id );
 	}
 
 	public Panel? GetLeaderboardById( string id )
 	{
-		return _l?.Children.FirstOrDefault( tab => tab.Id == id );
+		return _leaderboardContainer?.Children.FirstOrDefault( tab => tab.Id == id );
 	}
 
-	public void RefreshLeaderboard( Leaderboards.Board2 board )
+	private static void RefreshLeaderboard( Leaderboards.Board2 board )
 	{
 		board.Refresh();
 		board.CenterOnMe();
@@ -146,7 +147,7 @@ public partial class StatisticsPanel
 		return id == Connection.Local.SteamId;
 	}
 
-	private List<StatEntry> CreateStatEntries( Stats.GlobalStats? globalStats )
+	private static List<StatEntry> CreateStatEntries( Stats.GlobalStats? globalStats )
 	{
 		if ( globalStats is null )
 		{
@@ -160,7 +161,7 @@ public partial class StatisticsPanel
 		];
 	}
 
-	private List<StatEntry> CreateStatEntries( Stats.PlayerStats? playerStats )
+	private static List<StatEntry> CreateStatEntries( Stats.PlayerStats? playerStats )
 	{
 		if ( playerStats is null )
 		{
@@ -176,12 +177,12 @@ public partial class StatisticsPanel
 
 	private void HideAllTabs()
 	{
-		if ( !_tabs.IsValid() )
+		if ( !_tabContainer.IsValid() )
 		{
 			return;
 		}
 
-		foreach ( var tab in _tabs.Children )
+		foreach ( var tab in _tabContainer.Children )
 		{
 			tab?.Hide();
 		}
@@ -189,12 +190,12 @@ public partial class StatisticsPanel
 
 	private void HideAllLeaderboards()
 	{
-		if ( !_l.IsValid() )
+		if ( !_leaderboardContainer.IsValid() )
 		{
 			return;
 		}
 
-		foreach ( var tab in _l.Children )
+		foreach ( var tab in _leaderboardContainer.Children )
 		{
 			tab?.Hide();
 		}
@@ -217,14 +218,15 @@ public partial class StatisticsPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Data, Data.Runs.Count, Data.SeenCards.Count );
+		return HashCode.Combine( Data, Data.Runs.Count, Data.SeenCards.Count, _globalStatEntries.Count, _localStatEntries.Count );
 	}
 
 	public class StatEntry
 	{
 		public string Name { get; }
 		public string Value { get; }
-
+		
+		// ReSharper disable once ConvertToPrimaryConstructor
 		public StatEntry( string name, string value )
 		{
 			Name = name;

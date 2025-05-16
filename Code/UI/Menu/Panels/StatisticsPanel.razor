@@ -22,8 +22,8 @@
 			</button>
 		</div>
 
-		<div class="tabs" @ref="_tabs">
-			<div class="tab" id="seencards">
+		<div class="tabs" @ref="_tabContainer">
+			<div class="tab hidden" id="seencards">
 				@{
 					var cards = CardDataList.All
 						.Where( x =>
@@ -66,13 +66,12 @@
 				<div class="relics">
 					@foreach ( var relic in relics.OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
 					{
-						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )"
-						            Relic="@relic"></RelicPanel>
+						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 					}
 				</div>
 			</div>
 
-			<div class="tab" id="leaderboards">
+			<div class="tab hidden" id="leaderboards">
 				<div class="tab-selection">
 					<button class="@( _openLeaderboard?.Id == "Runs Won" ? "disabled" : "" )"
 					        onclick="@( () => ChangeLeaderboard( "Runs Won" ) )">Runs Won
@@ -81,7 +80,7 @@
 					        onclick="@( () => ChangeLeaderboard( "Runs" ) )">Runs
 					</button>
 				</div>
-				<div class="leaderboards" @ref="_l">
+				<div class="leaderboards" @ref="_leaderboardContainer">
 					@foreach ( var board in _leaderboards )
 					{
 						<div class="leaderboard hidden" id="@board.Key">
@@ -114,7 +113,7 @@
 				</div>
 			</div>
 
-			<div class="tab" id="achievements">
+			<div class="tab hidden" id="achievements">
 				<div class="tab-title">Achievements</div>
 
 				<div class="achievements item-container">
@@ -150,7 +149,7 @@
 				</div>
 			</div>
 
-			<div class="tab" id="stats">
+			<div class="tab hidden" id="stats">
 				<div class="tab-title">Global Stats</div>
 				<div class="stats item-container">
 					@foreach ( var stat in _globalStatEntries )
