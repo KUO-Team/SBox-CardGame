@@ -1,5 +1,4 @@
 ﻿using CardGame.Data;
-using CardGame.Platform;
 
 namespace CardGame;
 
@@ -60,8 +59,8 @@ public static class Commands
 			return;
 		}
 
-		var c = CardDataList.GetById( id );
-		if ( c is null )
+		var card = CardDataList.GetById( id );
+		if ( card is null )
 		{
 			return;
 		}

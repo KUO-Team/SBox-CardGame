@@ -8,6 +8,11 @@ public partial class PauseMenu
 	
 	private static SaveManager? SaveManager => CardGame.SaveManager.Instance;
 	private static SceneManager? SceneManager => CardGame.SceneManager.Instance;
+
+	public void Continue()
+	{
+		PauseManager.Instance?.Unpause();
+	}
 	
 	public void SaveAndQuit()
 	{
