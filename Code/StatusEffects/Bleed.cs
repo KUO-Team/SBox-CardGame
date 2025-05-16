@@ -28,7 +28,7 @@ public class Bleed : StatusEffect
 			return;
 		}
 
-		Owner?.HealthComponent?.TakeDamage( Stack );
+		Owner?.HealthComponent?.TakeFixedDamage( Stack );
 		
 		Stack /= 2;
 		if ( Stack <= 0 )

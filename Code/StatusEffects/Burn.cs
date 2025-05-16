@@ -23,7 +23,7 @@ public class Burn : StatusEffect
 
 	public override void OnTurnEnd()
 	{
-		Owner?.HealthComponent?.TakeDamage( Stack );
+		Owner?.HealthComponent?.TakeFixedDamage( Stack );
 
 		Stack /= 2;
 		if ( Stack <= 0 )
