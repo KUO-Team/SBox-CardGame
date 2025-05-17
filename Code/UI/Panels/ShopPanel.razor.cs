@@ -12,7 +12,7 @@ public partial class ShopPanel
 
 	private object? LastPurchasedItem { get; set; }
 
-	private readonly Dictionary<CardPack.CardPackRarity, double> _cardRarityChances = new()
+	private readonly Dictionary<CardPack.CardPackRarity, double> _cardPackRarityChances = new()
 	{
 		{
 			CardPack.CardPackRarity.Common, 0.6
@@ -28,6 +28,22 @@ public partial class ShopPanel
 		}
 	};
 
+	private readonly Dictionary<CardPack.CardPackRarity, int> _cardPackRarityCosts = new()
+	{
+		{
+			CardPack.CardPackRarity.Common, 10
+		},
+		{
+			CardPack.CardPackRarity.Uncommon, 20
+		},
+		{
+			CardPack.CardPackRarity.Rare, 50
+		},
+		{
+			CardPack.CardPackRarity.Epic, 100
+		}
+	};
+	
 	private readonly Dictionary<Relic.RelicRarity, double> _relicRarityChances = new()
 	{
 		{
@@ -41,22 +57,6 @@ public partial class ShopPanel
 		},
 		{
 			Relic.RelicRarity.Epic, 0.05
-		}
-	};
-
-	private readonly Dictionary<CardPack.CardPackRarity, int> _cardRarityCosts = new()
-	{
-		{
-			CardPack.CardPackRarity.Common, 10
-		},
-		{
-			CardPack.CardPackRarity.Uncommon, 20
-		},
-		{
-			CardPack.CardPackRarity.Rare, 50
-		},
-		{
-			CardPack.CardPackRarity.Epic, 100
 		}
 	};
 
@@ -152,7 +152,7 @@ public partial class ShopPanel
 			if (!used.Add(pack))
 				continue;
 
-			var cost = _cardRarityCosts.GetValueOrDefault(pack.Rarity, 50);
+			var cost = _cardPackRarityCosts.GetValueOrDefault(pack.Rarity, 50);
 			outputList.Add(new ShopItem
 			{
 				Pack = pack,
@@ -194,7 +194,7 @@ public partial class ShopPanel
 		return cardPackList
 			.SelectMany( pack =>
 			{
-				var weight = _cardRarityChances.GetValueOrDefault( pack.Rarity, 0.0 );
+				var weight = _cardPackRarityChances.GetValueOrDefault( pack.Rarity, 0.0 );
 				return Enumerable.Repeat( pack, (int)(weight * 100) );
 			} )
 			.OrderBy( _ => Game.Random.Next() )
@@ -377,13 +377,13 @@ public partial class ShopPanel
 	{
 		var weightedMatching = matching.SelectMany( card =>
 		{
-			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 200) ); // higher weight
 		} );
 
 		var weightedNonMatching = nonMatching.SelectMany( card =>
 		{
-			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 50) ); // lower weight
 		} );
 
@@ -475,13 +475,13 @@ public partial class ShopPanel
 	{
 		var weightedMatching = matching.SelectMany( card =>
 		{
-			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 200) ); // double weight
 		} );
 
 		var weightedNonMatching = nonMatching.SelectMany( card =>
 		{
-			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 50) ); // lower weight
 		} );
 
@@ -533,7 +533,7 @@ public partial class ShopPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( _relicRarityCosts.Count, _cardRarityCosts.Count, RerollCost, Player.Local?.Money );
+		return HashCode.Combine( _relicRarityCosts.Count, _cardPackRarityCosts.Count, RerollCost, Player.Local?.Money );
 	}
 
 	public class ShopItem
