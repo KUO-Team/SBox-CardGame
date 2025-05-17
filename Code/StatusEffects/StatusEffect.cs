@@ -121,15 +121,15 @@ public abstract class StatusEffect : IResource, IOwnable
 	
 	public enum StatusKey
 	{
-		Bleed,
-		Burn,
-		Enchanted,
-		Fragile,
-		Protection,
-		PowerDown,
 		PowerUp,
+		PowerDown,
+		Protection,
+		Fragile,
+		Burn,
+		Bleed,
 		Immobilized,
 		Silenced,
+		Enchanted,
 		Cold
 	}
 }
