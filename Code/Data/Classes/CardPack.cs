@@ -1,4 +1,6 @@
-﻿namespace CardGame.Data;
+﻿using System;
+
+namespace CardGame.Data;
 
 public class CardPack : IResource, IDeepCopyable<CardPack>
 {
@@ -8,6 +10,10 @@ public class CardPack : IResource, IDeepCopyable<CardPack>
 	public string Name { get; set; } = "";
 
 	public CardPackRarity Rarity { get; set; }
+
+	public CardPackAvailabilities Availabilities { get; set; } = CardPackAvailabilities.None;
+
+	public TagSet Keywords { get; set; } = new();
 
 	[InlineEditor, WideMode]
 	public List<Id> Cards { get; set; } = [];
@@ -54,5 +60,23 @@ public class CardPack : IResource, IDeepCopyable<CardPack>
 		Uncommon,
 		Rare,
 		Epic
+	}
+	
+	[Flags]
+	public enum CardPackAvailabilities
+	{
+		None = 0,
+		[Description( "Found in shops" )]
+		Shop = 1 << 0,
+		[Description( "In starting deck" )]
+		Starter = 1 << 1,
+		[Description( "Given as a reward" )]
+		Reward = 1 << 2,
+		[Description( "Found in chests" )]
+		Chest = 1 << 3,
+		[Description( "Granted in special events" )]
+		Event = 1 << 4,
+		[Description( "Only available in dev builds/testing" )]
+		DevOnly = 1 << 5,
 	}
 }
