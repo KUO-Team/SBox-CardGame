@@ -43,7 +43,7 @@ public partial class ShopPanel
 			CardPack.CardPackRarity.Epic, 100
 		}
 	};
-	
+
 	private readonly Dictionary<Relic.RelicRarity, double> _relicRarityChances = new()
 	{
 		{
@@ -86,7 +86,7 @@ public partial class ShopPanel
 
 	public int HealCost { get; set; } = 20;
 
-	public int CardAmount { get; set; } = 6;
+	public int CardPackAmount { get; set; } = 6;
 
 	public int RelicAmount { get; set; } = 4;
 
@@ -116,7 +116,7 @@ public partial class ShopPanel
 			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
-		AddRandomCardPacks( shopCards, CardPacks, CardAmount );
+		AddRandomCardPacks( shopCards, CardPacks, CardPackAmount );
 
 		var ownedRelicIds = new HashSet<Id>();
 
@@ -138,26 +138,28 @@ public partial class ShopPanel
 		}
 	}
 
-	private void AddRandomCardPacks(List<CardPack> cardList, List<ShopItem> outputList, int count)
+	private void AddRandomCardPacks( List<CardPack> cardList, List<ShopItem> outputList, int count )
 	{
-		if (cardList.Count == 0 || !Player.Local.IsValid())
-			return;
-
-		var weightedPacks = GetWeightedCardPackList(cardList);
-
-		var used = new HashSet<CardPack>();
-		while (outputList.Count < count && weightedPacks.Count > 0)
+		if ( cardList.Count == 0 || !Player.Local.IsValid() )
 		{
-			var pack = PickAndRemoveRandom(weightedPacks);
-			if (!used.Add(pack))
-				continue;
+			return;
+		}
 
-			var cost = _cardPackRarityCosts.GetValueOrDefault(pack.Rarity, 50);
-			outputList.Add(new ShopItem
+		var weightedPacks = GetWeightedCardPackList( cardList );
+
+		// Removed the HashSet that was preventing duplicates
+		while ( outputList.Count < count && weightedPacks.Count > 0 )
+		{
+			var pack = PickAndRemoveRandom( weightedPacks );
+
+			// Removed the HashSet check that was preventing duplicates
+
+			var cost = _cardPackRarityCosts.GetValueOrDefault( pack.Rarity, 50 );
+
+			outputList.Add( new ShopItem
 			{
-				Pack = pack,
-				Cost = cost
-			});
+				Pack = pack, Cost = cost
+			} );
 		}
 	}
 
@@ -294,7 +296,7 @@ public partial class ShopPanel
 			.ToList();
 
 		var keywordWeightedCards = GetKeywordWeightedCardList( matchingCards, nonMatchingCards );
-		AddRandomCardPacks( keywordWeightedCards, CardPacks, CardAmount );
+		AddRandomCardPacks( keywordWeightedCards, CardPacks, CardPackAmount );
 
 		// Relics
 		var ownedRelicIds = new HashSet<Id>();
@@ -325,6 +327,8 @@ public partial class ShopPanel
 
 	public void RerollByType( Card.CardType type )
 	{
+		_typeSelection?.Hide();
+
 		if ( !CanRerollByType() )
 		{
 			return;
@@ -344,16 +348,45 @@ public partial class ShopPanel
 			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
+		// Track how many cards of the specified type each pack contains
+		var packTypeCountMap = new Dictionary<CardPack, int>();
+
+		foreach ( var pack in shopCards )
+		{
+			int cardsOfType = 0;
+
+			foreach ( var cardId in pack.Cards )
+			{
+				var card = CardDataList.GetById( cardId );
+
+				if ( card is null )
+				{
+					continue;
+				}
+
+				if ( card.Type == type )
+				{
+					cardsOfType++;
+				}
+			}
+
+			if ( cardsOfType > 0 )
+			{
+				packTypeCountMap[pack] = cardsOfType;
+			}
+		}
+
+		// Separate packs with matching cards from those without
 		var matchingCards = shopCards
-			//.Where( card => card.Type == type )
+			.Where( card => packTypeCountMap.ContainsKey( card ) )
 			.ToList();
 
 		var nonMatchingCards = shopCards
 			.Except( matchingCards )
 			.ToList();
 
-		var typeWeightedCards = GetTypeWeightedCardList( matchingCards, nonMatchingCards );
-		AddRandomCardPacks( typeWeightedCards, CardPacks, CardAmount );
+		var typeWeightedCards = GetTypeWeightedCardList( matchingCards, nonMatchingCards, packTypeCountMap );
+		AddRandomCardPacks( typeWeightedCards, CardPacks, CardPackAmount );
 
 		// Relics stay the same as normal reroll
 		var ownedRelicIds = new HashSet<Id>();
@@ -373,12 +406,15 @@ public partial class ShopPanel
 		AddRandomRelics( availableRelics, Relics, RelicAmount );
 	}
 
-	private List<CardPack> GetTypeWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching )
+	private List<CardPack> GetTypeWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching, Dictionary<CardPack, int> typeCountMap )
 	{
-		var weightedMatching = matching.SelectMany( card =>
+		// Create weighted list based on how many cards of the specific type are in each pack
+		var weightedMatching = matching.SelectMany( pack =>
 		{
-			var weight = _cardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
-			return Enumerable.Repeat( card, (int)(weight * 200) ); // higher weight
+			var weight = _cardPackRarityChances.GetValueOrDefault( pack.Rarity, 0.0 );
+			// Multiply by 100 base weight plus additional weight per matching card
+			var countBonus = typeCountMap.GetValueOrDefault( pack, 0 ) * 50; // 50 more weight per matching card
+			return Enumerable.Repeat( pack, (int)((weight * 100) + countBonus) );
 		} );
 
 		var weightedNonMatching = nonMatching.SelectMany( card =>
