@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Sandbox.UI;
 using CardGame.Data;
 
@@ -93,9 +92,42 @@ public partial class ShopPanel
 	private static SaveManager? SaveManager => CardGame.SaveManager.Instance;
 	private static RelicManager? RelicManager => CardGame.RelicManager.Instance;
 
-	private Panel? _sellMenu;
+	private Panel? _tradeMenu;
 	private Panel? _keywordSelection;
 	private Panel? _typeSelection;
+
+	private Relic.RelicRarity _targetTradeInRarity = Relic.RelicRarity.Uncommon;
+	private readonly List<Id> _selectedRelicsForTradeIn = [];
+
+	/// <summary>
+	/// How many of each rarity needed for an upgrade?
+	/// </summary>
+	private readonly Dictionary<Relic.RelicRarity, int> _tradeInRequirements = new()
+	{
+		{
+			Relic.RelicRarity.Common, 2
+		},
+		{
+			Relic.RelicRarity.Uncommon, 2
+		},
+		{
+			Relic.RelicRarity.Rare, 2
+		}
+	};
+
+	/// <summary>
+	/// Return the next rarity up from the current.
+	/// </summary>
+	private static Relic.RelicRarity GetNextRarityUp( Relic.RelicRarity current )
+	{
+		return current switch
+		{
+			Relic.RelicRarity.Common => Relic.RelicRarity.Uncommon,
+			Relic.RelicRarity.Uncommon => Relic.RelicRarity.Rare,
+			Relic.RelicRarity.Rare => Relic.RelicRarity.Epic,
+			_ => Relic.RelicRarity.Epic
+		};
+	}
 
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
@@ -253,11 +285,6 @@ public partial class ShopPanel
 	public void HideTypeSelection()
 	{
 		_typeSelection?.Hide();
-	}
-
-	public void HideSellMenu()
-	{
-		_sellMenu?.Hide();
 	}
 
 	public void RerollByKeyword( string keyword )
@@ -553,9 +580,149 @@ public partial class ShopPanel
 		return Player.Local?.Money >= item.Cost;
 	}
 
-	public void OpenSellMenu()
+	public void OpenTradeMenu()
 	{
-		_sellMenu?.Show();
+		_tradeMenu?.Show();
+	}
+
+	public void HideTradeMenu()
+	{
+		_tradeMenu?.Hide();
+	}
+
+	public void ToggleRelicSelection( Id relicId )
+	{
+		if ( _selectedRelicsForTradeIn.Remove( relicId ) )
+		{
+			return;
+		}
+
+		// Get the rarity of the selected relic
+		var relic = RelicManager?.Relics.FirstOrDefault( r => r.Data.Id.Equals( relicId ) );
+
+		if ( relic?.Data.Rarity is null )
+		{
+			return;
+		}
+		{
+			var rarity = relic.Data.Rarity;
+
+			// Only add if it matches the current selection rarity
+			if ( _selectedRelicsForTradeIn.Count == 0 )
+			{
+				// First selection, set the target trade-in rarity
+				_targetTradeInRarity = GetNextRarityUp( rarity );
+				_selectedRelicsForTradeIn.Add( relicId );
+			}
+			else
+			{
+				// Check if this relic has the same rarity as others selected
+				var firstRelic = RelicManager?.Relics.FirstOrDefault( r => r.Data.Id.Equals( _selectedRelicsForTradeIn[0] ) );
+				if ( firstRelic?.Data?.Rarity == rarity )
+				{
+					_selectedRelicsForTradeIn.Add( relicId );
+				}
+			}
+		}
+	}
+
+	public bool CanCompleteTrade()
+	{
+		if ( _selectedRelicsForTradeIn.Count == 0 || RelicManager?.Relics is null )
+		{
+			return false;
+		}
+
+		// Get the first selected relic to determine its rarity
+		var firstRelic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( _selectedRelicsForTradeIn[0] ) );
+		if ( firstRelic?.Data?.Rarity is null )
+		{
+			return false;
+		}
+
+		var rarity = firstRelic.Data.Rarity;
+
+		// Check if we have enough relics of the same rarity
+		if ( !_tradeInRequirements.TryGetValue( rarity, out var requiredAmount ) )
+		{
+			return false;
+		}
+
+		return _selectedRelicsForTradeIn.Count >= requiredAmount;
+	}
+
+	public void CompleteTradeIn()
+	{
+		if ( !CanCompleteTrade() || !SaveManager.IsValid() || !RelicManager.IsValid() )
+		{
+			return;
+		}
+
+		// Get the first selected relic to determine its rarity
+		var firstRelic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( _selectedRelicsForTradeIn[0] ) );
+		if ( firstRelic?.Data?.Rarity is null )
+		{
+			return;
+		}
+
+		var currentRarity = firstRelic.Data.Rarity;
+		var targetRarity = GetNextRarityUp( currentRarity );
+
+		if ( !_tradeInRequirements.TryGetValue( currentRarity, out var requiredAmount ) )
+		{
+			return;
+		}
+
+		// Take only the required amount of relics
+		var relicsToRemove = _selectedRelicsForTradeIn.Take( requiredAmount ).ToList();
+
+		// Remove the traded-in relics
+		foreach ( var relicId in relicsToRemove )
+		{
+			// Remove from player's collection
+			var relic = RelicManager.Relics.FirstOrDefault( x => x.Data.Id.Equals( relicId ) );
+			if ( relic is not null )
+			{
+				RelicManager.RemoveRelic( relic );
+			}
+
+			// Remove from save data
+			if ( SaveManager.ActiveRunData is not null )
+			{
+				SaveManager.ActiveRunData.Relics.Remove( relicId );
+				var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == SaveManager.ActiveRunData.Index );
+				run?.Relics.Remove( relicId );
+				PlayerData.Save();
+			}
+		}
+
+		// Get available relics of the target rarity that the player doesn't own
+		var availableRelics = RelicDataList.All
+			.Where( relic =>
+				relic.Rarity == targetRarity &&
+				(relic.Availabilities & Relic.RelicAvailabilities.Shop) != 0 && RelicManager.Relics.All( r => !r.Data.Id.Equals( relic.Id ) ) )
+			.ToList();
+
+		if ( availableRelics.Count > 0 )
+		{
+			var newRelic = availableRelics[Game.Random.Next( availableRelics.Count )];
+			if ( SaveManager.ActiveRunData is not null )
+			{
+				SaveManager.ActiveRunData.Relics.Add( newRelic.Id );
+				var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == SaveManager.ActiveRunData.Index );
+				run?.Relics.Add( newRelic.Id );
+				PlayerData.Save();
+			}
+
+			PlayerData.Data.SeeRelic( newRelic.Id );
+			RelicManager.AddRelic( newRelic );
+			LastPurchasedItem = newRelic;
+
+			Log.Info( $"Traded in {requiredAmount} {currentRarity} relics for: {newRelic.Name}" );
+		}
+
+		_selectedRelicsForTradeIn.Clear();
+		HideTradeMenu();
 	}
 
 	public void Close()

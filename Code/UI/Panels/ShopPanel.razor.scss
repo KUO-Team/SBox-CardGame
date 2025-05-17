@@ -159,7 +159,7 @@ ShopPanel {
     }
   }
 
-  .sell-menu {
+  .trade-menu {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -180,7 +180,7 @@ ShopPanel {
       text-shadow: 0 2px 2px black;
     }
 
-    > .cards {
+    > .relics {
       width: 50%;
       height: 350px;
       align-items: center;
@@ -192,9 +192,13 @@ ShopPanel {
       gap: 10px;
       background-color: rgba(0, 0, 0, 0.5);
 
-      > .card {
+      RelicPanel {
         transition: transform 0.1s ease;
         flex-shrink: 0;
+        
+        &.trade {
+          border: 1px solid white;
+        }
 
         &:hover {
           cursor: pointer;
@@ -213,9 +217,6 @@ ShopPanel {
       display: none;
       opacity: 0;
     }
-  }
-
-  .keyword-reroll-selection {
   }
 
   &.hidden {
