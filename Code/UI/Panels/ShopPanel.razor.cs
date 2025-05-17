@@ -147,13 +147,9 @@ public partial class ShopPanel
 
 		var weightedPacks = GetWeightedCardPackList( cardList );
 
-		// Removed the HashSet that was preventing duplicates
 		while ( outputList.Count < count && weightedPacks.Count > 0 )
 		{
 			var pack = PickAndRemoveRandom( weightedPacks );
-
-			// Removed the HashSet check that was preventing duplicates
-
 			var cost = _cardPackRarityCosts.GetValueOrDefault( pack.Rarity, 50 );
 
 			outputList.Add( new ShopItem
