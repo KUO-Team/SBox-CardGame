@@ -1,6 +1,4 @@
-﻿using CardGame.StatusEffects;
-
-namespace CardGame.Effects;
+﻿namespace CardGame.Effects;
 
 public class EnchantedOnly( Card card ) : CardEffect( card )
 {
@@ -8,6 +6,6 @@ public class EnchantedOnly( Card card ) : CardEffect( card )
 
 	public override bool CanPlay( CardEffectDetail detail )
 	{
-		return detail.Unit?.StatusEffects?.OfType<Enchanted>().Any() ?? true;
+		return detail.Unit?.StatusEffects?.HasStatusEffect<StatusEffects.Enchanted>() ?? true;
 	}
 }

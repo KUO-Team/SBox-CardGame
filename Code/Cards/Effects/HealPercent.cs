@@ -12,7 +12,7 @@ public class HealPercent( Card card ) : CardEffect( card )
 		}
 
 		var amount = GetPercentageOfHealth( Power.Value / 100f, detail.Unit.HealthComponent.MaxHealth );
-		detail.Unit?.HealthComponent?.Heal( amount );
+		detail.Unit.HealthComponent.Heal( amount );
 
 		base.OnPlay( detail );
 	}

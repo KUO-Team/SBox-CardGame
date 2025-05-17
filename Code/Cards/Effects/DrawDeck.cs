@@ -10,10 +10,10 @@ public class DrawDeck( Card card ) : CardEffect( card )
 		{
 			return;
 		}
-		
-		foreach ( var c in detail.Unit.HandComponent.Deck )
+
+		foreach ( var card in detail.Unit.HandComponent.Deck )
 		{
-			detail.Unit.HandComponent.Draw(c);
+			detail.Unit.HandComponent.Draw( card );
 		}
 		base.OnPlay( detail );
 	}
