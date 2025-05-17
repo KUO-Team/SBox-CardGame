@@ -7,12 +7,12 @@ namespace CardGame.UI;
 
 public partial class ShopPanel
 {
-	public List<ShopItem> Cards { get; set; } = new();
-	public List<ShopItem> Relics { get; set; } = new();
+	public List<ShopItem> Cards { get; set; } = [];
+	public List<ShopItem> Relics { get; set; } = [];
 
 	private object? LastPurchasedItem { get; set; }
 
-	private readonly Dictionary<Card.CardRarity, double> CardRarityChances = new()
+	private readonly Dictionary<Card.CardRarity, double> _cardRarityChances = new()
 	{
 		{
 			Card.CardRarity.Common, 0.6
@@ -28,7 +28,7 @@ public partial class ShopPanel
 		}
 	};
 
-	private readonly Dictionary<Relic.RelicRarity, double> RelicRarityChances = new()
+	private readonly Dictionary<Relic.RelicRarity, double> _relicRarityChances = new()
 	{
 		{
 			Relic.RelicRarity.Common, 0.6
@@ -44,7 +44,7 @@ public partial class ShopPanel
 		}
 	};
 
-	private readonly Dictionary<Card.CardRarity, int> CardRarityCosts = new()
+	private readonly Dictionary<Card.CardRarity, int> _cardRarityCosts = new()
 	{
 		{
 			Card.CardRarity.Common, 10
@@ -60,7 +60,7 @@ public partial class ShopPanel
 		}
 	};
 
-	private readonly Dictionary<Relic.RelicRarity, int> RelicRarityCosts = new()
+	private readonly Dictionary<Relic.RelicRarity, int> _relicRarityCosts = new()
 	{
 		{
 			Relic.RelicRarity.Common, 40
@@ -79,11 +79,11 @@ public partial class ShopPanel
 	private readonly List<string> _keywords = ["Bleed", "Burn", "Discard", "Singleton", "Enchanted"];
 
 	public int RerollCost { get; set; } = 5;
-	
+
 	public int RerollKeywordCost { get; set; } = 15;
-	
+
 	public int RerollTypeCost { get; set; } = 15;
-	
+
 	public int HealCost { get; set; } = 20;
 
 	public int CardAmount { get; set; } = 6;
@@ -93,10 +93,10 @@ public partial class ShopPanel
 	private static SaveManager? SaveManager => CardGame.SaveManager.Instance;
 	private static RelicManager? RelicManager => CardGame.RelicManager.Instance;
 
+	private Panel? _sellMenu;
 	private Panel? _keywordSelection;
 	private Panel? _typeSelection;
-	private Panel? _sellMenu;
-	
+
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
 		if ( firstTime )
@@ -123,7 +123,6 @@ public partial class ShopPanel
 		if ( RelicManager?.Relics is not null )
 		{
 			ownedRelicIds = RelicManager.Relics
-				.Where( r => r is not null && r.Data is not null )
 				.Select( r => r.Data!.Id )
 				.ToHashSet();
 		}
@@ -151,7 +150,7 @@ public partial class ShopPanel
 		for ( var i = 0; i < count && weightedCards.Count > 0; i++ )
 		{
 			var card = PickAndRemoveRandom( weightedCards );
-			var cost = CardRarityCosts.GetValueOrDefault( card.Rarity, 50 );
+			var cost = _cardRarityCosts.GetValueOrDefault( card.Rarity, 50 );
 
 			if ( card.Type == Card.CardType.Item )
 			{
@@ -184,7 +183,7 @@ public partial class ShopPanel
 				continue;
 			}
 
-			var cost = RelicRarityCosts.GetValueOrDefault( relic.Rarity, 50 );
+			var cost = _relicRarityCosts.GetValueOrDefault( relic.Rarity, 50 );
 
 			outputList.Add( new ShopItem
 			{
@@ -198,7 +197,7 @@ public partial class ShopPanel
 		return cardList
 			.SelectMany( card =>
 			{
-				var weight = CardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+				var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 				return Enumerable.Repeat( card, (int)(weight * 100) );
 			} )
 			.OrderBy( _ => Game.Random.Next() )
@@ -210,7 +209,7 @@ public partial class ShopPanel
 		return relicList
 			.SelectMany( relic =>
 			{
-				var weight = RelicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 );
+				var weight = _relicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 );
 				return Enumerable.Repeat( relic, (int)(weight * 100) );
 			} )
 			.OrderBy( _ => Game.Random.Next() )
@@ -273,7 +272,30 @@ public partial class ShopPanel
 			return;
 		}
 
-		player.Cards.Remove( card );
+		if ( !player.Cards.Contains( card ) )
+		{
+			return;
+		}
+
+		var baseCost = _cardRarityCosts.GetValueOrDefault( card.Rarity, 10 );
+		var sellValue = Math.Max( 1, baseCost / 2 );
+
+		WarningPanel? warning = null;
+
+		warning = WarningPanel.Create( "Sell Card", $"Sell {card.Name} for {sellValue}g?", [
+				new Button("Yes", "", () =>
+				{
+					player.Money += sellValue;
+					player.Cards.Remove( card );
+					Log.Info( $"Sold card: {card.Name} for {sellValue} gold" );
+					warning?.Delete();
+				}),
+				new Button("No", "", () =>
+				{
+					warning?.Delete();
+				})
+			]
+		);
 	}
 
 	public void RerollByKeyword( string keyword )
@@ -312,7 +334,6 @@ public partial class ShopPanel
 		if ( RelicManager?.Relics is not null )
 		{
 			ownedRelicIds = RelicManager.Relics
-				.Where( r => r is not null && r.Data is not null )
 				.Select( r => r.Data!.Id )
 				.ToHashSet();
 		}
@@ -372,7 +393,6 @@ public partial class ShopPanel
 		if ( RelicManager?.Relics is not null )
 		{
 			ownedRelicIds = RelicManager.Relics
-				.Where( r => r is not null && r.Data is not null )
 				.Select( r => r.Data!.Id )
 				.ToHashSet();
 		}
@@ -389,13 +409,13 @@ public partial class ShopPanel
 	{
 		var weightedMatching = matching.SelectMany( card =>
 		{
-			var weight = CardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 200) ); // higher weight
 		} );
 
 		var weightedNonMatching = nonMatching.SelectMany( card =>
 		{
-			var weight = CardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 50) ); // lower weight
 		} );
 
@@ -404,7 +424,7 @@ public partial class ShopPanel
 			.OrderBy( _ => Game.Random.Next() )
 			.ToList();
 	}
-	
+
 	public void Heal()
 	{
 		if ( !CanHeal() )
@@ -492,13 +512,13 @@ public partial class ShopPanel
 	{
 		var weightedMatching = matching.SelectMany( card =>
 		{
-			var weight = CardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 200) ); // double weight
 		} );
 
 		var weightedNonMatching = nonMatching.SelectMany( card =>
 		{
-			var weight = CardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
+			var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
 			return Enumerable.Repeat( card, (int)(weight * 50) ); // lower weight
 		} );
 
@@ -512,13 +532,13 @@ public partial class ShopPanel
 	{
 		var weightedMatching = matching.SelectMany( relic =>
 		{
-			var weight = RelicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 );
+			var weight = _relicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 );
 			return Enumerable.Repeat( relic, (int)(weight * 200) );
 		} );
 
 		var weightedNonMatching = nonMatching.SelectMany( relic =>
 		{
-			var weight = RelicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 );
+			var weight = _relicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 );
 			return Enumerable.Repeat( relic, (int)(weight * 50) );
 		} );
 
@@ -550,7 +570,7 @@ public partial class ShopPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( RelicRarityCosts.Count, CardRarityCosts.Count, RerollCost, Player.Local?.Money );
+		return HashCode.Combine( _relicRarityCosts.Count, _cardRarityCosts.Count, RerollCost, Player.Local?.Money );
 	}
 
 	public class ShopItem

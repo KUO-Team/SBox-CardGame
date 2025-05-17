@@ -45,6 +45,7 @@
 	</div>
 
 	<div class="sell-menu hidden" @ref="_sellMenu">
+		<label class="title">Sell</label>
 		<div class="cards">
 			@foreach ( var card in Player.Local.Cards )
 			{
@@ -57,6 +58,7 @@
 	</div>
 
 	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
+		<label class="title">Reroll By Keyword</label>
 		<div class="keywords">
 			@foreach ( var t in _keywords )
 			{
@@ -67,6 +69,7 @@
 	</div>
 
 	<div class="type-reroll-selection selection hidden" @ref="_typeSelection">
+		<label class="title">Reroll By Card Type</label>
 		<div class="keywords">
 			@foreach ( var t in Enum.GetValues<Card.CardType>() )
 			{
