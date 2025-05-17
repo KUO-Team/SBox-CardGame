@@ -7,24 +7,24 @@ namespace CardGame.UI;
 
 public partial class ShopPanel
 {
-	public List<ShopItem> Cards { get; set; } = [];
+	public List<ShopItem> CardPacks { get; set; } = [];
 	public List<ShopItem> Relics { get; set; } = [];
 
 	private object? LastPurchasedItem { get; set; }
 
-	private readonly Dictionary<Card.CardRarity, double> _cardRarityChances = new()
+	private readonly Dictionary<CardPack.CardPackRarity, double> _cardRarityChances = new()
 	{
 		{
-			Card.CardRarity.Common, 0.6
+			CardPack.CardPackRarity.Common, 0.6
 		},
 		{
-			Card.CardRarity.Uncommon, 0.3
+			CardPack.CardPackRarity.Uncommon, 0.3
 		},
 		{
-			Card.CardRarity.Rare, 0.15
+			CardPack.CardPackRarity.Rare, 0.15
 		},
 		{
-			Card.CardRarity.Epic, 0.05
+			CardPack.CardPackRarity.Epic, 0.05
 		}
 	};
 
@@ -44,19 +44,19 @@ public partial class ShopPanel
 		}
 	};
 
-	private readonly Dictionary<Card.CardRarity, int> _cardRarityCosts = new()
+	private readonly Dictionary<CardPack.CardPackRarity, int> _cardRarityCosts = new()
 	{
 		{
-			Card.CardRarity.Common, 10
+			CardPack.CardPackRarity.Common, 10
 		},
 		{
-			Card.CardRarity.Uncommon, 20
+			CardPack.CardPackRarity.Uncommon, 20
 		},
 		{
-			Card.CardRarity.Rare, 50
+			CardPack.CardPackRarity.Rare, 50
 		},
 		{
-			Card.CardRarity.Epic, 100
+			CardPack.CardPackRarity.Epic, 100
 		}
 	};
 
@@ -109,14 +109,14 @@ public partial class ShopPanel
 
 	public void SetRandomItems()
 	{
-		Cards.Clear();
+		CardPacks.Clear();
 		Relics.Clear();
 
-		var shopCards = CardDataList.All
-			.Where( card => (card.Availabilities & Card.CardAvailabilities.Shop) != 0 )
+		var shopCards = CardPackDataList.All
+			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
-		AddRandomCards( shopCards, Cards, CardAmount );
+		AddRandomCardPacks( shopCards, CardPacks, CardAmount );
 
 		var ownedRelicIds = new HashSet<Id>();
 
@@ -138,29 +138,26 @@ public partial class ShopPanel
 		}
 	}
 
-	private void AddRandomCards( List<Card> cardList, List<ShopItem> outputList, int count )
+	private void AddRandomCardPacks(List<CardPack> cardList, List<ShopItem> outputList, int count)
 	{
-		if ( cardList.Count == 0 || !Player.Local.IsValid() )
-		{
+		if (cardList.Count == 0 || !Player.Local.IsValid())
 			return;
-		}
 
-		var weightedCards = GetWeightedCardList( cardList );
+		var weightedPacks = GetWeightedCardPackList(cardList);
 
-		for ( var i = 0; i < count && weightedCards.Count > 0; i++ )
+		var used = new HashSet<CardPack>();
+		while (outputList.Count < count && weightedPacks.Count > 0)
 		{
-			var card = PickAndRemoveRandom( weightedCards );
-			var cost = _cardRarityCosts.GetValueOrDefault( card.Rarity, 50 );
+			var pack = PickAndRemoveRandom(weightedPacks);
+			if (!used.Add(pack))
+				continue;
 
-			if ( card.Type == Card.CardType.Item )
+			var cost = _cardRarityCosts.GetValueOrDefault(pack.Rarity, 50);
+			outputList.Add(new ShopItem
 			{
-				cost = Math.Max( 0, cost - 5 );
-			}
-
-			outputList.Add( new ShopItem
-			{
-				Card = card, Cost = cost
-			} );
+				Pack = pack,
+				Cost = cost
+			});
 		}
 	}
 
@@ -192,13 +189,13 @@ public partial class ShopPanel
 		}
 	}
 
-	private List<Card> GetWeightedCardList( List<Card> cardList )
+	private List<CardPack> GetWeightedCardPackList( List<CardPack> cardPackList )
 	{
-		return cardList
-			.SelectMany( card =>
+		return cardPackList
+			.SelectMany( pack =>
 			{
-				var weight = _cardRarityChances.GetValueOrDefault( card.Rarity, 0.0 );
-				return Enumerable.Repeat( card, (int)(weight * 100) );
+				var weight = _cardRarityChances.GetValueOrDefault( pack.Rarity, 0.0 );
+				return Enumerable.Repeat( pack, (int)(weight * 100) );
 			} )
 			.OrderBy( _ => Game.Random.Next() )
 			.ToList();
@@ -265,56 +262,27 @@ public partial class ShopPanel
 		_sellMenu?.Hide();
 	}
 
-	public void SellCard( Card card )
-	{
-		if ( Player.Local is not {} player )
-		{
-			return;
-		}
-
-		if ( !player.Cards.Contains( card ) )
-		{
-			return;
-		}
-
-		var baseCost = _cardRarityCosts.GetValueOrDefault( card.Rarity, 10 );
-		var sellValue = Math.Max( 1, baseCost / 2 );
-
-		WarningPanel? warning = null;
-
-		warning = WarningPanel.Create( "Sell Card", $"Sell {card.Name} for {sellValue}g?", [
-				new Button("Yes", "", () =>
-				{
-					player.Money += sellValue;
-					player.Cards.Remove( card );
-					Log.Info( $"Sold card: {card.Name} for {sellValue} gold" );
-					warning?.Delete();
-				}),
-				new Button("No", "", () =>
-				{
-					warning?.Delete();
-				})
-			]
-		);
-	}
-
 	public void RerollByKeyword( string keyword )
 	{
 		_keywordSelection?.Hide();
 
 		if ( !CanRerollByKeyword() )
+		{
 			return;
+		}
 
 		if ( Player.Local.IsValid() )
+		{
 			Player.Local.Money -= RerollKeywordCost;
+		}
 
 		RerollKeywordCost += 10;
 
-		Cards.Clear();
+		CardPacks.Clear();
 		Relics.Clear();
 
-		var shopCards = CardDataList.All
-			.Where( card => (card.Availabilities & Card.CardAvailabilities.Shop) != 0 )
+		var shopCards = CardPackDataList.All
+			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
 		var matchingCards = shopCards
@@ -326,7 +294,7 @@ public partial class ShopPanel
 			.ToList();
 
 		var keywordWeightedCards = GetKeywordWeightedCardList( matchingCards, nonMatchingCards );
-		AddRandomCards( keywordWeightedCards, Cards, CardAmount );
+		AddRandomCardPacks( keywordWeightedCards, CardPacks, CardAmount );
 
 		// Relics
 		var ownedRelicIds = new HashSet<Id>();
@@ -369,15 +337,15 @@ public partial class ShopPanel
 
 		RerollTypeCost += 10;
 
-		Cards.Clear();
+		CardPacks.Clear();
 		Relics.Clear();
 
-		var shopCards = CardDataList.All
-			.Where( card => (card.Availabilities & Card.CardAvailabilities.Shop) != 0 )
+		var shopCards = CardPackDataList.All
+			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
 		var matchingCards = shopCards
-			.Where( card => card.Type == type )
+			//.Where( card => card.Type == type )
 			.ToList();
 
 		var nonMatchingCards = shopCards
@@ -385,7 +353,7 @@ public partial class ShopPanel
 			.ToList();
 
 		var typeWeightedCards = GetTypeWeightedCardList( matchingCards, nonMatchingCards );
-		AddRandomCards( typeWeightedCards, Cards, CardAmount );
+		AddRandomCardPacks( typeWeightedCards, CardPacks, CardAmount );
 
 		// Relics stay the same as normal reroll
 		var ownedRelicIds = new HashSet<Id>();
@@ -405,7 +373,7 @@ public partial class ShopPanel
 		AddRandomRelics( availableRelics, Relics, RelicAmount );
 	}
 
-	private List<Card> GetTypeWeightedCardList( List<Card> matching, List<Card> nonMatching )
+	private List<CardPack> GetTypeWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching )
 	{
 		var weightedMatching = matching.SelectMany( card =>
 		{
@@ -468,20 +436,15 @@ public partial class ShopPanel
 		return Player.Local?.Money >= RerollTypeCost;
 	}
 
-	public void BuyCard( ShopItem item )
+	public void BuyCardPack( ShopItem pack )
 	{
-		if ( !CanBuyCard( item ) || Player.Local is not {} player || item.Card is null )
+		if ( !CanBuyCardPack( pack ) )
 		{
 			return;
 		}
 
-		PlayerData.Data.SeeCard( item.Card.Id );
-		player.Cards.Add( item.Card );
-		Cards.Remove( item );
-		player.Money -= item.Cost;
-		LastPurchasedItem = item.Card;
-
-		Log.Info( $"Bought card: {item.Card.Name}" );
+		Player.Local.Money -= pack.Cost;
+		LastPurchasedItem = pack;
 	}
 
 	public void BuyRelic( ShopItem item )
@@ -508,7 +471,7 @@ public partial class ShopPanel
 		Log.Info( $"Bought relic: {item.Relic.Name}" );
 	}
 
-	private List<Card> GetKeywordWeightedCardList( List<Card> matching, List<Card> nonMatching )
+	private List<CardPack> GetKeywordWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching )
 	{
 		var weightedMatching = matching.SelectMany( card =>
 		{
@@ -548,7 +511,7 @@ public partial class ShopPanel
 			.ToList();
 	}
 
-	public bool CanBuyCard( ShopItem item )
+	public bool CanBuyCardPack( ShopItem item )
 	{
 		return Player.Local?.Money >= item.Cost;
 	}
@@ -576,7 +539,7 @@ public partial class ShopPanel
 	public class ShopItem
 	{
 		public int Cost { get; set; }
-		public Card? Card { get; set; }
+		public CardPack? Pack { get; set; }
 		public Relic? Relic { get; set; }
 	}
 }

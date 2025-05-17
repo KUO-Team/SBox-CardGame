@@ -77,14 +77,15 @@ ShopPanel {
     }
     
     &.cant-afford {
-      CardPanel, RelicPanel {
+      CardPackPanel,
+      RelicPanel {
         opacity: 0.35;
         filter: grayscale(0.2);
       }
     }
 
     &:not(.cant-afford) {
-      CardPanel,
+      CardPackPanel,
       RelicPanel {
         &:hover {
           cursor: pointer;
@@ -108,7 +109,7 @@ ShopPanel {
     flex-direction: column;
     gap: 10px;
     flex-shrink: 0;
-    
+
     .row {
       gap: 5px;
     }
@@ -118,7 +119,7 @@ ShopPanel {
       width: 100%;
     }
   }
-  
+
   .selection {
     position: absolute;
     width: 100%;
@@ -126,7 +127,7 @@ ShopPanel {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(2px);
     opacity: 1;
     gap: 10px;
@@ -151,13 +152,13 @@ ShopPanel {
         width: 50%;
       }
     }
-    
+
     &.hidden {
       display: none;
       opacity: 0;
     }
   }
-  
+
   .sell-menu {
     position: absolute;
     width: 100%;
@@ -165,12 +166,12 @@ ShopPanel {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(2px);
     gap: 10px;
     opacity: 1;
     transition: opacity 0.2s ease;
-    
+
     > .title {
       font-size: 50px;
       font-weight: 600;
@@ -178,7 +179,7 @@ ShopPanel {
       text-stroke: 2px black;
       text-shadow: 0 2px 2px black;
     }
-    
+
     > .cards {
       width: 50%;
       height: 350px;
@@ -189,31 +190,31 @@ ShopPanel {
       overflow-x: hidden;
       padding: 20px;
       gap: 10px;
-      background-color: rgba(0,0,0,0.5);
-      
+      background-color: rgba(0, 0, 0, 0.5);
+
       > .card {
         transition: transform 0.1s ease;
         flex-shrink: 0;
-        
+
         &:hover {
           cursor: pointer;
           transform: scale(1.02);
         }
       }
     }
-    
+
     .button-container {
       width: 50%;
       flex-shrink: 0;
       flex-direction: column;
     }
-    
+
     &.hidden {
       display: none;
       opacity: 0;
     }
   }
-  
+
   .keyword-reroll-selection {
   }
 

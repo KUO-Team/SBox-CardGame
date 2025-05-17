@@ -5,13 +5,13 @@
 @namespace CardGame.UI
 
 <root>
-	<label class="title">Cards</label>
+	<label class="title">Card Packs</label>
 	<div class="cards">
-		@foreach ( var item in Cards.OrderBy( x => x.Card!.Rarity ).ThenBy( x => x.Cost ) )
+		@foreach ( var item in CardPacks.OrderBy( x => x.Pack!.Rarity ).ThenBy( x => x.Cost ) )
 		{
-			var purchased = item.Card == LastPurchasedItem ? "purchased" : "";
-			<div class="shop-item @( CanBuyCard( item ) ? "" : "cant-afford" ) @( purchased )">
-				<CardPanel Card="@item.Card" onclick="@( () => BuyCard( item ) )"></CardPanel>
+			var purchased = item == LastPurchasedItem ? "purchased" : "";
+			<div class="shop-item @( CanBuyCardPack( item ) ? "" : "cant-afford" ) @( purchased )">
+				<CardPackPanel Pack="@item.Pack" onclick="@( () => BuyCardPack( item ) )"></CardPackPanel>
 				<label class="cost">@( item.Cost )g</label>
 			</div>
 		}
@@ -44,6 +44,7 @@
 		<button onclick="@Close">Close</button>
 	</div>
 
+<!--
 	<div class="sell-menu hidden" @ref="_sellMenu">
 		<label class="title">Sell</label>
 		<div class="cards">
@@ -56,6 +57,7 @@
 			<button onclick="@HideSellMenu">Close</button>
 		</div>
 	</div>
+	-->
 
 	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
 		<label class="title">Reroll By Keyword</label>
