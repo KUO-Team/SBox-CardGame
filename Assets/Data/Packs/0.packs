@@ -139,6 +139,30 @@
           "LocalId": 68
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Name": "Enchanted Pack",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 90
+        },
+        {
+          "Source": "",
+          "LocalId": 91
+        },
+        {
+          "Source": "",
+          "LocalId": 92
+        }
+      ]
     }
   ],
   "__references": [],

@@ -6,7 +6,6 @@ namespace CardGame.UI;
 
 public partial class MainMenu
 {
-	private PackOpeningPanel? _packOpening;
 	private SettingsPanel? _settings;
 	private LoadRunPanel? _runs;
 	private StatisticsPanel? _statistics;
