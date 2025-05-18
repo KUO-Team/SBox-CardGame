@@ -4,5 +4,7 @@
 			"path": "Assets/Data"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"discord.removeDetails": true
+	}
 }
