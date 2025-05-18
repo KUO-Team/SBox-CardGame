@@ -3,6 +3,11 @@
 @inherits Panel
 @namespace CardGame.UI.Map
 
+@if ( Event is null )
+{
+	return;
+}
+
 <root class="hidden">
 	<div class="main">
 		<label class="event-text">@Event.Text</label>

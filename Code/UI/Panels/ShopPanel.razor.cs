@@ -376,7 +376,7 @@ public partial class ShopPanel
 
 		foreach ( var pack in shopCards )
 		{
-			int cardsOfType = 0;
+			var cardsOfType = 0;
 
 			foreach ( var cardId in pack.Cards )
 			{
@@ -501,8 +501,12 @@ public partial class ShopPanel
 		{
 			return;
 		}
-
-		Player.Local.Money -= pack.Cost;
+		
+		if ( Player.Local.IsValid() )
+		{
+			Player.Local.Money -= pack.Cost;
+		}
+		
 		LastPurchasedItem = pack;
 	}
 
