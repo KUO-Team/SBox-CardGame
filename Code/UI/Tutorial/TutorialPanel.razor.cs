@@ -15,6 +15,19 @@ public partial class TutorialPanel
 		base.OnStart();
 	}
 
+	public void Clear( bool immediate = false )
+	{
+		foreach ( var child in Panel.Children )
+		{
+			if ( !child.IsValid() )
+			{
+				continue;
+			}
+			
+			child.Delete( immediate );
+		}
+	}
+
 	public void ShowInfo( string text, System.Action? onComplete = null, (Length? Left, Length? Top)? displayPosition = null, (Length? Width, Length? Height)? displaySize = null )
 	{
 		if ( InfoPanel is not null )

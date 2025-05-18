@@ -1,4 +1,6 @@
 ﻿using Sandbox.UI;
+using CardGame.UI.Tutorial;
+
 namespace CardGame.UI;
 
 public partial class PauseMenu
@@ -36,6 +38,9 @@ public partial class PauseMenu
 		{
 			return;
 		}
+		
+		TutorialPanel.Instance?.Clear();
+		BattleManager.Instance?.UnloadBattleScript();
 
 		Scene.Load( SceneManager.MenuScene );
 	}
