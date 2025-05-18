@@ -3,18 +3,16 @@ using CardGame.Units;
 
 namespace CardGame.Passives;
 
-public abstract class PassiveAbility : IResource, IOwnable
+public abstract class PassiveAbility : IOwnable
 {
-	public virtual Id Id { get; set; } = Id.Invalid;
-
-	public virtual string Name { get; set; } = string.Empty;
-
-	public virtual string Description { get; set; } = string.Empty;
+	public Data.PassiveAbility Data { get; set; }
 	
 	public BattleUnit? Owner { get; set; }
 	
-	protected PassiveAbility()
+	protected PassiveAbility(Data.PassiveAbility data)
 	{
+		Data = data;
+		
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnBattleStart += OnBattleStart;

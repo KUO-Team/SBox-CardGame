@@ -32,7 +32,7 @@ public sealed class RelicManager : Singleton<RelicManager>
 		base.OnDisabled();
 	}
 
-	public void AddRelic( Data.Relic data )
+	public void AddRelic( Relic data )
 	{
 		var relic = TypeLibrary.Create<Relics.Relic>( data.Script, [data] );
 		Relics.Add( relic );

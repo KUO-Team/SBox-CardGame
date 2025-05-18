@@ -2,12 +2,8 @@
 
 namespace CardGame.Passives;
 
-public class Solo : PassiveAbility
+public class Solo( Data.PassiveAbility data ) : PassiveAbility( data )
 {
-	public override Id Id => 3;
-	public override string Name => "Sole Survivor";
-	public override string Description => "At the start of the battle, if you are the only ally, gain +1 Card Slot.";
-	
 	public override void OnBattleStart( Battle battle )
 	{
 		if ( !Owner.IsValid() || !Player.Local.IsValid() )

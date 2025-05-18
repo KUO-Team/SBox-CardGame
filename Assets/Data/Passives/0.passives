@@ -1,0 +1,33 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "Bloodfeeding",
+      "Description": "On Hit, if target has Bleed, heal 2HP.",
+      "Script": "Bloodfeeding"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "Bulky Armor",
+      "Description": "At the start of the turn, gain 2 Protection.",
+      "Script": "BulkyArmor"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "Solo",
+      "Description": "At the start of the battle, if you are the only ally, gain +1 Card Slot.",
+      "Script": "Solo"
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

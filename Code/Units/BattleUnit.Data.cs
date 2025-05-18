@@ -66,11 +66,13 @@ public partial class BattleUnit
 
 		if ( Passives.IsValid() )
 		{
-			foreach ( var passiveName in data.Passives )
+			foreach ( var passiveId in data.Passives )
 			{
-				var passive = TypeLibrary.Create<PassiveAbility>( passiveName );
-				passive.Owner = this;
-				Passives.AddPassiveAbility( passive );
+				var passive = PassiveAbilityDataList.GetById( passiveId );
+				if ( passive is not null )
+				{
+					Passives.AddPassiveAbility( passive );
+				}
 			}
 		}
 

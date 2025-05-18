@@ -40,7 +40,7 @@ public class Unit : IResource, IDeepCopyable<Unit>
 	public List<Id> Deck { get; set; } = [];
 
 	[InlineEditor, WideMode]
-	public List<string> Passives { get; set; } = [];
+	public List<Id> Passives { get; set; } = [];
 
 	public Unit DeepCopy()
 	{
