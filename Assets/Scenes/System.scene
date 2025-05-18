@@ -366,7 +366,7 @@
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
           "TargetCamera": null,
-          "ZIndex": 400
+          "ZIndex": 500
         },
         {
           "__type": "CardGame.UI.Hud",

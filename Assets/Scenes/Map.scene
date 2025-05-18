@@ -117,7 +117,7 @@
               "Scale": 1,
               "ScaleStrategy": "ConsistentHeight",
               "TargetCamera": null,
-              "ZIndex": 400
+              "ZIndex": 300
             },
             {
               "__type": "CardGame.UI.PauseMenu",
