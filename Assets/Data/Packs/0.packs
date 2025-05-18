@@ -55,6 +55,90 @@
           "LocalId": 103
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "Discard Pack",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Discard",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 52
+        },
+        {
+          "Source": "",
+          "LocalId": 53
+        },
+        {
+          "Source": "",
+          "LocalId": 58
+        },
+        {
+          "Source": "",
+          "LocalId": 60
+        },
+        {
+          "Source": "",
+          "LocalId": 65
+        },
+        {
+          "Source": "",
+          "LocalId": 68
+        },
+        {
+          "Source": "",
+          "LocalId": 69
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Name": "Spell Pack 1",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 50
+        },
+        {
+          "Source": "",
+          "LocalId": 52
+        },
+        {
+          "Source": "",
+          "LocalId": 56
+        },
+        {
+          "Source": "",
+          "LocalId": 59
+        },
+        {
+          "Source": "",
+          "LocalId": 60
+        },
+        {
+          "Source": "",
+          "LocalId": 61
+        },
+        {
+          "Source": "",
+          "LocalId": 65
+        },
+        {
+          "Source": "",
+          "LocalId": 68
+        }
+      ]
     }
   ],
   "__references": [],
