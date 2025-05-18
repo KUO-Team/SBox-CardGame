@@ -62,9 +62,9 @@
 	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
 		<label class="title">Reroll By Keyword</label>
 		<div class="keywords">
-			@foreach ( var t in _keywords )
+			@foreach ( var keyword in _keywords )
 			{
-				<button onclick="@( () => RerollByKeyword( t ) )">@t</button>
+				<button onclick="@( () => RerollByKeyword( keyword ) )">@keyword</button>
 			}
 			<button onclick="@HideRerollKeywordMenu">Close</button>
 		</div>
@@ -73,9 +73,9 @@
 	<div class="type-reroll-selection selection hidden" @ref="_typeSelection">
 		<label class="title">Reroll By Card Type</label>
 		<div class="keywords">
-			@foreach ( var t in Enum.GetValues<Card.CardType>() )
+			@foreach ( var type in Enum.GetValues<Card.CardType>() )
 			{
-				<button onclick="@( () => RerollByType( t ) )">@t</button>
+				<button onclick="@( () => RerollByType( type ) )">@type</button>
 			}
 			<button onclick="@HideTypeSelection">Close</button>
 		</div>
