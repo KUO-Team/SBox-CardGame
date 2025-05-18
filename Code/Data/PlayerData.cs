@@ -144,10 +144,12 @@ public class RunData
 
 	public UnitData UnitData { get; set; } = new();
 
-	public List<UnitData> Allies { get; set; } = [];
-
+	public List<Id> Cards { get; set; } = [];
+	
+	public List<Id> CardPacks { get; set; } = [];
+	
 	public List<Id> Relics { get; set; } = [];
-
+	
 	public DateTime Date { get; set; } = DateTime.Now;
 }
 

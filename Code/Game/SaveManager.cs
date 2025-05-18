@@ -8,13 +8,13 @@ public sealed class SaveManager : Singleton<SaveManager>
 {
 	[Property, InlineEditor]
 	public RunData? ActiveRunData { get; set; }
-	
+
 	private static PlayerData Data => PlayerData.Data;
-	
+
 	private static GameManager? GameManager => GameManager.Instance;
 	private static MapManager? MapManager => MapManager.Instance;
 	private static SceneManager? SceneManager => SceneManager.Instance;
-	
+
 	private static readonly Logger Log = new( "SaveManager" );
 
 	public void Save( int? index = null )
@@ -28,13 +28,14 @@ public sealed class SaveManager : Singleton<SaveManager>
 		{
 			return;
 		}
-		
+
 		RunData run;
 		var actualIndex = 0;
 		if ( index.HasValue )
 		{
 			run = Data.Runs.FirstOrDefault( x => x.Index == index )
 				?? throw new InvalidOperationException( "Run with specified index not found." );
+
 			actualIndex = run.Index;
 		}
 		else
@@ -52,14 +53,23 @@ public sealed class SaveManager : Singleton<SaveManager>
 		if ( Player.Local is {} player )
 		{
 			run.Money = player.Money;
-			
+
 			if ( Player.Local.Unit is not null )
 			{
 				run.UnitData = Player.Local.Unit;
 			}
+
+			foreach ( var card in Player.Local.Cards )
+			{
+				run.Cards.Add( card.Id );
+			}
+
+			foreach ( var cardPack in Player.Local.CardPacks )
+			{
+				run.CardPacks.Add( cardPack.Id );
+			}
 		}
-		
-		
+
 		PlayerData.Save();
 	}
 
@@ -74,7 +84,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 		{
 			return;
 		}
-		
+
 		if ( !SceneManager.IsValid() )
 		{
 			return;
@@ -94,12 +104,30 @@ public sealed class SaveManager : Singleton<SaveManager>
 				RelicManager.Instance?.AddRelic( relic );
 			}
 		}
-		
+
 		if ( Player.Local.IsValid() )
 		{
 			Player.Local.Money = data.Money;
+
+			foreach ( var cardId in data.Cards )
+			{
+				var card = CardDataList.GetById( cardId );
+				if ( card is not null )
+				{
+					Player.Local.Cards.Add( card );
+				}
+			}
+
+			foreach ( var packId in data.CardPacks )
+			{
+				var pack = CardPackDataList.GetById( packId );
+				if ( pack is not null )
+				{
+					Player.Local.CardPacks.Add( pack );
+				}
+			}
 		}
-		
+
 		Scene.Load( SceneManager.MapScene );
 	}
 
@@ -130,7 +158,10 @@ public sealed class SaveManager : Singleton<SaveManager>
 		{
 			MapManager.Instance.Index = 0;
 		}
-		
+
+		Player.Local?.CardPacks.Clear();
+		Player.Local?.Cards.Clear();
+
 		ActiveRunData = null;
 		Log.Info( $"Cleared active run data." );
 	}

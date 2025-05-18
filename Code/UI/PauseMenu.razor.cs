@@ -40,6 +40,7 @@ public partial class PauseMenu
 		
 		TutorialPanel.Instance?.Clear();
 		BattleManager.Instance?.UnloadBattleScript();
+		SaveManager?.ClearActiveRun();
 
 		Scene.Load( SceneManager.MenuScene );
 	}

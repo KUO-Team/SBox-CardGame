@@ -404,6 +404,7 @@ public partial class ShopPanel
 					Player.Local.CardPacks.Add( item.Pack! );
 					Player.Local.Money -= item.Cost;
 				}
+				SaveManager?.ActiveRunData?.CardPacks.Add( item.Pack!.Id );
 
 				LastPurchasedItem = item;
 				_packOpeningPanel?.Show();
