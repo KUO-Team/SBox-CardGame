@@ -113,7 +113,7 @@ public class PlayerData
 	public static void Load()
 	{
 		Data = FileSystem.Data.ReadJson( FileName, new PlayerData() );
-		Log.Info( $"Loaded datafile from: {FileSystem.Data.GetFullPath( FileName )}" );
+		Log.EditorLog( $"Loaded datafile from: {FileSystem.Data.GetFullPath( FileName )}" );
 	}
 
 	public static void Save()
@@ -124,7 +124,7 @@ public class PlayerData
 		}
 
 		FileSystem.Data.WriteJson( FileName, Data );
-		Log.Info( $"Saved datafile to: {FileSystem.Data.GetFullPath( FileName )}" );
+		Log.EditorLog( $"Saved datafile to: {FileSystem.Data.GetFullPath( FileName )}" );
 	}
 }
 
