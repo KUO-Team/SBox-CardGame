@@ -191,7 +191,7 @@ public partial class ShopPanel
 			Player.Local.Money -= RerollCost;
 		}
 
-		if ( ShopManager != null )
+		if ( ShopManager.IsValid() )
 		{
 			ShopManager.RerollCost += ShopManager.ShopConfig.RerollCostIncrement;
 		}
