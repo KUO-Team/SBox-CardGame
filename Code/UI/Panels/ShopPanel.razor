@@ -4,13 +4,18 @@
 @inherits Panel
 @namespace CardGame.UI
 
+@if ( !ShopManager.IsValid() )
+{
+	return;
+}
+
 <root>
 	<label class="title">Card Packs</label>
 	<div class="cards">
 		@foreach ( var item in CardPacks.OrderBy( x => x.Pack!.Rarity ).ThenBy( x => x.Cost ) )
 		{
 			var purchased = item == LastPurchasedItem ? "purchased" : "";
-			<div class="shop-item @( CanBuyCardPack( item ) ? "" : "cant-afford" ) @( purchased )">
+			<div class="shop-item @( ShopManager.CanBuyItem( item ) ? "" : "cant-afford" ) @( purchased )">
 				<CardPackPanel Pack="@item.Pack" onclick="@( () => BuyCardPack( item ) )"></CardPackPanel>
 				<label class="cost">@( item.Cost )g</label>
 			</div>
@@ -22,7 +27,7 @@
 		@foreach ( var item in Relics.OrderBy( x => x.Relic!.Rarity ).ThenBy( x => x.Cost ) )
 		{
 			var purchased = item.Relic == LastPurchasedItem ? "purchased" : "";
-			<div class="shop-item @( CanBuyRelic( item ) ? "" : "cant-afford" ) @( purchased )">
+			<div class="shop-item @( ShopManager.CanBuyItem( item ) ? "" : "cant-afford" ) @( purchased )">
 				<RelicPanel Relic="@item.Relic" onclick="@( () => BuyRelic( item ) )"></RelicPanel>
 				<label class="cost">@( item.Cost )g</label>
 			</div>
@@ -62,7 +67,7 @@
 	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
 		<label class="title">Reroll By Keyword</label>
 		<div class="keywords">
-			@foreach ( var keyword in _keywords )
+			@foreach ( var keyword in ShopManager?.Keywords ?? [] )
 			{
 				<button onclick="@( () => RerollByKeyword( keyword ) )">@keyword</button>
 			}
