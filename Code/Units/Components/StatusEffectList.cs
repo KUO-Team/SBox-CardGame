@@ -18,7 +18,7 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		}
 		
 		var status = TypeLibrary.Create<StatusEffect>( statusEffect.Script, [data] );
-		status.Stack = 1;
+		status.Stack = stack;
 		AddOrUpdate( status, stack );
 	}
 	
@@ -32,7 +32,7 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		}
 		
 		var status = TypeLibrary.Create<StatusEffect>( statusEffect.Script, [statusEffect] );
-		status.Stack = 1;
+		status.Stack = stack;
 		AddOrUpdate( status, stack );
 	}
 
@@ -45,7 +45,7 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		}
 		
 		var status = TypeLibrary.Create<StatusEffect>( statusEffect.Script, [data] );
-		status.Stack = 1;
+		status.Stack = stack;
 		AddOrUpdateQueued( status, stack );
 	}
 	
@@ -59,7 +59,7 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		}
 		
 		var status = TypeLibrary.Create<StatusEffect>( statusEffect.Script, [statusEffect] );
-		status.Stack = 1;
+		status.Stack = stack;
 		AddOrUpdateQueued( status, stack );
 	}
 
