@@ -23,6 +23,11 @@ public abstract class PassiveAbility : IOwnable
 		}
 	}
 
+	public virtual string Description()
+	{
+		return Data.Description;
+	}
+
 	public virtual void OnAdd()
 	{
 		

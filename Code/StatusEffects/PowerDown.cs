@@ -6,7 +6,7 @@ public class PowerDown( Data.StatusEffect data ) : StatusEffect( data )
 {
 	public override StatusKey Keyword => StatusKey.PowerDown;
 	
-	private string GetDescription()
+	public override string Description()
 	{
 		return Stack > 0 ? $"Attack Power -{Stack} for this turn." : "Attack Power -X for this turn.";
 	}

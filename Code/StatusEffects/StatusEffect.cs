@@ -27,6 +27,11 @@ public abstract class StatusEffect : IOwnable
 		}
 	}
 
+	public virtual string Description()
+	{
+		return Data.Description;
+	}
+
 	public virtual void OnAdd()
 	{
 

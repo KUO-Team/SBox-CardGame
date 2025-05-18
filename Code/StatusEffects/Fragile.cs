@@ -3,8 +3,8 @@
 public class Fragile( Data.StatusEffect data ) : StatusEffect( data )
 {
 	public override StatusKey Keyword => StatusKey.Fragile;
-	
-	private string GetDescription()
+
+	public override string Description()
 	{
 		return Stack > 0 ? $"Take {Stack} additional damage from attacks for this turn." : "Take X additional damage from attacks for this turn.";
 	}

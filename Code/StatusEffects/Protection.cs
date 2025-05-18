@@ -4,7 +4,7 @@ public class Protection( Data.StatusEffect data ) : StatusEffect( data )
 {
 	public override StatusKey Keyword => StatusKey.Protection;
 	
-	private string GetDescription()
+	public override string Description()
 	{
 		return Stack > 0 ? $"Physical Damage -{Stack} for this turn." : "Physical Damage -X for this turn.";
 	}

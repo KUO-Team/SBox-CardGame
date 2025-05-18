@@ -4,7 +4,7 @@ public class PowerUp( Data.StatusEffect data ) : StatusEffect( data )
 {
 	public override StatusKey Keyword => StatusKey.PowerUp;
 	
-	private string GetDescription()
+	public override string Description()
 	{
 		return Stack > 0 ? $"Attack Power +{Stack} for this turn." : "Attack Power +X for this turn.";
 	}
