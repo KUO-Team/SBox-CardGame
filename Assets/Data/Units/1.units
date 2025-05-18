@@ -166,7 +166,10 @@
         }
       ],
       "Passives": [
-        "BulkyArmor"
+        {
+          "Source": "",
+          "LocalId": 2
+        }
       ]
     }
   ],
