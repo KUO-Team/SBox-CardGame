@@ -1,17 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class Protection : StatusEffect
+public class Protection( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 3;
-	
-	public override string Icon => "/Materials/Statuses/Protection.png";
-
-	public override string Name => "Protection";
-
-	public override string Description => GetDescription();
-
 	public override StatusKey Keyword => StatusKey.Protection;
 	
 	private string GetDescription()

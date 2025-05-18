@@ -9,11 +9,11 @@ public class InflictRandomBleedBurn( Card card ) : CardEffect( card )
 		var t = Game.Random.Float();
 		if ( t > 0.5 )
 		{
-			detail.Target?.StatusEffects?.AddStatusEffect<StatusEffects.Bleed>( Power.Value );
+			detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Burn, Power.Value );
 		}
 		else
 		{
-			detail.Target?.StatusEffects?.AddStatusEffect<StatusEffects.Burn>( Power.Value );
+			detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Bleed, Power.Value );
 		}
 		base.OnPlay( detail );
 	}

@@ -11,8 +11,8 @@ public class PowerRing( Data.Relic data ) : Relic( data )
 			var turnCount = BattleManager.Instance.Turn;
 			var amount = Math.Min( turnCount, 5 );
 			
-			Owner?.StatusEffects?.AddStatusEffect<StatusEffects.PowerUp>( amount );
-			Owner?.StatusEffects?.AddStatusEffect<StatusEffects.Fragile>( amount );
+			Owner?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, amount );
+			Owner?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Fragile, amount );
 		}
 		
 		base.OnTurnStart();

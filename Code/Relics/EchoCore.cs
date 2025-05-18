@@ -1,6 +1,5 @@
 ﻿using System;
 using CardGame.Units;
-using CardGame.StatusEffects;
 
 namespace CardGame.Relics;
 
@@ -15,7 +14,7 @@ public class EchoCore( Data.Relic data ) : Relic( data )
 		{
 			return;
 		}
-		
+
 		if ( !Owner.IsValid() || !Owner.StatusEffects.IsValid() )
 		{
 			return;
@@ -24,12 +23,12 @@ public class EchoCore( Data.Relic data ) : Relic( data )
 		var powerUpCount = Math.Min( _lastTurnDiscards, 3 );
 		for ( var i = 0; i < powerUpCount; i++ )
 		{
-			Owner.StatusEffects.AddStatusEffect<PowerUp>();
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp );
 		}
 
 		if ( powerUpCount == 0 )
 		{
-			Owner.StatusEffects.AddStatusEffect<PowerDown>();
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown );
 		}
 
 		base.OnTurnStart();

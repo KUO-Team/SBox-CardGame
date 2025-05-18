@@ -19,4 +19,6 @@ public class StatusEffect : IResource
 	public Color Color { get; set; } = Color.FromBytes( 255, 215, 0 );
 	
 	public int? Maximum { get; set; }
+
+	public string Script { get; set; } = string.Empty;
 }

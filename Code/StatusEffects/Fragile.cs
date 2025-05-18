@@ -1,17 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class Fragile : StatusEffect
+public class Fragile( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 4;
-	
-	public override string Icon => "/Materials/Statuses/Fragile.png";
-
-	public override string Name => "Fragile";
-
-	public override string Description => GetDescription();
-
 	public override StatusKey Keyword => StatusKey.Fragile;
 	
 	private string GetDescription()

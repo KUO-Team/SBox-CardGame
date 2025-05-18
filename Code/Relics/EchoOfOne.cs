@@ -21,7 +21,7 @@ public class EchoOfOne( Data.Relic data ) : Relic( data )
 			return;
 		}
 		
-		Owner.StatusEffects?.AddStatusEffect<StatusEffects.PowerUp>( 3 );
+		Owner.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 3 );
 
 		if ( _added )
 		{

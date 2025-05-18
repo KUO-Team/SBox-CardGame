@@ -1,17 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class Immobilized : StatusEffect
+public class Immobilized( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 7;
-	
-	public override string Icon => "/Materials/Statuses/Immobilized.png";
-
-	public override string Name => "Immobilized";
-
-	public override string Description => GetDescription();
-
 	public override StatusKey Keyword => StatusKey.Immobilized;
 	
 	private string GetDescription()

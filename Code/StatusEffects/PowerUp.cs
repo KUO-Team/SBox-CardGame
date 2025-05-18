@@ -1,17 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class PowerUp : StatusEffect
+public class PowerUp( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 1;
-
-	public override string Icon => "/Materials/Statuses/PowerUp.png";
-
-	public override string Name => "Power Up";
-
-	public override string Description => GetDescription();
-
 	public override StatusKey Keyword => StatusKey.PowerUp;
 	
 	private string GetDescription()

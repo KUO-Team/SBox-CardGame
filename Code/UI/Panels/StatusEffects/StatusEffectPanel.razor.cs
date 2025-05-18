@@ -44,6 +44,6 @@ public partial class StatusEffectPanel
 	
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Status, Status?.Name, Status?.Description, Status?.Stack );
+		return HashCode.Combine( Status, Status?.Stack, Status?.Data.Name, Status?.Data.Description );
 	}
 }

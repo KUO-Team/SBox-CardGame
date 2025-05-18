@@ -6,7 +6,7 @@ public class PowerUp( Card card ) : CardEffect( card )
 	
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffect<StatusEffects.PowerUp>( Power.Value );
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, Power.Value );
 		base.OnPlay( detail );
 	}
 }

@@ -1,5 +1,4 @@
-﻿using CardGame.StatusEffects;
-using CardGame.Units;
+﻿using CardGame.Units;
 
 namespace CardGame.Relics;
 
@@ -13,6 +12,6 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 		}
 		
 		Owner?.HealthComponent?.TakeFixedDamage( 1 );
-		Owner?.StatusEffects?.AddStatusEffect<PowerUp>( 2 );
+		Owner?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 2 );
 	}
 }

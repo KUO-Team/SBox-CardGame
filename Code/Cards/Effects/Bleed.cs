@@ -6,7 +6,7 @@ public class Bleed( Card card ) : CardEffect( card )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Target?.StatusEffects?.AddStatusEffect<StatusEffects.Bleed>( Power.Value );
+		detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Bleed, Power.Value );
 		base.OnPlay( detail );
 	}
 }

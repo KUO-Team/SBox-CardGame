@@ -11,7 +11,8 @@
       "IsNegative": false,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "PowerUp"
     },
     {
       "Id": {
@@ -24,7 +25,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "PowerDown"
     },
     {
       "Id": {
@@ -37,7 +39,8 @@
       "IsNegative": false,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Protection"
     },
     {
       "Id": {
@@ -50,7 +53,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Fragile"
     },
     {
       "Id": {
@@ -63,7 +67,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Burn"
     },
     {
       "Id": {
@@ -76,7 +81,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Bleed"
     },
     {
       "Id": {
@@ -89,7 +95,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Immobilized"
     },
     {
       "Id": {
@@ -102,7 +109,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Silenced"
     },
     {
       "Id": {
@@ -115,7 +123,8 @@
       "IsNegative": false,
       "IsHiddenStack": true,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Enchanted"
     },
     {
       "Id": {
@@ -128,7 +137,8 @@
       "IsNegative": true,
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
-      "Maximum": null
+      "Maximum": null,
+      "Script": "Cold"
     }
   ],
   "__references": [],

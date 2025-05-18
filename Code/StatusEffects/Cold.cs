@@ -1,20 +1,9 @@
 ﻿using System;
-using CardGame.Data;
 
 namespace CardGame.StatusEffects;
 
-public class Cold : StatusEffect
+public class Cold( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 10;
-	
-	public override string Icon => "/Materials/Statuses/PowerDown.png";
-
-	public override string Name => "Cold";
-
-	public override string Description => GetDescription();
-
-	public override bool IsNegative => true;
-
 	public override StatusKey Keyword => StatusKey.Cold;
 	
 	private string GetDescription()

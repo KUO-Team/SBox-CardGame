@@ -6,7 +6,7 @@ public class EnchantNextTurn( Card card ) : CardEffect( card )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffectNextTurn<StatusEffects.Enchanted>();
+		detail.Unit?.StatusEffects?.AddStatusEffectByKeyNextTurn( StatusEffects.StatusEffect.StatusKey.Enchanted );
 		base.OnPlay( detail );
 	}
 }

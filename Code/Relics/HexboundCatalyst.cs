@@ -13,11 +13,11 @@ public class HexboundCatalyst( Data.Relic data ) : Relic( data )
 
 			if ( unit.StatusEffects.HasStatusEffect<StatusEffects.Enchanted>() )
 			{
-				unit.StatusEffects.AddStatusEffect<StatusEffects.PowerUp>( 2 );
+				unit.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 2 );
 			}
 			else
 			{
-				unit.StatusEffects.AddStatusEffect<StatusEffects.PowerDown>( 2 );
+				unit.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown, 2 );
 			}
 		}
 		

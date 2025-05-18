@@ -40,7 +40,7 @@
 		@if ( Unit?.StatusEffects is not null )
 		{
 			<div class="status-container">
-				@foreach ( var status in Unit.StatusEffects.Items.GroupBy( x => x.Id ) )
+				@foreach ( var status in Unit.StatusEffects.Items.GroupBy( x => x.Data.Id ) )
 				{
 					<StatusEffectPanel Status="@status.First()"></StatusEffectPanel>
 				}

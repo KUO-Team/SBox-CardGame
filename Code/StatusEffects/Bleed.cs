@@ -1,19 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class Bleed : StatusEffect
+public class Bleed( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 6;
-
-	public override string Icon => "/Materials/Statuses/Bleed.png";
-
-	public override string Name => "Bleed";
-
-	public override string Description => GetDescription();
-
-	public override bool IsNegative => true;
-
 	public override StatusKey Keyword => StatusKey.Bleed;
 
 	private string GetDescription()

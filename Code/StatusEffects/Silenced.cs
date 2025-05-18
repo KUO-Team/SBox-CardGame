@@ -1,17 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class Silenced : StatusEffect
+public class Silenced( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 8;
-	
-	public override string Icon => "/Materials/Statuses/Immobilized.png";
-
-	public override string Name => "Silenced";
-
-	public override string Description => "The left-most available card slot becomes unavailable.";
-
 	public override StatusKey Keyword => StatusKey.Silenced;
 
 	private CardSlot? _slot;

@@ -1,19 +1,7 @@
-﻿using CardGame.Data;
+﻿namespace CardGame.StatusEffects;
 
-namespace CardGame.StatusEffects;
-
-public class Burn : StatusEffect
+public class Burn( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override Id Id => 5;
-	
-	public override string Icon => "/Materials/Statuses/Burn.png";
-
-	public override string Name => "Burn";
-
-	public override string Description => GetDescription();
-
-	public override bool IsNegative => true;
-
 	public override StatusKey Keyword => StatusKey.Burn;
 	
 	private string GetDescription()

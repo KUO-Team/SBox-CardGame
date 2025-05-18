@@ -6,7 +6,7 @@ public class DiscardPower( Card card ) : CardEffect( card )
 
 	public override void OnDiscard( CardEffectDetail detail )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffect<StatusEffects.PowerUp>();
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp );
 		base.OnDiscard( detail );
 	}
 }

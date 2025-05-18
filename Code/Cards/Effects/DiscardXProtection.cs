@@ -12,7 +12,7 @@ public class DiscardXProtection( Card card ) : CardEffect( card )
 
 	public override void OnDiscardModeCardDiscard( CardEffectDetail detail, Card card )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffect<StatusEffects.Protection>();
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Protection );
 		base.OnDiscardModeCardDiscard( detail, card );
 	}
 }

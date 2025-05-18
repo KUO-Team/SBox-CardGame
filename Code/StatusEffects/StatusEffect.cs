@@ -3,33 +3,20 @@ using CardGame.Units;
 
 namespace CardGame.StatusEffects;
 
-public abstract class StatusEffect : IResource, IOwnable
+public abstract class StatusEffect : IOwnable
 {
-	public virtual Id Id { get; set; } = Id.Invalid;
+	public Data.StatusEffect Data { get; set; }
 
-	[ImageAssetPath]
-	public virtual string Icon { get; set; } = string.Empty;
-
-	public virtual string Name { get; set; } = string.Empty;
-
-	public virtual string Description { get; set; } = string.Empty;
-
-	public virtual bool IsNegative { get; set; }
-
-	public virtual bool IsHiddenStack { get; set; }
-
-	public virtual Color Color { get; set; } = Color.FromBytes( 255, 215, 0 );
-
-	public virtual int? Maximum { get; set; }
-	
-	public virtual StatusKey Keyword { get; set; }
-	
 	public BattleUnit? Owner { get; set; }
-
+	
 	public int Stack { get; set; }
 
-	protected StatusEffect()
+	public virtual StatusKey Keyword { get; set; }
+
+	protected StatusEffect( Data.StatusEffect data )
 	{
+		Data = data;
+
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnBattleStart += OnBattleStart;
@@ -42,32 +29,32 @@ public abstract class StatusEffect : IResource, IOwnable
 
 	public virtual void OnAdd()
 	{
-		
+
 	}
 
 	public virtual void OnBattleStart( Battle battle )
 	{
-		
+
 	}
 
 	public virtual void OnBattleEnd( Battle battle )
 	{
-		
+
 	}
 
 	public virtual void OnTurnStart()
 	{
-		
+
 	}
 
 	public virtual void OnTurnEnd()
 	{
-		
+
 	}
 
 	public virtual void OnCombatStart()
 	{
-		
+
 	}
 
 	public virtual void OnTakeDamage( BattleUnit dealer )
@@ -84,7 +71,7 @@ public abstract class StatusEffect : IResource, IOwnable
 	{
 
 	}
-	
+
 	public virtual void AfterPlayCard( Card card )
 	{
 
@@ -94,7 +81,7 @@ public abstract class StatusEffect : IResource, IOwnable
 	{
 
 	}
-	
+
 	public virtual int PowerModifier( Card card, Action action )
 	{
 		return 0;
@@ -115,10 +102,10 @@ public abstract class StatusEffect : IResource, IOwnable
 			BattleManager.Instance.OnTurnStart -= OnTurnStart;
 			BattleManager.Instance.OnTurnEnd -= OnTurnEnd;
 		}
-		
+
 		Owner?.StatusEffects?.Remove( this );
 	}
-	
+
 	public enum StatusKey
 	{
 		PowerUp,

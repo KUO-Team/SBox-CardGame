@@ -10,19 +10,19 @@ public class TwilightBand( Data.Relic data ) : Relic( data )
 		{
 			return;
 		}
-		
+
 		Owner.Slots?.AddCardSlot();
-		
+
 		var hp = GetHp();
 		Owner.HealthComponent.MaxHealth = hp;
 		Owner.HealthComponent.Health = Owner.HealthComponent.MaxHealth;
-		
+
 		base.OnBattleStart( battle );
 	}
 
 	public override void OnTurnStart()
 	{
-		Owner?.StatusEffects?.AddStatusEffect<StatusEffects.Fragile>();
+		Owner?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Fragile );
 		base.OnTurnStart();
 	}
 
@@ -32,7 +32,7 @@ public class TwilightBand( Data.Relic data ) : Relic( data )
 		{
 			return 0;
 		}
-		
+
 		return (int)(Owner.HealthComponent.MaxHealth * 0.85f);
 	}
 }

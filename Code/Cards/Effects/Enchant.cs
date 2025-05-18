@@ -6,7 +6,7 @@ public class Enchant( Card card ) : CardEffect( card )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffect<StatusEffects.Enchanted>();
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Enchanted );
 		base.OnPlay( detail );
 	}
 }

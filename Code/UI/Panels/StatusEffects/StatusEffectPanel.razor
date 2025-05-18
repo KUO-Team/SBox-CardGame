@@ -9,9 +9,9 @@
 }
 
 <root>
-	@if ( !Status.IsHiddenStack )
+	@if ( !Status.Data.IsHiddenStack )
 	{
 		<label class="status-stack">@Status.Stack</label>
 	}
-	<img class="status-icon" src="@Status.Icon" alt="Status icon"/>
+	<img class="status-icon" src="@Status.Data.Icon" alt="Status icon"/>
 </root>
