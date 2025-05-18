@@ -66,7 +66,7 @@ public partial class MainMenu
 		}
 	}
 	
-	private void StartNewRun()
+	public void StartNewRun()
 	{
 		if ( !GameManager.IsValid() || !SaveManager.IsValid() || !MapManager.IsValid() || !SceneManager.IsValid() )
 		{
@@ -85,7 +85,7 @@ public partial class MainMenu
 		Sandbox.Services.Stats.Increment( "runs", 1 );
 	}
 
-	private void Tutorial()
+	public static void Tutorial()
 	{
 		PlayerData.Data.FirstTime = false;
 		PlayerData.Save();
