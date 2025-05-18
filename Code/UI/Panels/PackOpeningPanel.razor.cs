@@ -40,7 +40,7 @@ public partial class PackOpeningPanel
 		{
 			Pack = pack
 		};
-		_packAnimationPanel?.AddChild(_packImage);
+		_packAnimationPanel?.AddChild( _packImage );
 
 		// Set pack class based on rarity
 		_packClass = pack.Rarity switch
@@ -51,7 +51,7 @@ public partial class PackOpeningPanel
 		};
 
 		// Open pack but don't show cards yet
-		_openedCards = pack.Open();
+		_openedCards = pack.Open( 6 );
 		StateHasChanged();
 
 		// Run animation sequence
@@ -62,6 +62,11 @@ public partial class PackOpeningPanel
 
 		var cardPackData = PlayerData.Data.CardPacks;
 		cardPackData.Remove( pack.Id );
+
+		foreach ( var card in _openedCards )
+		{
+			PlayerData.Data.SeeCard( card.Id );
+		}
 		PlayerData.Save();
 	}
 
@@ -83,7 +88,7 @@ public partial class PackOpeningPanel
 
 		// Delete the card pack image.
 		_packImage?.Delete();
-		
+
 		// Then reveal cards one by one
 		await RevealCards();
 
@@ -181,12 +186,12 @@ public partial class PackOpeningPanel
 		{
 			return;
 		}
-		
+
 		foreach ( var cardPanel in _openedCardsContainer.ChildrenOfType<CardPanel>() )
 		{
 			_cardPanels.Add( cardPanel );
 		}
-		
+
 		// Reveal each card one at a time with sequential delays
 		for ( var i = 0; i < _cardPanels.Count; i++ )
 		{
