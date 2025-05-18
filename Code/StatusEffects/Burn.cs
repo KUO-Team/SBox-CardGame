@@ -6,7 +6,7 @@ public class Burn( Data.StatusEffect data ) : StatusEffect( data )
 
 	public override string Description()
 	{
-		return Stack > 0 ? $"At the end of the turn, take {Stack} damage, then halve the stack." : "At the end of the turn, take X damage, then halve the stack.";
+		return Stack > 0 ? $"At the end of the turn, take {Stack} damage, then halve the stack." : base.Description();
 	}
 
 	public override void OnTurnEnd()

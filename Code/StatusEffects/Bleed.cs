@@ -6,7 +6,7 @@ public class Bleed( Data.StatusEffect data ) : StatusEffect( data )
 
 	public override string Description()
 	{
-		return Stack > 0 ? $"Upon playing an attack card, take {Stack} damage, then halve the stack." : "Upon playing an attack card, take X damage, then halve the stack.";
+		return Stack > 0 ? $"Upon playing an attack card, take {Stack} damage, then halve the stack." : base.Description();
 	}
 
 	public override void OnPlayCard( Card card )

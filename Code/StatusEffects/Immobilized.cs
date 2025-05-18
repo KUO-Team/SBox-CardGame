@@ -6,7 +6,7 @@ public class Immobilized( Data.StatusEffect data ) : StatusEffect( data )
 	
 	public override string Description()
 	{
-		return Stack > 1 ? $"All card slots become unavailable for {Stack} turns." : "All card slots become unavailable for this turn.";
+		return Stack > 1 ? $"All card slots become unavailable for {Stack} turns." : base.Description();
 	}
 
 	public override void OnTurnStart()
