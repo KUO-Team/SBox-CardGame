@@ -1,5 +1,4 @@
 ﻿using CardGame.Data;
-using VNBase.Assets;
 
 namespace CardGame.Scripts;
 

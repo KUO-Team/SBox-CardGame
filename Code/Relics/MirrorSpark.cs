@@ -11,7 +11,6 @@ public class MirrorSpark( Data.Relic data ) : Relic( data )
 			return;
 		}
 
-		// Use a copy of the actions list to avoid modifying it during iteration
 		var originalActions = card.Actions.ToList();
 
 		foreach ( var action in originalActions )

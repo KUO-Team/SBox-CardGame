@@ -46,43 +46,43 @@ public class WitchVial( Data.Relic data ) : Relic( data )
 
 		StatusEffect? status = key switch
 		{
-			StatusEffect.StatusKey.Bleed => new Bleed()
+			StatusEffect.StatusKey.Bleed => new Bleed
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Burn => new Burn()
+			StatusEffect.StatusKey.Burn => new Burn
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Enchanted => new Enchanted()
+			StatusEffect.StatusKey.Enchanted => new Enchanted
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Fragile => new Fragile()
+			StatusEffect.StatusKey.Fragile => new Fragile
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Protection => new Protection()
+			StatusEffect.StatusKey.Protection => new Protection
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.PowerDown => new PowerDown()
+			StatusEffect.StatusKey.PowerDown => new PowerDown
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.PowerUp => new PowerUp()
+			StatusEffect.StatusKey.PowerUp => new PowerUp
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Immobilized => new Immobilized()
+			StatusEffect.StatusKey.Immobilized => new Immobilized
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Silenced => new Silenced()
+			StatusEffect.StatusKey.Silenced => new Silenced
 			{
 				Owner = Owner, Stack = stack
 			},
-			StatusEffect.StatusKey.Cold => new Cold()
+			StatusEffect.StatusKey.Cold => new Cold
 			{
 				Owner = Owner, Stack = stack
 			},

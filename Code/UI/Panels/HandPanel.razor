@@ -20,7 +20,6 @@
 				@foreach ( var k in card.Keywords )
 				{
 					var keyword = KeywordLookup.FindKeyword( k );
-					Log.EditorLog( keyword );
 					if ( keyword is not null )
 					{
 						<div class="keyword">

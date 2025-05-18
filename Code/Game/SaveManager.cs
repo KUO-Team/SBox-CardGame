@@ -8,6 +8,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 {
 	[Property, InlineEditor]
 	public RunData? ActiveRunData { get; set; }
+	
 	private static PlayerData Data => PlayerData.Data;
 	
 	private static GameManager? GameManager => GameManager.Instance;

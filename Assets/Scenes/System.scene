@@ -92,12 +92,20 @@
         {
           "__type": "CardGame.ShopManager",
           "__guid": "71d89511-24c3-4c15-9e17-5ba967e320c8",
+          "CardPackAmount": 6,
+          "CardPacks": [],
+          "HealCost": 20,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "RelicAmount": 4,
+          "Relics": [],
+          "RerollCost": 5,
+          "RerollKeywordCost": 15,
+          "RerollTypeCost": 15
         }
       ],
       "Children": [

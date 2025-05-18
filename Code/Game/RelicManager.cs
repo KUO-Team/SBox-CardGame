@@ -66,7 +66,7 @@ public sealed class RelicManager : Singleton<RelicManager>
 		}
 	}
 
-	private void OnBattleEnd( Battle battle )
+	private static void OnBattleEnd( Battle battle )
 	{
 		if ( !Player.Local.IsValid() )
 		{

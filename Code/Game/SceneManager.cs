@@ -5,13 +5,16 @@ namespace CardGame;
 
 public sealed class SceneManager : Singleton<SceneManager>, ISceneLoadingEvents
 {
-	[Property] public SceneFile? MenuScene { get; set; }
+	[Property] 
+	public SceneFile? MenuScene { get; set; }
 	
-	[Property] public SceneFile? MapScene { get; set; }
+	[Property] 
+	public SceneFile? MapScene { get; set; }
 	
-	[Property] public SceneFile? BattleScene { get; set; }
+	[Property] 
+	public SceneFile? BattleScene { get; set; }
 
-	public event System.Action<Scene>? OnSceneLoaded;
+	public event Action<Scene>? OnSceneLoaded;
 	
 	public static SceneFile? CurrentScene => (SceneFile)Game.ActiveScene.Source;
 	

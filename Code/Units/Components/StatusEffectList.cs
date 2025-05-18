@@ -50,7 +50,6 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		}
 		else
 		{
-			Log.EditorLog( "BEEEEE" );
 			statusEffect.Owner = Owner;
 			statusEffect.Stack = ClampStack( stack, statusEffect.Maximum );
 			Items.Add( statusEffect );

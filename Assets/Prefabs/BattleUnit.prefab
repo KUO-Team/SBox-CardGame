@@ -81,6 +81,7 @@
         "__guid": "6a7a1081-28ba-4bfa-afdb-f6b889a73316",
         "Deck": [],
         "Hand": [],
+        "IsDiscardMode": false,
         "IsEmpty": true,
         "IsFull": false,
         "MaxCards": 9,
