@@ -87,7 +87,10 @@ public partial class MainMenu
 
 	private void Tutorial()
 	{
+		PlayerData.Data.FirstTime = false;
+		PlayerData.Save();
 		RelicManager.Instance?.Relics.Clear();
+		
 		var tutorialBattle = BattleDataList.GetById( 1 );
 		if ( tutorialBattle is not null )
 		{
