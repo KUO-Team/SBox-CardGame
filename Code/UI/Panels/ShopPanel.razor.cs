@@ -383,26 +383,37 @@ public partial class ShopPanel
 		}
 	}
 
-	public void BuyCardPack( ShopItem pack )
+	public void BuyCardPack( ShopItem item )
 	{
 		if ( !ShopManager.IsValid() )
 		{
 			return;
 		}
-		
-		if ( !ShopManager.CanBuyItem( pack ) )
+
+		if ( !ShopManager.CanBuyItem( item ) )
 		{
 			return;
 		}
 
-		if ( Player.Local.IsValid() )
-		{
-			Player.Local.CardPacks.Add( pack.Pack! );
-			Player.Local.Money -= pack.Cost;
-		}
+		WarningPanel? warning = null;
+		warning = WarningPanel.Create( "Buy Card Pack", $"Buy {item.Pack?.Name} for {item.Cost}g?", [
+			new Button( "Yes", "", () =>
+			{
+				if ( Player.Local.IsValid() )
+				{
+					Player.Local.CardPacks.Add( item.Pack! );
+					Player.Local.Money -= item.Cost;
+				}
 
-		LastPurchasedItem = pack;
-		_packOpeningPanel?.Show();
+				LastPurchasedItem = item;
+				_packOpeningPanel?.Show();
+				warning?.Delete();
+			} ),
+			new Button( "No", "", () =>
+			{
+				warning?.Delete();
+			} )
+		] );
 	}
 
 	public void BuyRelic( ShopItem item )
@@ -411,7 +422,7 @@ public partial class ShopPanel
 		{
 			return;
 		}
-		
+
 		if ( !ShopManager.CanBuyItem( item ) || Player.Local is not {} player || !SaveManager.IsValid() || !RelicManager.IsValid() || item.Relic is null )
 		{
 			return;
@@ -425,13 +436,22 @@ public partial class ShopPanel
 			PlayerData.Save();
 		}
 
-		PlayerData.Data.SeeRelic( item.Relic.Id );
-		RelicManager.AddRelic( item.Relic );
-		Relics.Remove( item );
-		player.Money -= item.Cost;
-		LastPurchasedItem = item.Relic;
-
-		Log.Info( $"Bought relic: {item.Relic.Name}" );
+		WarningPanel? warning = null;
+		warning = WarningPanel.Create( "Buy Relic", $"Buy {item.Relic?.Name} for {item.Cost}g?", [
+			new Button( "Yes", "", () =>
+			{
+				PlayerData.Data.SeeRelic( item.Relic!.Id );
+				RelicManager.AddRelic( item.Relic );
+				Relics.Remove( item );
+				player.Money -= item.Cost;
+				LastPurchasedItem = item.Relic;
+				warning?.Delete();
+			} ),
+			new Button( "No", "", () =>
+			{
+				warning?.Delete();
+			} )
+		] );
 	}
 
 	private List<CardPack> GetKeywordWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching )
