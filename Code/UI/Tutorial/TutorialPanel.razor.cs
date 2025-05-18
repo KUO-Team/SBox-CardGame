@@ -26,6 +26,7 @@ public partial class TutorialPanel
 			
 			child.Delete( immediate );
 		}
+		SetInputLock( false );
 	}
 
 	public void ShowInfo( string text, System.Action? onComplete = null, (Length? Left, Length? Top)? displayPosition = null, (Length? Width, Length? Height)? displaySize = null )
