@@ -47,7 +47,13 @@
             "CompletedNodes": [],
             "Floor": 0,
             "Money": 0,
-            "UnitData": null,
+            "UnitData": {
+              "Hp": 0,
+              "MaxHp": 0,
+              "Level": 0,
+              "Xp": 0,
+              "Deck": []
+            },
             "Allies": [],
             "Relics": [],
             "Date": "2025-04-26T17:23:57.4456675+03:00"
@@ -82,6 +88,16 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "Relics": []
+        },
+        {
+          "__type": "CardGame.ShopManager",
+          "__guid": "71d89511-24c3-4c15-9e17-5ba967e320c8",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": [
@@ -150,6 +166,7 @@
             },
             "Script": ""
           },
+          "CanEndTurn": true,
           "Hud": {
             "_type": "component",
             "component_id": "11ce1b5c-ef45-4ac0-bed5-f9c656e42f01",
@@ -208,7 +225,6 @@
                 "go": "31dc7688-c6af-4eee-a57b-791024f0e79e",
                 "component_type": "BattleManager"
               },
-              "CanEndTurn": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
