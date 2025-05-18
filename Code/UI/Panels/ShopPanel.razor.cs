@@ -23,15 +23,15 @@ public partial class ShopPanel
 
 	private object? LastPurchasedItem { get; set; }
 
-	private static SaveManager? SaveManager => CardGame.SaveManager.Instance;
-	private static RelicManager? RelicManager => CardGame.RelicManager.Instance;
-	private static ShopManager? ShopManager => CardGame.ShopManager.Instance;
+	private static SaveManager? SaveManager => SaveManager.Instance;
+	private static RelicManager? RelicManager => RelicManager.Instance;
+	private static ShopManager? ShopManager => ShopManager.Instance;
 
 	private Panel? _tradeMenu;
 	private Panel? _keywordSelection;
 	private Panel? _typeSelection;
+	private PackOpeningPanel? _packOpeningPanel;
 
-	private Relic.RelicRarity _targetTradeInRarity = Relic.RelicRarity.Uncommon;
 	private readonly List<Id> _selectedRelicsForTradeIn = [];
 
 	/// <summary>
@@ -397,10 +397,12 @@ public partial class ShopPanel
 
 		if ( Player.Local.IsValid() )
 		{
+			Player.Local.CardPacks.Add( pack.Pack! );
 			Player.Local.Money -= pack.Cost;
 		}
 
 		LastPurchasedItem = pack;
+		_packOpeningPanel?.Show();
 	}
 
 	public void BuyRelic( ShopItem item )
@@ -493,7 +495,6 @@ public partial class ShopPanel
 			if ( _selectedRelicsForTradeIn.Count == 0 )
 			{
 				// First selection, set the target trade-in rarity
-				_targetTradeInRarity = GetNextRarityUp( rarity );
 				_selectedRelicsForTradeIn.Add( relicId );
 			}
 			else
