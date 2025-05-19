@@ -16,15 +16,22 @@ public static class EventUtility
 		player.Money += amount;
 	}
 	
-	public static void SubtractMoney( int amount )
+	public static void SubtractMoney( int amount, bool clamp = true )
 	{
 		var player = Player.Local;
 		if ( !player.IsValid() )
 		{
 			return;
 		}
-		
-		player.Money = Math.Max( 0, player.Money - amount );
+
+		if ( clamp )
+		{
+			player.Money = Math.Max( 0, player.Money - amount );
+		}
+		else
+		{
+			player.Money -= amount;
+		}
 	}
 
 	public static void AddCard( Id id )
