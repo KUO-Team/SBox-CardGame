@@ -14,7 +14,8 @@
 		<div class="choices">
 			@foreach ( var choice in Event.Choices )
 			{
-				<div class="choice @(choice.Enabled ? "" : "disabled")" onclick="@( () => SelectChoice( choice ) )">
+				var index = Event.Choices.IndexOf( choice );
+				<div class="choice @(choice.Enabled ? "" : "disabled")" onclick="@( () => SelectChoice( choice, index ) )">
 					@( choice.Text )
 				</div>
 			}
