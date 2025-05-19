@@ -6,13 +6,25 @@ namespace CardGame.UI.Map;
 
 public partial class EventPanel
 {
+	public StartingEvent? RootEvent { get; private set; }
+
 	public Event? Event { get; set; }
-	
+
+	public Events.Event? EventScript { get; set; }
+
 	private static readonly Logger Log = new( "Event" );
 
 	public void Show( Event @event )
 	{
 		Event = @event;
+
+		if ( @event is StartingEvent startingEvent )
+		{
+			RootEvent = startingEvent;
+			LoadEventScript( startingEvent );
+		}
+
+		EventScript?.OnShow( @event );
 		this.Show();
 	}
 
@@ -31,19 +43,42 @@ public partial class EventPanel
 
 	public void SelectChoice( Event.Choice choice )
 	{
-		choice.OnSelected?.Invoke();
-		Log.Info( $"Selected choice: {choice}" );
+		EventScript?.OnSelectChoice( choice );
 		this.Hide();
 
-		if ( choice.HasEvent )
+		if ( !choice.HasEvent )
 		{
-			var @event = choice.Event;
-			if ( @event is null )
-			{
-				Log.Warning( $"Choice has further event, but event is null!" );
-				return;
-			}
-			Show( @event );
+			return;
 		}
+
+		var @event = choice.Event;
+		if ( @event is null )
+		{
+			Log.Warning( $"Choice has further event, but event is null!" );
+			return;
+		}
+
+		Show( @event );
+	}
+
+	private void LoadEventScript( StartingEvent @event )
+	{
+		if ( string.IsNullOrEmpty( @event.Script ) )
+		{
+			return;
+		}
+
+		EventScript = TypeLibrary.Create<Events.Event>( @event.Script, [@event] );
+		EventScript.Panel = this;
+	}
+
+	private void UnloadEventScript()
+	{
+		if ( EventScript is null )
+		{
+			return;
+		}
+
+		EventScript = null;
 	}
 }

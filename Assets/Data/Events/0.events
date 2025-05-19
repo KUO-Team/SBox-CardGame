@@ -1,38 +1,5 @@
 {
-  "List": [
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 1
-      },
-      "Text": "On your travels, you come across a track of mysterious foot prints of an unknown animal in the mud.",
-      "Choices": [
-        {
-          "Text": "Follow the footprints.",
-          "Enabled": true,
-          "OnSelected": null,
-          "HasEvent": false,
-          "Event": {
-            "Text": "",
-            "Choices": [],
-            "OnShow": null
-          }
-        },
-        {
-          "Text": "Stay on your course.",
-          "Enabled": true,
-          "OnSelected": null,
-          "HasEvent": false,
-          "Event": {
-            "Text": "",
-            "Choices": [],
-            "OnShow": null
-          }
-        }
-      ],
-      "OnShow": null
-    }
-  ],
+  "List": [],
   "__references": [],
   "__version": 0
 }

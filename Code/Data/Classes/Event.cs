@@ -8,15 +8,11 @@ public class Event : IDeepCopyable<Event>
 	[InlineEditor, WideMode]
 	public List<Choice> Choices { get; set; } = [];
 
-	public System.Action? OnShow { get; set; }
-
 	public class Choice : IDeepCopyable<Choice>
 	{
 		public string Text { get; set; } = string.Empty;
 
 		public bool Enabled { get; set; } = true;
-
-		public System.Action? OnSelected { get; set; }
 
 		public bool HasEvent { get; set; }
 
@@ -27,10 +23,9 @@ public class Event : IDeepCopyable<Event>
 		{
 			return new Choice
 			{
-				Text = Text,
-				Enabled = Enabled,
-				OnSelected = OnSelected,
-				HasEvent = HasEvent,
+				Text = Text, 
+				Enabled = Enabled, 
+				HasEvent = HasEvent, 
 				Event = Event?.DeepCopy()
 			};
 		}
@@ -40,7 +35,8 @@ public class Event : IDeepCopyable<Event>
 	{
 		return new Event
 		{
-			Text = Text, Choices = Choices.Select( c => c.DeepCopy() ).ToList(), OnShow = OnShow
+			Text = Text, 
+			Choices = Choices.Select( c => c.DeepCopy() ).ToList()
 		};
 	}
 }
@@ -50,11 +46,16 @@ public class StartingEvent : Event, IResource, IDeepCopyable<StartingEvent>
 	[InlineEditor, Order( -1 )]
 	public Id Id { get; set; } = Id.Invalid;
 
+	public string Script { get; set; } = string.Empty;
+
 	public override StartingEvent DeepCopy()
 	{
 		return new StartingEvent
 		{
-			Id = Id, Text = Text, Choices = Choices.Select( c => c.DeepCopy() ).ToList(), OnShow = OnShow
+			Id = Id, 
+			Text = Text, 
+			Choices = Choices.Select( c => c.DeepCopy() ).ToList(), 
+			Script = Script
 		};
 	}
 }
