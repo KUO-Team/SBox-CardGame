@@ -1,5 +1,80 @@
 {
-  "List": [],
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Script": "WeepingStatue",
+      "Text": "A solemn statue looms atop a crumbling pedestal, silent tears of blood streaking its stone face. An inscription reads: 'Offer what you value, and be rewarded in kind.'",
+      "Choices": [
+        {
+          "Text": "Offer gold",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        },
+        {
+          "Text": "Offer a card",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        },
+        {
+          "Text": "Walk away",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Script": "Masks",
+      "Text": "Two ornate masks rest atop a stone slab—one carved in joy, the other twisted in sorrow. A whisper slithers into your thoughts: 'Choose a face to wear... but know the mask may wear you.'",
+      "Choices": [
+        {
+          "Text": "Choose the joyful mask",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        },
+        {
+          "Text": "Choose the sorrowful mask",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        },
+        {
+          "Text": "Ignore it",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        }
+      ]
+    }
+  ],
   "__references": [],
   "__version": 0
 }
