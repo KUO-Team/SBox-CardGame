@@ -1,4 +1,5 @@
-﻿using CardGame.Units;
+﻿using CardGame.Modifiers;
+using CardGame.Units;
 
 namespace CardGame.Relics;
 
@@ -10,8 +11,13 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 		{
 			return;
 		}
-		
+
+		if ( card.Type != Card.CardType.Attack )
+		{
+			return;
+		}
+
 		Owner?.HealthComponent?.TakeFixedDamage( 1 );
-		Owner?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 2 );
+		card.Modifiers.AddModifier( new PowerModifier( 2, x => x.Type == Action.ActionType.Attack, 1 ) );
 	}
 }

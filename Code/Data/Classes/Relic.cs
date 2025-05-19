@@ -24,7 +24,7 @@ public class Relic : IResource, IDeepCopyable<Relic>
 	public RelicAvailabilities Availabilities { get; set; } = RelicAvailabilities.None;
 
 	public string Script { get; set; } = string.Empty;
-
+	
 	[Hide, JsonIgnore]
 	public bool IsAvailable
 	{
