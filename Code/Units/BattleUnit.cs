@@ -70,6 +70,11 @@ public partial class BattleUnit : BaseCharacter
 		{
 			HealthComponent.OnDied += Die;
 		}
+
+		if ( BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.OnTurnStart += OnTurnStart;
+		}
 	}
 
 	protected override void OnDestroy()
@@ -77,6 +82,16 @@ public partial class BattleUnit : BaseCharacter
 		if ( ActiveUnit == this )
 		{
 			ActiveUnit = null;
+		}
+		
+		if ( HealthComponent.IsValid() )
+		{
+			HealthComponent.OnDied -= Die;
+		}
+		
+		if ( BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.OnTurnStart -= OnTurnStart;
 		}
 
 		base.OnDestroy();
@@ -90,6 +105,19 @@ public partial class BattleUnit : BaseCharacter
 	public void RecoverMana( int amount )
 	{
 		Mana = Math.Min( MaxMana, Mana + amount );
+	}
+
+	private void OnTurnStart()
+	{
+		if ( !HandComponent.IsValid() )
+		{
+			return;
+		}
+		
+		foreach ( var card in HandComponent.Hand )
+		{
+			card.Modifiers.TickDurations();
+		}
 	}
 
 	public async Task Die()
