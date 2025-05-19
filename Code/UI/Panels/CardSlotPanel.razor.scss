@@ -5,9 +5,9 @@ CardSlotPanel {
   color: white;
   border-radius: 50%;
   background-color: #444;
-  transform: scale(1);
   align-items: center;
   justify-content: center;
+  border: 0 transparent;
   font-family: "Pixel Operator";
   
   * {
@@ -21,6 +21,7 @@ CardSlotPanel {
 
   &:hover {
     border: 1px solid yellow;
+    transition: all 0.2s ease;
   }
 
   &.assigned {

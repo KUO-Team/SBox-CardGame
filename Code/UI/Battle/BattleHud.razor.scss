@@ -47,6 +47,12 @@ BattleHud {
       RelicPanel {
         background-color: black;
         border-radius: 50%;
+        transition: transform 0.1s linear;
+        
+        &:hover {
+          border: 1px solid white;
+          transform: scale(1.05);
+        }
       }
     }
 
