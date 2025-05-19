@@ -43,7 +43,7 @@ public partial class EventPanel
 
 	public void SelectChoice( Event.Choice choice, int index )
 	{
-		EventScript?.OnSelectChoice( choice, index );
+		EventScript?.OnChoiceSelected( choice, index );
 		this.Hide();
 
 		if ( !choice.HasEvent )

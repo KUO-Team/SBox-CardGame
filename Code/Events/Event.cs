@@ -13,7 +13,7 @@ public abstract class Event( Data.Event data )
 		
 	}
 
-	public virtual void OnSelectChoice( Data.Event.Choice choice, int index )
+	public virtual void OnChoiceSelected( Data.Event.Choice choice, int index )
 	{
 		
 	}
