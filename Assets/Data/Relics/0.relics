@@ -87,7 +87,7 @@
       },
       "Icon": "",
       "Name": "Pact Brand",
-      "Description": "When you play a card, if it's an attack card add +2 power to its attacks, but lose 1 HP.",
+      "Description": "When you play a card, if it’s an attack card, add +2 power to its attacks but lose 1 HP.",
       "Flavor": [
         "A scar on your soul, offering power at the cost of your own vitality."
       ],
