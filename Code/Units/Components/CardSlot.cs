@@ -16,6 +16,9 @@ public sealed class CardSlot : Component, IOwnable
 	public Card? AssignedCard { get; set; }
 
 	[Property, JsonIgnore, ReadOnly]
+	public bool IsAssigned => AssignedCard is not null;
+
+	[Property, JsonIgnore, ReadOnly]
 	public CardSlot? Target { get; set; }
 
 	[Property]
@@ -69,30 +72,30 @@ public sealed class CardSlot : Component, IOwnable
 
 	protected override void OnUpdate()
 	{
-		if ( AssignedCard is null )
-		{
-			return;
-		}
-
 		if ( InputComponent.SelectedSlot != this )
 		{
 			return;
 		}
 
-		var mousePosition = Mouse.Position;
-		_mouseRay = Scene.Camera.ScreenPixelToRay( mousePosition );
-
-		if ( !Panel.IsValid() || !Target.IsValid() || !Target.Panel.IsValid() )
+		if ( IsAssigned )
 		{
 			return;
 		}
-
+		
+		if ( !Panel.IsValid() )
+		{
+			return;
+		}
+		
+		var mousePosition = Mouse.Position;
+		_mouseRay = Scene.Camera.ScreenPixelToRay( mousePosition );
+		
 		var slotPosition = WorldPosition;
 		var cursorWorldPosition = _mouseRay.Position + _mouseRay.Forward * 1500;
-		UpdateTargetingLine( slotPosition.WithZ( 50 ), cursorWorldPosition.WithZ( 50 ) );
+		DrawTargetingArrows( slotPosition.WithZ( 50 ), cursorWorldPosition.WithZ( 50 ) );
 	}
 	
-	public void OnTurnStart()
+	private void OnTurnStart()
 	{
 		Speed = Game.Random.Int( MinSpeed, MaxSpeed );
 	}
@@ -125,43 +128,19 @@ public sealed class CardSlot : Component, IOwnable
 		OnSlotAssigned?.Invoke( this, card, target );
 		InputComponent.SelectedSlot = null;
 
-		if ( !Panel.IsValid() || !Target.IsValid() || !Target.Panel.IsValid() )
+		if ( !Panel.IsValid() )
 		{
 			return;
 		}
 
 		var slotPosition = WorldPosition;
 		var targetPosition = Target.WorldPosition;
-		UpdateTargetingLine( slotPosition.WithZ( 50 ), targetPosition.WithZ( 50 ) );
-	}
-
-	public void UpdateTargetingLine( Vector3 start, Vector3 end )
-	{
-		if ( !LineRenderer.IsValid() )
-		{
-			Log.Warning( $"Can't update targeting lines; no line renderer found!" );
-			return;
-		}
-
-		ClearTargetingArrows();
-		LineRenderer.VectorPoints.Add( start );
-		LineRenderer.VectorPoints.Add( end );
-	}
-
-	public void ClearTargetingArrows()
-	{
-		if ( !LineRenderer.IsValid() )
-		{
-			Log.Warning( $"Can't update targeting lines; no line renderer found!" );
-			return;
-		}
-
-		LineRenderer.VectorPoints.Clear();
+		DrawTargetingArrows( slotPosition.WithZ( 50 ), targetPosition.WithZ( 50 ) );
 	}
 
 	public void UnassignCard()
 	{
-		if ( AssignedCard is null )
+		if ( !IsAssigned )
 		{
 			return;
 		}
@@ -171,7 +150,7 @@ public sealed class CardSlot : Component, IOwnable
 			return;
 		}
 
-		Owner.Energy += AssignedCard.EffectiveCost.Ep;
+		Owner.Energy += AssignedCard!.EffectiveCost.Ep;
 		Owner.Mana += AssignedCard.EffectiveCost.Mp;
 		var hand = Owner.HandComponent;
 		hand?.Hand.Add( AssignedCard );
@@ -183,7 +162,7 @@ public sealed class CardSlot : Component, IOwnable
 
 	public bool CanAssignCard( Card card, CardSlot target )
 	{
-		if ( AssignedCard is not null )
+		if ( IsAssigned )
 		{
 			return false;
 		}
@@ -234,13 +213,13 @@ public sealed class CardSlot : Component, IOwnable
 
 	public async Task PlayAsync( BattleUnit target, CardSlot slot )
 	{
-		if ( slot.AssignedCard is null )
+		if ( !IsAssigned )
 		{
 			return;
 		}
 
 		ClearTargetingArrows();
-		slot.AssignedCard.Play( target, slot );
+		slot.AssignedCard!.Play( target, slot );
 		await Task.DelaySeconds( GetCardAnimationDuration() );
 	}
 
@@ -268,5 +247,30 @@ public sealed class CardSlot : Component, IOwnable
 		}
 
 		return true;
+	}
+	
+	
+	public void DrawTargetingArrows( Vector3 start, Vector3 end )
+	{
+		if ( !LineRenderer.IsValid() )
+		{
+			Log.Warning( $"Can't update targeting arrows; no line renderer found!" );
+			return;
+		}
+
+		ClearTargetingArrows();
+		LineRenderer.VectorPoints.Add( start );
+		LineRenderer.VectorPoints.Add( end );
+	}
+
+	public void ClearTargetingArrows()
+	{
+		if ( !LineRenderer.IsValid() )
+		{
+			Log.Warning( $"Can't update targeting arrows; no line renderer found!" );
+			return;
+		}
+
+		LineRenderer.VectorPoints.Clear();
 	}
 }

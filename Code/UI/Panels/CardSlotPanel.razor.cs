@@ -41,6 +41,7 @@ public partial class CardSlotPanel
 		// Deselect the currently selected slot if clicking it again
 		if ( selectedSlot == Slot )
 		{
+			Slot.ClearTargetingArrows();
 			InputComponent.SelectedSlot = null;
 			return;
 		}
@@ -78,6 +79,7 @@ public partial class CardSlotPanel
 	{
 		if ( IsAssigned && CanInteract() )
 		{
+			Slot?.ClearTargetingArrows();
 			Slot?.UnassignCard();
 		}
 
@@ -105,9 +107,9 @@ public partial class CardSlotPanel
 		if ( IsAssigned )
 		{
 			var hud = battleManager.Hud;
-			if ( hud.IsValid() && Slot.AssignedCard is not null )
+			if ( hud.IsValid() && Slot.IsAssigned )
 			{
-				hud.ShowCard( Slot.AssignedCard );
+				hud.ShowCard( Slot.AssignedCard! );
 			}
 		}
 

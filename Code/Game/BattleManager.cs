@@ -212,7 +212,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 		InputComponent.SelectedSlot = null;
 
 		var occupiedSlots = Scene.GetAllComponents<CardSlot>()
-			.Where( slot => slot.AssignedCard is not null )
+			.Where( slot => slot.IsAssigned )
 			.ToList();
 
 		foreach ( var slot in occupiedSlots.OrderByDescending( x => x.Speed ) )

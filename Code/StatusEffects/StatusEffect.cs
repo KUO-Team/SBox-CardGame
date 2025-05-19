@@ -11,8 +11,6 @@ public abstract class StatusEffect : IOwnable
 	
 	public int Stack { get; set; }
 
-	public virtual StatusKey Keyword { get; set; }
-
 	protected StatusEffect( Data.StatusEffect data )
 	{
 		Data = data;
@@ -26,6 +24,8 @@ public abstract class StatusEffect : IOwnable
 			BattleManager.Instance.OnTurnEnd += OnTurnEnd;
 		}
 	}
+
+	public virtual StatusKey Keyword { get; set; }
 
 	public virtual string Description()
 	{
