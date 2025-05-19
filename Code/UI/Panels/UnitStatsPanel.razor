@@ -13,14 +13,19 @@
 	<div class="main">
 		<div class="stats">
 			<div class="row">
-				<label class="unit-name">@Unit.Name</label>
-				<label class="unit-level">Lv.@Unit.Level</label>
+				<label class="unit-name">@( Unit.Name )</label>
+				<label class="unit-level">Lv.@( Unit.Level )</label>
 			</div>
 
 			<div class="health-bar">
-				<div class="inner-bar" style=""></div>
+				<div class="inner-bar" style="width: @( Unit.HealthComponent?.HealthPercentage )%"></div>
+			</div>
+
+			<div class="mana-bar">
+				<div class="inner-bar" style="width: @( (float)Unit.Mana / Unit.MaxMana * 100 )%"></div>
 			</div>
 		</div>
+		
 		<h1>Deck</h1>
 		<div class="deck">
 			@if ( Unit.HandComponent.IsValid() )
@@ -37,6 +42,7 @@
 				}
 			}
 		</div>
+		
 		<h1>Passive Abilities</h1>
 		<div class="passives">
 			@if ( Unit.Passives.IsValid() )
@@ -50,7 +56,7 @@
 				}
 			}
 		</div>
-		
+
 		<div class="button-container">
 			<button onclick="@Click">Close</button>
 		</div>

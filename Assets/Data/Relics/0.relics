@@ -166,10 +166,10 @@
         "LocalId": 11
       },
       "Icon": "",
-      "Name": "Lone Vigil",
+      "Name": "Uneven Odds",
       "Description": "At the start of the turn, if enemies outnumber allies, gain 1 Power Up per extra enemy; if allies outnumber enemies, a random ally gains 1 Fragile per extra ally.",
       "Flavor": [
-        "The lone sentinel stands unwavering, outnumbered but undaunted. Yet every battle takes its toll."
+        "The fewer at his side, the stronger he stood. The more, the more brittle their hope became."
       ],
       "Keywords": "",
       "Rarity": "Uncommon",

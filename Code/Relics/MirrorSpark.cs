@@ -32,7 +32,6 @@ public class MirrorSpark( Data.Relic data ) : Relic( data )
 			{
 				var randomTarget = BattleManager.AliveUnits
 					.Select( x => x.Slots )
-					.OrderBy( _ => Game.Random.Next() )
 					.Select( x => Game.Random.FromList( x!.ToList()! ) )
 					.OrderBy( _ => Game.Random.Next() )
 					.FirstOrDefault();

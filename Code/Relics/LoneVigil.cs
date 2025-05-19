@@ -38,7 +38,7 @@ public class LoneVigil( Data.Relic data ) : Relic( data )
 						{
 							break;
 						}
-						
+
 						var randomAlly = aliveAllies[Game.Random.Next( 0, aliveAllies.Count )];
 						randomAlly.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Fragile );
 					}
