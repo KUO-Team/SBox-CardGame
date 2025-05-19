@@ -69,28 +69,31 @@ public sealed class MapManager : Singleton<MapManager>
 	public Dictionary<int, List<Id>> FloorEvents { get; set; } = new()
 	{
 		{
-			2, [1, 2]
+			3, [1]
 		},
 		{
-			1, [1, 2]
+			2, [1, 2, 3]
 		},
 		{
-			0, [1, 2]
+			1, [1, 2, 3]
+		},
+		{
+			0, [1, 2, 3]
 		}
 	};
-	
+
 	private static readonly Logger Log = new( "MapManager" );
-	
+
 	public int GetTierCount()
 	{
 		var floor = GameManager.Instance?.Floor ?? 0;
-		return 6 + (4 - floor); // Floor 3 = 3 tiers, Floor 0 = 6 tiers
+		return 8 + (4 - floor);
 	}
 
 	public int GetMaxNodesPerTier()
 	{
 		var floor = GameManager.Instance?.Floor ?? 0;
-		return 3 + (2 - floor); // Floor 3 = 2, Floor 0 = 5
+		return 3 + (2 - floor);
 	}
 
 	public void GenerateNewFloor()
@@ -100,7 +103,7 @@ public sealed class MapManager : Singleton<MapManager>
 			Log.Warning( $"No map panel found; unable to generate floor!" );
 			return;
 		}
-		
+
 		GameManager.Instance?.NextFloor();
 		Map.DeleteLayout();
 		Map.GenerateMapLayout( Seed );
