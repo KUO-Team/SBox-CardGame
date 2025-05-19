@@ -9,6 +9,13 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 	public IReadOnlyList<QueuedStatusEffect> NextTurnItems => _nextTurnItems.AsReadOnly();
 	private readonly List<QueuedStatusEffect> _nextTurnItems = [];
 
+	public void AddStatusEffect( StatusEffect statusEffect, int stack = 1 )
+	{
+		statusEffect.Owner = Owner;
+		statusEffect.Stack = stack;
+		AddOrUpdate( statusEffect, stack );
+	}
+	
 	public void AddStatusEffect( Data.StatusEffect data, int stack = 1 )
 	{
 		var statusEffect = StatusEffectDataList.GetById( data.Id );
@@ -34,6 +41,13 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		var status = TypeLibrary.Create<StatusEffect>( statusEffect.Script, [statusEffect] );
 		status.Stack = stack;
 		AddOrUpdate( status, stack );
+	}
+	
+	public void AddStatusEffectNextTurn( StatusEffect statusEffect, int stack = 1 )
+	{
+		statusEffect.Owner = Owner;
+		statusEffect.Stack = stack;
+		AddOrUpdateQueued( statusEffect, stack );
 	}
 
 	public void AddStatusEffectNextTurn( Data.StatusEffect data, int stack = 1 )
@@ -139,10 +153,9 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 
 		var statusEffect = TypeLibrary.Create<StatusEffect>( status.Script, [status] );
 		return statusEffect;
-
 	}
 
-	private static Id GetStatusEffectIdByKey( StatusEffect.StatusKey key )
+	internal static Id GetStatusEffectIdByKey( StatusEffect.StatusKey key )
 	{
 		return key switch
 		{
@@ -186,8 +199,7 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		foreach ( var queued in _nextTurnItems )
 		{
 			Log.EditorLog( $"Queued: {queued}" );
-			// TODO Fix
-			//AddStatusEffect( queued.StatusEffect, queued.Stack );
+			AddStatusEffect( queued.StatusEffect, queued.Stack );
 		}
 
 		_nextTurnItems.Clear();
