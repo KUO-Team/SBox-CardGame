@@ -20,6 +20,9 @@ public class MapNode : Panel
 
 	[Parameter]
 	public Id? Battle { get; set; }
+	
+	[Parameter]
+	public Id? Event { get; set; }
 
 	private Label? _label;
 
@@ -37,11 +40,6 @@ public class MapNode : Panel
 	private void Init()
 	{
 		DeleteChildren( true );
-
-		if ( Type == MapNodeType.Battle )
-		{
-			Battle = Game.Random.Next( 0, 3 );
-		}
 
 		_label = new Label
 		{
