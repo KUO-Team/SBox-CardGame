@@ -17,11 +17,11 @@ public static class Commands
 		{
 			return;
 		}
-		
+
 		player.Money = amount;
 		Platform.Platform.CheatedRun = true;
 	}
-	
+
 	[ConCmd]
 	public static void AddMoney( int amount )
 	{
@@ -35,7 +35,7 @@ public static class Commands
 		{
 			return;
 		}
-		
+
 		player.Money += amount;
 		Platform.Platform.CheatedRun = true;
 	}
@@ -53,7 +53,7 @@ public static class Commands
 		{
 			return;
 		}
-		
+
 		if ( player.Unit is not {} unit )
 		{
 			return;
@@ -64,11 +64,11 @@ public static class Commands
 		{
 			return;
 		}
-		
+
 		unit.Deck.Add( id );
 		Platform.Platform.CheatedRun = true;
 	}
-	
+
 	[ConCmd]
 	public static void DrawCard( int id )
 	{
@@ -82,17 +82,17 @@ public static class Commands
 		{
 			return;
 		}
-		
+
 		var unit = player.Units.FirstOrDefault();
 		if ( !unit.IsValid() )
 		{
 			return;
 		}
-		
-		unit.HandComponent?.Draw(id);
+
+		unit.HandComponent?.Draw( id );
 		Platform.Platform.CheatedRun = true;
 	}
-	
+
 	[ConCmd]
 	public static void AddRelic( int id )
 	{
