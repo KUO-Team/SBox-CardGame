@@ -181,27 +181,43 @@ public partial class MapPanel
 			}
 		}
 
-		// Inject a few event nodes randomly in middle tiers
-		if ( totalTiers > 3 )
+		try
 		{
-			var eventTierIndices = Enumerable.Range( 1, totalTiers - 2 ).OrderBy( _ => _seededRandom.Next() ).Take( 2 );
-
-			foreach ( var eventTier in eventTierIndices )
+			if ( !GameManager.IsValid() )
 			{
-				var candidates = tiers[eventTier];
-				if ( candidates.Count <= 0 )
+				return;
+			}
+			
+			var hasEvents = MapManager.FloorEvents[GameManager.Floor].Count > 0;
+			if ( hasEvents )
+			{
+				// Inject a few event nodes randomly in middle tiers
+				if ( totalTiers > 3 )
 				{
-					continue;
-				}
-				
-				var eventNodeIndex = candidates[_seededRandom.Next( candidates.Count )];
+					var eventTierIndices = Enumerable.Range( 1, totalTiers - 2 ).OrderBy( _ => _seededRandom.Next() ).Take( 2 );
 
-				// Only override battles.
-				if ( _nodeTypes[eventNodeIndex] == MapNode.MapNodeType.Battle )
-				{
-					_nodeTypes[eventNodeIndex] = MapNode.MapNodeType.Event;
+					foreach ( var eventTier in eventTierIndices )
+					{
+						var candidates = tiers[eventTier];
+						if ( candidates.Count <= 0 )
+						{
+							continue;
+						}
+				
+						var eventNodeIndex = candidates[_seededRandom.Next( candidates.Count )];
+
+						// Only override battles.
+						if ( _nodeTypes[eventNodeIndex] == MapNode.MapNodeType.Battle )
+						{
+							_nodeTypes[eventNodeIndex] = MapNode.MapNodeType.Event;
+						}
+					}
 				}
 			}
+		}
+		catch ( KeyNotFoundException )
+		{
+			
 		}
 
 		Map.DeleteChildren();
