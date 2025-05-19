@@ -1,4 +1,5 @@
 ﻿using Sandbox.UI;
+using Sandbox.Diagnostics;
 using CardGame.Data;
 
 namespace CardGame.UI.Map;
@@ -6,6 +7,8 @@ namespace CardGame.UI.Map;
 public partial class EventPanel
 {
 	public Event? Event { get; set; }
+	
+	private static readonly Logger Log = new( "Event" );
 
 	public void Show( Event @event )
 	{
