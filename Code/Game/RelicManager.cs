@@ -34,6 +34,12 @@ public sealed class RelicManager : Singleton<RelicManager>
 
 	public void AddRelic( Relic data )
 	{
+		if ( string.IsNullOrEmpty( data.Script ) )
+		{
+			Log.Warning( $"Can't add relic: {data.Id}; relic requires a script!" );
+			return;
+		}
+		
 		var relic = TypeLibrary.Create<Relics.Relic>( data.Script, [data] );
 		Relics.Add( relic );
 	}
