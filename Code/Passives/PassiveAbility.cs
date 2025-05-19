@@ -73,7 +73,7 @@ public abstract class PassiveAbility : IOwnable
 
 	}
 
-	public virtual void OnTakeDamage( BattleUnit dealer )
+	public virtual void OnTakeDamage( BattleUnit attacker )
 	{
 
 	}

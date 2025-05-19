@@ -62,6 +62,16 @@ public abstract class Relic : IOwnable
 	{
 		
 	}
+	
+	public virtual void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
+	{
+
+	}
+	
+	public virtual void OnDealDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
+	{
+
+	}
 
 	public virtual void Destroy()
 	{

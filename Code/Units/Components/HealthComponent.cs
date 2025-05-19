@@ -38,7 +38,12 @@ public class HealthComponent : Component
 		}
 
 		var owner = Components.Get<BattleUnit>();
-		if ( owner.IsValid() && owner.StatusEffects.IsValid() )
+		if ( !owner.IsValid() )
+		{
+			return;
+		}
+		
+		if ( owner.StatusEffects.IsValid() )
 		{
 			foreach ( var status in owner.StatusEffects )
 			{
@@ -47,7 +52,7 @@ public class HealthComponent : Component
 			damage = Math.Max( damage, 0 );
 
 			var ownerPassives = owner.Passives;
-			if ( ownerPassives.IsValid() && ownerPassives.Any() )
+			if ( ownerPassives.IsValid() )
 			{
 				foreach ( var passive in ownerPassives )
 				{
@@ -63,13 +68,22 @@ public class HealthComponent : Component
 			if ( attacker.IsValid() )
 			{
 				var attackerPassives = attacker.Passives;
-				if ( attackerPassives.IsValid() && attackerPassives.Any() )
+				if ( attackerPassives.IsValid() )
 				{
 					foreach ( var passive in attackerPassives )
 					{
 						passive.OnDealDamage( owner );
 					}
 				}
+			}
+		}
+
+		if ( RelicManager.Instance.IsValid() )
+		{
+			foreach ( var relic in RelicManager.Instance.Relics )
+			{
+				relic.OnTakeDamage( damage, owner, attacker );
+				relic.OnDealDamage( damage, owner, attacker );
 			}
 		}
 
@@ -122,6 +136,15 @@ public class HealthComponent : Component
 						passive.OnDealDamage( owner );
 					}
 				}
+			}
+		}
+		
+		if ( RelicManager.Instance.IsValid() )
+		{
+			foreach ( var relic in RelicManager.Instance.Relics )
+			{
+				relic.OnTakeDamage( damage, owner, attacker );
+				relic.OnDealDamage( damage, owner, attacker );
 			}
 		}
 
