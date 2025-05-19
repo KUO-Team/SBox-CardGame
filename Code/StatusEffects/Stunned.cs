@@ -1,8 +1,8 @@
 ﻿namespace CardGame.StatusEffects;
 
-public class Immobilized( Data.StatusEffect data ) : StatusEffect( data )
+public class Stunned( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override StatusKey Keyword => StatusKey.Immobilized;
+	public override StatusKey Keyword => StatusKey.Stunned;
 	
 	public override string Description()
 	{
