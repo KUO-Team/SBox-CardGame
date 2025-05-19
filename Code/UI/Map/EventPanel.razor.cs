@@ -1,5 +1,5 @@
-﻿using CardGame.Data;
-using Sandbox.UI;
+﻿using Sandbox.UI;
+using CardGame.Data;
 
 namespace CardGame.UI.Map;
 

@@ -553,6 +553,12 @@ public partial class MapPanel
 				}
 			case MapNode.MapNodeType.Event:
 				{
+					if ( !_eventPanel.IsValid() )
+					{
+						Log.Error( $"Unable to show event; no event panel set!" );
+						return;
+					}
+					
 					if ( !MapManager.FloorEvents.TryGetValue( GameManager.Floor, out var events ) )
 					{
 						Log.Error( $"No events set on floor {GameManager.Floor}!" );
@@ -562,11 +568,12 @@ public partial class MapPanel
 					var randomEvent = Game.Random.FromList( events! );
 					if ( randomEvent is not null )
 					{
-						_eventPanel ??= new EventPanel();
 						_eventPanel.ShowEventById( randomEvent );
-
-						Panel.AddChild( _eventPanel );
 						node.Completed = true;
+					}
+					else
+					{
+						Log.Warning( $"No event found with id: {randomEvent}" );
 					}
 					break;
 				}
