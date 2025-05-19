@@ -10,6 +10,8 @@
         "Ep": 0,
         "Mp": 1
       },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -37,6 +39,8 @@
         "Ep": 0,
         "Mp": 2
       },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",
@@ -64,6 +68,8 @@
         "Ep": 0,
         "Mp": 2
       },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -91,6 +97,8 @@
         "Ep": 0,
         "Mp": 1
       },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",
