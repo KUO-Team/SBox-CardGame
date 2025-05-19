@@ -119,9 +119,12 @@ public abstract class StatusEffect : IOwnable
 		Fragile,
 		Burn,
 		Bleed,
-		Immobilized,
+		Stunned,
 		Silenced,
 		Enchanted,
-		Cold
+		Haste,
+		Cold,
+		ManaUp,
+		ManaDown
 	}
 }

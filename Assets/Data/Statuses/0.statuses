@@ -89,8 +89,8 @@
         "Source": "",
         "LocalId": 7
       },
-      "Icon": "materials/statuses/immobilized.png",
-      "Name": "Immobilized",
+      "Icon": "materials/statuses/stun.png",
+      "Name": "Stunned",
       "Description": "All card slots become unavailable for X turns.",
       "IsNegative": true,
       "IsHiddenStack": false,
@@ -103,7 +103,7 @@
         "Source": "",
         "LocalId": 8
       },
-      "Icon": "materials/statuses/immobilized.png",
+      "Icon": "materials/statuses/stun.png",
       "Name": "Silenced",
       "Description": "The left-most available card slot becomes unavailable.",
       "IsNegative": true,
@@ -131,6 +131,20 @@
         "Source": "",
         "LocalId": 10
       },
+      "Icon": "materials/statuses/powerup.png",
+      "Name": "Haste",
+      "Description": "Speed +X for this turn.",
+      "IsNegative": false,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null,
+      "Script": "Haste"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 11
+      },
       "Icon": "materials/statuses/powerdown.png",
       "Name": "Cold",
       "Description": "Speed -X for this turn.",
@@ -139,6 +153,34 @@
       "Color": "1,0.84314,0,1",
       "Maximum": null,
       "Script": "Cold"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 12
+      },
+      "Icon": "materials/statuses/manarecovery.png",
+      "Name": "Mana Up",
+      "Description": "At the start of the turn, add X MP.",
+      "IsNegative": false,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null,
+      "Script": "ManaUp"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 13
+      },
+      "Icon": "materials/statuses/manadrain.png",
+      "Name": "Mana Down",
+      "Description": "At the start of the turn, remove X MP.",
+      "IsNegative": true,
+      "IsHiddenStack": false,
+      "Color": "1,0.84314,0,1",
+      "Maximum": null,
+      "Script": "ManaDown"
     }
   ],
   "__references": [],

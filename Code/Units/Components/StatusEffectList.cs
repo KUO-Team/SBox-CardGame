@@ -165,10 +165,13 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 			StatusEffect.StatusKey.Fragile => 4,
 			StatusEffect.StatusKey.Burn => 5,
 			StatusEffect.StatusKey.Bleed => 6,
-			StatusEffect.StatusKey.Immobilized => 7,
+			StatusEffect.StatusKey.Stunned => 7,
 			StatusEffect.StatusKey.Silenced => 8,
 			StatusEffect.StatusKey.Enchanted => 9,
-			StatusEffect.StatusKey.Cold => 10,
+			StatusEffect.StatusKey.Haste => 10,
+			StatusEffect.StatusKey.Cold => 11,
+			StatusEffect.StatusKey.ManaUp => 12,
+			StatusEffect.StatusKey.ManaDown => 13,
 			_ => throw new ArgumentOutOfRangeException( nameof( key ), key, null )
 		};
 	}
