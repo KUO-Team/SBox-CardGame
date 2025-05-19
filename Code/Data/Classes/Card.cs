@@ -36,7 +36,31 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	[InlineEditor, WideMode]
 	public List<Action> Actions { get; set; } = [];
+	
+	[Hide, JsonIgnore]
+	public bool IsAvailable
+	{
+		get
+		{
+			if ( Availabilities.HasFlag( CardAvailabilities.Starter ) )
+			{
+				return true;
+			}
+		
+			if ( Availabilities.HasFlag( CardAvailabilities.Shop ) )
+			{
+				return true;
+			}
+		
+			if ( Availabilities.HasFlag( CardAvailabilities.Event ) )
+			{
+				return true;
+			}
 
+			return false;
+		}
+	}
+	
 	[Hide, JsonIgnore]
 	public CardModifiers Modifiers { get; } = new();
 

@@ -26,12 +26,12 @@
 			<div class="tab hidden" id="seencards">
 				@{
 					var cards = CardDataList.All
-						.Where( x =>
-							x.Availabilities.HasFlag( Card.CardAvailabilities.Starter ) ||
-							x.Availabilities.HasFlag( Card.CardAvailabilities.Shop ) )
+						.Where( x => x.IsAvailable )
 						.ToList();
-
-					var relics = RelicDataList.All;
+					var relics = RelicDataList.All
+						.Where( x => x.IsAvailable )
+						.ToList();
+					
 					var seenCards = PlayerData.Data.SeenCards;
 					var seenRelics = PlayerData.Data.SeenRelics;
 					var totalCards = cards.Count;

@@ -35,7 +35,7 @@ public class PlayerData
 		}
 
 		SeenCards.Add( id );
-		if ( SeenCards.Count >= CardDataList.All.Count( x => (x.Availabilities & (Card.CardAvailabilities.Starter | Card.CardAvailabilities.Shop)) != 0 ) ) 
+		if ( SeenCards.Count >= CardDataList.All.Count( x => x.IsAvailable ) )
 		{
 			Platform.Achievement.AllCards.Unlock();
 		}
@@ -50,7 +50,7 @@ public class PlayerData
 		}
 
 		SeenRelics.Add( id );
-		if ( SeenRelics.Count >= RelicDataList.All.Count( x => (x.Availabilities & (Relic.RelicAvailabilities.Shop)) != 0 ) )
+		if ( SeenRelics.Count >= RelicDataList.All.Count( x => x.IsAvailable ) )
 		{
 			Platform.Achievement.AllRelics.Unlock();
 		}
@@ -62,10 +62,7 @@ public class PlayerData
 		var before = SeenCards.Count;
 
 		SeenCards = SeenCards
-			.Where( id =>
-				CardDataList.All.Any( card =>
-					card.Id.Equals( id ) &&
-					(card.Availabilities & (Card.CardAvailabilities.Starter | Card.CardAvailabilities.Shop)) != 0 ) )
+			.Where( id => CardDataList.All.Any( card => card.Id.Equals( id ) && card.IsAvailable ) )
 			.ToList();
 
 		var after = SeenCards.Count;
@@ -83,10 +80,7 @@ public class PlayerData
 		var before = SeenRelics.Count;
 
 		SeenRelics = SeenRelics
-			.Where( id =>
-				RelicDataList.All.Any( relic =>
-					relic.Id.Equals( id ) &&
-					(relic.Availabilities & (Relic.RelicAvailabilities.Starter | Relic.RelicAvailabilities.Shop)) != 0 ) )
+			.Where( id => RelicDataList.All.Any( relic => relic.Id.Equals( id ) && relic.IsAvailable ) )
 			.ToList();
 
 		var after = SeenRelics.Count;
@@ -145,11 +139,11 @@ public class RunData
 	public UnitData UnitData { get; set; } = new();
 
 	public List<Id> Cards { get; set; } = [];
-	
+
 	public List<Id> CardPacks { get; set; } = [];
-	
+
 	public List<Id> Relics { get; set; } = [];
-	
+
 	public DateTime Date { get; set; } = DateTime.Now;
 }
 
@@ -158,9 +152,9 @@ public class UnitData : IDeepCopyable<UnitData>
 	public int Hp { get; set; }
 
 	public int MaxHp { get; set; }
-	
+
 	public int Level { get; set; }
-	
+
 	public int Xp { get; set; }
 
 	public List<Id> Deck { get; set; } = [];

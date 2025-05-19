@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace CardGame.Data;
 
@@ -24,6 +25,30 @@ public class Relic : IResource, IDeepCopyable<Relic>
 
 	public string Script { get; set; } = string.Empty;
 
+	[Hide, JsonIgnore]
+	public bool IsAvailable
+	{
+		get
+		{
+			if ( Availabilities.HasFlag( RelicAvailabilities.Starter ) )
+			{
+				return true;
+			}
+		
+			if ( Availabilities.HasFlag( RelicAvailabilities.Shop ) )
+			{
+				return true;
+			}
+		
+			if ( Availabilities.HasFlag( RelicAvailabilities.Event ) )
+			{
+				return true;
+			}
+
+			return false;
+		}
+	}
+	
 	public Relic DeepCopy()
 	{
 		return new Relic()
