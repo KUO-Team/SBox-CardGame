@@ -33,7 +33,7 @@ public partial class EventPanel
 		var @event = EventDataList.GetById( id );
 		if ( @event is not null )
 		{
-			Show( @event );
+			Show( @event.DeepCopy() );
 		}
 		else
 		{
