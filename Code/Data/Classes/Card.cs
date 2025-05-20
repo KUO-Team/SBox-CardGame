@@ -20,8 +20,6 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	public bool IsInstant { get; set; }
 
-	public bool IsIndiscriminate { get; set; }
-
 	public int Targets { get; set; } = 1;
 
 	public CardTargets Targeting { get; set; } = CardTargets.Enemy;
@@ -285,13 +283,12 @@ public class Card : IResource, IDeepCopyable<Card>
 	/// </summary>
 	public Card DeepCopy()
 	{
-		var card = new Card()
+		var card = new Card
 		{
 			Id = Id,
 			Name = Name,
 			Cost = Cost,
 			IsInstant = IsInstant,
-			IsIndiscriminate = IsIndiscriminate,
 			Targets = Targets,
 			Targeting = Targeting,
 			Type = Type,

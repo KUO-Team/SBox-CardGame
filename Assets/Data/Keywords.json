@@ -90,11 +90,6 @@
       "Name": "Singleton",
       "Description": "Active if the deck does not contain duplicate copies of cards.",
       "Markers": null
-    },
-    {
-      "Name": "Indiscriminate",
-      "Description": "Card targets randomly; including allies.",
-      "Markers": null
     }
   ]
 }

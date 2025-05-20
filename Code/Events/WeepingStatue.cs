@@ -1,6 +1,4 @@
-﻿using CardGame.Data;
-
-namespace CardGame.Events;
+﻿namespace CardGame.Events;
 
 public class WeepingStatue( Data.Event data ) : Event( data )
 {
