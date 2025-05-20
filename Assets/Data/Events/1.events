@@ -6,19 +6,10 @@
         "LocalId": 2
       },
       "Script": "WeepingStatue",
-      "Text": "A solemn statue looms atop a crumbling pedestal, silent tears of blood streaking its stone face. An inscription reads: 'Offer what you value, and be rewarded in kind.'",
+      "Text": "A solemn statue looms atop a crumbling pedestal, silent tears of blood streaking its stone face. Take it?",
       "Choices": [
         {
-          "Text": "Offer gold",
-          "Enabled": true,
-          "HasEvent": false,
-          "Event": {
-            "Text": "",
-            "Choices": []
-          }
-        },
-        {
-          "Text": "Offer a card",
+          "Text": "Take the statue",
           "Enabled": true,
           "HasEvent": false,
           "Event": {
