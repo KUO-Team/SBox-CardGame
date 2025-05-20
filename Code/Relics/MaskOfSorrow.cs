@@ -33,7 +33,7 @@ public class MaskOfSorrow( Data.Relic data ) : Relic( data )
 		var amount = _damageTaken / 5;
 		if ( amount > 0 )
 		{
-			var max = Math.Min( amount, 5 );
+			var max = Math.Min( amount, 3 );
 			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, max );
 		}
 		
