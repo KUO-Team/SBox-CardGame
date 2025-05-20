@@ -163,6 +163,66 @@
           "LocalId": 92
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Name": "Brawler’s Bundle",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Melee",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 51
+        },
+        {
+          "Source": "",
+          "LocalId": 57
+        },
+        {
+          "Source": "",
+          "LocalId": 67
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 7
+      },
+      "Name": "Tactician’s Toolbox",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Keywords": "Utility",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 54
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 8
+      },
+      "Name": "Arcane Onslaught",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "Spell,Attack",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 55
+        },
+        {
+          "Source": "",
+          "LocalId": 62
+        }
+      ]
     }
   ],
   "__references": [],

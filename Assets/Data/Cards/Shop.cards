@@ -100,7 +100,7 @@
         "Source": "",
         "LocalId": 53
       },
-      "Name": "Discarded",
+      "Name": "Discarded 1",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -125,8 +125,8 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
-            "Max": 4
+            "Min": 1,
+            "Max": 3
           },
           "Script": ""
         }
@@ -215,7 +215,7 @@
       "Type": "Spell",
       "Rarity": "Rare",
       "Availabilities": "Shop",
-      "Keywords": "Heal,Recovery",
+      "Keywords": "",
       "Actions": [
         {
           "Type": "Effect",
@@ -269,7 +269,7 @@
         "Source": "",
         "LocalId": 58
       },
-      "Name": "Discarded 2",
+      "Name": "Discarded 4",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -356,6 +356,14 @@
             "Max": 2
           },
           "Script": "DiscardMana"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 2,
+            "Max": 4
+          },
+          "Script": ""
         }
       ]
     },
@@ -420,80 +428,6 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 63
-      },
-      "Name": "Enchant 2",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
-      "IsInstant": false,
-      "IsIndiscriminate": false,
-      "Targets": 1,
-      "Targeting": "Enemy",
-      "Type": "Attack",
-      "Rarity": "Rare",
-      "Availabilities": "Shop",
-      "Keywords": "Enchanted",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "EnchantNextTurn"
-        },
-        {
-          "Type": "Attack",
-          "Power": {
-            "Min": 5,
-            "Max": 8
-          },
-          "Script": ""
-        }
-      ]
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 64
-      },
-      "Name": "Burn It All",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 3
-      },
-      "IsInstant": false,
-      "IsIndiscriminate": false,
-      "Targets": 4,
-      "Targeting": "Enemy",
-      "Type": "Attack",
-      "Rarity": "Epic",
-      "Availabilities": "Shop",
-      "Keywords": "Burn",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 6,
-            "Max": 6
-          },
-          "Script": "Burn"
-        },
-        {
-          "Type": "Attack",
-          "Power": {
-            "Min": 3,
-            "Max": 6
-          },
-          "Script": ""
-        }
-      ]
-    },
-    {
-      "Id": {
-        "Source": "",
         "LocalId": 65
       },
       "Name": "",
@@ -517,35 +451,6 @@
             "Max": 3
           },
           "Script": "DiscardXManaAdd"
-        }
-      ]
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 66
-      },
-      "Name": "",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
-      "IsInstant": false,
-      "IsIndiscriminate": false,
-      "Targets": 1,
-      "Targeting": "Enemy",
-      "Type": "Attack",
-      "Rarity": "Uncommon",
-      "Availabilities": "Shop",
-      "Keywords": "Singleton",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 3,
-            "Max": 3
-          },
-          "Script": "SingletonDraw"
         }
       ]
     },
@@ -612,7 +517,7 @@
         "Source": "",
         "LocalId": 69
       },
-      "Name": "",
+      "Name": "Discarded 2",
       "Cost": {
         "Ep": 0,
         "Mp": 1
