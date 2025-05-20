@@ -1,6 +1,7 @@
 ﻿using System;
-using CardGame.Platform;
 using Sandbox.Diagnostics;
+using CardGame.Platform;
+using CardGame.UI;
 
 namespace CardGame.Data;
 
@@ -158,6 +159,34 @@ public class UnitData : IDeepCopyable<UnitData>
 	public int Xp { get; set; }
 
 	public List<Id> Deck { get; set; } = [];
+
+	public bool IsMaxHp => Hp >= MaxHp;
+
+	public void Damage( int amount )
+	{
+		Hp = Math.Max( Hp - amount, 0 );
+
+		if ( Hp > 0 )
+		{
+			return;
+		}
+		
+		var panel = Game.ActiveScene.GetComponent<RunOverPanel>();
+		if ( panel.IsValid() )
+		{
+			panel.EndRun();
+		}
+	}
+	
+	public void Heal( int amount )
+	{
+		Hp = Math.Min( Hp + amount, MaxHp );
+	}
+
+	public void HealToMax()
+	{
+		Hp = MaxHp;
+	}
 
 	public UnitData DeepCopy()
 	{

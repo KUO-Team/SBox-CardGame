@@ -61,7 +61,6 @@ public class Player : Component
 	public void SetUnitData()
 	{
 		Unit = new UnitData();
-		
 		var unit = UnitDataList.GetById( PlayerUnitId );
 		if ( unit is null )
 		{
@@ -76,6 +75,7 @@ public class Player : Component
 		Unit.Hp = copy.Hp;
 		Unit.MaxHp = Unit.Hp;
 
+		// Set initial level.
 		Unit.Level = copy.Level;
 		Unit.Xp = 0;
 	}

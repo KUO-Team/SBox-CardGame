@@ -180,7 +180,7 @@ public sealed class GameManager : Singleton<GameManager>
 				return;
 			}
 
-			player.Unit.Hp = player.Unit.MaxHp;
+			player.Unit.HealToMax();
 		}
 	}
 

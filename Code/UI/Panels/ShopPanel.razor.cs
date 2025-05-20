@@ -377,9 +377,9 @@ public partial class ShopPanel
 			return;
 		}
 
-		if ( Player.Local.IsValid() && Player.Local.Unit is not null )
+		if ( Player.Local.IsValid() )
 		{
-			Player.Local.Unit.Hp = Player.Local.Unit.MaxHp;
+			Player.Local.Unit?.HealToMax();
 		}
 	}
 
@@ -680,7 +680,7 @@ public partial class ShopPanel
 			return false;
 		}
 
-		if ( Player.Local.Unit.Hp >= Player.Local.Unit.MaxHp )
+		if ( Player.Local.Unit.IsMaxHp )
 		{
 			return false;
 		}
