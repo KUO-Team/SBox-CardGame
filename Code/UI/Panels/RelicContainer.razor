@@ -1,0 +1,16 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( !RelicManager.IsValid() )
+{
+	return;
+}
+
+<root class="@(Relics.Any() ? "" : "hidden")">
+	@foreach ( var relic in Relics )
+	{
+		<RelicPanel Relic="@relic.Data"></RelicPanel>
+	}
+</root>

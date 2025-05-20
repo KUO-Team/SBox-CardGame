@@ -17,20 +17,7 @@
 			<label>Turn @BattleManager.Turn</label>
 		</div>
 		
-		@if ( RelicManager.Instance.IsValid() )
-		{
-			var relics = RelicManager.Instance.Relics;
-			@if ( relics.Any() )
-			{
-				<div class="relic-container">
-					@foreach ( var relic in relics )
-					{
-						<RelicPanel Relic="@relic.Data"></RelicPanel>
-					}
-				</div>
-			}
-		}
-
+		<RelicContainer></RelicContainer>
 		<div class="card-showcase" @ref="_cardShowcase"></div>
 	</div>
 	

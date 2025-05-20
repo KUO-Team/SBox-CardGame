@@ -21,6 +21,7 @@ MapPanel {
   flex-direction: column;
 
   > .header {
+    pointer-events: all;
     width: 100%;
     height: 90px;
     color: #fff;
@@ -54,6 +55,22 @@ MapPanel {
 
     .button {
       width: 500px;
+    }
+  }
+
+  RelicContainer {
+    pointer-events: all;
+    position: absolute;
+    right: 0;
+    top: 130px;
+
+    RelicPanel {
+      transition: transform 0.1s linear;
+
+      &:hover {
+        border: 1px solid white;
+        transform: scale(1.05);
+      }
     }
   }
 
