@@ -4,8 +4,22 @@ using CardGame.UI.Map;
 
 namespace CardGame;
 
+/// <summary>
+/// Provides helper methods for events.
+/// </summary>
 public static class EventUtility
 {
+	public static void HealToMax()
+	{
+		var player = Player.Local;
+		if ( !player.IsValid() )
+		{
+			return;
+		}
+
+		player.Unit?.HealToMax();
+	}
+	
 	public static void AddMoney( int amount )
 	{
 		var player = Player.Local;
