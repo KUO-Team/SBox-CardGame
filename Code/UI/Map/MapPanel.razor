@@ -4,17 +4,30 @@
 <root>
 	<div class="header">
 		<div class="player-bar">
-			<div class="player">
-				<label>@(Connection.Local.DisplayName)</label>
-				<div class="health">
-					<label class="health-value">@( Player.Local?.Unit?.Hp ?? 0 )hp</label>
-				</div>
-				<label class="money">@( Player.Local?.Money ?? 0 )g</label>
-			</div>
-			<label class="floor">Floor: @( GameManager?.Floor )</label>
+			@{
+				var player = Player.Local;
+				if ( player.IsValid() )
+				{
+					<label class="player-name">@( Connection.Local.DisplayName )</label>
+					@{
+						var unit = player.Unit;
+						if ( unit is not null )
+						{
+							<div class="health">
+								<label class="health-value">@( unit.Hp )hp</label>
+								<div class="health-bar">
+									<div class="inner-bar" style="width: @( (float)unit.Hp / unit.MaxHp * 100 )%"></div>
+								</div>
+							</div>
+						}
+					}
+					<label class="player-money">@(player.Money)g</label>
+				}
+			}
 		</div>
 	</div>
-
+	<label class="floor">Floor @( GameManager?.Floor )</label>
+	
 	<div class="map-container">
 		<div class="map" @ref="Map"></div>
 	</div>

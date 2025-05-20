@@ -615,6 +615,6 @@ public partial class MapPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Map, CurrentNodeIndex, GameManager?.Floor, Player.Local?.Money );
+		return HashCode.Combine( Map, CurrentNodeIndex, GameManager?.Floor, Player.Local?.Money, Player.Local?.Unit?.Hp );
 	}
 }
