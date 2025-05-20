@@ -101,10 +101,20 @@ public partial class BattleUnit : BaseCharacter
 	{
 		Energy = Math.Min( MaxEnergy, Energy + amount );
 	}
+
+	public void SpendEnergy( int amount )
+	{
+		Energy = Math.Max( 0, Energy - amount );
+	}
 	
 	public void RecoverMana( int amount )
 	{
 		Mana = Math.Min( MaxMana, Mana + amount );
+	}
+	
+	public void SpendMana( int amount )
+	{
+		Mana = Math.Max( 0, Mana - amount );
 	}
 
 	private void OnTurnStart()
