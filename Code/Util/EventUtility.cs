@@ -1,5 +1,6 @@
 ﻿using System;
 using CardGame.Data;
+using CardGame.UI.Map;
 
 namespace CardGame;
 
@@ -61,6 +62,12 @@ public static class EventUtility
 		{
 			PlayerData.Data.SeeRelic( id );
 			RelicManager.Instance?.AddRelic( relic );
+
+			var panel = Game.ActiveScene.GetInstance<MapPanel>();
+			if ( panel.IsValid() )
+			{
+				panel.RelicGainPanel?.Show( relic );
+			}
 		}
 		else
 		{

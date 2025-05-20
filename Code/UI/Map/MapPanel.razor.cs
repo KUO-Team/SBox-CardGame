@@ -11,6 +11,9 @@ public partial class MapPanel
 
 	private Random _seededRandom = new();
 
+	public RelicGainPanel? RelicGainPanel { get; set; }
+	public EventPanel? EventPanel { get; set; }
+
 	private static int CurrentNodeIndex
 	{
 		get
@@ -32,7 +35,6 @@ public partial class MapPanel
 	private static readonly Logger Log = new( "Map" );
 
 	private BattleInfoPanel? _battleInfoPanel;
-	private EventPanel? _eventPanel;
 	private ShopPanel? _shopPanel;
 
 	protected override void OnTreeFirstBuilt()
@@ -591,12 +593,12 @@ public partial class MapPanel
 						return;
 					}
 
-					if ( !_eventPanel.IsValid() )
+					if ( !EventPanel.IsValid() )
 					{
 						Log.Error( $"Unable to show event; no event panel set!" );
 						return;
 					}
-					_eventPanel.ShowEventById( node.Event );
+					EventPanel.ShowEventById( node.Event );
 					node.Completed = true;
 					break;
 				}
