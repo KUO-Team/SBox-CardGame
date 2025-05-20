@@ -91,8 +91,16 @@ public sealed class CardSlot : Component, IOwnable
 		_mouseRay = Scene.Camera.ScreenPixelToRay( mousePosition );
 		
 		var slotPosition = WorldPosition;
-		var cursorWorldPosition = _mouseRay.Position + _mouseRay.Forward * 1500;
-		DrawTargetingArrows( slotPosition.WithZ( 50 ), cursorWorldPosition.WithZ( 50 ) );
+		var plane = new Plane( Vector3.Up, 0 );
+		var rayStart = _mouseRay.Position;
+		var rayEnd = _mouseRay.Position + _mouseRay.Forward * 10000f;
+		
+		var hit = plane.IntersectLine( rayStart, rayEnd );
+		if ( hit.HasValue )
+		{
+			var cursorWorldPosition = hit.Value;
+			DrawTargetingArrows( slotPosition, cursorWorldPosition );
+		}
 	}
 	
 	private void OnTurnStart()
