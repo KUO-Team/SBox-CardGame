@@ -65,12 +65,10 @@ public class HandComponent : Component, IOwnable
 		if ( _cards.Contains( card ) )
 		{
 			_cards.Remove( card );
-			Log.Error( $"Removed card for potential discard: {card}" );
 		}
 		else
 		{
 			_cards.Add( card );
-			Log.Error( $"Added card for potential discard: {card}" );
 		}
 	}
 
@@ -82,7 +80,6 @@ public class HandComponent : Component, IOwnable
 		}
 		
 		_cards.Remove( card );
-		Log.Error( $"Removed card for potential discard: {card}" );
 	}
 	
 	public void ConfirmDiscard()
