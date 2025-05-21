@@ -49,6 +49,7 @@ public sealed class CardSlot : Component, IOwnable
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnTurnStart += OnTurnStart;
+			BattleManager.Instance.OnCombatStart += OnCombatStart;
 		}
 
 		LineRenderer = Components.GetInChildren<LineRenderer>();
@@ -60,6 +61,7 @@ public sealed class CardSlot : Component, IOwnable
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnTurnStart -= OnTurnStart;
+			BattleManager.Instance.OnCombatStart -= OnCombatStart;
 		}
 
 		foreach ( var @delegate in OnSlotAssigned?.GetInvocationList() ?? [] )
@@ -106,6 +108,16 @@ public sealed class CardSlot : Component, IOwnable
 	private void OnTurnStart()
 	{
 		Speed = Game.Random.Int( MinSpeed, MaxSpeed );
+	}
+
+	private void OnCombatStart()
+	{
+		if ( IsAssigned )
+		{
+			return;
+		}
+		
+		ClearTargetingArrows();
 	}
 
 	public void AssignCard( Card card, CardSlot target )
