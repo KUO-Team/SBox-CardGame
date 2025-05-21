@@ -9,11 +9,16 @@ public class LastLight( Data.Relic data ) : Relic( data )
 	
 	public override void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
 	{
+		if ( target.Faction != Faction.Player )
+		{
+			return;
+		}
+		
 		if ( !target.HealthComponent.IsValid() )
 		{
 			return;
 		}
-
+		
 		if ( _triggered )
 		{
 			return;
