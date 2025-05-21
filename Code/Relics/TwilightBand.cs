@@ -1,22 +1,38 @@
-﻿using CardGame.Data;
+﻿using System;
+using CardGame.Data;
 
 namespace CardGame.Relics;
 
 public class TwilightBand( Data.Relic data ) : Relic( data )
 {
-	public override void OnBattleStart( Battle battle )
+	public override void OnAdd()
 	{
-		if ( !Owner.IsValid() || !Owner.HealthComponent.IsValid() )
+		var player = Player.Local;
+		if ( !player.IsValid() )
 		{
 			return;
 		}
 
-		Owner.Slots?.AddCardSlot();
+		if ( player.Unit is null )
+		{
+			return;
+		}
 
-		var hp = GetHp();
-		Owner.HealthComponent.MaxHealth = hp;
-		Owner.HealthComponent.Health = Owner.HealthComponent.MaxHealth;
+		var newMaxHp = Math.Max( GetHp( player.Unit ), 1 );
+		player.Unit.Hp = Math.Min( player.Unit.Hp, newMaxHp );
+		player.Unit.MaxHp = newMaxHp;
 
+		base.OnAdd();
+	}
+
+	public override void OnBattleStart( Battle battle )
+	{
+		if ( !Owner.IsValid() || !Owner.Slots.IsValid() )
+		{
+			return;
+		}
+
+		Owner.Slots.AddCardSlot();
 		base.OnBattleStart( battle );
 	}
 
@@ -26,13 +42,8 @@ public class TwilightBand( Data.Relic data ) : Relic( data )
 		base.OnTurnStart();
 	}
 
-	private int GetHp()
+	private static int GetHp( UnitData unit )
 	{
-		if ( !Owner.IsValid() || !Owner.HealthComponent.IsValid() )
-		{
-			return 0;
-		}
-
-		return (int)(Owner.HealthComponent.MaxHealth * 0.85f);
+		return (int)(unit.MaxHp * 0.85f);
 	}
 }
