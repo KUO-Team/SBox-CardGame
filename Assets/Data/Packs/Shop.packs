@@ -172,7 +172,7 @@
       "Name": "Brawler’s Bundle",
       "Rarity": "Common",
       "Availabilities": "Shop",
-      "Keywords": "Melee",
+      "Keywords": "",
       "Cards": [
         {
           "Source": "",
@@ -196,7 +196,7 @@
       "Name": "Tactician’s Toolbox",
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
-      "Keywords": "Utility",
+      "Keywords": "",
       "Cards": [
         {
           "Source": "",
@@ -212,7 +212,7 @@
       "Name": "Arcane Onslaught",
       "Rarity": "Rare",
       "Availabilities": "Shop",
-      "Keywords": "Spell,Attack",
+      "Keywords": "",
       "Cards": [
         {
           "Source": "",
