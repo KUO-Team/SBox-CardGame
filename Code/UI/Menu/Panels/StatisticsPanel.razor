@@ -48,9 +48,7 @@
 					<div class="tab-title">@(totalCardsAndRelicsFound)/@(totalCardsAndRelics)</div>
 				</div>
 
-				<div class="cards-found">
-					<label>@( seenCards.Count )/@( cards.Count ) Cards</label>
-				</div>
+				<label class="title">@( seenCards.Count )/@( cards.Count ) Cards</label>
 
 				<div class="cards">
 					@foreach ( var card in cards.OrderByDescending( y => y.Rarity ).ThenBy( x => x.Type ).ThenBy( y => y.Name ) )
@@ -59,12 +57,18 @@
 					}
 				</div>
 
-				<div class="cards-found">
-					<label>@( seenRelics.Count )/@( relics.Count ) Relics</label>
-				</div>
+				<label class="title">@( seenRelics.Count )/@( relics.Count ) Relics</label>
 
+				<label class="sub-title">Found In Shops</label>
 				<div class="relics">
-					@foreach ( var relic in relics.OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
+					@foreach ( var relic in relics.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Shop ) ).OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
+					{
+						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+					}
+				</div>
+				<label class="sub-title">Found In Events</label>
+				<div class="relics">
+					@foreach ( var relic in relics.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Event ) ).OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
 					{
 						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 					}

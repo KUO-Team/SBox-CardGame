@@ -49,6 +49,13 @@ StatisticsPanel {
       overflow-y: scroll;
       overflow-x: hidden;
 
+      > .tab-selection {
+        width: 100%;
+        gap: 5px;
+        margin: 5px 0;
+        flex-shrink: 0;
+      }
+
       > .row {
         width: 100%;
         align-items: center;
@@ -61,17 +68,63 @@ StatisticsPanel {
         flex-shrink: 0;
       }
 
-      .cards-found {
-        font-size: 45px;
+      > .title {
+        font-size: 40px;
         flex-shrink: 0;
         margin: 5px 0;
       }
 
-      .tab-selection {
-        width: 100%;
-        gap: 5px;
-        margin: 5px 0;
+      > .sub-title {
+        font-size: 35px;
         flex-shrink: 0;
+        margin: 5px 0;
+      }
+
+      .item-container {
+        width: 100%;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        gap: 10px;
+      }
+
+      .cards {
+        width: 100%;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 10px 0;
+
+        .card {
+          flex-shrink: 0;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+
+      .relics {
+        width: 100%;
+        flex-shrink: 0;
+        margin: 10px 10px;
+        gap: 10px;
+
+        RelicPanel {
+          flex-shrink: 0;
+          transition: transform 0.2s ease;
+
+          &:hover {
+            border: 1px solid white;
+            transform: scale(1.05);
+          }
+
+          &.hide {
+            pointer-events: none;
+            opacity: 0.025;
+          }
+        }
       }
 
       .leaderboards {
@@ -152,54 +205,6 @@ StatisticsPanel {
 
           .row {
             gap: 5px;
-          }
-        }
-      }
-
-      .item-container {
-        width: 100%;
-        flex-direction: column;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        gap: 10px;
-      }
-
-      .cards {
-        width: 100%;
-        flex-shrink: 0;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 10px 0;
-
-        .card {
-          flex-shrink: 0;
-          transition: transform 0.2s ease;
-
-          &:hover {
-            transform: scale(1.02);
-          }
-        }
-      }
-
-      .relics {
-        width: 100%;
-        flex-shrink: 0;
-        gap: 10px;
-        padding: 30px;
-        margin: 10px 0;
-
-        RelicPanel {
-          flex-shrink: 0;
-          transition: transform 0.2s ease;
-          
-          &:hover {
-            border: 1px solid white;
-            transform: scale(1.05);
-          }
-
-          &.hide {
-            pointer-events: none;
-            opacity: 0.025;
           }
         }
       }
