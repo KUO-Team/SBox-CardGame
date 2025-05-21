@@ -67,10 +67,13 @@ public partial class RunOverPanel
 	};
 	
 	private string _quote = string.Empty;
+
+	private System.Action? _onReturn;
 	
-	public void EndRun()
+	public void EndRun( System.Action? onReturn = null )
 	{
 		_quote = GetRandomQuote();
+		_onReturn = onReturn;
 	}
 	
 	public static string GetRandomQuote()
@@ -110,6 +113,7 @@ public partial class RunOverPanel
 		if ( menuScene is not null )
 		{
 			GameObject.Enabled = false;
+			_onReturn?.Invoke();
 			Scene.Load( menuScene );
 		}
 	}
