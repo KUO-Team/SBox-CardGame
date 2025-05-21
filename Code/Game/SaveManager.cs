@@ -161,6 +161,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 
 		Player.Local?.CardPacks.Clear();
 		Player.Local?.Cards.Clear();
+		Player.Local?.ResetUnitData();
 
 		ActiveRunData = null;
 		Log.Info( $"Cleared active run data." );
