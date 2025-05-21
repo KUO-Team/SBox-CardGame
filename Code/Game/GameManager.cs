@@ -106,7 +106,7 @@ public sealed class GameManager : Singleton<GameManager>
 			{
 				continue;
 			}
-			
+
 			player.Cards.Add( card );
 			Log.Info( $"Awarded card {card}" );
 		}
@@ -119,7 +119,7 @@ public sealed class GameManager : Singleton<GameManager>
 			{
 				continue;
 			}
-			
+
 			player.CardPacks.Add( pack );
 			Log.Info( $"Awarded cardpack {pack}" );
 		}
@@ -131,7 +131,7 @@ public sealed class GameManager : Singleton<GameManager>
 			{
 				continue;
 			}
-			
+
 			var relicManager = RelicManager.Instance;
 			if ( relicManager.IsValid() )
 			{
@@ -193,14 +193,11 @@ public sealed class GameManager : Singleton<GameManager>
 
 		if ( RunOverPanel.IsValid() )
 		{
-			RunOverPanel.EndRun();
+			RunOverPanel.EndRun( () =>
+			{
+				SaveManager?.ClearActiveRun();
+			} );
 			RunOverPanel.GameObject.Enabled = true;
-		}
-
-		Floor = StartingFloor;
-		if ( SaveManager.IsValid() )
-		{
-			SaveManager.ClearActiveRun();
 		}
 
 		Stats.Increment( "game-over-loss", 1 );

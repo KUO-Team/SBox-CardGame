@@ -10,7 +10,7 @@ public class Player : Component
 
 	[Property]
 	public UnitData? Unit { get; private set; }
-	
+
 	[Property]
 	public List<BattleUnit> Units { get; set; } = [];
 
@@ -29,8 +29,8 @@ public class Player : Component
 		{
 			Local = this;
 		}
-		
-		SetUnitData();
+
+		SetUnitData( _playerUnitId );
 
 		GameObject.BreakFromPrefab();
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
@@ -56,27 +56,48 @@ public class Player : Component
 		base.OnStart();
 	}
 
-	private const int PlayerUnitId = 99;
+	private Id _playerUnitId = 99;
 
-	public void SetUnitData()
+	public void SetUnitData( Id id )
 	{
-		Unit = new UnitData();
-		var unit = UnitDataList.GetById( PlayerUnitId );
-		if ( unit is null )
+		_playerUnitId = id;
+
+		var source = UnitDataList.GetById( id );
+		if ( source is null )
 		{
+			Unit = null;
 			return;
 		}
-		
-		// Set the initial deck.
-		var copy = unit.DeepCopy();
-		Unit.Deck = copy.Deck;
-		
-		// Set initial health.
-		Unit.Hp = copy.Hp;
-		Unit.MaxHp = Unit.Hp;
 
-		// Set initial level.
-		Unit.Level = copy.Level;
-		Unit.Xp = 0;
+		Unit = new UnitData();
+		ApplyUnitTemplate( Unit, source );
+	}
+
+	public void ResetUnitData()
+	{
+		if ( Unit is null )
+		{
+			Log.Error( "Cannot reset unit data before setting it." );
+			return;
+		}
+
+		var source = UnitDataList.GetById( _playerUnitId );
+		if ( source is null )
+		{
+			Log.Error( $"Unit data with ID {_playerUnitId} not found." );
+			return;
+		}
+
+		ApplyUnitTemplate( Unit, source );
+	}
+
+	private static void ApplyUnitTemplate( UnitData target, Unit template )
+	{
+		var copy = template.DeepCopy();
+		target.Deck = copy.Deck;
+		target.Hp = copy.Hp;
+		target.MaxHp = copy.Hp;
+		target.Level = copy.Level;
+		target.Xp = 0;
 	}
 }
