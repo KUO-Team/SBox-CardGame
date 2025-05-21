@@ -42,6 +42,7 @@ MapPanel {
       text-align: center;
       align-items: center;
       justify-content: center;
+      gap: 8px;
     }
     
     .player-name {
@@ -52,7 +53,7 @@ MapPanel {
     }
     
     .health {
-      width: 90%;
+      width: 50%;
       margin: 0 10px;
       align-items: flex-start;
       flex-direction: column;
@@ -92,9 +93,10 @@ MapPanel {
   
   .map-key {
     position: absolute;
+    pointer-events: none;
     width: 200px;
-    bottom: 100px;
-    left: 100px;
+    bottom: 50px;
+    left: 50px;
     color: white;
     background-color: rgba(0,0,0,0.9);
     border: 1px solid white;

@@ -14,7 +14,7 @@
 						if ( unit is not null )
 						{
 							<div class="health">
-								<label class="health-value">@( unit.Hp )hp</label>
+								<label class="health-value">@( unit.Hp )/@( unit.MaxHp )hp</label>
 								<div class="health-bar">
 									<div class="inner-bar" style="width: @( (float)unit.Hp / unit.MaxHp * 100 )%"></div>
 								</div>
@@ -27,11 +27,11 @@
 		</div>
 	</div>
 	<label class="floor">Floor @( GameManager?.Floor )</label>
-	
+
 	<div class="map-container">
 		<div class="map" @ref="Map"></div>
 	</div>
-	
+
 	<div class="map-key">
 		<div class="map-key-item">
 			<div class="map-key-icon">B</div>
