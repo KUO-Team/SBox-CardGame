@@ -42,6 +42,7 @@ public sealed class RelicManager : Singleton<RelicManager>
 		
 		var relic = TypeLibrary.Create<Relics.Relic>( data.Script, [data] );
 		Relics.Add( relic );
+		relic.OnAdd();
 	}
 
 	public void RemoveRelic( Relics.Relic relic )

@@ -23,6 +23,11 @@ public abstract class Relic : IOwnable
 		}
 	}
 
+	public virtual void OnAdd()
+	{
+		
+	}
+
 	public virtual void OnBattleStart( Battle battle )
 	{
 		
