@@ -28,8 +28,14 @@ public abstract class DataList<T> : GameResource where T : IResource
 
 	public static bool TryGetById( Id id, [NotNullWhen( true )] out T? result )
 	{
-		result = GetById( id );
-		return result is not null;
+		result = All.FirstOrDefault( x => x.Id.Equals( id ) );
+		if ( result is null )
+		{
+			return false;
+		}
+
+		result.OnInit();
+		return true;
 	}
 
 	public static void InvalidateCache()
