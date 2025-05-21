@@ -1,28 +1,27 @@
 ﻿@inherits PanelComponent
 @namespace CardGame.UI.Map
 
+@{
+	var player = Player.Local;
+	var unit = player?.Unit;
+}
+
 <root>
 	<div class="header">
 		<div class="player-bar">
-			@{
-				var player = Player.Local;
-				if ( player.IsValid() )
+			@if ( player.IsValid() )
+			{
+				<label class="player-name">@( Connection.Local.DisplayName )</label>
+				if ( unit is not null )
 				{
-					<label class="player-name">@( Connection.Local.DisplayName )</label>
-					@{
-						var unit = player.Unit;
-						if ( unit is not null )
-						{
-							<div class="health">
-								<label class="health-value">@( unit.Hp )/@( unit.MaxHp )hp</label>
-								<div class="health-bar">
-									<div class="inner-bar" style="width: @( (float)unit.Hp / unit.MaxHp * 100 )%"></div>
-								</div>
-							</div>
-						}
-					}
-					<label class="player-money">@(player.Money)g</label>
+					<div class="health">
+						<label class="health-value">@( unit.Hp )/@( unit.MaxHp )hp</label>
+						<div class="health-bar">
+							<div class="inner-bar" style="width: @( (float)unit.Hp / unit.MaxHp * 100 )%"></div>
+						</div>
+					</div>
 				}
+				<label class="player-money">@( player.Money )g</label>
 			}
 		</div>
 	</div>
