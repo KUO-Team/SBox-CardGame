@@ -59,8 +59,8 @@ public partial class BattleUnit
 			Slots.AddCardSlot( data.Slots );
 			foreach ( var slot in Slots )
 			{
-				slot.MinSpeed = data.MinSpeed;
-				slot.MaxSpeed = data.MaxSpeed;
+				slot.MinSpeed = data.Speed.Min;
+				slot.MaxSpeed = data.Speed.Max;
 			}
 		}
 

@@ -22,9 +22,8 @@ public class Unit : IResource, IDeepCopyable<Unit>
 
 	public int Mp { get; set; } = 0;
 	
-	public int MinSpeed { get; set; } = 1;
-
-	public int MaxSpeed { get; set; } = 6;
+	[InlineEditor]
+	public RangedInt Speed { get; set; } = (1, 6);
 
 	/// <summary>
 	/// How many card slots does this unit start with?
@@ -50,8 +49,7 @@ public class Unit : IResource, IDeepCopyable<Unit>
 			Hp = Hp,
 			Ep = Ep,
 			Mp = Mp,
-			MinSpeed = MinSpeed,
-			MaxSpeed = MaxSpeed,
+			Speed = Speed,
 			Slots = Slots,
 			Deck = [..Deck],
 			Passives = [..Passives],

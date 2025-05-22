@@ -16,8 +16,10 @@
       "Hp": 5,
       "Ep": 0,
       "Mp": 3,
-      "MinSpeed": 2,
-      "MaxSpeed": 3,
+      "Speed": {
+        "Min": 1,
+        "Max": 6
+      },
       "Slots": 1,
       "Deck": [
         {
@@ -71,8 +73,10 @@
       "Hp": 15,
       "Ep": 0,
       "Mp": 5,
-      "MinSpeed": 1,
-      "MaxSpeed": 6,
+      "Speed": {
+        "Min": 1,
+        "Max": 5
+      },
       "Slots": 2,
       "Deck": [
         {
@@ -118,8 +122,10 @@
       "Hp": 35,
       "Ep": 0,
       "Mp": 5,
-      "MinSpeed": 1,
-      "MaxSpeed": 6,
+      "Speed": {
+        "Min": 1,
+        "Max": 3
+      },
       "Slots": 2,
       "Deck": [
         {
