@@ -70,6 +70,14 @@ public sealed class SaveManager : Singleton<SaveManager>
 			}
 		}
 
+		if ( RelicManager.Instance.IsValid() )
+		{
+			foreach ( var relic in RelicManager.Instance.Relics )
+			{
+				run.Relics.Add( relic.Data.Id );
+			}
+		}
+
 		PlayerData.Save();
 	}
 
