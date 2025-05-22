@@ -1,4 +1,4 @@
-﻿using CardGame.UI.Map;
+﻿using CardGame.UI;
 
 namespace CardGame.Events;
 

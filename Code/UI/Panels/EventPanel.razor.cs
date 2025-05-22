@@ -1,8 +1,8 @@
-﻿using Sandbox.UI;
-using Sandbox.Diagnostics;
+﻿using Sandbox.Diagnostics;
+using Sandbox.UI;
 using CardGame.Data;
 
-namespace CardGame.UI.Map;
+namespace CardGame.UI;
 
 public partial class EventPanel
 {
@@ -25,6 +25,7 @@ public partial class EventPanel
 		}
 
 		EventScript?.OnShow( @event );
+		RemoveClass( "hidden" );
 		this.Show();
 	}
 
