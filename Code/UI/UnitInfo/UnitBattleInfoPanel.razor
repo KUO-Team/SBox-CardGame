@@ -25,15 +25,12 @@
 		<div class="mana-bar">
 			<div class="inner-bar" style="width: @( (float)Unit.Mana / Unit.MaxMana * 100 )%"></div>
 		</div>
-		
+
 		<div class="row">
 			@if ( Unit?.HealthComponent is not null )
 			{
 				<label class="health">@( Unit.HealthComponent.Health )/@( Unit.HealthComponent.MaxHealth )</label>
-				@if ( Unit.Data?.UseMp == true )
-				{
-					<label class="mana">@( Unit.Mana )/@( Unit.MaxMana )</label>
-				}
+				<label class="mana">@( Unit.Mana )/@( Unit.MaxMana )</label>
 			}
 		</div>
 

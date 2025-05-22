@@ -22,9 +22,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 	
 	public int Ep { get; set; }
 
-	public bool UseMp { get; set; }
-
-	[ShowIf( nameof( UseMp ), true )]
 	public int Mp { get; set; } = 0;
 	
 	public int MinSpeed { get; set; } = 1;
@@ -55,7 +52,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 			LevelScaling = LevelScaling,
 			Hp = Hp,
 			Ep = Ep,
-			UseMp = UseMp,
 			Mp = Mp,
 			MinSpeed = MinSpeed,
 			MaxSpeed = MaxSpeed,
