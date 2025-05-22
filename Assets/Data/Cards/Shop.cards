@@ -548,6 +548,109 @@
           "Script": ""
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 70
+      },
+      "Name": "Enchant",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": true,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "Enchant"
+        }
+      ]
+    },
+        {
+      "Id": {
+        "Source": "",
+        "LocalId": 71
+      },
+      "Name": "Enchanted Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 3
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Epic",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "EnchantedOnly"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 24,
+            "Max": 24
+          },
+          "Script": ""
+        }
+      ]
+    },
+        {
+      "Id": {
+        "Source": "",
+        "LocalId": 72
+      },
+      "Name": "Enchanted Blast",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 3
+      },
+      "IsInstant": false,
+      "IsIndiscriminate": false,
+      "Targets": 5,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Epic",
+      "Availabilities": "Shop",
+      "Keywords": "Enchanted",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "EnchantedOnly"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 12,
+            "Max": 12
+          },
+          "Script": ""
+        }
+      ]
     }
   ],
   "__references": [],
