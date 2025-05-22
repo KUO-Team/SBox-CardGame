@@ -172,14 +172,14 @@ public class UnitData : IDeepCopyable<UnitData>
 		{
 			return;
 		}
-		
+
 		var panel = Game.ActiveScene.GetComponent<RunOverPanel>();
 		if ( panel.IsValid() )
 		{
 			panel.EndRun();
 		}
 	}
-	
+
 	public void Heal( int amount )
 	{
 		Hp = Math.Min( Hp + amount, MaxHp );
@@ -194,7 +194,11 @@ public class UnitData : IDeepCopyable<UnitData>
 	{
 		return new UnitData
 		{
-			Hp = Hp, MaxHp = MaxHp, Deck = [..Deck]
+			Hp = Hp,
+			MaxHp = MaxHp,
+			Level = Level,
+			Xp = Xp,
+			Deck = [..Deck]
 		};
 	}
 }
