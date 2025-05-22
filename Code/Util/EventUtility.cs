@@ -78,7 +78,12 @@ public static class EventUtility
 			RelicManager.Instance?.AddRelic( relic );
 
 			var panel = Game.ActiveScene.GetInstance<MapPanel>();
-			if ( panel.IsValid() )
+			if ( !panel.IsValid() )
+			{
+				return;
+			}
+			
+			if ( panel.RelicGainPanel.IsValid() )
 			{
 				panel.RelicGainPanel?.Show( relic );
 			}

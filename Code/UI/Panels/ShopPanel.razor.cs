@@ -380,6 +380,7 @@ public partial class ShopPanel
 		if ( Player.Local.IsValid() )
 		{
 			Player.Local.Unit?.HealToMax();
+			Player.Local.Money -= HealCost;
 		}
 	}
 
