@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using Sandbox.Diagnostics;
 using CardGame.Platform;
 using CardGame.UI;
@@ -160,6 +161,7 @@ public class UnitData : IDeepCopyable<UnitData>
 
 	public List<Id> Deck { get; set; } = [];
 
+	[Hide, JsonIgnore]
 	public bool IsMaxHp => Hp >= MaxHp;
 
 	public void Damage( int amount )
