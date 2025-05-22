@@ -16,8 +16,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 
 	public int Level { get; set; } = 1;
 
-	public bool LevelScaling { get; set; } = true;
-
 	public int Hp { get; set; }
 	
 	public int Ep { get; set; }
@@ -49,7 +47,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 			Sprite = Sprite,
 			Prefab = Prefab,
 			Level = Level,
-			LevelScaling = LevelScaling,
 			Hp = Hp,
 			Ep = Ep,
 			Mp = Mp,
