@@ -184,7 +184,8 @@ public partial class MapPanel
 			return;
 		}
 
-		var eligibleTiers = Enumerable.Range( 1, tiers.Count - 2 ).ToList();
+		// Skip tier 1 entirely — start from tier 2
+		var eligibleTiers = Enumerable.Range( 2, tiers.Count - 3 ).ToList();
 		var randomTier = eligibleTiers[_seededRandom.Next( eligibleTiers.Count )];
 		var candidates = tiers[randomTier];
 		if ( candidates.Count == 0 )
@@ -214,14 +215,21 @@ public partial class MapPanel
 		}
 
 		var availableEvents = new Queue<Id>( events.OrderBy( _ => _seededRandom.Next() ) );
-		var middleTiers = Enumerable.Range( 1, tiers.Count - 2 ).OrderBy( _ => _seededRandom.Next() );
+		// Exclude tier 1
+		var middleTiers = Enumerable.Range( 2, tiers.Count - 3 ).OrderBy( _ => _seededRandom.Next() );
 
 		foreach ( var tierIndex in middleTiers )
 		{
-			if ( availableEvents.Count == 0 ) break;
+			if ( availableEvents.Count == 0 )
+			{
+				break;
+			}
 
 			var candidates = tiers[tierIndex].Where( i => _nodeTypes[i] == MapNode.MapNodeType.Battle ).ToList();
-			if ( candidates.Count == 0 ) continue;
+			if ( candidates.Count == 0 )
+			{
+				continue;
+			}
 
 			var nodeIndex = candidates[_seededRandom.Next( candidates.Count )];
 			_nodeTypes[nodeIndex] = MapNode.MapNodeType.Event;
@@ -307,7 +315,7 @@ public partial class MapPanel
 				{
 					continue;
 				}
-				
+
 				var to = next[_seededRandom.Next( next.Count )];
 				AddConnection( from, to );
 			}
