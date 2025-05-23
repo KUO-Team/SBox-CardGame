@@ -2,7 +2,7 @@
   position: relative;
   width: 55px;
   height: 55px;
-  background-color: rgba(25,25,25,0.9);
+  background-color: rgba(25, 25, 25, 0.9);
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,11 @@
     height: 100%;
     flex-shrink: 0;
     z-index: 1;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     border-radius: 50%;
+  }
+
+  &.hide {
+    background-color: rgba(40, 40, 40, 0.1);
   }
 }

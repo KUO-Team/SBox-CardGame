@@ -10,7 +10,7 @@ StatisticsPanel {
   flex-direction: column;
   font-family: "Pixel Operator";
   background-color: rgba(0, 0, 0, 0.99);
-  
+
   .main {
     width: 90%;
     height: 90%;
@@ -114,15 +114,14 @@ StatisticsPanel {
         RelicPanel {
           flex-shrink: 0;
           transition: transform 0.2s ease;
+          
+          &.hide {
+            pointer-events: none;
+          }
 
           &:hover {
             border: 1px solid white;
             transform: scale(1.05);
-          }
-
-          &.hide {
-            pointer-events: none;
-            opacity: 0.025;
           }
         }
       }
@@ -137,12 +136,12 @@ StatisticsPanel {
           flex-grow: 1;
           flex-direction: column;
           opacity: 1;
-          
+
           .row {
             width: 100%;
             align-items: center;
             justify-content: space-between;
-            
+
             .iconpanel {
               font-size: 30px;
               cursor: pointer;
