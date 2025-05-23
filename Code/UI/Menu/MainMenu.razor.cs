@@ -18,6 +18,7 @@ public partial class MainMenu
 	private static MapManager? MapManager => MapManager.Instance;
 	private static SceneManager? SceneManager => SceneManager.Instance;
 	private static SaveManager? SaveManager => SaveManager.Instance;
+	private static RelicManager? RelicManager => RelicManager.Instance;
 
 	private static readonly Logger Log = new( "MainMenu" );
 	
@@ -67,32 +68,49 @@ public partial class MainMenu
 	
 	public void StartNewRun()
 	{
-		if ( !GameManager.IsValid() || !SaveManager.IsValid() || !MapManager.IsValid() || !SceneManager.IsValid() )
+		if ( RelicManager.IsValid() )
 		{
-			return;
+			RelicManager.Relics.Clear();
 		}
 		
-		RelicManager.Instance?.Relics.Clear();
+		if ( GameManager.IsValid() )
+		{
+			GameManager.Floor = GameManager.StartingFloor;
+		}
+		
+		if ( SaveManager.IsValid() )
+		{
+			SaveManager.ClearActiveRun();
+			SaveManager.ActiveRunData = new RunData();
+		}
+		
+		if ( MapManager.IsValid() )
+		{
+			MapManager.Index = 0;
+			MapManager.Seed = Game.Random.Next();
+		}
+		
 		Log.Info( $"Starting new run" );
-
-		GameManager.Floor = GameManager.StartingFloor;
-		SaveManager.ClearActiveRun();
-		SaveManager.ActiveRunData = new RunData();
-		MapManager.Index = 0;
-		MapManager.Seed = Game.Random.Next();
-		Scene.Load( SceneManager.MapScene );
 		Sandbox.Services.Stats.Increment( "runs", 1 );
+
+		if ( SceneManager.IsValid() )
+		{
+			Scene.Load( SceneManager.MapScene );
+		}
 	}
 
 	public static void Tutorial()
 	{
-		PlayerData.Data.FirstTime = false;
-		PlayerData.Save();
-		RelicManager.Instance?.Relics.Clear();
+		if ( RelicManager.IsValid() )
+		{
+			RelicManager.Relics.Clear();
+		}
 		
 		var tutorialBattle = BattleDataList.GetById( 1 );
 		if ( tutorialBattle is not null )
 		{
+			PlayerData.Data.FirstTime = false;
+			PlayerData.Save();
 			BattleManager.Instance?.StartBattle( tutorialBattle );
 		}
 		else
