@@ -106,6 +106,6 @@ public partial class BattleHud
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( BattleManager?.Turn, BattleManager?.CanEndTurn, RelicManager.Instance?.Relics.Count );
+		return HashCode.Combine( BattleManager?.Turn, BattleManager?.CanEndTurn, RelicManager.Instance?.Relics.Count, BattleManager.AliveUnits.Count );
 	}
 }
