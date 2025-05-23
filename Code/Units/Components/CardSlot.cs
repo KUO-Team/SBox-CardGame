@@ -26,10 +26,10 @@ public sealed class CardSlot : Component, IOwnable
 	public bool IsAvailable { get; set; } = true;
 
 	[Property]
-	public int MaxSpeed { get; set; } = 6;
+	public int MinSpeed { get; set; } = 1;
 
 	[Property]
-	public int MinSpeed { get; set; } = 1;
+	public int MaxSpeed { get; set; } = 6;
 
 	[Property]
 	public int Speed { get; set; }
@@ -45,8 +45,6 @@ public sealed class CardSlot : Component, IOwnable
 
 	protected override void OnStart()
 	{
-		Speed = Game.Random.Int( MinSpeed, MaxSpeed );
-
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnTurnStart += OnTurnStart;
@@ -108,7 +106,7 @@ public sealed class CardSlot : Component, IOwnable
 	
 	private void OnTurnStart()
 	{
-		Speed = Game.Random.Int( MinSpeed, MaxSpeed );
+		SetRandomSpeed();
 	}
 
 	private void OnCombatStart()
@@ -132,6 +130,11 @@ public sealed class CardSlot : Component, IOwnable
 		}
 
 		ClearTargetingArrows();
+	}
+
+	public void SetRandomSpeed()
+	{
+		Speed = Game.Random.Int( MinSpeed, MaxSpeed );
 	}
 
 	public void AssignCard( Card card, CardSlot target )
