@@ -60,7 +60,6 @@ public partial class CardSlotPanel
 			}
 
 			selectedSlot.AssignCard( selectedCard, Slot );
-			InputComponent.SelectedSlot = null;
 			return;
 		}
 
@@ -97,12 +96,7 @@ public partial class CardSlotPanel
 		{
 			return;
 		}
-
-		if ( battleManager.State != TurnState.Start )
-		{
-			return;
-		}
-
+		
 		// Show assigned card info on hover for any slot
 		if ( IsAssigned )
 		{
@@ -111,6 +105,11 @@ public partial class CardSlotPanel
 			{
 				hud.ShowCard( Slot.AssignedCard! );
 			}
+		}
+
+		if ( battleManager.State != TurnState.Start )
+		{
+			return;
 		}
 
 		// Show hand panel on hover only for interactable slots with no active selection
@@ -212,6 +211,6 @@ public partial class CardSlotPanel
 	
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Slot, Slot?.AssignedCard, Slot?.Speed, BattleManager.Instance?.Turn, BattleManager.Instance?.State, InputComponent.SelectedSlot == Slot );
+		return HashCode.Combine( Slot, Slot?.AssignedCard, Slot?.Speed, BattleManager.Instance?.Turn, BattleManager.Instance?.State, InputComponent.SelectedSlot );
 	}
 }

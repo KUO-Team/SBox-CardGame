@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using CardGame.Units;
 using CardGame.Effects;
 using CardGame.UI;
+using Sandbox.UI;
 
 namespace CardGame;
 
@@ -112,11 +113,24 @@ public sealed class CardSlot : Component, IOwnable
 
 	private void OnCombatStart()
 	{
+		var battleManager = BattleManager.Instance;
+		if ( battleManager.IsValid() )
+		{
+			var hud = battleManager.Hud;
+			if ( hud.IsValid() )
+			{
+				foreach ( var handPanel in hud.Panel.ChildrenOfType<HandPanel>() )
+				{
+					handPanel.Hide();
+				}
+			}
+		}
+		
 		if ( IsAssigned )
 		{
 			return;
 		}
-		
+
 		ClearTargetingArrows();
 	}
 
@@ -146,7 +160,7 @@ public sealed class CardSlot : Component, IOwnable
 		}
 
 		OnSlotAssigned?.Invoke( this, card, target );
-		InputComponent.SelectedSlot = null;
+		HandPanel.SelectedCard = null;
 
 		if ( !Panel.IsValid() )
 		{
@@ -268,7 +282,6 @@ public sealed class CardSlot : Component, IOwnable
 
 		return true;
 	}
-	
 	
 	public void DrawTargetingArrows( Vector3 start, Vector3 end )
 	{

@@ -9,12 +9,12 @@
 	return;
 }
 
-<root class="@( InputComponent.SelectedSlot is not null ? "" : "hidden" )">
+<root>
 	@foreach ( var card in HandComponent.Hand )
 	{
 		<CardPanel class="@(SelectedCard == card ? "selected" : "")" Card="@card" onclick="@(() => SelectCard( card ))"></CardPanel>
 		
-		@if ( card.Keywords.Any() )
+		if ( card.Keywords.Any() )
 		{
 			<div class="keywords hidden">
 				@foreach ( var k in card.Keywords )
