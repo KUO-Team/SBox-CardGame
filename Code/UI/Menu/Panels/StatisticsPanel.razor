@@ -73,6 +73,13 @@
 						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 					}
 				</div>
+				<label class="sub-title">Traded For</label>
+				<div class="relics">
+					@foreach ( var relic in relics.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Trade ) ).OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
+					{
+						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+					}
+				</div>
 			</div>
 
 			<div class="tab hidden" id="leaderboards">
