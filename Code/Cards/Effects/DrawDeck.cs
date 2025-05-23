@@ -11,9 +11,9 @@ public class DrawDeck( Card card ) : CardEffect( card )
 			return;
 		}
 
-		foreach ( var card in detail.Unit.HandComponent.Deck )
+		foreach ( var card in detail.Unit.HandComponent.Deck.ToArray() )
 		{
-			detail.Unit.HandComponent.Draw( card );
+			detail.Unit.HandComponent.Draw( card, true );
 		}
 		base.OnPlay( detail );
 	}
