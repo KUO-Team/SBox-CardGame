@@ -41,12 +41,13 @@ public partial class BattleInfoPanel
 	
 	public void ShowInfo( Unit unit )
 	{
-		_unitInfoPanel = new UnitInfoPanel
+		if ( !_unitInfoPanel.IsValid() )
 		{
-			Unit = unit
-		};
-
-		AddChild( _unitInfoPanel );
+			return;
+		}
+		
+		_unitInfoPanel.Unit = unit;
+		_unitInfoPanel.Show();
 	}
 	
 	protected override int BuildHash()

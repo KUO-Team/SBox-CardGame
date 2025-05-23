@@ -22,7 +22,7 @@
 				var unitData = UnitDataList.GetById( unit.Id );
 				if ( unitData is not null )
 				{
-					<div class="unit" @( /*onclick="@( () => ShowInfo( unitData ) )"*/ )>
+					<div class="unit" onclick="@( () => ShowInfo( unitData ) )">
 						<img class="unit-portrait" src="@unitData.Sprite?.Portrait" alt="@unitData.Name"/>
 						<label class="unit-name">@unitData.Name</label>
 					</div>
@@ -36,5 +36,6 @@
 		<button onclick="@StartBattle">Start Battle</button>
 	</div>
 
+	<UnitInfoPanel class="hidden" @ref="_unitInfoPanel"></UnitInfoPanel>
 	<DeckbuildingPanel class="hidden" @ref="_deckbuildingPanel"></DeckbuildingPanel>
 </root>
