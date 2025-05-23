@@ -12,7 +12,7 @@
 <root>
 	@foreach ( var card in HandComponent.Hand )
 	{
-		<CardPanel class="@(SelectedCard == card ? "selected" : "")" Card="@card" onclick="@(() => SelectCard( card ))"></CardPanel>
+		<CardPanel Card="@card" class="@(SelectedCard == card ? "selected" : "") @(SelectedCards.Contains( card ) ? "selected" : "")" onclick="@(() => SelectCard( card ))"></CardPanel>
 		
 		if ( card.Keywords.Any() )
 		{
@@ -32,7 +32,7 @@
 		}
 	}
 	
-	@if ( IsInDiscardMode )
+	@if ( HandComponent.IsDiscardMode )
 	{
 		<div class="discard-mode">
 			<button onclick="@ConfirmDiscard">Discard</button>

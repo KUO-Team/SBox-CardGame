@@ -1,7 +1,6 @@
 ﻿using CardGame.Data;
 using CardGame.Effects;
 using CardGame.UI;
-using Sandbox.UI;
 
 namespace CardGame.Units;
 
@@ -24,79 +23,62 @@ public class HandComponent : Component, IOwnable
 
 	[Property]
 	public bool IsEmpty => Deck.Count == 0;
-	
+
 	[Property, ReadOnly]
 	public bool IsDiscardMode { get; private set; }
-	
+
 	public HandPanel? Panel { get; set; }
-	
+
 	public Card? DiscardModeActivator { get; set; }
 
-	private List<Card> _cards = [];
-	
 	public void EnterDiscardMode( Card activator )
 	{
 		if ( !BattleManager.Instance.IsValid() )
 		{
 			return;
 		}
-		
-		var bHud = BattleManager.Instance.Hud;
-		if ( !bHud.IsValid() )
-		{
-			return;
-		}
 
-		var t = bHud.Panel.ChildrenOfType<HandPanel>().FirstOrDefault();
-		if ( !t.IsValid() )
-		{
-			return;
-		}
-		
-		t.EnterDiscardMode();
-		
 		IsDiscardMode = true;
 		DiscardModeActivator = activator;
-		
+
 		HandPanel.OnCardSelected += OnCardSelected;
 		HandPanel.OnCardDeselected += OnCardDeselected;
 	}
 
 	private void OnCardSelected( Card card )
 	{
-		if ( _cards.Contains( card ) )
+		var selectedCards = HandPanel.SelectedCards;
+		if ( !selectedCards.Remove( card ) )
 		{
-			_cards.Remove( card );
-		}
-		else
-		{
-			_cards.Add( card );
+			selectedCards.Add( card );
 		}
 	}
 
 	private void OnCardDeselected( Card card )
 	{
-		if ( !_cards.Contains( card ) )
+		var selectedCards = HandPanel.SelectedCards;
+		if ( !selectedCards.Contains( card ) )
 		{
 			return;
 		}
-		
-		_cards.Remove( card );
+
+		selectedCards.Remove( card );
 	}
-	
+
 	public void ConfirmDiscard()
 	{
 		if ( !Owner.IsValid() )
 		{
 			return;
 		}
-		
+
 		if ( DiscardModeActivator is null )
 		{
 			return;
 		}
-		
-		foreach ( var card in _cards )
+
+		var selectedCards = HandPanel.SelectedCards;
+		foreach ( var card in selectedCards )
 		{
 			foreach ( var action in DiscardModeActivator.Actions )
 			{
@@ -104,12 +86,12 @@ public class HandComponent : Component, IOwnable
 				{
 					continue;
 				}
-				
+
 				var detail = new CardEffect.CardEffectDetail
 				{
 					Unit = Owner
 				};
-				
+
 				action.Effect?.OnDiscardModeCardDiscard( detail, card );
 			}
 
@@ -119,7 +101,7 @@ public class HandComponent : Component, IOwnable
 				{
 					Unit = Owner
 				};
-				
+
 				action.Effect?.OnDiscard( detail );
 			}
 
@@ -140,29 +122,20 @@ public class HandComponent : Component, IOwnable
 					relic.OnDiscardCard( card, Owner );
 				}
 			}
-			
+
 			Hand.Remove( card );
 			if ( card.Type != Card.CardType.Item )
 			{
 				Deck.Add( card );
 			}
 		}
-		
+
 		LeaveDiscardMode();
 	}
 
 	private void LeaveDiscardMode()
 	{
-		if ( BattleManager.Instance.IsValid() )
-		{
-			var hud = BattleManager.Instance.Hud;
-			if ( hud.IsValid() )
-			{
-				var handPanel = hud.Panel.ChildrenOfType<HandPanel>().FirstOrDefault();
-				handPanel?.LeaveDiscardMode();
-			}
-		}
-		
+		IsDiscardMode = false;
 		DiscardModeActivator = null;
 		HandPanel.OnCardSelected -= OnCardSelected;
 		HandPanel.OnCardDeselected -= OnCardDeselected;
@@ -277,7 +250,7 @@ public class HandComponent : Component, IOwnable
 		{
 			return;
 		}
-		
+
 		if ( !Hand.Contains( card ) )
 		{
 			return;

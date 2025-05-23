@@ -9,8 +9,10 @@ public partial class HandPanel
 {
 	[Parameter]
 	public HandComponent? HandComponent { get; set; }
-	
+
 	public static Card? SelectedCard { get; set; }
+
+	public static List<Card> SelectedCards { get; set; } = [];
 
 	public static event Action<Card>? OnCardSelected;
 	public static event Action<Card>? OnCardDeselected;
@@ -54,34 +56,39 @@ public partial class HandPanel
 
 	public void SelectCard( Card card )
 	{
+		if ( !HandComponent.IsValid() )
+		{
+			return;
+		}
+		
 		if ( SelectedCard is not null && SelectedCard == card )
 		{
 			OnCardDeselected?.Invoke( card );
-			SelectedCard = null;
+
+			if ( !HandComponent.IsDiscardMode )
+			{
+				SelectedCard = null;
+			}
 		}
 		else
 		{
 			OnCardSelected?.Invoke( card );
-			SelectedCard = card;
+			
+			if ( !HandComponent.IsDiscardMode )
+			{
+				SelectedCard = card;
+			}
 		}
-	}
-	
-	public bool IsInDiscardMode { get; set; }
-
-	public void EnterDiscardMode()
-	{
-		IsInDiscardMode = true;
-		this.Show();
-	}
-
-	public void LeaveDiscardMode()
-	{
-		IsInDiscardMode = false;
 	}
 
 	public void ConfirmDiscard()
 	{
-		HandComponent?.ConfirmDiscard();
+		if ( !HandComponent.IsValid() )
+		{
+			return;
+		}
+		
+		HandComponent.ConfirmDiscard();
 	}
 
 	private Card? _draggingCard;
@@ -376,6 +383,6 @@ public partial class HandPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( HandComponent, HandComponent?.Hand.Count, HandComponent?.Deck.Count, SelectedCard, IsInDiscardMode, InputComponent.SelectedSlot );
+		return HashCode.Combine( HandComponent, HandComponent?.IsDiscardMode, HandComponent?.Hand.Count, HandComponent?.Deck.Count, SelectedCard, InputComponent.SelectedSlot );
 	}
 }
