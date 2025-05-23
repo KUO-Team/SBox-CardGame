@@ -1,6 +1,6 @@
 ﻿using Sandbox.UI;
-using CardGame.Data;
 using Sandbox.Diagnostics;
+using CardGame.Data;
 
 namespace CardGame.UI;
 
