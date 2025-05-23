@@ -47,10 +47,10 @@ public sealed class ShopManager : Singleton<ShopManager>
 	public readonly Dictionary<CardPack.CardPackRarity, int> CardPackRarityCosts = new()
 	{
 		{
-			CardPack.CardPackRarity.Common, 10
+			CardPack.CardPackRarity.Common, 20
 		},
 		{
-			CardPack.CardPackRarity.Uncommon, 20
+			CardPack.CardPackRarity.Uncommon, 30
 		},
 		{
 			CardPack.CardPackRarity.Rare, 50
