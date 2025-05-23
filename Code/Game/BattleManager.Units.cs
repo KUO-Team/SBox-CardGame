@@ -23,7 +23,7 @@ public sealed partial class BattleManager
 			return null;
 		}
 
-		var gameObject = UnitPrefab.Clone();
+		var gameObject = !data.Prefab.IsValid() ? UnitPrefab.Clone() : data.Prefab.Clone();
 		if ( gameObject?.Components.TryGet( out BattleUnit unit ) != true )
 		{
 			Log.Warning( $"No unit component found; unable to set data!" );
