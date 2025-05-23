@@ -177,141 +177,61 @@
     ],
     "Children": [
       {
-        "__guid": "87188dd5-baaa-4085-a992-cc40689d1d12",
-        "Flags": 0,
-        "Name": "Card Slots",
-        "Position": "0,192,2",
-        "Rotation": "-0.4999999,-0.5000002,-0.5000001,0.4999998",
-        "Scale": "1,1.537953,1",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "Sandbox.ScreenPanel",
-            "__guid": "828489a5-e3e8-4f86-8afc-26d2ceccdb2d",
-            "AutoScreenScale": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Opacity": 1,
-            "Scale": 1,
-            "ScaleStrategy": "ConsistentHeight",
-            "TargetCamera": null,
-            "ZIndex": 90
-          },
-          {
-            "__type": "CardGame.UI.CardSlotsPanel",
-            "__guid": "02d9f856-63dd-4224-b2b1-fb91b38730cf",
-            "AnchorObject": {
-              "_type": "gameobject",
-              "go": "c1c8084b-e4b7-46eb-9820-8f8a43091360"
-            },
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Slots": {
-              "_type": "component",
-              "component_id": "7532429f-f4f5-4fb7-8933-11f5c69cc650",
-              "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-              "component_type": "CardSlotList"
-            }
-          }
-        ],
-        "Children": []
-      },
-      {
-        "__guid": "168c45a5-e577-4bab-90c4-abc241b1d7bf",
-        "Flags": 0,
-        "Name": "Info",
-        "Position": "0,-96,2",
-        "Rotation": "-0.4999999,-0.5000002,-0.5000001,0.4999998",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "Sandbox.ScreenPanel",
-            "__guid": "be38b51d-c7de-4cff-910e-bf9b5acdb376",
-            "AutoScreenScale": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Opacity": 1,
-            "Scale": 1,
-            "ScaleStrategy": "ConsistentHeight",
-            "TargetCamera": null,
-            "ZIndex": 90
-          },
-          {
-            "__type": "CardGame.UI.UnitBattleInfoPanel",
-            "__guid": "88c224e2-af3b-42fa-860a-497b5fec1341",
-            "AnchorObject": {
-              "_type": "gameobject",
-              "go": "bd53691b-a071-4ece-8f6d-db91b8463b99"
-            },
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Unit": {
-              "_type": "component",
-              "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
-              "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-              "component_type": "BattleUnit"
-            }
-          }
-        ],
-        "Children": []
-      },
-      {
-        "__guid": "9f21b370-9829-422e-bb08-77158fbb9542",
-        "Flags": 0,
-        "Name": "World",
-        "Position": "0.000001907349,62.73776,22.25258",
-        "Rotation": "-0.4304593,-0.4304595,-0.5609857,0.5609853",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "Sandbox.WorldPanel",
-            "__guid": "90306fa3-faee-4c33-b8d2-40b0797f4078",
-            "HorizontalAlign": "Center",
-            "InteractionRange": 1000,
-            "LookAtCamera": false,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "PanelSize": "2500,2000",
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": false,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "RenderScale": 1,
-            "VerticalAlign": "Center"
-          }
-        ],
-        "Children": []
-      },
-      {
         "__guid": "bd53691b-a071-4ece-8f6d-db91b8463b99",
         "Flags": 0,
         "Name": "InfoAnchor",
         "Position": "0,-96,25.05679",
         "Enabled": true,
         "Components": [],
-        "Children": []
+        "Children": [
+          {
+            "__guid": "168c45a5-e577-4bab-90c4-abc241b1d7bf",
+            "Flags": 0,
+            "Name": "Info",
+            "Position": "0,0,-23.05679",
+            "Rotation": "-0.4999999,-0.5000002,-0.5000001,0.4999998",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.ScreenPanel",
+                "__guid": "be38b51d-c7de-4cff-910e-bf9b5acdb376",
+                "AutoScreenScale": true,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Opacity": 1,
+                "Scale": 1,
+                "ScaleStrategy": "ConsistentHeight",
+                "TargetCamera": null,
+                "ZIndex": 90
+              },
+              {
+                "__type": "CardGame.UI.UnitBattleInfoPanel",
+                "__guid": "88c224e2-af3b-42fa-860a-497b5fec1341",
+                "AnchorObject": {
+                  "_type": "gameobject",
+                  "go": "bd53691b-a071-4ece-8f6d-db91b8463b99"
+                },
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Unit": {
+                  "_type": "component",
+                  "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+                  "go": "b9f07845-27d0-411c-a688-d488479ede8a",
+                  "component_type": "BattleUnit"
+                }
+              }
+            ],
+            "Children": []
+          }
+        ]
       },
       {
         "__guid": "c1c8084b-e4b7-46eb-9820-8f8a43091360",
@@ -320,7 +240,56 @@
         "Position": "0,155.1532,25.05679",
         "Enabled": true,
         "Components": [],
-        "Children": []
+        "Children": [
+          {
+            "__guid": "87188dd5-baaa-4085-a992-cc40689d1d12",
+            "Flags": 0,
+            "Name": "Card Slots",
+            "Position": "0,36.8468,-23.05679",
+            "Rotation": "-0.4999999,-0.5000002,-0.5000001,0.4999998",
+            "Scale": "1,1.537953,1",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.ScreenPanel",
+                "__guid": "828489a5-e3e8-4f86-8afc-26d2ceccdb2d",
+                "AutoScreenScale": true,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Opacity": 1,
+                "Scale": 1,
+                "ScaleStrategy": "ConsistentHeight",
+                "TargetCamera": null,
+                "ZIndex": 90
+              },
+              {
+                "__type": "CardGame.UI.CardSlotsPanel",
+                "__guid": "02d9f856-63dd-4224-b2b1-fb91b38730cf",
+                "AnchorObject": {
+                  "_type": "gameobject",
+                  "go": "c1c8084b-e4b7-46eb-9820-8f8a43091360"
+                },
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Slots": {
+                  "_type": "component",
+                  "component_id": "7532429f-f4f5-4fb7-8933-11f5c69cc650",
+                  "go": "b9f07845-27d0-411c-a688-d488479ede8a",
+                  "component_type": "CardSlotList"
+                }
+              }
+            ],
+            "Children": []
+          }
+        ]
       },
       {
         "__guid": "ba972956-5746-4afe-8fee-9fd4c2b257a0",
@@ -361,7 +330,7 @@
       {
         "__guid": "1f93b223-27f9-41f8-a817-a5bf05714168",
         "Flags": 0,
-        "Name": "TargettingArrows",
+        "Name": "TargetingArrows",
         "Enabled": true,
         "Components": [
           {
