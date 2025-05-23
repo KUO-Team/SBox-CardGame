@@ -25,8 +25,10 @@ public class HandComponent : Component, IOwnable
 	[Property]
 	public bool IsEmpty => Deck.Count == 0;
 	
-	[Property]
-	public bool IsDiscardMode { get; set; }
+	[Property, ReadOnly]
+	public bool IsDiscardMode { get; private set; }
+	
+	public HandPanel? Panel { get; set; }
 	
 	public Card? DiscardModeActivator { get; set; }
 

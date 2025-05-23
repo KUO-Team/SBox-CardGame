@@ -7,13 +7,35 @@ namespace CardGame.UI;
 
 public partial class HandPanel
 {
+	[Parameter]
+	public HandComponent? HandComponent { get; set; }
+	
 	public static Card? SelectedCard { get; set; }
 
 	public static event Action<Card>? OnCardSelected;
 	public static event Action<Card>? OnCardDeselected;
+	
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		if ( !firstTime )
+		{
+			return;
+		}
 
-	private static BattleUnit? ActiveUnit => BattleUnit.ActiveUnit;
-	private static HandComponent? HandComponent => ActiveUnit?.HandComponent;
+		// Initial build of hand
+		//RebuildHand();
+		base.OnAfterTreeRender( firstTime );
+	}
+
+	protected override void OnParametersSet()
+	{
+		if ( HandComponent.IsValid() )
+		{
+			HandComponent.Panel = this;
+		}
+		
+		base.OnParametersSet();
+	}
 
 	public override void OnDeleted()
 	{
@@ -354,24 +376,6 @@ public partial class HandPanel
 
 	protected override int BuildHash()
 	{
-		var handCount = 0;
-		if ( HandComponent?.Hand is not null )
-		{
-			handCount = HandComponent.Hand.Count;
-		}
-
-		return HashCode.Combine( ActiveUnit, handCount, SelectedCard, InputComponent.SelectedSlot, IsInDiscardMode );
-	}
-
-	protected override void OnAfterTreeRender( bool firstTime )
-	{
-		if ( !firstTime )
-		{
-			return;
-		}
-
-		// Initial build of hand
-		RebuildHand();
-		base.OnAfterTreeRender( firstTime );
+		return HashCode.Combine( HandComponent, HandComponent?.Hand.Count, HandComponent?.Deck.Count, SelectedCard, IsInDiscardMode, InputComponent.SelectedSlot );
 	}
 }
