@@ -1,0 +1,22 @@
+﻿PassiveAbilityPanel {
+  width: 100%;
+  color: white;
+  padding: 6px;
+  border: 1px solid white;
+  flex-direction: column;
+  font-family: "Pixel Operator";
+
+  .passive-name {
+    font-size: 30px;
+    font-weight: 600;
+    text-stroke: 1px black;
+    text-shadow: 0 2px 2px black;
+    border-bottom: 1px white;
+    padding: 2px;
+  }
+
+  .passive-description {
+    font-size: 26px;
+    padding: 2px;
+  }
+}

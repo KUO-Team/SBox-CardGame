@@ -1,0 +1,14 @@
+﻿@using Sandbox.UI
+
+@inherits Panel
+@namespace CardGame.UI
+
+@if ( Passive is null )
+{
+	return;
+}
+
+<root>
+	<label class="passive-name">@Passive.Name</label>
+	<label class="passive-description">@Passive.Description</label>
+</root>
