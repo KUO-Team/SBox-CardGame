@@ -7,20 +7,7 @@ namespace CardGame;
 public sealed class MapManager : Singleton<MapManager>
 {
 	[Property]
-	public int Seed
-	{
-		get
-		{
-			return _seed;
-		}
-		set
-		{
-			_seed = value;
-			Log.Info( $"Set seed to: {value}" );
-		}
-	}
-
-	private int _seed;
+	public int Seed { get; set; }
 
 	/// <summary>
 	/// The position we were last on the map.
@@ -124,6 +111,6 @@ public sealed class MapManager : Singleton<MapManager>
 			}
 		}
 
-		Log.Info( $"New floor generated with seed: {_seed}" );
+		Log.Info( $"New floor generated with seed: {Seed}" );
 	}
 }
