@@ -558,7 +558,7 @@ public partial class ShopPanel
 
 	public void CompleteTradeIn()
 	{
-		if ( !CanCompleteTrade() || !SaveManager.IsValid() || !RelicManager.IsValid() )
+		if ( !CanCompleteTrade() || !SaveManager.IsValid() || !RelicManager.IsValid() || !ShopManager.IsValid() )
 		{
 			return;
 		}
@@ -580,7 +580,6 @@ public partial class ShopPanel
 
 		// Take only the required amount of relics
 		var relicsToRemove = _selectedRelicsForTradeIn.Take( requiredAmount ).ToList();
-
 		// Remove the traded-in relics
 		foreach ( var relicId in relicsToRemove )
 		{
@@ -598,6 +597,51 @@ public partial class ShopPanel
 				var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == SaveManager.ActiveRunData.Index );
 				run?.Relics.Remove( relicId );
 				PlayerData.Save();
+			}
+		}
+		
+		// Check for a valid custom trade recipe
+		Id? specificRelicId = null;
+
+		foreach ( var trade in ShopManager.Trades )
+		{
+			if ( trade.Relics.Count != relicsToRemove.Count )
+			{
+				continue;
+			}
+
+			// Check if the selected relics match this trade (order doesn't matter)
+			if ( trade.Relics.Except( relicsToRemove ).Any() || relicsToRemove.Except( trade.Relics ).Any() )
+			{
+				continue;
+			}
+			
+			specificRelicId = trade.Output;
+			break;
+		}
+
+		if ( specificRelicId is not null )
+		{
+			// Grant specific relic from trade
+			var newRelic = RelicDataList.All.FirstOrDefault( r => r.Id.Equals( specificRelicId ) );
+			if ( newRelic is not null )
+			{
+				if ( SaveManager.ActiveRunData is not null )
+				{
+					SaveManager.ActiveRunData.Relics.Add( newRelic.Id );
+					var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == SaveManager.ActiveRunData.Index );
+					run?.Relics.Add( newRelic.Id );
+					PlayerData.Save();
+				}
+
+				PlayerData.Data.SeeRelic( newRelic.Id );
+				RelicManager.AddRelic( newRelic );
+				LastPurchasedItem = newRelic;
+
+				Log.Info( $"Traded in specific relic combo for: {newRelic.Name}" );
+				_selectedRelicsForTradeIn.Clear();
+				HideTradeMenu();
+				return;
 			}
 		}
 

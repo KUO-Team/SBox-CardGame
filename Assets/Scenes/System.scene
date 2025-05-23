@@ -54,7 +54,8 @@
               "Xp": 0,
               "Deck": []
             },
-            "Allies": [],
+            "Cards": [],
+            "CardPacks": [],
             "Relics": [],
             "Date": "2025-04-26T17:23:57.4456675+03:00"
           },
@@ -105,7 +106,25 @@
           "Relics": [],
           "RerollCost": 5,
           "RerollKeywordCost": 15,
-          "RerollTypeCost": 15
+          "RerollTypeCost": 15,
+          "Trades": [
+            {
+              "Relics": [
+                {
+                  "Source": "",
+                  "LocalId": 101
+                },
+                {
+                  "Source": "",
+                  "LocalId": 102
+                }
+              ],
+              "Output": {
+                "Source": "",
+                "LocalId": 500
+              }
+            }
+          ]
         }
       ],
       "Children": [

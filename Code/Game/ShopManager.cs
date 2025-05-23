@@ -27,6 +27,9 @@ public sealed class ShopManager : Singleton<ShopManager>
 
 	[Property]
 	public int RelicAmount { get; set; } = 4;
+
+	[Property, InlineEditor]
+	public List<Trade> Trades { get; set; } = [];
 	
 	public readonly Dictionary<CardPack.CardPackRarity, double> CardPackRarityChances = new()
 	{
@@ -136,4 +139,11 @@ public class ShopItem
 		Cost = cost;
 		Relic = relic;
 	}
+}
+
+public class Trade
+{
+	public List<Id> Relics { get; set; } = [];
+	
+	public Id? Output { get; set; }
 }

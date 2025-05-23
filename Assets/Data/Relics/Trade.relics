@@ -1,0 +1,20 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 500
+      },
+      "Icon": "",
+      "Name": "Masquerade",
+      "Description": "At the start of the turn, halve all status ailments on self. Gain either 1 Power Up or 1 Protection randomly.",
+      "Flavor": [],
+      "Keywords": "Protection,Power Up",
+      "Rarity": "Epic",
+      "Availabilities": "Trade",
+      "Script": "Masquerade"
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

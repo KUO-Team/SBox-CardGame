@@ -24,7 +24,7 @@ public class Relic : IResource, IDeepCopyable<Relic>
 	public RelicAvailabilities Availabilities { get; set; } = RelicAvailabilities.None;
 
 	public string Script { get; set; } = string.Empty;
-	
+
 	[Hide, JsonIgnore]
 	public bool IsAvailable
 	{
@@ -34,13 +34,18 @@ public class Relic : IResource, IDeepCopyable<Relic>
 			{
 				return true;
 			}
-		
+
 			if ( Availabilities.HasFlag( RelicAvailabilities.Shop ) )
 			{
 				return true;
 			}
-		
+
 			if ( Availabilities.HasFlag( RelicAvailabilities.Event ) )
+			{
+				return true;
+			}
+
+			if ( Availabilities.HasFlag( RelicAvailabilities.Trade ) )
 			{
 				return true;
 			}
@@ -48,7 +53,7 @@ public class Relic : IResource, IDeepCopyable<Relic>
 			return false;
 		}
 	}
-	
+
 	public Relic DeepCopy()
 	{
 		return new Relic()
@@ -90,7 +95,9 @@ public class Relic : IResource, IDeepCopyable<Relic>
 		Chest = 1 << 3,
 		[Description( "Granted in special events" )]
 		Event = 1 << 4,
+		[Description( "Traded for" )]
+		Trade = 1 << 5,
 		[Description( "Only available in dev builds/testing" )]
-		DevOnly = 1 << 5,
+		DevOnly = 1 << 6,
 	}
 }
