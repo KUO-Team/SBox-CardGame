@@ -11,7 +11,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -40,7 +39,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",
@@ -69,7 +67,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -98,7 +95,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",

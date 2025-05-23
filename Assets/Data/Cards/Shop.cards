@@ -11,7 +11,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -40,7 +39,6 @@
         "Mp": 0
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -77,7 +75,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -106,7 +103,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -143,7 +139,6 @@
         "Mp": 3
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -180,7 +175,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 3,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -209,7 +203,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -238,7 +231,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -275,7 +267,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",
@@ -312,7 +303,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -341,7 +331,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -378,7 +367,6 @@
         "Mp": 1
       },
       "IsInstant": true,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -407,7 +395,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -436,7 +423,6 @@
         "Mp": 1
       },
       "IsInstant": true,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -465,7 +451,6 @@
         "Mp": 2
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",
@@ -494,7 +479,6 @@
         "Mp": 2
       },
       "IsInstant": true,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -523,7 +507,6 @@
         "Mp": 1
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -560,7 +543,6 @@
         "Mp": 2
       },
       "IsInstant": true,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
@@ -578,7 +560,7 @@
         }
       ]
     },
-        {
+    {
       "Id": {
         "Source": "",
         "LocalId": 71
@@ -589,7 +571,6 @@
         "Mp": 3
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Attack",
@@ -615,7 +596,7 @@
         }
       ]
     },
-        {
+    {
       "Id": {
         "Source": "",
         "LocalId": 72
@@ -626,7 +607,6 @@
         "Mp": 3
       },
       "IsInstant": false,
-      "IsIndiscriminate": false,
       "Targets": 5,
       "Targeting": "Enemy",
       "Type": "Attack",
