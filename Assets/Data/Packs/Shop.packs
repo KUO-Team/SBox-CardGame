@@ -24,7 +24,27 @@
         },
         {
           "Source": "",
-          "LocalId": 3
+          "LocalId": 51
+        },
+        {
+          "Source": "",
+          "LocalId": 54
+        },
+        {
+          "Source": "",
+          "LocalId": 55
+        },
+        {
+          "Source": "",
+          "LocalId": 62
+        },
+        {
+          "Source": "",
+          "LocalId": 57
+        },
+        {
+          "Source": "",
+          "LocalId": 67
         }
       ]
     },
@@ -161,66 +181,6 @@
         {
           "Source": "",
           "LocalId": 72
-        }
-      ]
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 6
-      },
-      "Name": "Brawler’s Bundle",
-      "Rarity": "Common",
-      "Availabilities": "Shop",
-      "Keywords": "",
-      "Cards": [
-        {
-          "Source": "",
-          "LocalId": 51
-        },
-        {
-          "Source": "",
-          "LocalId": 57
-        },
-        {
-          "Source": "",
-          "LocalId": 67
-        }
-      ]
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 7
-      },
-      "Name": "Tactician’s Toolbox",
-      "Rarity": "Uncommon",
-      "Availabilities": "Shop",
-      "Keywords": "",
-      "Cards": [
-        {
-          "Source": "",
-          "LocalId": 54
-        }
-      ]
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 8
-      },
-      "Name": "Arcane Onslaught",
-      "Rarity": "Rare",
-      "Availabilities": "Shop",
-      "Keywords": "",
-      "Cards": [
-        {
-          "Source": "",
-          "LocalId": 55
-        },
-        {
-          "Source": "",
-          "LocalId": 62
         }
       ]
     }
