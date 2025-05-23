@@ -16,34 +16,37 @@
 		if ( relic is not null )
 		{
 			<div class="reward" onclick="@( () => ClaimReward( RewardType.Relic ) )">
-				<label>@relic.Name</label>
+				<label class="relic-name">@relic.Name</label>
 			</div>
 		}
 	}
+	
 	@foreach ( var cardId in Rewards.Cards )
 	{
 		var card = CardDataList.GetById( cardId );
 		if ( card is not null )
 		{
 			<div class="reward" onclick="@( () => ClaimReward( RewardType.Card ) )">
-				<label>@card.Name</label>
+				<label class="card-name">@card.Name</label>
 			</div>
 		}
 	}
+	
 	@foreach ( var cardPackId in Rewards.CardPacks )
 	{
 		var cardPack = CardPackDataList.GetById( cardPackId );
 		if ( cardPack is not null )
 		{
 			<div class="reward" onclick="@( () => ClaimReward( RewardType.CardPack ) )">
-				<label>@cardPack.Name</label>
+				<label class="pack-name">@cardPack.Name</label>
 			</div>
 		}
 	}
+	
 	@if ( Rewards.Money > 0 )
 	{
 		<div class="reward" onclick="@( () => ClaimReward( RewardType.Money ) )">
-			<label>@Rewards.Money</label>
+			<label class="money">@Rewards.Money</label>
 		</div>
 	}
 </root>
