@@ -45,6 +45,7 @@ public sealed class CardSlot : Component, IOwnable
 
 	protected override void OnStart()
 	{
+		SetRandomSpeed();
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnTurnStart += OnTurnStart;
