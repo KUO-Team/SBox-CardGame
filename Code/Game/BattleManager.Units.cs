@@ -109,6 +109,7 @@ public sealed partial class BattleManager
 			if ( unit.HealthComponent.IsValid() )
 			{
 				unit.HealthComponent.Health = Player.Local.Unit.Hp;
+				unit.HealthComponent.MaxHealth = Player.Local.Unit.MaxHp;
 			}
 
 			Player.Local.Units.Add( unit );
