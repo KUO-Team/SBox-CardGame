@@ -48,6 +48,7 @@ public class Battle : IResource, IDeepCopyable<Battle>
 		[HideIf( nameof( UseFloorLevelScaling ), true )]
 		public int Level { get; set; } = 1;
 
+		[InlineEditor]
 		public Id Id { get; set; } = Id.Invalid;
 	}
 }

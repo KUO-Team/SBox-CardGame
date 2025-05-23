@@ -79,10 +79,10 @@ public sealed class ShopManager : Singleton<ShopManager>
 	public readonly Dictionary<Relic.RelicRarity, int> RelicRarityCosts = new()
 	{
 		{
-			Relic.RelicRarity.Common, 40
+			Relic.RelicRarity.Common, 50
 		},
 		{
-			Relic.RelicRarity.Uncommon, 60
+			Relic.RelicRarity.Uncommon, 75
 		},
 		{
 			Relic.RelicRarity.Rare, 100
@@ -92,7 +92,7 @@ public sealed class ShopManager : Singleton<ShopManager>
 		}
 	};
 	
-	public readonly List<string> Keywords = ["Bleed", "Burn", "Discard", "Singleton", "Enchanted"];
+	public readonly List<string> Keywords = ["Discard", "Enchanted"];
 
 	public bool CanBuyItem( ShopItem item )
 	{
