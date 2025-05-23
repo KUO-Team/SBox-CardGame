@@ -9,13 +9,13 @@ namespace CardGame.Units;
 /// </summary>
 public partial class BattleUnit : BaseCharacter
 {
-	[Property] 
+	[Property]
 	public string Name => GameObject.Name;
 
-	[Property] 
+	[Property]
 	public int Level { get; set; } = 1;
 
-	[Property] 
+	[Property]
 	public Faction Faction { get; set; } = Faction.Enemy;
 
 	[Property, RequireComponent, Category( "Components" )]
@@ -48,7 +48,7 @@ public partial class BattleUnit : BaseCharacter
 	public static BattleUnit? ActiveUnit { get; set; }
 
 	private static readonly Logger Log = new( "BattleUnit" );
-	
+
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -83,12 +83,12 @@ public partial class BattleUnit : BaseCharacter
 		{
 			ActiveUnit = null;
 		}
-		
+
 		if ( HealthComponent.IsValid() )
 		{
 			HealthComponent.OnDied -= Die;
 		}
-		
+
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnTurnStart -= OnTurnStart;
@@ -106,12 +106,12 @@ public partial class BattleUnit : BaseCharacter
 	{
 		Energy = Math.Max( 0, Energy - amount );
 	}
-	
+
 	public void RecoverMana( int amount )
 	{
 		Mana = Math.Min( MaxMana, Mana + amount );
 	}
-	
+
 	public void SpendMana( int amount )
 	{
 		Mana = Math.Max( 0, Mana - amount );
@@ -123,7 +123,7 @@ public partial class BattleUnit : BaseCharacter
 		{
 			return;
 		}
-		
+
 		foreach ( var card in HandComponent.Hand )
 		{
 			card.Modifiers.TickDurations();
@@ -172,7 +172,7 @@ public partial class BattleUnit : BaseCharacter
 		{
 			return;
 		}
-		
+
 		var oppositeFaction = Faction == Faction.Player ? Faction.Enemy : Faction.Player;
 		BattleManager.Instance?.EndBattle( oppositeFaction );
 
@@ -180,11 +180,21 @@ public partial class BattleUnit : BaseCharacter
 		{
 			GameManager.Instance?.EndRunInLoss();
 		}
-		return;
+	}
 
-		bool HasAnimation( string name )
+	private bool HasAnimation( string name )
+	{
+		if ( !SpriteComponent.IsValid() )
 		{
-			return SpriteComponent.Sprite.GetAnimation( name ) is not null;
+			return false;
 		}
+
+		if ( !SpriteComponent.Sprite.IsValid() )
+		{
+			return false;
+		}
+
+		var animation = SpriteComponent.Sprite.GetAnimation( name );
+		return animation is not null;
 	}
 }
