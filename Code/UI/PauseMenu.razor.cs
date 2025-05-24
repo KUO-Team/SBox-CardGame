@@ -42,6 +42,6 @@ public partial class PauseMenu
 		BattleManager.Instance?.UnloadBattleScript();
 		SaveManager?.ClearActiveRun();
 
-		Scene.Load( SceneManager.MenuScene );
+		SceneManager.LoadScene( SceneManager.Scenes.Menu );
 	}
 }

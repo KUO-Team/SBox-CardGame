@@ -29,11 +29,6 @@ public partial class MainMenu
 			return;
 		}
 
-		if ( !SceneManager.IsValid() )
-		{
-			return;
-		}
-
 		if ( !SaveManager.IsValid() )
 		{
 			return;
@@ -92,11 +87,7 @@ public partial class MainMenu
 		
 		Log.Info( $"Starting new run" );
 		Sandbox.Services.Stats.Increment( "runs", 1 );
-
-		if ( SceneManager.IsValid() )
-		{
-			Scene.Load( SceneManager.MapScene );
-		}
+		SceneManager?.LoadScene( SceneManager.Scenes.Map );
 	}
 
 	public static void Tutorial()

@@ -164,7 +164,6 @@ public sealed class GameManager : Singleton<GameManager>
 				Platform.Achievement.Floor1.Unlock();
 				break;
 			case 0:
-				Platform.Achievement.Floor0.Unlock();
 				break;
 		}
 
@@ -206,6 +205,8 @@ public sealed class GameManager : Singleton<GameManager>
 	public void EndRunInWin()
 	{
 		Stats.Increment( "game-over-win", 1 );
+		Platform.Achievement.Floor0.Unlock();
+		SceneManager?.LoadScene( SceneManager.Scenes.Menu );
 	}
 }
 

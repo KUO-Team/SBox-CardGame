@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Sandbox.Audio;
 using Sandbox.Diagnostics;
 using CardGame.Data;
-using CardGame.Scripts;
 using CardGame.UI;
 
 namespace CardGame;
@@ -73,10 +72,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 	{
 		if ( SceneManager.IsValid() )
 		{
-			if ( SceneManager.BattleScene.IsValid() )
-			{
-				Scene.Load( SceneManager.BattleScene );
-			}
+			SceneManager.LoadScene( SceneManager.Scenes.Battle );
 		}
 
 		Battle = battle;
