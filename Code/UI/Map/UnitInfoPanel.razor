@@ -4,45 +4,51 @@
 @inherits Panel
 @namespace CardGame.UI
 
+@{
+	var unit = GetUnitData();
+}
+
 <root>
 	<div class="main">
-		@if ( Unit is not null )
+		@if ( BattleUnit is not null )
 		{
 			<div class="unit-stats">
-				<div class="row">
-					<label class="unit-name">@( Unit.Name )</label>
-					<label class="unit-level">Lv.@( Unit.Level )</label>
-				</div>
+				@if ( unit is not null )
+				{
+					<div class="row">
+						<label class="unit-name">@( unit.Name )</label>
+						<label class="unit-level">Lv.@( BattleUnit.BaseLevel )</label>
+					</div>
 
-				<div class="health-bar">
-					<div class="inner-bar" style="width: @( Unit.Hp / Unit.Hp * 100 )%"></div>
-				</div>
+					<div class="health-bar">
+						<div class="inner-bar" style="width: @( unit.Hp / unit.Hp * 100 )%"></div>
+					</div>
 
-				<div class="mana-bar">
-					<div class="inner-bar" style="width: @( Unit.Mp / Unit.Mp * 100 )%"></div>
-				</div>
+					<div class="mana-bar">
+						<div class="inner-bar" style="width: @( unit.Mp / unit.Mp * 100 )%"></div>
+					</div>
 
-				<div class="row">
-					<label class="health">@( Unit.Hp )/@( Unit.Hp )</label>
-					<label class="mana">@( Unit.Mp )/@( Unit.Mp )</label>
-				</div>
+					<div class="row">
+						<label class="health">@( unit.Hp )/@( unit.Hp )</label>
+						<label class="mana">@( unit.Mp )/@( unit.Mp )</label>
+					</div>
+				}
 			</div>
 		}
 
-		@if ( Unit is not null )
+		@if ( unit is not null )
 		{
 			<div class="tab-selection">
-				<button class="@( Unit.Deck.Any() ? "" : "disabled" ) @( SelectedTab?.Id == "deck" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "deck" ) )">Deck</button>
-				<button class="@( Unit.Passives.Any() ? "" : "disabled" ) @( SelectedTab?.Id == "passives" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "passives" ) )">Passives</button>
+				<button class="@( unit.Deck.Any() ? "" : "disabled" ) @( SelectedTab?.Id == "deck" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "deck" ) )">Deck</button>
+				<button class="@( unit.Passives.Any() ? "" : "disabled" ) @( SelectedTab?.Id == "passives" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "passives" ) )">Passives</button>
 			</div>
 		}
 
-		<div class="tabs" @ref=" _tabContainer">
+		<div class="tabs" @ref="_tabContainer">
 			<div class="tab unit-deck hidden" id="deck">
-
-				@if ( Unit is not null )
+				@if ( unit is not null )
 				{
-					foreach ( var cardId in Unit.Deck )
+					foreach ( var cardId in unit.Deck )
 					{
 						var card = CardDataList.GetById( cardId );
 						if ( card is not null )
@@ -54,9 +60,9 @@
 			</div>
 
 			<div class="tab unit-passives hidden" id="passives">
-				@if ( Unit is not null )
+				@if ( unit is not null )
 				{
-					foreach ( var passiveId in Unit.Passives )
+					foreach ( var passiveId in unit.Passives )
 					{
 						var passive = PassiveAbilityDataList.GetById( passiveId );
 						if ( passive is not null )

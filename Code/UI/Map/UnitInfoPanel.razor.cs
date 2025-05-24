@@ -7,11 +7,22 @@ namespace CardGame.UI;
 public partial class UnitInfoPanel
 {
 	[Parameter]
-	public Unit? Unit { get; set; }
-		
+	public Battle.BattleUnit? BattleUnit { get; set; }
+	
 	public Panel? SelectedTab { get; private set; }
 
 	private Panel? _tabContainer;
+
+	private Unit? GetUnitData()
+	{
+		if ( BattleUnit is null )
+		{
+			return null;
+		}
+		
+		var unit = UnitDataList.GetById( BattleUnit.Id );
+		return unit;
+	}
 
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
@@ -78,6 +89,6 @@ public partial class UnitInfoPanel
 	
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Unit, SelectedTab );
+		return HashCode.Combine( BattleUnit, SelectedTab );
 	}
 }

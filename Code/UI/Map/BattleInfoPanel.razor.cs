@@ -39,14 +39,14 @@ public partial class BattleInfoPanel
 	
 	private UnitInfoPanel? _unitInfoPanel;
 	
-	public void ShowInfo( Unit unit )
+	public void ShowInfo( Battle.BattleUnit unit )
 	{
 		if ( !_unitInfoPanel.IsValid() )
 		{
 			return;
 		}
 		
-		_unitInfoPanel.Unit = unit;
+		_unitInfoPanel.BattleUnit = unit;
 		_unitInfoPanel.Show();
 	}
 	
