@@ -97,7 +97,6 @@ public class Player : Component
 		target.Deck = copy.Deck;
 		target.Hp = copy.Hp;
 		target.MaxHp = copy.Hp;
-		target.Level = copy.Level;
 		target.Xp = 0;
 	}
 }

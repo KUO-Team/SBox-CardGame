@@ -14,8 +14,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 	
 	public GameObject? Prefab { get; set; }
 
-	public int Level { get; set; } = 1;
-
 	public int Hp { get; set; }
 	
 	public int Ep { get; set; }
@@ -45,7 +43,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 			Description = Description,
 			Sprite = Sprite,
 			Prefab = Prefab,
-			Level = Level,
 			Hp = Hp,
 			Ep = Ep,
 			Mp = Mp,
