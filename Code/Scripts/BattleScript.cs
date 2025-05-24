@@ -1,9 +1,12 @@
 ﻿using CardGame.Data;
+using Sandbox.Diagnostics;
 
 namespace CardGame.Scripts;
 
 public abstract class BattleScript
 {
+	protected static Logger Log { get; set; } = new( "BattleScript" );
+
 	public virtual void OnLoad()
 	{
 		if ( BattleManager.Instance.IsValid() )
