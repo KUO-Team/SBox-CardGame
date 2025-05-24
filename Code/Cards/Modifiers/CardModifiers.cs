@@ -11,6 +11,11 @@ public sealed class CardModifiers
 
 	public void TickDurations()
 	{
+		foreach ( var modifier in _modifiers )
+		{
+			modifier.Tick();
+		}
+		
 		foreach ( var mod in _modifiers.ToList().Where( mod => mod.IsExpired ) )
 		{
 			_modifiers.Remove( mod );
@@ -41,4 +46,6 @@ public sealed class CardModifiers
 public interface ICardModifier
 {
 	bool IsExpired { get; }
+	
+	void Tick();
 }
