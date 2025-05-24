@@ -25,22 +25,15 @@ public sealed class SceneManager : Singleton<SceneManager>, ISceneLoadingEvents
 		OnSceneLoaded?.Invoke( scene );
 	}
 
-	public void LoadScene( Scenes scene )
+	public bool LoadScene( Scenes scene )
 	{
-		switch ( scene )
+		return scene switch
 		{
-			case Scenes.Menu:
-				Scene.Load( MenuScene );
-				break;
-			case Scenes.Map:
-				Scene.Load( MapScene );
-				break;
-			case Scenes.Battle:
-				Scene.Load( BattleScene );
-				break;
-			default:
-				throw new ArgumentOutOfRangeException( nameof( scene ), scene, null );
-		}
+			Scenes.Menu => Scene.Load( MenuScene ),
+			Scenes.Map => Scene.Load( MapScene ),
+			Scenes.Battle => Scene.Load( BattleScene ),
+			_ => throw new ArgumentOutOfRangeException( nameof( scene ), scene, null )
+		};
 	}
 
 	public enum Scenes
