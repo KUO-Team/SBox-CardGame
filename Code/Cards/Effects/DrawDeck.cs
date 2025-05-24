@@ -15,6 +15,7 @@ public class DrawDeck( Card card ) : CardEffect( card )
 		{
 			detail.Unit.HandComponent.Draw( card, true );
 		}
+		
 		base.OnPlay( detail );
 	}
 }
