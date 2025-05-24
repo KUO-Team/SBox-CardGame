@@ -61,7 +61,7 @@ public class HealthComponent : Component
 						continue;
 					}
 
-					passive.OnTakeDamage( attacker );
+					passive.OnTakeDamage( damage, attacker );
 				}
 			}
 
@@ -72,7 +72,7 @@ public class HealthComponent : Component
 				{
 					foreach ( var passive in attackerPassives )
 					{
-						passive.OnDealDamage( owner );
+						passive.OnDealDamage( damage, owner );
 					}
 				}
 			}
@@ -122,7 +122,7 @@ public class HealthComponent : Component
 						continue;
 					}
 
-					passive.OnTakeDamage( attacker );
+					passive.OnTakeDamage( damage, attacker );
 				}
 			}
 
@@ -133,7 +133,7 @@ public class HealthComponent : Component
 				{
 					foreach ( var passive in attackerPassives )
 					{
-						passive.OnDealDamage( owner );
+						passive.OnDealDamage( damage, owner );
 					}
 				}
 			}
