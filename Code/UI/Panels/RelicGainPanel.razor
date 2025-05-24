@@ -11,10 +11,20 @@
 <root>
 	<div class="main">
 		<h1>Relic Obtained</h1>
+		
 		<div class="relic-info">
-			<img class="relic-icon" src="@Relic.Icon"/>
-			<label class="relic-name">@Relic.Name</label>
+			@if ( !string.IsNullOrEmpty( Relic.Icon ) )
+			{
+				<img class="relic-icon" src="@Relic.Icon" alt="Relic Icon"/>
+			}
+			
+			<div class="row">
+				<label class="relic-name">@Relic.Name</label>
+				<label class="relic-rarity">@Relic.Rarity</label>
+			</div>
+			
 			<label class="relic-description">@Relic.Description</label>
+			
 			<div class="relic-flavortexts">
 				@foreach ( var flavor in Relic.Flavor )
 				{
@@ -22,6 +32,7 @@
 				}
 			</div>
 		</div>
+		
 		<div class="button-container">
 			<button onclick="@Close">Close</button>
 		</div>
