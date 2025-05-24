@@ -63,11 +63,6 @@ public abstract class PassiveAbility : IOwnable
 
 	}
 	
-	public virtual void AfterPlayCard( Card card )
-	{
-
-	}
-	
 	public virtual void OnDiscardCard( Card card )
 	{
 

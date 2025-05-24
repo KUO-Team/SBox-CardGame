@@ -77,11 +77,6 @@ public abstract class StatusEffect : IOwnable
 
 	}
 
-	public virtual void AfterPlayCard( Card card )
-	{
-
-	}
-
 	public virtual void OnDiscardCard( Card card )
 	{
 

@@ -17,11 +17,6 @@ public abstract class CardEffect( Card card )
 
 	public virtual void OnPlay( CardEffectDetail detail )
 	{
-
-	}
-
-	public virtual void AfterPlay( CardEffectDetail detail )
-	{
 		
 	}
 

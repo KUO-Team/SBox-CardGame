@@ -56,11 +56,6 @@ public abstract class Relic : IOwnable
 		
 	}
 	
-	public virtual void AfterPlayCard( Card card, BattleUnit unit )
-	{
-		
-	}
-
 	public virtual void OnDiscardCard( Card card, BattleUnit unit )
 	{
 		

@@ -95,12 +95,11 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 
 		var selectedTargets = SelectTargets( target, owner );
-		TriggerOnPlayEffects( owner );
-
 		foreach ( var selected in selectedTargets )
 		{
 			PlayOnTarget( owner, selected );
 		}
+		TriggerOnPlayEffects( owner, target );
 
 		slot.AssignedCard = null;
 		if ( Type != CardType.Item )
@@ -111,7 +110,6 @@ public class Card : IResource, IDeepCopyable<Card>
 		{
 			localUnit.Deck.Remove( Id );
 		}
-		TriggerAfterPlayEffects( owner, target );
 	}
 
 	private void PlayOnTarget( BattleUnit owner, BattleUnit target )
@@ -120,14 +118,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		{
 			var basePower = action.EffectivePower.Value;
 			var modifiedPower = basePower + TriggerPowerEffects( owner, this, action );
-
 			var effect = action.Effect;
-			if ( effect is not null )
-			{
-				effect.Card = this;
-				effect.Power = modifiedPower;
-				effect.OnPlay( CreateDetail( owner, target ) );
-			}
 
 			TriggerDamageEvents( owner, target );
 			var damage = modifiedPower;
@@ -182,7 +173,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		return targets.Where( u => u.IsValid() ).ToList();
 	}
 
-	private void TriggerOnPlayEffects( BattleUnit owner )
+	private void TriggerOnPlayEffects( BattleUnit owner, BattleUnit target )
 	{
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
 		{
@@ -201,36 +192,13 @@ public class Card : IResource, IDeepCopyable<Card>
 				relic.OnPlayCard( this, owner );
 			}
 		}
-	}
-
-	private void TriggerAfterPlayEffects( BattleUnit owner, BattleUnit target )
-	{
+		
 		foreach ( var action in Actions )
 		{
-			if ( action.Effect is not {} effect )
+			var effect = action.Effect;
+			if ( effect is not null )
 			{
-				continue;
-			}
-
-			effect.Card = this;
-			effect.AfterPlay( CreateDetail( owner, target ) );
-		}
-
-		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
-		{
-			status.AfterPlayCard( this );
-		}
-
-		foreach ( var passive in owner.Passives?.ToList() ?? [] )
-		{
-			passive.AfterPlayCard( this );
-		}
-
-		if ( RelicManager.Instance.IsValid() )
-		{
-			foreach ( var relic in RelicManager.Instance.Relics )
-			{
-				relic.AfterPlayCard( this, owner );
+				effect.OnPlay( CreateDetail( owner, target ) );
 			}
 		}
 	}
