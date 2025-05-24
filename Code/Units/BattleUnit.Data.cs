@@ -12,7 +12,6 @@ public partial class BattleUnit
 	{
 		Data = data;
 		GameObject.Name = data.Name;
-		Level = data.Level;
 		Faction = faction;
 
 		if ( SpriteComponent.IsValid() )
@@ -82,15 +81,13 @@ public partial class BattleUnit
 		}
 	}
 
-	public void ApplyLevelScaling( int level )
+	public void ApplyLevelScaling()
 	{
 		if ( Data is null )
 		{
 			Log.Warning( "Can't apply level scaling; no data found!" );
 			return;
 		}
-
-		Level = level;
 
 		var hp = GetScaledHp( Data.Hp );
 		if ( HealthComponent.IsValid() )

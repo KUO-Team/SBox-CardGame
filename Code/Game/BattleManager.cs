@@ -114,9 +114,10 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 					continue;
 				}
 
-				if ( !unit.UseFloorLevelScaling )
+				battleUnit.Level = unit.BaseLevel;
+				if ( unit.UseFloorLevelScaling )
 				{
-					battleUnit.ApplyLevelScaling( unit.Level );
+					battleUnit.ApplyLevelScaling();
 				}
 			}
 			else
