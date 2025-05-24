@@ -36,6 +36,7 @@ public partial class PauseMenu
 	public void ToMenu()
 	{
 		TutorialPanel.Instance?.Clear();
+		RelicManager.Instance?.ClearRelics();
 		BattleManager.Instance?.UnloadBattleScript();
 		SaveManager?.ClearActiveRun();
 		SceneManager?.LoadScene( SceneManager.Scenes.Menu );

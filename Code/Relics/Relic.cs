@@ -12,7 +12,10 @@ public abstract class Relic : IOwnable
 	protected Relic( Data.Relic data )
 	{
 		Data = data;
-		
+	}
+
+	public virtual void OnAdd()
+	{
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnBattleStart += OnBattleStart;
@@ -21,11 +24,6 @@ public abstract class Relic : IOwnable
 			BattleManager.Instance.OnTurnStart += OnTurnStart;
 			BattleManager.Instance.OnTurnEnd += OnTurnEnd;
 		}
-	}
-
-	public virtual void OnAdd()
-	{
-		
 	}
 
 	public virtual void OnBattleStart( Battle battle )

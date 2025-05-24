@@ -104,7 +104,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 		MapManager.Index = data.MapNodeIndex;
 		GameManager.Floor = data.Floor;
 
-		RelicManager.Instance?.Relics.Clear();
+		RelicManager.Instance?.ClearRelics();
 		foreach ( var relicId in data.Relics )
 		{
 			var relic = RelicDataList.GetById( relicId );

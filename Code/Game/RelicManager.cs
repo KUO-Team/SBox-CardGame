@@ -41,13 +41,18 @@ public sealed class RelicManager : Singleton<RelicManager>
 		}
 		
 		var relic = TypeLibrary.Create<Relics.Relic>( data.Script, [data] );
-		Relics.Add( relic );
 		relic.OnAdd();
+		Relics.Add( relic );
 	}
 
 	public void RemoveRelic( Relics.Relic relic )
 	{
-		Relics.Remove( relic );
+		relic.Destroy();
+	}
+
+	public void ClearRelics()
+	{
+		Relics.Clear();
 	}
 
 	private void OnBattleStart( Battle battle )

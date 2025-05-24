@@ -65,7 +65,7 @@ public partial class MainMenu
 	{
 		if ( RelicManager.IsValid() )
 		{
-			RelicManager.Relics.Clear();
+			RelicManager.ClearRelics();
 		}
 		
 		if ( GameManager.IsValid() )
@@ -94,7 +94,7 @@ public partial class MainMenu
 	{
 		if ( RelicManager.IsValid() )
 		{
-			RelicManager.Relics.Clear();
+			RelicManager.ClearRelics();
 		}
 		
 		var tutorialBattle = BattleDataList.GetById( 1 );
