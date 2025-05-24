@@ -20,7 +20,7 @@ public class EchoCore( Data.Relic data ) : Relic( data )
 			return;
 		}
 
-		var powerUpCount = Math.Min( _lastTurnDiscards, 3 );
+		var powerUpCount = Math.Min( _lastTurnDiscards, 2 );
 		for ( var i = 0; i < powerUpCount; i++ )
 		{
 			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp );

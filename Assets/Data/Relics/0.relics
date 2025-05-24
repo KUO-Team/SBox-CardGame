@@ -7,7 +7,7 @@
       },
       "Icon": "",
       "Name": "Echo Core",
-      "Description": "At the start of the turn, for each card that was discarded last turn, gain 1 Power Up. (Max. 3) If you discarded no cards last turn, gain 1 Power Down.",
+      "Description": "At the start of the turn, for each card that was discarded last turn, gain 1 Power Up. (Max. 2) If you discarded no cards last turn, gain 1 Power Down.",
       "Flavor": [
         "Echoes of past decisions reverberate, fueling your power with every discarded thought."
       ],
