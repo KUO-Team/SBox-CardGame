@@ -212,6 +212,6 @@ public sealed class GameManager : Singleton<GameManager>
 
 public static class GameInfo
 {
-	public const string Version = "0.1";
-	public const string Build = "Development";
+	public const string Version = "0.2";
+	public const string Build = "Development Build";
 }
