@@ -13,6 +13,9 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 	public Battle? Battle { get; set; }
 
 	[Property, ReadOnly]
+	public bool IsTutorial => Battle is not null && Battle.Id.Equals( 1 );
+
+	[Property, ReadOnly]
 	public bool ShowEndScreen { get; set; } = true;
 
 	[Property]
@@ -133,7 +136,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 				var unitData = UnitDataList.GetById( unitId );
 				if ( unitData is not null )
 				{
-					var battleUnit = SpawnUnitFromData( unitData, Faction.Player );
+					SpawnUnitFromData( unitData, Faction.Player );
 				}
 			}
 		}
@@ -197,6 +200,14 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 		Bgm?.Stop( 1f );
 		Hud?.OnBattleEnd( winner );
 		OnBattleEnd?.Invoke( Battle );
+		UnloadBattleScript();
+	}
+
+	internal void ForceEndBattle()
+	{
+		Bgm?.Stop( 1f );
+		InputComponent.SelectedSlot = null;
+		Battle = null;
 		UnloadBattleScript();
 	}
 

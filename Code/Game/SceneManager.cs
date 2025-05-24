@@ -27,6 +27,11 @@ public sealed class SceneManager : Singleton<SceneManager>, ISceneLoadingEvents
 
 	public bool LoadScene( Scenes scene )
 	{
+		if ( scene != Scenes.Battle && BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.ForceEndBattle();
+		}
+		
 		return scene switch
 		{
 			Scenes.Menu => Scene.Load( MenuScene ),
