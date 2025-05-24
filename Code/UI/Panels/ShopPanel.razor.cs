@@ -1,6 +1,7 @@
 ﻿using System;
 using Sandbox.UI;
 using CardGame.Data;
+using CardGame.UI.Map;
 
 namespace CardGame.UI;
 
@@ -23,6 +24,8 @@ public partial class ShopPanel
 
 	private object? LastPurchasedItem { get; set; }
 
+	public MapPanel? Map { get; set; }
+
 	private static SaveManager? SaveManager => SaveManager.Instance;
 	private static RelicManager? RelicManager => RelicManager.Instance;
 	private static ShopManager? ShopManager => ShopManager.Instance;
@@ -30,6 +33,7 @@ public partial class ShopPanel
 	private Panel? _tradeMenu;
 	private Panel? _keywordSelection;
 	private Panel? _typeSelection;
+
 	private PackOpeningPanel? _packOpeningPanel;
 
 	private readonly List<Id> _selectedRelicsForTradeIn = [];
@@ -670,6 +674,14 @@ public partial class ShopPanel
 		PlayerData.Data.SeeRelic( relic.Id );
 		RelicManager.AddRelic( relic );
 		LastPurchasedItem = relic;
+
+		if ( Map.IsValid() )
+		{
+			if ( Map.RelicGainPanel.IsValid() )
+			{
+				Map.RelicGainPanel.Show( relic );
+			}
+		}
 
 		Log.Info( logMessage );
 	}

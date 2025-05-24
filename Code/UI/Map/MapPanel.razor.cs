@@ -617,8 +617,12 @@ public partial class MapPanel
 
 	public void ShowShop()
 	{
-		_shopPanel ??= new ShopPanel();
-		Panel.AddChild( _shopPanel );
+		if ( !_shopPanel.IsValid() )
+		{
+			return;
+		}
+		
+		_shopPanel.Show();
 	}
 
 	protected override int BuildHash()
