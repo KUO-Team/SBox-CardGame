@@ -53,12 +53,12 @@ public abstract class Relic : IOwnable
 	
 	public virtual void OnPlayCard( Card card, BattleUnit unit )
 	{
-
+		
 	}
 	
 	public virtual void AfterPlayCard( Card card, BattleUnit unit )
 	{
-
+		
 	}
 
 	public virtual void OnDiscardCard( Card card, BattleUnit unit )
@@ -68,12 +68,12 @@ public abstract class Relic : IOwnable
 	
 	public virtual void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
 	{
-
+		
 	}
 	
 	public virtual void OnDealDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
 	{
-
+		
 	}
 
 	public virtual void Destroy()
@@ -89,7 +89,7 @@ public abstract class Relic : IOwnable
 
 		if ( RelicManager.Instance.IsValid() )
 		{
-			RelicManager.Instance.RemoveRelic( this );
+			RelicManager.Instance.Relics.Remove( this );
 		}
 	}
 }

@@ -52,7 +52,10 @@ public sealed class RelicManager : Singleton<RelicManager>
 
 	public void ClearRelics()
 	{
-		Relics.Clear();
+		foreach ( var relic in Relics.ToArray() )
+		{
+			relic.Destroy();
+		}
 	}
 
 	private void OnBattleStart( Battle battle )
