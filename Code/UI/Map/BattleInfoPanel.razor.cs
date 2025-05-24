@@ -29,49 +29,12 @@ public partial class BattleInfoPanel
 			return;
 		}
 
-		var player = Player.Local;
-		if ( !player.IsValid() )
+		if ( BattleManager.Instance is not {} battleManager )
 		{
 			return;
 		}
 
-		var unit = player.Unit;
-		if ( unit is null )
-		{
-			return;
-		}
-
-		
-		WarningPanel? warning = null;
-		switch ( unit.Deck.Count )
-		{
-			case 0:
-				warning = WarningPanel.Create( "Incomplete Deck", "Your deck is empty! You must fill your deck to continue.", [
-					new Button( "Okay", "", () =>
-					{
-						warning?.Delete();
-					} )
-				] );
-				break;
-			case < 9:
-				warning = WarningPanel.Create( "Incomplete Deck", $"Your deck has only {unit.Deck.Count} cards. You need 9 cards to continue.", [
-					new Button( "Okay", "", () =>
-					{
-						warning?.Delete();
-					} )
-				] );
-				break;
-			default:
-				{
-					if ( BattleManager.Instance is not {} battleManager )
-					{
-						return;
-					}
-
-					battleManager?.StartBattle( Battle );
-				}
-				break;
-		}
+		battleManager?.StartBattle( Battle );
 	}
 	
 	private UnitInfoPanel? _unitInfoPanel;

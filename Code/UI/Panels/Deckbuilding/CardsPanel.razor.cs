@@ -233,27 +233,24 @@ public partial class CardsPanel
 			return;
 		}
 
-		switch ( unit.Deck.Count )
+		if ( unit.Deck.Count == 0 )
 		{
-			case 0:
-				warning = WarningPanel.Create( "Incomplete Deck", "Your deck is empty! You must fill your deck to continue.", [
-					new Button( "Okay", "", () =>
-					{
-						warning?.Delete();
-					} )
-				] );
-				break;
-			case < 9:
-				warning = WarningPanel.Create( "Incomplete Deck", $"Your deck has only {unit.Deck.Count} cards. You need 9 cards to continue.", [
-					new Button( "Okay", "", () =>
-					{
-						warning?.Delete();
-					} )
-				] );
-				break;
-			default:
-				CloseParent();
-				break;
+			warning = WarningPanel.Create( "No Cards In Deck", "Your deck is empty!", [
+				new Button( "Yes", "", () =>
+				{
+					warning?.Delete();
+					CloseParent();
+				} ),
+
+				new Button( "No", "", () =>
+				{
+					warning?.Delete();
+				} )
+			] );
+		}
+		else
+		{
+			CloseParent();
 		}
 	}
 
