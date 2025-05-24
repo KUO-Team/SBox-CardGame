@@ -13,6 +13,11 @@ public sealed record Id( string Source, int LocalId ) : IComparable<Id>
 
 	public static Id Invalid => new( string.Empty, -1 );
 
+	public Id() : this( string.Empty, -1 )
+	{
+
+	}
+
 	public int CompareTo( Id? other )
 	{
 		if ( other is null )
@@ -23,7 +28,7 @@ public sealed record Id( string Source, int LocalId ) : IComparable<Id>
 		var sourceComparison = string.Compare( Source, other.Source, StringComparison.Ordinal );
 		return sourceComparison != 0 ? sourceComparison : LocalId.CompareTo( other.LocalId );
 	}
-	
+
 	public override string ToString()
 	{
 		return IsFromMod ? $"{Source} : {LocalId}" : LocalId.ToString();
