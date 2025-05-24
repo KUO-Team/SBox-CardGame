@@ -567,6 +567,11 @@ public partial class ShopPanel
 			return;
 		}
 
+		if ( !CanCompleteTrade() )
+		{
+			return;
+		}
+
 		var firstRelicId = _selectedRelicsForTradeIn.FirstOrDefault();
 		var firstRelic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( firstRelicId ) );
 		if ( firstRelic is null )
