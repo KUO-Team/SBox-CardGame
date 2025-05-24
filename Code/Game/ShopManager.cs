@@ -108,6 +108,26 @@ public sealed class ShopManager : Singleton<ShopManager>
 		return player.Money >= item.Cost;
 	}
 	
+	public Id? FindTradeMatch( List<Id> relicsUsed )
+	{
+		foreach ( var trade in Trades )
+		{
+			if ( trade.Relics.Count != relicsUsed.Count )
+			{
+				continue;
+			}
+
+			if ( !trade.Relics.OrderBy( x => x ).SequenceEqual( relicsUsed.OrderBy( x => x ) ) )
+			{
+				continue;
+			}
+
+			return trade.Output;
+		}
+
+		return null;
+	}
+	
 	public static class ShopConfig
 	{
 		public const int RerollCost = 5;

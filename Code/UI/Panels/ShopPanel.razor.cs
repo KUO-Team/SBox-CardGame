@@ -558,90 +558,67 @@ public partial class ShopPanel
 
 	public void CompleteTradeIn()
 	{
-		if ( !RelicManager.IsValid() )
+		if ( !RelicManager.IsValid() || !ShopManager.IsValid() )
 		{
 			return;
 		}
-		
+
 		var firstRelicId = _selectedRelicsForTradeIn.FirstOrDefault();
-		var firstRelic = RelicManager.Relics.FirstOrDefault(r => r.Data.Id.Equals( firstRelicId ));
+		var firstRelic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( firstRelicId ) );
 		if ( firstRelic is null )
 		{
 			return;
 		}
 
 		var currentRarity = firstRelic.Data.Rarity;
-		if ( !_tradeInRequirements.TryGetValue(currentRarity, out var requiredAmount) )
+		if ( !_tradeInRequirements.TryGetValue( currentRarity, out var requiredAmount ) )
 		{
 			return;
 		}
 
-		var relicsToRemove = _selectedRelicsForTradeIn.Take(requiredAmount).ToList();
+		var relicsToRemove = _selectedRelicsForTradeIn.Take( requiredAmount ).ToList();
 
 		// Remove the selected relics
 		foreach ( var relicId in relicsToRemove )
 		{
-			var relic = RelicManager.Relics.FirstOrDefault(r => r.Data.Id.Equals( relicId ));
+			var relic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( relicId ) );
 			if ( relic is not null )
-				RelicManager.RemoveRelic(relic);
+			{
+				RelicManager.RemoveRelic( relic );
+			}
 
-			RemoveRelicFromSave(relicId);
+			RemoveRelicFromSave( relicId );
 		}
 
-		var specificRelicId = FindCustomTradeMatch(relicsToRemove);
+		var specificRelicId = ShopManager.FindTradeMatch( relicsToRemove );
 		if ( specificRelicId is not null )
 		{
-			var specificRelic = RelicDataList.All.FirstOrDefault(r => r.Id.Equals( specificRelicId ));
+			var specificRelic = RelicDataList.All.FirstOrDefault( r => r.Id.Equals( specificRelicId ) );
 			if ( specificRelic is not null )
 			{
-				GrantRelic(specificRelic, $"Traded in specific relic combo for: {specificRelic.Name}");
+				GrantRelic( specificRelic, $"Traded in specific relic combo for: {specificRelic.Name}" );
 				_selectedRelicsForTradeIn.Clear();
 				HideTradeMenu();
 				return;
 			}
 		}
 
-		var targetRarity = GetNextRarityUp(currentRarity);
+		var targetRarity = GetNextRarityUp( currentRarity );
 		var availableRelics = RelicDataList.All
-			.Where(r =>
+			.Where( r =>
 				r.Rarity == targetRarity &&
 				(r.Availabilities & Relic.RelicAvailabilities.Shop) != 0 &&
-				RelicManager.Relics.All(existing => !existing.Data.Id.Equals( r.Id )))
+				RelicManager.Relics.All( existing => !existing.Data.Id.Equals( r.Id ) ) )
 			.ToList();
 
 		if ( availableRelics.Count > 0 )
 		{
-			var newRelic = availableRelics[Game.Random.Next(availableRelics.Count)];
-			GrantRelic(newRelic, $"Traded in {requiredAmount} {currentRarity} relics for: {newRelic.Name}");
+			var newRelic = availableRelics[Game.Random.Next( availableRelics.Count )];
+			GrantRelic( newRelic, $"Traded in {requiredAmount} {currentRarity} relics for: {newRelic.Name}" );
 		}
 
 		_selectedRelicsForTradeIn.Clear();
 		HideTradeMenu();
-	}
-
-	private Id? FindCustomTradeMatch( List<Id> relicsUsed )
-	{
-		if ( !ShopManager.IsValid() )
-		{
-			return null;
-		}
-
-		foreach ( var trade in ShopManager.Trades )
-		{
-			if ( trade.Relics.Count != relicsUsed.Count )
-			{
-				continue;
-			}
-
-			if ( !trade.Relics.OrderBy( x => x ).SequenceEqual( relicsUsed.OrderBy( x => x ) ) )
-			{
-				continue;
-			}
-
-			return trade.Output;
-		}
-
-		return null;
 	}
 
 	private void AddRelicToSave( Id id )

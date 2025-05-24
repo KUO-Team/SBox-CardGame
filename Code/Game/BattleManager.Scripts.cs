@@ -5,7 +5,7 @@ namespace CardGame;
 public sealed partial class BattleManager
 {
 	public BattleScript? BattleScript { get; set; }
-
+	
 	public void LoadBattleScript( string script )
 	{
 		BattleScript = TypeLibrary.Create<BattleScript>( script );
