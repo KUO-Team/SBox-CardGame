@@ -16,6 +16,22 @@ public class BattleTutorial : BattleScript
 	private TaskCompletionSource<bool>? _cardSelectionTaskSource;
 	private TaskCompletionSource<bool>? _slotAssignmentTaskSource;
 
+	public override void OnUnload()
+	{
+		Log.Info( $"Cancelling tutorial script..." );
+		
+		_slotSelectionTaskSource?.SetCanceled();
+		_cardSelectionTaskSource?.SetCanceled();
+		_slotAssignmentTaskSource?.SetCanceled();
+		
+		InputComponent.OnSelect -= OnSlotSelected;
+		HandPanel.OnCardSelected -= OnCardSelected;
+		CardSlot.OnSlotAssigned -= OnSlotAssigned;
+		
+		TutorialPanel.Instance?.SetInputLock( false );
+		base.OnUnload();
+	}
+	
 	public override async void OnTurnStart()
 	{
 		try
