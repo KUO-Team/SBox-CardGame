@@ -19,10 +19,17 @@ public class BattleTutorial : BattleScript
 	public override void OnUnload()
 	{
 		Log.Info( $"Cancelling tutorial script..." );
-		
-		_slotSelectionTaskSource?.SetCanceled();
-		_cardSelectionTaskSource?.SetCanceled();
-		_slotAssignmentTaskSource?.SetCanceled();
+
+		try
+		{
+			_slotSelectionTaskSource?.SetCanceled();
+			_cardSelectionTaskSource?.SetCanceled();
+			_slotAssignmentTaskSource?.SetCanceled();
+		}
+		catch
+		{
+			// Ignored.
+		}
 		
 		InputComponent.OnSelect -= OnSlotSelected;
 		HandPanel.OnCardSelected -= OnCardSelected;
