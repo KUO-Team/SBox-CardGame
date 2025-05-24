@@ -45,6 +45,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 			Data.Runs.Add( run );
 		}
 
+		run.Version = GameInfo.Version;
 		run.Index = actualIndex;
 		run.Floor = GameManager.Floor;
 		run.Seed = MapManager.Seed;

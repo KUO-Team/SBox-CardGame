@@ -126,6 +126,8 @@ public class PlayerData
 
 public class RunData
 {
+	public string Version { get; set; } = string.Empty;
+
 	public int Index { get; set; }
 
 	public int Seed { get; set; }
@@ -173,7 +175,7 @@ public class UnitData : IDeepCopyable<UnitData>
 			return;
 		}
 
-		var panel = Game.ActiveScene.GetComponent<RunOverPanel>();
+		var panel = Game.ActiveScene.GetInstance<RunOverPanel>();
 		if ( panel.IsValid() )
 		{
 			panel.EndRun();

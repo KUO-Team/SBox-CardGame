@@ -13,7 +13,25 @@ public partial class RunPanel
 	{
 		if ( Data is not null )
 		{
-			SaveManager.Instance?.Load( Data );
+			if ( !Data.Version.Equals( GameInfo.Version ) )
+			{
+				WarningPanel? warning = null;
+				warning = WarningPanel.Create( "Version Mismatch", "This run was saved on a separate game version. It might be corrupted. Are you sure you wish to load it?", [
+					new Button( "Yes", "", () =>
+					{
+						SaveManager.Instance?.Load( Data );
+						warning?.Delete();
+					} ),
+					new Button( "No", "", () =>
+					{
+						warning?.Delete();
+					} )
+				] );
+			}
+			else
+			{
+				SaveManager.Instance?.Load( Data );
+			}
 		}
 	}
 	
