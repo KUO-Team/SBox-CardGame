@@ -7,7 +7,10 @@
 		<div class="button-container">
 			<button onclick="@Continue">Continue</button>
 			<button onclick="@Settings">Settings</button>
-			<button onclick="@SaveAndQuit">Save & Quit</button>
+			@if ( BattleManager?.IsTutorial == false )
+			{
+				<button onclick="@SaveAndQuit">Save & Quit</button>
+			}
 			<button onclick="@ToMenu">Quit Game</button>
 		</div>
 	</div>

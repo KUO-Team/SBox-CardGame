@@ -1,4 +1,5 @@
-﻿using Sandbox.UI;
+﻿using System;
+using Sandbox.UI;
 using CardGame.UI.Tutorial;
 
 namespace CardGame.UI;
@@ -7,8 +8,9 @@ public partial class PauseMenu
 {
 	private SettingsPanel? _settingsPanel;
 	
-	private static SaveManager? SaveManager => CardGame.SaveManager.Instance;
-	private static SceneManager? SceneManager => CardGame.SceneManager.Instance;
+	private static SaveManager? SaveManager => SaveManager.Instance;
+	private static SceneManager? SceneManager => SceneManager.Instance;
+	private static BattleManager? BattleManager => BattleManager.Instance;
 
 	public void Continue()
 	{
@@ -33,15 +35,14 @@ public partial class PauseMenu
 	
 	public void ToMenu()
 	{
-		if ( !SceneManager.IsValid() )
-		{
-			return;
-		}
-		
 		TutorialPanel.Instance?.Clear();
 		BattleManager.Instance?.UnloadBattleScript();
 		SaveManager?.ClearActiveRun();
+		SceneManager?.LoadScene( SceneManager.Scenes.Menu );
+	}
 
-		SceneManager.LoadScene( SceneManager.Scenes.Menu );
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( BattleManager?.IsTutorial );
 	}
 }
