@@ -8,7 +8,9 @@
       "Icon": "",
       "Name": "Masquerade",
       "Description": "At the start of the turn, halve all status ailments on self. Gain either 1 Power Up or 1 Protection randomly.",
-      "Flavor": [],
+      "Flavor": [
+        "A grand performance where joy and sorrow dance in tandem."
+      ],
       "Keywords": "Protection,Power Up",
       "Rarity": "Epic",
       "Availabilities": "Trade",
