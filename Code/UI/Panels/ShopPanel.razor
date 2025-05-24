@@ -37,12 +37,8 @@
 	<div class="button-container">
 		<button class="@( CanReroll() ? "" : "disabled" )" onclick="@Reroll">Reroll (@( RerollCost )g)</button>
 		<div class="row">
-			<button class="@( CanRerollByKeyword() ? "" : "disabled" )" onclick="@OpenRerollKeywordMenu">Reroll By
-				Keyword (@( RerollKeywordCost )g)
-			</button>
-			<button class="@( CanRerollByType() ? "" : "disabled" )" onclick="@OpenTypeSelection">Reroll By Type
-				(@( RerollKeywordCost )g)
-			</button>
+			<button class="@( CanRerollByKeyword() ? "" : "disabled" )" onclick="@OpenRerollKeywordMenu">Reroll By Keyword (@( RerollKeywordCost )g)</button>
+			<button class="@( CanRerollByType() ? "" : "disabled" )" onclick="@OpenTypeSelection">Reroll By Type (@( RerollKeywordCost )g)</button>
 		</div>
 		<button class="@( CanHeal() ? "" : "disabled" )" onclick="@Heal">Heal (@( HealCost )g)</button>
 		<button onclick="@OpenTradeMenu">Trade</button>
@@ -57,12 +53,19 @@
 				<RelicPanel class="@(_selectedRelicsForTradeIn.Contains( relic.Data.Id ) ? "trade" : "")" Relic="@relic.Data" onclick="@(() => ToggleRelicSelection( relic.Data.Id ))"></RelicPanel>
 			}
 		</div>
+
+		<div class="trade-info hidden" @ref="_tradeInfo">
+			<label>Select 2 relics of the same rarity to receive 1 random relic of the next higher rarity.</label>
+			<label>Some specific relic combinations may yield a unique relic instead of a random one.</label>
+			<label>If no eligible combination is found, you'll receive a random relic as usual.</label>
+		</div>
+		<button class="show-info" onclick="@ToggleTradeInfo">?</button>
+		
 		<div class="button-container">
 			<button onclick="@CompleteTradeIn">Trade</button>
 			<button onclick="@HideTradeMenu">Close</button>
 		</div>
 	</div>
-	
 
 	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
 		<label class="title">Reroll By Keyword</label>

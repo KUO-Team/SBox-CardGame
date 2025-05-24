@@ -33,6 +33,7 @@ public partial class ShopPanel
 	private Panel? _tradeMenu;
 	private Panel? _keywordSelection;
 	private Panel? _typeSelection;
+	private Panel? _tradeInfo;
 
 	private PackOpeningPanel? _packOpeningPanel;
 
@@ -718,6 +719,23 @@ public partial class ShopPanel
 	public void HideTradeMenu()
 	{
 		_tradeMenu?.Hide();
+	}
+
+	public void ToggleTradeInfo()
+	{
+		if ( !_tradeInfo.IsValid() )
+		{
+			return;
+		}
+		
+		if ( _tradeInfo.HasClass( "hidden" ) )
+		{
+			_tradeInfo.Show();
+		}
+		else
+		{
+			_tradeInfo.Hide();
+		}
 	}
 
 	public bool CanReroll()
