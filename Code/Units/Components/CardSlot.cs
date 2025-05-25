@@ -32,8 +32,11 @@ public sealed class CardSlot : Component, IOwnable
 	public int MaxSpeed { get; set; } = 6;
 
 	[Property]
-	public int Speed { get; set; }
+	public int BaseSpeed { get; set; }
 
+	[Property]
+	public int Speed { get; set; }
+	
 	[Property, Category( "Components" )]
 	public LineRenderer? LineRenderer { get; set; }
 
@@ -135,7 +138,8 @@ public sealed class CardSlot : Component, IOwnable
 
 	public void SetRandomSpeed()
 	{
-		Speed = Game.Random.Int( MinSpeed, MaxSpeed );
+		BaseSpeed = Game.Random.Int( MinSpeed, MaxSpeed );
+		Speed = BaseSpeed;
 	}
 
 	public void AssignCard( Card card, CardSlot target )
