@@ -3,25 +3,11 @@ using CardGame.Units;
 
 namespace CardGame.Passives;
 
-public abstract class PassiveAbility : IOwnable
+public abstract class PassiveAbility( Data.PassiveAbility data ) : IOwnable
 {
-	public Data.PassiveAbility Data { get; set; }
-	
+	public Data.PassiveAbility Data { get; set; } = data;
+
 	public BattleUnit? Owner { get; set; }
-	
-	protected PassiveAbility(Data.PassiveAbility data)
-	{
-		Data = data;
-		
-		if ( BattleManager.Instance.IsValid() )
-		{
-			BattleManager.Instance.OnBattleStart += OnBattleStart;
-			BattleManager.Instance.OnBattleEnd += OnBattleEnd;
-			BattleManager.Instance.OnCombatStart += OnCombatStart;
-			BattleManager.Instance.OnTurnStart += OnTurnStart;
-			BattleManager.Instance.OnTurnEnd += OnTurnEnd;
-		}
-	}
 
 	public virtual string Description()
 	{
@@ -30,7 +16,14 @@ public abstract class PassiveAbility : IOwnable
 
 	public virtual void OnAdd()
 	{
-		
+		if ( BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.OnBattleStart += OnBattleStart;
+			BattleManager.Instance.OnBattleEnd += OnBattleEnd;
+			BattleManager.Instance.OnCombatStart += OnCombatStart;
+			BattleManager.Instance.OnTurnStart += OnTurnStart;
+			BattleManager.Instance.OnTurnEnd += OnTurnEnd;
+		}
 	}
 
 	public virtual void OnBattleStart( Battle battle )

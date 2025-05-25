@@ -8,8 +8,8 @@ public class PassiveAbilityList : OwnableListComponent<PassiveAbility>
 	{
 		var passive = TypeLibrary.Create<PassiveAbility>( data.Script, [data] );
 		passive.Owner = Owner;
-		passive.OnAdd();
 		Add( passive );
+		passive.OnAdd();
 	}
 
 	public T? GetPassiveAbility<T>() where T : PassiveAbility

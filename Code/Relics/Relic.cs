@@ -3,16 +3,11 @@ using CardGame.Units;
 
 namespace CardGame.Relics;
 
-public abstract class Relic : IOwnable
+public abstract class Relic( Data.Relic data ) : IOwnable
 {
-	public Data.Relic Data { get; set; }
-	
-	public BattleUnit? Owner { get; set; }
+	public Data.Relic Data { get; set; } = data;
 
-	protected Relic( Data.Relic data )
-	{
-		Data = data;
-	}
+	public BattleUnit? Owner { get; set; }
 
 	public virtual void OnAdd()
 	{
