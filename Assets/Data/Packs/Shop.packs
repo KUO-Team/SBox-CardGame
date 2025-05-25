@@ -183,6 +183,30 @@
           "LocalId": 72
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Name": "Simple Pack 2",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Cards": [
+        {
+          "Source": "",
+          "LocalId": 73
+        },
+        {
+          "Source": "",
+          "LocalId": 74
+        },
+        {
+          "Source": "",
+          "LocalId": 75
+        }
+      ]
     }
   ],
   "__references": [],
