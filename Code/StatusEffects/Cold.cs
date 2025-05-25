@@ -10,8 +10,26 @@ public class Cold( Data.StatusEffect data ) : StatusEffect( data )
 	{
 		return Stack > 0 ? $"Speed -{Stack} for this turn." : base.Description();
 	}
+	
+	public override void OnUpdate()
+	{
+		Activate();
+		base.OnUpdate();
+	}
 
 	public override void OnTurnStart()
+	{
+		Activate();
+		base.OnTurnStart();
+	}
+	
+	public override void OnTurnEnd()
+	{
+		Destroy();
+		base.OnTurnEnd();
+	}
+
+	private void Activate()
 	{
 		if ( !Owner.IsValid() || !Owner.Slots.IsValid() )
 		{
@@ -22,7 +40,5 @@ public class Cold( Data.StatusEffect data ) : StatusEffect( data )
 		{
 			slot.Speed = Math.Max( slot.Speed - Stack, 1 );
 		}
-		
-		base.OnTurnStart();
 	}
 }

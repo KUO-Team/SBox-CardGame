@@ -6,20 +6,27 @@ public class Silenced( Data.StatusEffect data ) : StatusEffect( data )
 
 	private CardSlot? _slot;
 
+	public override void OnAddOrUpdate()
+	{
+		Activate();
+		base.OnAddOrUpdate();
+	}
+
 	public override void OnTurnStart()
 	{
-		if ( !Owner.IsValid() || !Owner.Slots.IsValid() || Owner.Slots.Count == 0 )
-		{
-			return;
-		}
-
-		_slot = Owner.Slots.FirstOrDefault( slot => slot.IsAvailable );
-		if ( _slot is not null )
-		{
-			_slot.IsAvailable = false;
-		}
-
+		Activate();
 		base.OnTurnStart();
+	}
+	
+	public override void OnTurnEnd()
+	{
+		Stack--;
+		if ( Stack <= 0 )
+		{
+			Destroy();
+		}
+		
+		base.OnTurnEnd();
 	}
 
 	public override void Destroy()
@@ -31,5 +38,19 @@ public class Silenced( Data.StatusEffect data ) : StatusEffect( data )
 		}
 
 		base.Destroy();
+	}
+	
+	private void Activate()
+	{
+		if ( !Owner.IsValid() || !Owner.Slots.IsValid() || Owner.Slots.Count == 0 )
+		{
+			return;
+		}
+
+		_slot = Owner.Slots.FirstOrDefault( slot => slot.IsAvailable );
+		if ( _slot is not null )
+		{
+			_slot.IsAvailable = false;
+		}
 	}
 }

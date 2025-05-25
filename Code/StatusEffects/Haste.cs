@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CardGame.StatusEffects;
+﻿namespace CardGame.StatusEffects;
 
 public class Haste( Data.StatusEffect data ) : StatusEffect( data )
 {
@@ -11,7 +9,25 @@ public class Haste( Data.StatusEffect data ) : StatusEffect( data )
 		return Stack > 0 ? $"Speed +{Stack} for this turn." : base.Description();
 	}
 
+	public override void OnAdd()
+	{
+		base.OnAdd();
+		Activate();
+	}
+
 	public override void OnTurnStart()
+	{
+		Activate();
+		base.OnTurnStart();
+	}
+	
+	public override void OnTurnEnd()
+	{
+		Destroy();
+		base.OnTurnEnd();
+	}
+
+	private void Activate()
 	{
 		if ( !Owner.IsValid() || !Owner.Slots.IsValid() )
 		{
@@ -20,9 +36,7 @@ public class Haste( Data.StatusEffect data ) : StatusEffect( data )
 
 		foreach ( var slot in Owner.Slots )
 		{
-			slot.Speed += Stack;
+			slot.Speed = slot.BaseSpeed + Stack;
 		}
-		
-		base.OnTurnStart();
 	}
 }

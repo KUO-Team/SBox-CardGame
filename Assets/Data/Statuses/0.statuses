@@ -96,7 +96,7 @@
       "IsHiddenStack": false,
       "Color": "1,0.84314,0,1",
       "Maximum": null,
-      "Script": "Immobilized"
+      "Script": "Stunned"
     },
     {
       "Id": {

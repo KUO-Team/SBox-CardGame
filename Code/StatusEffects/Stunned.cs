@@ -6,22 +6,30 @@ public class Stunned( Data.StatusEffect data ) : StatusEffect( data )
 	
 	public override string Description()
 	{
-		return Stack > 1 ? $"All card slots become unavailable for {Stack} turns." : base.Description();
+		return Stack > 0 ? $"All card slots become unavailable for {Stack} turns." : base.Description();
+	}
+
+	public override void OnAddOrUpdate()
+	{
+		Activate();
+		base.OnAddOrUpdate();
 	}
 
 	public override void OnTurnStart()
 	{
-		if ( !Owner.IsValid() || !Owner.Slots.IsValid() )
-		{
-			return;
-		}
+		Activate();
+		base.OnTurnStart();
+	}
 
-		foreach ( var slot in Owner.Slots )
+	public override void OnTurnEnd()
+	{
+		Stack--;
+		if ( Stack <= 0 )
 		{
-			slot.IsAvailable = false;
+			Destroy();
 		}
 		
-		base.OnTurnStart();
+		base.OnTurnEnd();
 	}
 
 	public override void Destroy()
@@ -37,5 +45,18 @@ public class Stunned( Data.StatusEffect data ) : StatusEffect( data )
 		}
 		
 		base.Destroy();
+	}
+	
+	private void Activate()
+	{
+		if ( !Owner.IsValid() || !Owner.Slots.IsValid() )
+		{
+			return;
+		}
+
+		foreach ( var slot in Owner.Slots )
+		{
+			slot.IsAvailable = false;
+		}
 	}
 }
