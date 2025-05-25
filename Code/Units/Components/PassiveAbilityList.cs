@@ -11,7 +11,12 @@ public class PassiveAbilityList : OwnableListComponent<PassiveAbility>
 		passive.OnAdd();
 		Add( passive );
 	}
-	
+
+	public T? GetPassiveAbility<T>() where T : PassiveAbility
+	{
+		return Items.FirstOrDefault( x => x is T ) as T;
+	}
+
 	public bool HasPassiveAbility<T>() where T : PassiveAbility
 	{
 		return this.Any( p => p is T );
