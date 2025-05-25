@@ -5,13 +5,33 @@ namespace CardGame.Passives;
 
 public class BloodFeeding( Data.PassiveAbility data ) : PassiveAbility( data )
 {
-	public override void OnDealDamage( BattleUnit target )
+	public bool Triggered { get; private set; }
+	public int AmountHealed { get; private set; }
+	public int LastTurnAmountHealed { get; private set; }
+
+	public override void OnDealDamage( int damage, BattleUnit target )
 	{
-		if ( target.StatusEffects.IsValid() && target.StatusEffects.HasStatusEffect<Bleed>() )
+		if ( !Owner.IsValid() || !Owner.HealthComponent.IsValid() || !target.StatusEffects.IsValid() || Triggered || damage < 1 )
 		{
-			Owner?.HealthComponent?.Heal( 2 );
+			return;
 		}
-		
-		base.OnDealDamage( target );
+
+		if ( target.StatusEffects.HasStatusEffect<Bleed>() )
+		{
+			AmountHealed += 2;
+			Triggered = true;
+			Owner.HealthComponent.Heal( 2 );
+		}
+
+		base.OnDealDamage( damage, target );
+	}
+
+	public override void OnTurnEnd()
+	{
+		LastTurnAmountHealed = AmountHealed;
+		Triggered = false;
+		AmountHealed = 0;
+
+		base.OnTurnEnd();
 	}
 }

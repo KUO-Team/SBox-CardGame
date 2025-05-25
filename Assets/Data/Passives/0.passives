@@ -6,7 +6,7 @@
         "LocalId": 1
       },
       "Name": "Bloodfeeding",
-      "Description": "On Hit, if target has Bleed, heal 2HP.",
+      "Description": "If this unit damages a target with Bleed, heal 2 HP. This effect can trigger once per turn.",
       "Script": "Bloodfeeding"
     },
     {
@@ -14,18 +14,27 @@
         "Source": "",
         "LocalId": 2
       },
-      "Name": "Bulky Armor",
-      "Description": "At the start of the turn, gain 2 Protection.",
-      "Script": "BulkyArmor"
+      "Name": "Starved For Blood",
+      "Description": "At the start of the turn, if this unit failed to heal from Bloodfeeding last turn, gain 1 Power Down and take 2 fixed damage.",
+      "Script": "BloodStarved"
     },
     {
       "Id": {
         "Source": "",
         "LocalId": 3
       },
-      "Name": "Solo",
-      "Description": "At the start of the battle, if you are the only ally, gain +1 Card Slot.",
-      "Script": "Solo"
+      "Name": "Preparation",
+      "Description": "At the start of the first turn, draw 2 cards.",
+      "Script": "Preparation"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Name": "Bulky Armor",
+      "Description": "At the start of the turn, gain 2 Protection.",
+      "Script": "BulkyArmor"
     }
   ],
   "__references": [],

@@ -18,38 +18,37 @@ public sealed class MapManager : Singleton<MapManager>
 	[Property, ReadOnly]
 	public bool MapGenerated { get; set; }
 
-	public MapPanel Map => Scene.GetInstance<MapPanel>();
+	public MapPanel? Map => Scene.GetInstance<MapPanel>();
 
-	// DON'T MAKE A PROPERTY
 	public Dictionary<int, List<Id>> FloorBattles { get; set; } = new()
 	{
 		{
-			3, [2]
+			3, [2, 3]
 		},
 		{
-			2, [2, 3, 4]
+			2, [3, 4, 5, 6]
 		},
 		{
-			1, [2, 3, 4, 5, 6]
+			1, [3, 4, 5, 6, 7]
 		},
 		{
-			0, [3, 4, 5, 6]
+			0, [3, 4, 5, 6, 7]
 		}
 	};
 
 	public Dictionary<int, List<Id>> FloorBosses { get; set; } = new()
 	{
 		{
-			3, [3]
+			3, [4]
 		},
 		{
-			2, [6]
+			2, [7]
 		},
 		{
-			1, [2]
+			1, [7]
 		},
 		{
-			0, [2]
+			0, [7]
 		}
 	};
 

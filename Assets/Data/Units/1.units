@@ -12,7 +12,6 @@
         "Portrait": "materials/units/portraits/zombie.png"
       },
       "Prefab": null,
-      "Level": 1,
       "Hp": 5,
       "Ep": 0,
       "Mp": 3,
@@ -55,12 +54,86 @@
           "LocalId": 7
         }
       ],
-      "Passives": []
+      "Passives": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        }
+      ]
     },
     {
       "Id": {
         "Source": "",
         "LocalId": 2
+      },
+      "Name": "Elite Zombie",
+      "Description": "",
+      "Sprite": {
+        "Resource": "sprites/zombie.sprite",
+        "Portrait": "materials/units/portraits/zombie.png"
+      },
+      "Prefab": null,
+      "Hp": 12,
+      "Ep": 0,
+      "Mp": 5,
+      "Speed": {
+        "Min": 1,
+        "Max": 3
+      },
+      "Slots": 1,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 5
+        },
+        {
+          "Source": "",
+          "LocalId": 6
+        },
+        {
+          "Source": "",
+          "LocalId": 6
+        },
+        {
+          "Source": "",
+          "LocalId": 7
+        },
+        {
+          "Source": "",
+          "LocalId": 7
+        },
+        {
+          "Source": "",
+          "LocalId": 8
+        }
+      ],
+      "Passives": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
       },
       "Name": "Knight",
       "Description": "",
@@ -69,7 +142,6 @@
         "Portrait": "materials/units/portraits/knight.png"
       },
       "Prefab": null,
-      "Level": 1,
       "Hp": 15,
       "Ep": 0,
       "Mp": 5,
@@ -77,19 +149,11 @@
         "Min": 1,
         "Max": 5
       },
-      "Slots": 2,
+      "Slots": 1,
       "Deck": [
         {
           "Source": "",
-          "LocalId": 8
-        },
-        {
-          "Source": "",
-          "LocalId": 8
-        },
-        {
-          "Source": "",
-          "LocalId": 8
+          "LocalId": 9
         },
         {
           "Source": "",
@@ -101,15 +165,28 @@
         },
         {
           "Source": "",
-          "LocalId": 11
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 12
         }
       ],
-      "Passives": []
+      "Passives": [
+        {
+          "Source": "",
+          "LocalId": 3
+        }
+      ]
     },
     {
       "Id": {
         "Source": "",
-        "LocalId": 3
+        "LocalId": 4
       },
       "Name": "Knight Captain",
       "Description": "",
@@ -118,7 +195,6 @@
         "Portrait": "materials/units/portraits/eliteknight.png"
       },
       "Prefab": null,
-      "Level": 1,
       "Hp": 35,
       "Ep": 0,
       "Mp": 5,
@@ -130,15 +206,7 @@
       "Deck": [
         {
           "Source": "",
-          "LocalId": 8
-        },
-        {
-          "Source": "",
-          "LocalId": 8
-        },
-        {
-          "Source": "",
-          "LocalId": 8
+          "LocalId": 9
         },
         {
           "Source": "",
@@ -163,12 +231,24 @@
         {
           "Source": "",
           "LocalId": 11
+        },
+        {
+          "Source": "",
+          "LocalId": 12
+        },
+        {
+          "Source": "",
+          "LocalId": 12
         }
       ],
       "Passives": [
         {
           "Source": "",
-          "LocalId": 2
+          "LocalId": 3
+        },
+        {
+          "Source": "",
+          "LocalId": 4
         }
       ]
     }

@@ -1,0 +1,111 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "Strong Undead",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 2
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 25
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "The Undead",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 20
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Name": "The Undead",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 25
+      },
+      "Script": ""
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

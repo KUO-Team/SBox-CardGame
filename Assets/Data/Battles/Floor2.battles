@@ -1,0 +1,111 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Name": "The Knight",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 3
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 30
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Name": "The Knights",
+      "Bgm": null,
+      "IsBoss": false,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 3
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 3
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 35
+      },
+      "Script": ""
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 7
+      },
+      "Name": "The Elite Knight",
+      "Bgm": null,
+      "IsBoss": true,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 3
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 3
+          }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 4
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 50
+      },
+      "Script": ""
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

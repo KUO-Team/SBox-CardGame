@@ -3,7 +3,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 8
+        "LocalId": 9
       },
       "Name": "Sword Slash",
       "Cost": {
@@ -21,7 +21,7 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 4,
+            "Min": 3,
             "Max": 4
           },
           "Script": null
@@ -31,7 +31,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 9
+        "LocalId": 10
       },
       "Name": "Shields Up!",
       "Cost": {
@@ -49,7 +49,7 @@
         {
           "Type": "Effect",
           "Power": {
-            "Min": 3,
+            "Min": 2,
             "Max": 4
           },
           "Script": "Protection"
@@ -59,7 +59,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 10
+        "LocalId": 11
       },
       "Name": "Heavy Strike",
       "Cost": {
@@ -87,7 +87,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 11
+        "LocalId": 12
       },
       "Name": "Fetch Arsenal",
       "Cost": {
