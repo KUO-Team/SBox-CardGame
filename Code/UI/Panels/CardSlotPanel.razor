@@ -8,6 +8,6 @@
 	return;
 }
 
-<root class="slot @( IsAssigned ? "assigned" : "" ) @( InputComponent.SelectedSlot == Slot ? "selected" : "" )">
+<root class="slot @( IsAvailable ? "" : "unavailable" ) @( IsAssigned ? "assigned" : "" ) @( InputComponent.SelectedSlot == Slot ? "selected" : "" )">
 	<label class="speed">@( Slot.Speed )</label>
 </root>

@@ -9,6 +9,8 @@ public partial class CardSlotPanel
 	public CardSlot? Slot { get; set; }
 	
 	private bool IsAssigned => Slot?.AssignedCard is not null;
+	
+	private bool IsAvailable => Slot?.IsAvailable ?? false;
 
 	public void Init()
 	{
@@ -211,6 +213,6 @@ public partial class CardSlotPanel
 	
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Slot, Slot?.AssignedCard, Slot?.Speed, BattleManager.Instance?.Turn, BattleManager.Instance?.State, InputComponent.SelectedSlot );
+		return HashCode.Combine( IsAssigned, IsAvailable, Slot, Slot?.AssignedCard, Slot?.Speed,  BattleManager.Instance?.Turn, BattleManager.Instance?.State, InputComponent.SelectedSlot );
 	}
 }

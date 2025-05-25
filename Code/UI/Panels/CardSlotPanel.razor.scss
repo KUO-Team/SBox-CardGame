@@ -32,4 +32,10 @@ CardSlotPanel {
   &.selected {
     border: 2px solid gold;
   }
+  
+  &.unavailable {
+    pointer-events: none;
+    background-color: #222;
+    border: 1px solid #555;
+  }
 }
