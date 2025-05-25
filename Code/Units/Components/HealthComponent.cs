@@ -4,8 +4,11 @@ using CardGame.StatusEffects;
 
 namespace CardGame.Units;
 
-public class HealthComponent : Component
+public class HealthComponent : Component, IOwnable
 {
+	[Property, RequireComponent]
+	public BattleUnit? Owner { get; set; }
+	
 	[Property, Category( "State" )]
 	public int Health { get; set; } = 100;
 
@@ -27,31 +30,25 @@ public class HealthComponent : Component
 
 	public void TakeDamage( int damage, BattleUnit? attacker = null, Card? card = null )
 	{
-		if ( !GameObject.IsValid() || !IsValid )
-		{
-			return;
-		}
-
-		if ( damage <= 0 )
-		{
-			return;
-		}
-
-		var owner = Components.Get<BattleUnit>();
-		if ( !owner.IsValid() )
+		if ( !Owner.IsValid() )
 		{
 			return;
 		}
 		
-		if ( owner.StatusEffects.IsValid() )
+		if ( IsDead || damage <= 0 )
 		{
-			foreach ( var status in owner.StatusEffects )
+			return;
+		}
+
+		if ( Owner.StatusEffects.IsValid() )
+		{
+			foreach ( var status in Owner.StatusEffects )
 			{
 				damage += status.DamageModifier( card!, damage );
 			}
 			damage = Math.Max( damage, 0 );
 
-			var ownerPassives = owner.Passives;
+			var ownerPassives = Owner.Passives;
 			if ( ownerPassives.IsValid() )
 			{
 				foreach ( var passive in ownerPassives )
@@ -72,7 +69,7 @@ public class HealthComponent : Component
 				{
 					foreach ( var passive in attackerPassives )
 					{
-						passive.OnDealDamage( damage, owner );
+						passive.OnDealDamage( damage, Owner );
 					}
 				}
 			}
@@ -82,8 +79,8 @@ public class HealthComponent : Component
 		{
 			foreach ( var relic in RelicManager.Instance.Relics )
 			{
-				relic.OnTakeDamage( damage, owner, attacker );
-				relic.OnDealDamage( damage, owner, attacker );
+				relic.OnTakeDamage( damage, Owner, attacker );
+				relic.OnDealDamage( damage, Owner, attacker );
 			}
 		}
 
@@ -99,12 +96,12 @@ public class HealthComponent : Component
 
 	public void TakeFixedDamage( int damage, BattleUnit? attacker = null, StatusEffect? statusEffect = null )
 	{
-		if ( !GameObject.IsValid() || !IsValid )
+		if ( !Owner.IsValid() )
 		{
 			return;
 		}
-
-		if ( damage <= 0 )
+		
+		if ( IsDead || damage <= 0 )
 		{
 			return;
 		}

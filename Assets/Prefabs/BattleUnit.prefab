@@ -74,7 +74,13 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Owner": {
+          "_type": "component",
+          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "go": "b9f07845-27d0-411c-a688-d488479ede8a",
+          "component_type": "BattleUnit"
+        }
       },
       {
         "__type": "CardGame.Units.HandComponent",
