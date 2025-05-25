@@ -41,6 +41,30 @@ public static class Commands
 	}
 
 	[ConCmd]
+	public static void AddCard( int id )
+	{
+		if ( !Game.IsEditor && !Game.CheatsEnabled )
+		{
+			return;
+		}
+
+		var player = Player.Local;
+		if ( !player.IsValid() )
+		{
+			return;
+		}
+
+		var card = CardDataList.GetById( id );
+		if ( card is null )
+		{
+			return;
+		}
+
+		player.Cards.Add( card );
+		Platform.Platform.CheatedRun = true;
+	}
+
+	[ConCmd]
 	public static void AddCardToDeck( int id )
 	{
 		if ( !Game.IsEditor && !Game.CheatsEnabled )
