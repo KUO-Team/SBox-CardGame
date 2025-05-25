@@ -32,7 +32,7 @@ public abstract class StatusEffect : IOwnable
 		return Data.Description;
 	}
 
-	public virtual void OnAdd()
+	public virtual void OnAddOrUpdate()
 	{
 
 	}

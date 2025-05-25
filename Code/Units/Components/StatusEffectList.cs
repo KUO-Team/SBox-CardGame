@@ -94,12 +94,14 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		if ( existing is not null )
 		{
 			existing.Stack = ApplyStackLimit( existing, existing.Stack, stack );
+			existing.OnAddOrUpdate();
 		}
 		else
 		{
 			statusEffect.Owner = Owner;
 			statusEffect.Stack = ClampStack( statusEffect.Stack, statusEffect.Data.Maximum );
 			Items.Add( statusEffect );
+			statusEffect.OnAddOrUpdate();
 		}
 	}
 
