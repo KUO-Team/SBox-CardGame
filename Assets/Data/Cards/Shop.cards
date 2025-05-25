@@ -631,6 +631,106 @@
           "Script": ""
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 73
+      },
+      "Name": "Haste",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Shop",
+      "Keywords": "Haste",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 2
+          },
+          "Script": "Haste"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 74
+      },
+      "Name": "Freeze",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "None",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 2
+          },
+          "Script": "Cold"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 75
+      },
+      "Name": "Recover",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Epic",
+      "Availabilities": "Shop",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "StunnedNextTurn"
+        },
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": "ManaAdd"
+        },
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Draw"
+        }
+      ]
     }
   ],
   "__references": [],
