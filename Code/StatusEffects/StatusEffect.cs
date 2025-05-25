@@ -3,18 +3,23 @@ using CardGame.Units;
 
 namespace CardGame.StatusEffects;
 
-public abstract class StatusEffect : IOwnable
+public abstract class StatusEffect( Data.StatusEffect data ) : IOwnable
 {
-	public Data.StatusEffect Data { get; set; }
+	public Data.StatusEffect Data { get; set; } = data;
 
 	public BattleUnit? Owner { get; set; }
-	
+
 	public int Stack { get; set; }
 
-	protected StatusEffect( Data.StatusEffect data )
-	{
-		Data = data;
+	public virtual StatusKey Keyword { get; set; }
 
+	public virtual string Description()
+	{
+		return Data.Description;
+	}
+
+	public virtual void OnAdd()
+	{
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnBattleStart += OnBattleStart;
@@ -25,18 +30,16 @@ public abstract class StatusEffect : IOwnable
 		}
 	}
 
-	public virtual StatusKey Keyword { get; set; }
-
-	public virtual string Description()
+	public virtual void OnUpdate()
 	{
-		return Data.Description;
+
 	}
 
 	public virtual void OnAddOrUpdate()
 	{
-
+		
 	}
-
+	
 	public virtual void OnBattleStart( Battle battle )
 	{
 
@@ -74,7 +77,7 @@ public abstract class StatusEffect : IOwnable
 
 	public virtual void BeforePlayCard( Card card )
 	{
-		
+
 	}
 
 	public virtual void OnPlayCard( Card card )
