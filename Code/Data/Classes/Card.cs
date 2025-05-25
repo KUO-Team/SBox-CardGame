@@ -34,7 +34,7 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	[InlineEditor, WideMode]
 	public List<Action> Actions { get; set; } = [];
-	
+
 	[Hide, JsonIgnore]
 	public bool IsAvailable
 	{
@@ -44,12 +44,12 @@ public class Card : IResource, IDeepCopyable<Card>
 			{
 				return true;
 			}
-		
+
 			if ( Availabilities.HasFlag( CardAvailabilities.Shop ) )
 			{
 				return true;
 			}
-		
+
 			if ( Availabilities.HasFlag( CardAvailabilities.Event ) )
 			{
 				return true;
@@ -58,7 +58,7 @@ public class Card : IResource, IDeepCopyable<Card>
 			return false;
 		}
 	}
-	
+
 	[Hide, JsonIgnore]
 	public CardModifiers Modifiers { get; } = new();
 
@@ -177,6 +177,30 @@ public class Card : IResource, IDeepCopyable<Card>
 	{
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
 		{
+			status.BeforePlayCard( this );
+		}
+		
+		foreach ( var passive in owner.Passives?.ToList() ?? [] )
+		{
+			passive.BeforePlayCard( this );
+		}
+		
+		if ( RelicManager.Instance.IsValid() )
+		{
+			foreach ( var relic in RelicManager.Instance.Relics )
+			{
+				relic.BeforePlayCard( this );
+			}
+		}
+
+		foreach ( var action in Actions )
+		{
+			var effect = action.Effect;
+			effect?.OnPlay( CreateDetail( owner, target ) );
+		}
+
+		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
+		{
 			status.OnPlayCard( this );
 		}
 
@@ -190,15 +214,6 @@ public class Card : IResource, IDeepCopyable<Card>
 			foreach ( var relic in RelicManager.Instance.Relics )
 			{
 				relic.OnPlayCard( this, owner );
-			}
-		}
-		
-		foreach ( var action in Actions )
-		{
-			var effect = action.Effect;
-			if ( effect is not null )
-			{
-				effect.OnPlay( CreateDetail( owner, target ) );
 			}
 		}
 	}
