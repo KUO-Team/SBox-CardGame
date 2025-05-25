@@ -1,0 +1,12 @@
+﻿namespace CardGame.Effects;
+
+public class Haste( Card card ) : CardEffect( card )
+{
+	public override string Description => "Gain @ Haste";
+
+	public override void OnPlay( CardEffectDetail detail )
+	{
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Haste, Power.Value );
+		base.OnPlay( detail );
+	}
+}
