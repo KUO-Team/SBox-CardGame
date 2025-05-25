@@ -51,7 +51,7 @@ public abstract class Relic : IOwnable
 		
 	}
 	
-	public virtual void BeforePlayCard( Card card )
+	public virtual void BeforePlayCard( Card card, BattleUnit unit )
 	{
 		
 	}

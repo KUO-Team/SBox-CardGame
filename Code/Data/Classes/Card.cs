@@ -97,9 +97,9 @@ public class Card : IResource, IDeepCopyable<Card>
 		var selectedTargets = SelectTargets( target, owner );
 		foreach ( var selected in selectedTargets )
 		{
+			TriggerOnPlayEffects( owner, selected );
 			PlayOnTarget( owner, selected );
 		}
-		TriggerOnPlayEffects( owner, target );
 
 		slot.AssignedCard = null;
 		if ( Type != CardType.Item )
@@ -189,7 +189,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		{
 			foreach ( var relic in RelicManager.Instance.Relics )
 			{
-				relic.BeforePlayCard( this );
+				relic.BeforePlayCard( this, owner );
 			}
 		}
 
