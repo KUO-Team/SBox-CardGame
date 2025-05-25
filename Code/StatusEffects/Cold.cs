@@ -10,11 +10,11 @@ public class Cold( Data.StatusEffect data ) : StatusEffect( data )
 	{
 		return Stack > 0 ? $"Speed -{Stack} for this turn." : base.Description();
 	}
-	
-	public override void OnUpdate()
+
+	public override void OnAddOrUpdate()
 	{
 		Activate();
-		base.OnUpdate();
+		base.OnAddOrUpdate();
 	}
 
 	public override void OnTurnStart()
