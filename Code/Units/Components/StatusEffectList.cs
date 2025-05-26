@@ -210,7 +210,6 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 		_nextTurnItems.Clear();
 	}
 
-	// This is purposefully a class so we have mutability.
 	public class QueuedStatusEffect
 	{
 		public required StatusEffect StatusEffect { get; init; }

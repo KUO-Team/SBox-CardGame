@@ -101,3 +101,17 @@ public class Relic : IResource, IDeepCopyable<Relic>
 		DevOnly = 1 << 6,
 	}
 }
+
+public static class RelicRarityExtensions
+{
+	public static Relic.RelicRarity GetNextRarity( this Relic.RelicRarity current )
+	{
+		return current switch
+		{
+			Relic.RelicRarity.Common => Relic.RelicRarity.Uncommon,
+			Relic.RelicRarity.Uncommon => Relic.RelicRarity.Rare,
+			Relic.RelicRarity.Rare => Relic.RelicRarity.Epic,
+			_ => Relic.RelicRarity.Epic
+		};
+	}
+}
