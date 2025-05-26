@@ -127,9 +127,9 @@ public class Card : IResource, IDeepCopyable<Card>
 				damage += effect.DamageModifier( CreateDetail( owner, target ) );
 			}
 
-			Log.EditorLog( $"{Name} basePower: {basePower}, modified: {modifiedPower}, final damage: {damage}" );
 			if ( action.Type == Action.ActionType.Attack )
 			{
+				Log.EditorLog( $"{Name} | Base Power: {basePower} | Modified Power: {modifiedPower} | Final Damage: {damage}" );
 				target.HealthComponent?.TakeDamage( damage, owner );
 			}
 		}
