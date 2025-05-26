@@ -5,7 +5,7 @@ namespace CardGame.Relics;
 
 public abstract class Relic( Data.Relic data ) : IOwnable
 {
-	public Data.Relic Data { get; set; } = data;
+	public Data.Relic Data { get; } = data;
 
 	public BattleUnit? Owner { get; set; }
 

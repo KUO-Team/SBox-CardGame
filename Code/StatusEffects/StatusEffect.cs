@@ -5,7 +5,7 @@ namespace CardGame.StatusEffects;
 
 public abstract class StatusEffect( Data.StatusEffect data ) : IOwnable
 {
-	public Data.StatusEffect Data { get; set; } = data;
+	public Data.StatusEffect Data { get; } = data;
 
 	public BattleUnit? Owner { get; set; }
 

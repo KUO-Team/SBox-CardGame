@@ -5,7 +5,7 @@ namespace CardGame.Passives;
 
 public abstract class PassiveAbility( Data.PassiveAbility data ) : IOwnable
 {
-	public Data.PassiveAbility Data { get; set; } = data;
+	public Data.PassiveAbility Data { get; } = data;
 
 	public BattleUnit? Owner { get; set; }
 
