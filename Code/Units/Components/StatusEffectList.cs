@@ -213,7 +213,7 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 	// This is purposefully a class so we have mutability.
 	public class QueuedStatusEffect
 	{
-		public required StatusEffect StatusEffect { get; set; }
+		public required StatusEffect StatusEffect { get; init; }
 		public int Stack { get; set; }
 
 		public void Deconstruct( out StatusEffect effect, out int stack )
