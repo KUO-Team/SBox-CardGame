@@ -1,4 +1,5 @@
-﻿using CardGame.StatusEffects;
+﻿using System;
+using CardGame.StatusEffects;
 using CardGame.Units;
 
 namespace CardGame.Passives;
@@ -18,9 +19,9 @@ public class BloodFeeding( Data.PassiveAbility data ) : PassiveAbility( data )
 
 		if ( target.StatusEffects.HasStatusEffect<Bleed>() )
 		{
-			AmountHealed += 2;
+			AmountHealed = Math.Max( damage, 2 );
 			Triggered = true;
-			Owner.HealthComponent.Heal( 2 );
+			Owner.HealthComponent.Heal( damage );
 		}
 
 		base.OnDealDamage( damage, target );
