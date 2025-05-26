@@ -41,6 +41,7 @@
           "__type": "CardGame.SaveManager",
           "__guid": "2a83b969-a9cc-463e-a9bc-286347a429ee",
           "ActiveRunData": {
+            "Version": "",
             "Index": 0,
             "Seed": 0,
             "MapNodeIndex": 0,
@@ -105,11 +106,9 @@
           "RelicAmount": 4,
           "Relics": [],
           "RerollCost": 5,
-          "RerollKeywordCost": 15,
-          "RerollTypeCost": 15,
           "Trades": [
             {
-              "Relics": [
+              "Input": [
                 {
                   "Source": "",
                   "LocalId": 101
@@ -200,6 +199,7 @@
             "go": "2f5a58f7-44b9-46c9-9966-9d12c036918b",
             "component_type": "BattleHud"
           },
+          "IsTutorial": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

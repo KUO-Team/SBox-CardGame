@@ -117,12 +117,12 @@ public sealed class ShopManager : Singleton<ShopManager>
 	{
 		foreach ( var trade in Trades )
 		{
-			if ( trade.Relics.Count != relicsUsed.Count )
+			if ( trade.Input.Count != relicsUsed.Count )
 			{
 				continue;
 			}
 
-			if ( !trade.Relics.OrderBy( x => x ).SequenceEqual( relicsUsed.OrderBy( x => x ) ) )
+			if ( !trade.Input.OrderBy( x => x ).SequenceEqual( relicsUsed.OrderBy( x => x ) ) )
 			{
 				continue;
 			}
@@ -168,7 +168,7 @@ public class ShopItem
 
 public class Trade
 {
-	public List<Id> Relics { get; set; } = [];
+	public List<Id> Input { get; set; } = [];
 	
 	public Id? Output { get; set; }
 }

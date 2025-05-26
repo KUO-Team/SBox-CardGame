@@ -12,7 +12,7 @@ public partial class ShopPanel
 
 	public MapPanel? Map { get; set; }
 
-	private Panel? _tradeMenu, _keywordSelection, _typeSelection, _tradeInfo;
+	private Panel? _tradeMenu, _tradeInfo;
 	private PackOpeningPanel? _packOpeningPanel;
 
 	private const int KeywordWeightBonus = 50;
@@ -49,7 +49,7 @@ public partial class ShopPanel
 			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
-		var ownedRelicIds = RelicManager?.Relics?.Select( r => r.Data?.Id ).Where( id => id != null ).ToHashSet() ?? [];
+		var ownedRelicIds = RelicManager?.Relics?.Select( r => r.Data.Id ).ToHashSet() ?? [];
 		var availableRelics = RelicDataList.All
 			.Where( relic => !ownedRelicIds.Contains( relic.Id ) &&
 				(relic.Availabilities & Relic.RelicAvailabilities.Shop) != 0 )
@@ -131,7 +131,7 @@ public partial class ShopPanel
 
 	public void Reroll()
 	{
-		if ( ShopManager == null || !CanAfford( ShopManager.RerollCost ) ) return;
+		if ( !ShopManager.IsValid() || !CanAfford( ShopManager.RerollCost ) ) return;
 
 		DeductMoney( ShopManager.RerollCost );
 		ShopManager.RerollCost += RerollCostIncrement;
@@ -228,7 +228,18 @@ public partial class ShopPanel
 		}
 
 		var firstRelic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
-		return firstRelic?.Rarity == relic.Rarity;
+	
+		// Check if rarities match
+		if ( firstRelic?.Rarity != relic.Rarity )
+		{
+			return false;
+		}
+
+		// Check if we've already reached the required amount for this rarity
+		var requiredAmount = ShopManager?.TradeInRequirements?
+			.GetValueOrDefault( relic.Rarity, int.MaxValue ) ?? int.MaxValue;
+	
+		return SelectedRelicsForTradeIn.Count < requiredAmount;
 	}
 
 	public void CompleteTradeIn()
@@ -238,17 +249,78 @@ public partial class ShopPanel
 			return;
 		}
 
-		var firstRelic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
-		if ( firstRelic is null )
+		var outputRelic = GetTradeOutput();
+		if ( outputRelic is null )
 		{
 			return;
 		}
 
-		var requiredAmount = ShopManager?.TradeInRequirements?.GetValueOrDefault( firstRelic.Rarity, 0 ) ?? 0;
-		var relicsToRemove = SelectedRelicsForTradeIn.Take( requiredAmount ).ToList();
+		RemoveSelectedRelics();
+		AddRelic( outputRelic );
+		SelectedRelicsForTradeIn.Clear();
+		ToggleTradeMenu();
+	}
 
-		// Remove traded relics
-		foreach ( var id in relicsToRemove )
+	private Relic? GetTradeOutput()
+	{
+		var specificTradeOutput = TryGetSpecificTradeOutput();
+		return specificTradeOutput ?? TryGetGenericTradeOutput();
+	}
+
+	private Relic? TryGetSpecificTradeOutput()
+	{
+		var tradeOutputId = ShopManager?.FindTradeMatch( SelectedRelicsForTradeIn );
+		if ( tradeOutputId is null )
+		{
+			return null;
+		}
+
+		return RelicDataList.All.FirstOrDefault( r => r.Id.Equals( tradeOutputId ) );
+	}
+
+	private Relic? TryGetGenericTradeOutput()
+	{
+		var firstRelic = GetFirstSelectedRelic();
+		if ( firstRelic is null )
+		{
+			return null;
+		}
+
+		var targetRarity = firstRelic.Rarity.GetNextRarity();
+		var availableRelics = GetAvailableRelicsForRarity( targetRarity );
+
+		return availableRelics.Count > 0
+			? availableRelics[Game.Random.Next( availableRelics.Count )]
+			: null;
+	}
+
+	private Relic? GetFirstSelectedRelic()
+	{
+		if ( SelectedRelicsForTradeIn.Count == 0 )
+		{
+			return null;
+		}
+
+		return RelicManager?.Relics?
+			.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
+	}
+
+	private List<Relic> GetAvailableRelicsForRarity( Relic.RelicRarity targetRarity )
+	{
+		var ownedRelicIds = RelicManager?.Relics?
+			.Select( r => r.Data.Id )
+			.ToHashSet() ?? [];
+
+		return RelicDataList.All
+			.Where( r => r.Rarity == targetRarity &&
+				(r.Availabilities & Relic.RelicAvailabilities.Shop) != 0 &&
+				!ownedRelicIds.Contains( r.Id ) )
+			.ToList();
+	}
+
+	private void RemoveSelectedRelics()
+	{
+		foreach ( var id in SelectedRelicsForTradeIn )
 		{
 			var relic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( id ) );
 			if ( relic is not null )
@@ -257,23 +329,6 @@ public partial class ShopPanel
 			}
 			RemoveRelicFromSave( id );
 		}
-
-		// Grant new relic
-		var targetRarity = firstRelic.Rarity.GetNextRarity();
-		var availableRelics = RelicDataList.All
-			.Where( r => r.Rarity == targetRarity &&
-				(r.Availabilities & Relic.RelicAvailabilities.Shop) != 0 &&
-				RelicManager?.Relics?.All( existing => existing.Data.Id.Equals( r.Id ) ) == true )
-			.ToList();
-
-		if ( availableRelics.Count > 0 )
-		{
-			var newRelic = availableRelics[Game.Random.Next( availableRelics.Count )];
-			AddRelic( newRelic );
-		}
-
-		SelectedRelicsForTradeIn.Clear();
-		ToggleTradeMenu();
 	}
 
 	public bool CanCompleteTrade()
@@ -283,10 +338,43 @@ public partial class ShopPanel
 			return false;
 		}
 
-		var firstRelic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
-		var required = ShopManager?.TradeInRequirements?.GetValueOrDefault( firstRelic?.Rarity ?? default, 0 ) ?? 0;
+		// Can trade if there's a specific trade OR if generic trade is possible
+		return CanDoSpecificTrade() || CanDoGenericTrade();
+	}
 
-		return SelectedRelicsForTradeIn.Count >= required;
+	private bool CanDoSpecificTrade()
+	{
+		return ShopManager?.FindTradeMatch( SelectedRelicsForTradeIn ) is not null;
+	}
+
+	private bool CanDoGenericTrade()
+	{
+		var firstRelic = GetFirstSelectedRelic();
+		if ( firstRelic is null )
+		{
+			return false;
+		}
+
+		var requiredAmount = ShopManager?.TradeInRequirements?
+			.GetValueOrDefault( firstRelic.Rarity, 0 ) ?? 0;
+
+		return SelectedRelicsForTradeIn.Count >= requiredAmount && AllSelectedRelicsHaveSameRarity();
+	}
+
+	private bool AllSelectedRelicsHaveSameRarity()
+	{
+		var firstRelic = GetFirstSelectedRelic();
+		if ( firstRelic is null )
+		{
+			return false;
+		}
+
+		return SelectedRelicsForTradeIn.All( id =>
+		{
+			var relic = RelicManager?.Relics?
+				.FirstOrDefault( r => r.Data.Id.Equals( id ) )?.Data;
+			return relic?.Rarity == firstRelic.Rarity;
+		} );
 	}
 
 	public static void Heal()
