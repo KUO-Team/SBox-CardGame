@@ -19,9 +19,10 @@ public class BloodFeeding( Data.PassiveAbility data ) : PassiveAbility( data )
 
 		if ( target.StatusEffects.HasStatusEffect<Bleed>() )
 		{
-			AmountHealed = Math.Max( damage, 2 );
+			var cappedDamage = Math.Min( damage, 2 );
+			AmountHealed = cappedDamage;
 			Triggered = true;
-			Owner.HealthComponent.Heal( damage );
+			Owner.HealthComponent.Heal( cappedDamage );
 		}
 
 		base.OnDealDamage( damage, target );
