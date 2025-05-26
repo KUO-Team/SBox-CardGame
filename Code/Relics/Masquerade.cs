@@ -9,7 +9,7 @@ public class Masquerade( Data.Relic data ) : Relic( data )
 			return;
 		}
 
-		foreach ( var effect in Owner.StatusEffects )
+		foreach ( var effect in Owner.StatusEffects.ToList() )
 		{
 			if ( !effect.Data.IsNegative )
 			{
