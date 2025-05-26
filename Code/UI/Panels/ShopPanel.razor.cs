@@ -7,67 +7,24 @@ namespace CardGame.UI;
 
 public partial class ShopPanel
 {
-	private static List<ShopItem> CardPacks => ShopManager?.CardPacks ?? [];
-	private static List<ShopItem> Relics => ShopManager?.Relics ?? [];
-
-	private static int RerollCost => ShopManager?.RerollCost ?? 0;
-
-	private static int RerollKeywordCost => ShopManager?.RerollKeywordCost ?? 0;
-
-	private static int RerollTypeCost => ShopManager?.RerollTypeCost ?? 0;
-
-	private static int HealCost => ShopManager?.HealCost ?? 0;
-
-	private static int CardPackAmount => ShopManager?.CardPackAmount ?? 0;
-
-	private static int RelicAmount => ShopManager?.RelicAmount ?? 0;
-
 	private object? LastPurchasedItem { get; set; }
+	public List<Id> SelectedRelicsForTradeIn { get; set; } = [];
 
 	public MapPanel? Map { get; set; }
+
+	private Panel? _tradeMenu, _keywordSelection, _typeSelection, _tradeInfo;
+	private PackOpeningPanel? _packOpeningPanel;
+
+	private const int KeywordWeightBonus = 50;
+	private const int NonMatchingWeightMultiplier = 50;
+	private const int RerollCostIncrement = 10;
 
 	private static SaveManager? SaveManager => SaveManager.Instance;
 	private static RelicManager? RelicManager => RelicManager.Instance;
 	private static ShopManager? ShopManager => ShopManager.Instance;
 
-	private Panel? _tradeMenu;
-	private Panel? _keywordSelection;
-	private Panel? _typeSelection;
-	private Panel? _tradeInfo;
-
-	private PackOpeningPanel? _packOpeningPanel;
-
-	private readonly List<Id> _selectedRelicsForTradeIn = [];
-
-	/// <summary>
-	/// How many of each rarity needed for an upgrade?
-	/// </summary>
-	private readonly Dictionary<Relic.RelicRarity, int> _tradeInRequirements = new()
-	{
-		{
-			Relic.RelicRarity.Common, 2
-		},
-		{
-			Relic.RelicRarity.Uncommon, 2
-		},
-		{
-			Relic.RelicRarity.Rare, 2
-		}
-	};
-
-	/// <summary>
-	/// Return the next rarity up from the current.
-	/// </summary>
-	private static Relic.RelicRarity GetNextRarityUp( Relic.RelicRarity current )
-	{
-		return current switch
-		{
-			Relic.RelicRarity.Common => Relic.RelicRarity.Uncommon,
-			Relic.RelicRarity.Uncommon => Relic.RelicRarity.Rare,
-			Relic.RelicRarity.Rare => Relic.RelicRarity.Epic,
-			_ => Relic.RelicRarity.Epic
-		};
-	}
+	private static List<ShopItem> CardPacks => ShopManager?.CardPacks ?? [];
+	private static List<ShopItem> Relics => ShopManager?.Relics ?? [];
 
 	protected override void OnAfterTreeRender( bool firstTime )
 	{
@@ -79,102 +36,90 @@ public partial class ShopPanel
 		base.OnAfterTreeRender( firstTime );
 	}
 
-	public void SetRandomItems()
+	public static void SetRandomItems()
 	{
 		CardPacks.Clear();
 		Relics.Clear();
+		PopulateItems();
+	}
 
-		var shopCards = CardPackDataList.All
+	private static void PopulateItems()
+	{
+		var availableCards = CardPackDataList.All
 			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
 			.ToList();
 
-		AddRandomCardPacks( shopCards, CardPacks, CardPackAmount );
-
-		var ownedRelicIds = new HashSet<Id>();
-
-		if ( RelicManager?.Relics is not null )
-		{
-			ownedRelicIds = RelicManager.Relics
-				.Select( r => r.Data!.Id )
-				.ToHashSet();
-		}
-
+		var ownedRelicIds = RelicManager?.Relics?.Select( r => r.Data?.Id ).Where( id => id != null ).ToHashSet() ?? [];
 		var availableRelics = RelicDataList.All
 			.Where( relic => !ownedRelicIds.Contains( relic.Id ) &&
 				(relic.Availabilities & Relic.RelicAvailabilities.Shop) != 0 )
 			.ToList();
 
-		if ( availableRelics.Count > 0 )
-		{
-			AddRandomRelics( availableRelics, Relics, RelicAmount );
-		}
+		AddRandomCards( availableCards, CardPacks, ShopManager?.CardPackAmount ?? 0 );
+		AddRandomRelics( availableRelics, Relics, ShopManager?.RelicAmount ?? 0 );
 	}
 
-	private void AddRandomCardPacks( List<CardPack> cardList, List<ShopItem> outputList, int count )
+	private static void AddRandomCards( List<CardPack> cards, List<ShopItem> output, int count )
 	{
-		if ( cardList.Count == 0 || !Player.Local.IsValid() )
+		var player = Player.Local;
+		if ( cards.Count == 0 || !player.IsValid() )
 		{
 			return;
 		}
 
-		var weightedPacks = GetWeightedCardPackList( cardList );
+		var weighted = CreateWeightedList( cards, GetCardWeight );
+		var used = new HashSet<Id>();
 
-		while ( outputList.Count < count && weightedPacks.Count > 0 )
+		while ( output.Count < count && weighted.Count > 0 )
 		{
-			var pack = PickAndRemoveRandom( weightedPacks );
-			var cost = ShopManager?.CardPackRarityCosts.GetValueOrDefault( pack.Rarity, 50 ) ?? 0;
+			var card = PickAndRemoveRandom( weighted );
+			var id = card.Id;
 
-			outputList.Add( new ShopItem( cost, pack ) );
-		}
-	}
-
-	private void AddRandomRelics( List<Relic> relicList, List<ShopItem> outputList, int count )
-	{
-		if ( relicList.Count == 0 || !Player.Local.IsValid() )
-		{
-			return;
-		}
-
-		var weightedRelics = GetWeightedRelicList( relicList );
-		var usedIds = new HashSet<Id>();
-
-		while ( outputList.Count < count && weightedRelics.Count > 0 )
-		{
-			var relic = PickAndRemoveRandom( weightedRelics );
-
-			if ( !usedIds.Add( relic.Id ) )
+			if ( !used.Add( id ) )
 			{
 				continue;
 			}
 
-			var cost = ShopManager?.RelicRarityCosts.GetValueOrDefault( relic.Rarity, 50 ) ?? 0;
-			outputList.Add( new ShopItem( cost, relic ) );
+			var cost = ShopManager?.CardPackRarityCosts?.GetValueOrDefault( card.Rarity, 50 ) ?? 50;
+			output.Add( new ShopItem( cost, card ) );
 		}
 	}
 
-	private List<CardPack> GetWeightedCardPackList( List<CardPack> cardPackList )
+	private static void AddRandomRelics( List<Relic> relics, List<ShopItem> output, int count )
 	{
-		return cardPackList
-			.SelectMany( pack =>
+		var player = Player.Local;
+		if ( relics.Count == 0 || !player.IsValid() )
+		{
+			return;
+		}
+
+		var weighted = CreateWeightedList( relics, GetRelicWeight );
+		var used = new HashSet<Id>();
+
+		while ( output.Count < count && weighted.Count > 0 )
+		{
+			var relic = PickAndRemoveRandom( weighted );
+			var id = relic.Id;
+
+			if ( !used.Add( id ) )
 			{
-				var weight = ShopManager?.CardPackRarityChances.GetValueOrDefault( pack.Rarity, 0.0 ) ?? 0.0;
-				return Enumerable.Repeat( pack, (int)(weight * 100) );
-			} )
-			.OrderBy( _ => Game.Random.Next() )
-			.ToList();
+				continue;
+			}
+
+			var cost = ShopManager?.RelicRarityCosts?.GetValueOrDefault( relic.Rarity, 50 ) ?? 50;
+			output.Add( new ShopItem( cost, relic ) );
+		}
 	}
 
-	private List<Relic> GetWeightedRelicList( List<Relic> relicList )
-	{
-		return relicList
-			.SelectMany( relic =>
-			{
-				var weight = ShopManager?.RelicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 ) ?? 0.0;
-				return Enumerable.Repeat( relic, (int)(weight * 100) );
-			} )
-			.OrderBy( _ => Game.Random.Next() )
-			.ToList();
-	}
+	private static double GetCardWeight( CardPack pack ) =>
+		ShopManager?.CardPackRarityChances?.GetValueOrDefault( pack.Rarity, 0.0 ) ?? 0.0;
+
+	private static double GetRelicWeight( Relic relic ) =>
+		ShopManager?.RelicRarityChances?.GetValueOrDefault( relic.Rarity, 0.0 ) ?? 0.0;
+
+	private static List<T> CreateWeightedList<T>( List<T> items, Func<T, double> getWeight ) =>
+		items.SelectMany( item => Enumerable.Repeat( item, Math.Max( 1, (int)(getWeight( item ) * 100) ) ) )
+			.OrderBy( _ => Game.Random.Next() ).ToList();
 
 	private static T PickAndRemoveRandom<T>( List<T> list )
 	{
@@ -186,586 +131,297 @@ public partial class ShopPanel
 
 	public void Reroll()
 	{
-		if ( !CanReroll() )
-		{
-			return;
-		}
+		if ( ShopManager == null || !CanAfford( ShopManager.RerollCost ) ) return;
 
-		if ( Player.Local.IsValid() )
-		{
-			Player.Local.Money -= RerollCost;
-		}
-
-		if ( ShopManager.IsValid() )
-		{
-			ShopManager.RerollCost += ShopManager.ShopConfig.RerollCostIncrement;
-		}
-
+		DeductMoney( ShopManager.RerollCost );
+		ShopManager.RerollCost += RerollCostIncrement;
 		SetRandomItems();
 	}
 
 	public void RerollByKeyword( string keyword )
 	{
 		_keywordSelection?.Hide();
-
-		if ( !CanRerollByKeyword() )
+		if ( !ShopManager.IsValid() || !CanAfford( ShopManager.RerollKeywordCost ) )
 		{
 			return;
 		}
 
-		if ( Player.Local.IsValid() )
-		{
-			Player.Local.Money -= RerollKeywordCost;
-		}
-
-		if ( ShopManager.IsValid() )
-		{
-			ShopManager.RerollKeywordCost += 10;
-		}
-
-		CardPacks.Clear();
-		Relics.Clear();
-
-		var shopCards = CardPackDataList.All
-			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
-			.ToList();
-
-		var matchingCards = shopCards
-			.Where( card => card.Keywords.Contains( keyword ) )
-			.ToList();
-
-		var nonMatchingCards = shopCards
-			.Except( matchingCards )
-			.ToList();
-
-		var keywordWeightedCards = GetKeywordWeightedCardList( matchingCards, nonMatchingCards );
-		AddRandomCardPacks( keywordWeightedCards, CardPacks, CardPackAmount );
-
-		// Relics
-		var ownedRelicIds = new HashSet<Id>();
-
-		if ( RelicManager?.Relics is not null )
-		{
-			ownedRelicIds = RelicManager.Relics
-				.Select( r => r.Data!.Id )
-				.ToHashSet();
-		}
-
-		var shopRelics = RelicDataList.All
-			.Where( relic => !ownedRelicIds.Contains( relic.Id ) &&
-				(relic.Availabilities & Relic.RelicAvailabilities.Shop) != 0 )
-			.ToList();
-
-		var matchingRelics = shopRelics
-			.Where( relic => relic.Keywords.Contains( keyword ) )
-			.ToList();
-
-		var nonMatchingRelics = shopRelics
-			.Except( matchingRelics )
-			.ToList();
-
-		var keywordWeightedRelics = GetKeywordWeightedRelicList( matchingRelics, nonMatchingRelics );
-		AddRandomRelics( keywordWeightedRelics, Relics, RelicAmount );
+		DeductMoney( ShopManager.RerollKeywordCost );
+		ShopManager.RerollKeywordCost += RerollCostIncrement;
+		PerformFilteredReroll<object>( item => HasKeyword( item, keyword ) );
 	}
 
 	public void RerollByType( Card.CardType type )
 	{
 		_typeSelection?.Hide();
-
-		if ( !CanRerollByType() )
+		if ( !ShopManager.IsValid() || !CanAfford( ShopManager.RerollTypeCost ) )
 		{
 			return;
 		}
 
-		if ( Player.Local.IsValid() )
-		{
-			Player.Local.Money -= RerollTypeCost;
-		}
+		DeductMoney( ShopManager.RerollTypeCost );
+		ShopManager.RerollTypeCost += RerollCostIncrement;
+		PerformFilteredReroll<object>( pack => pack is CardPack cardPack && cardPack.Cards.Select( CardDataList.GetById ).Any( card => card?.Type == type ) );
+	}
 
-		if ( ShopManager.IsValid() )
-		{
-			ShopManager.RerollTypeCost += 10;
-		}
-
+	private static void PerformFilteredReroll<T>( Func<T, bool> filter )
+	{
 		CardPacks.Clear();
 		Relics.Clear();
-
-		var shopCards = CardPackDataList.All
-			.Where( card => (card.Availabilities & CardPack.CardPackAvailabilities.Shop) != 0 )
-			.ToList();
-
-		// Track how many cards of the specified type each pack contains
-		var packTypeCountMap = new Dictionary<CardPack, int>();
-
-		foreach ( var pack in shopCards )
-		{
-			var cardsOfType = 0;
-
-			foreach ( var cardId in pack.Cards )
-			{
-				var card = CardDataList.GetById( cardId );
-
-				if ( card is null )
-				{
-					continue;
-				}
-
-				if ( card.Type == type )
-				{
-					cardsOfType++;
-				}
-			}
-
-			if ( cardsOfType > 0 )
-			{
-				packTypeCountMap[pack] = cardsOfType;
-			}
-		}
-
-		// Separate packs with matching cards from those without
-		var matchingCards = shopCards
-			.Where( card => packTypeCountMap.ContainsKey( card ) )
-			.ToList();
-
-		var nonMatchingCards = shopCards
-			.Except( matchingCards )
-			.ToList();
-
-		var typeWeightedCards = GetTypeWeightedCardList( matchingCards, nonMatchingCards, packTypeCountMap );
-		AddRandomCardPacks( typeWeightedCards, CardPacks, CardPackAmount );
-
-		// Relics stay the same as normal reroll
-		var ownedRelicIds = new HashSet<Id>();
-
-		if ( RelicManager?.Relics is not null )
-		{
-			ownedRelicIds = RelicManager.Relics
-				.Select( r => r.Data!.Id )
-				.ToHashSet();
-		}
-
-		var availableRelics = RelicDataList.All
-			.Where( relic => !ownedRelicIds.Contains( relic.Id ) &&
-				(relic.Availabilities & Relic.RelicAvailabilities.Shop) != 0 )
-			.ToList();
-
-		AddRandomRelics( availableRelics, Relics, RelicAmount );
+		PopulateItems();
 	}
 
-	private List<CardPack> GetTypeWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching, Dictionary<CardPack, int> typeCountMap )
+	private static bool HasKeyword<T>( T item, string keyword ) => item switch
 	{
-		// Create weighted list based on how many cards of the specific type are in each pack
-		var weightedMatching = matching.SelectMany( pack =>
-		{
-			var weight = ShopManager?.CardPackRarityChances.GetValueOrDefault( pack.Rarity, 0.0 ) ?? 0.0;
-			// Multiply by 100 base weight plus additional weight per matching card
-			var countBonus = typeCountMap.GetValueOrDefault( pack, 0 ) * 50; // 50 more weight per matching card
-			return Enumerable.Repeat( pack, (int)((weight * 100) + countBonus) );
-		} );
+		CardPack pack => pack.Keywords?.Contains( keyword ) == true,
+		Relic relic => relic.Keywords?.Contains( keyword ) == true,
+		_ => false
+	};
 
-		var weightedNonMatching = nonMatching.SelectMany( card =>
+	public void BuyCardPack( ShopItem item )
+	{
+		if ( !CanPurchase( item ) )
 		{
-			var weight = ShopManager?.CardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 ) ?? 0.0;
-			return Enumerable.Repeat( card, (int)(weight * 50) ); // lower weight
-		} );
+			return;
+		}
 
-		return weightedMatching
-			.Concat( weightedNonMatching )
-			.OrderBy( _ => Game.Random.Next() )
-			.ToList();
+		ShowConfirmation( $"Buy {item.Pack?.Name} for {item.Cost}g?", () => CompletePurchase( item ) );
 	}
 
-	public void Heal()
+	public void BuyRelic( ShopItem item )
+	{
+		if ( !CanPurchase( item ) || item.Relic is null )
+		{
+			return;
+		}
+
+		ShowConfirmation( $"Buy {item.Relic.Name} for {item.Cost}g?", () => CompletePurchase( item ) );
+	}
+
+	private void CompletePurchase( ShopItem item )
+	{
+		var player = Player.Local;
+		if ( !player.IsValid() )
+		{
+			return;
+		}
+
+		DeductMoney( item.Cost );
+		LastPurchasedItem = item.Pack ?? (object?)item.Relic;
+
+		if ( item.Pack is not null )
+		{
+			player.CardPacks?.Add( item.Pack );
+			SaveManager?.ActiveRunData?.CardPacks?.Add( item.Pack.Id );
+			CardPacks.Remove( item );
+			_packOpeningPanel?.Show();
+		}
+		else if ( item.Relic is not null )
+		{
+			AddRelic( item.Relic );
+			Relics.Remove( item );
+		}
+	}
+
+	private void ShowConfirmation( string message, System.Action onConfirm )
+	{
+		WarningPanel? warning = null;
+		warning = WarningPanel.Create( "Purchase", message, [
+			new Button( "Yes", "", () =>
+			{
+				onConfirm?.Invoke();
+				warning?.Delete();
+			} ),
+
+			new Button( "No", "", () => warning?.Delete() )
+		] );
+	}
+
+	public void ToggleRelicSelection( Id relicId )
+	{
+		if ( SelectedRelicsForTradeIn.Remove( relicId ) )
+		{
+			return;
+		}
+
+		var relic = RelicManager?.Relics?.FirstOrDefault( r => r.Data?.Id.Equals( relicId ) == true )?.Data;
+		if ( relic is null || !CanAddToTrade( relic ) )
+		{
+			return;
+		}
+
+		SelectedRelicsForTradeIn.Add( relicId );
+	}
+
+	private bool CanAddToTrade( Relic relic )
+	{
+		if ( SelectedRelicsForTradeIn.Count == 0 )
+		{
+			return true;
+		}
+
+		var firstRelic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
+		return firstRelic?.Rarity == relic.Rarity;
+	}
+
+	public void CompleteTradeIn()
+	{
+		if ( !CanCompleteTrade() )
+		{
+			return;
+		}
+
+		var firstRelic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
+		if ( firstRelic is null )
+		{
+			return;
+		}
+
+		var requiredAmount = ShopManager?.TradeInRequirements?.GetValueOrDefault( firstRelic.Rarity, 0 ) ?? 0;
+		var relicsToRemove = SelectedRelicsForTradeIn.Take( requiredAmount ).ToList();
+
+		// Remove traded relics
+		foreach ( var id in relicsToRemove )
+		{
+			var relic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( id ) );
+			if ( relic is not null )
+			{
+				RelicManager?.RemoveRelic( relic );
+			}
+			RemoveRelicFromSave( id );
+		}
+
+		// Grant new relic
+		var targetRarity = firstRelic.Rarity.GetNextRarity();
+		var availableRelics = RelicDataList.All
+			.Where( r => r.Rarity == targetRarity &&
+				(r.Availabilities & Relic.RelicAvailabilities.Shop) != 0 &&
+				RelicManager?.Relics?.All( existing => existing.Data.Id.Equals( r.Id ) ) == true )
+			.ToList();
+
+		if ( availableRelics.Count > 0 )
+		{
+			var newRelic = availableRelics[Game.Random.Next( availableRelics.Count )];
+			AddRelic( newRelic );
+		}
+
+		SelectedRelicsForTradeIn.Clear();
+		ToggleTradeMenu();
+	}
+
+	public bool CanCompleteTrade()
+	{
+		if ( SelectedRelicsForTradeIn.Count == 0 )
+		{
+			return false;
+		}
+
+		var firstRelic = RelicManager?.Relics?.FirstOrDefault( r => r.Data.Id.Equals( SelectedRelicsForTradeIn[0] ) )?.Data;
+		var required = ShopManager?.TradeInRequirements?.GetValueOrDefault( firstRelic?.Rarity ?? default, 0 ) ?? 0;
+
+		return SelectedRelicsForTradeIn.Count >= required;
+	}
+
+	public static void Heal()
 	{
 		if ( !CanHeal() )
 		{
 			return;
 		}
 
-		if ( Player.Local.IsValid() )
-		{
-			Player.Local.Unit?.HealToMax();
-			Player.Local.Money -= HealCost;
-		}
-	}
-
-	public void BuyCardPack( ShopItem item )
-	{
-		if ( !ShopManager.IsValid() )
+		var player = Player.Local;
+		if ( !player.IsValid() )
 		{
 			return;
 		}
 
-		if ( !ShopManager.CanBuyItem( item ) )
+		player.Unit?.HealToMax();
+		if ( ShopManager.IsValid() )
 		{
-			return;
-		}
-
-		WarningPanel? warning = null;
-		warning = WarningPanel.Create( "Buy Card Pack", $"Buy {item.Pack?.Name} for {item.Cost}g?", [
-			new Button( "Yes", "", () =>
-			{
-				if ( Player.Local.IsValid() )
-				{
-					Player.Local.CardPacks.Add( item.Pack! );
-					Player.Local.Money -= item.Cost;
-				}
-				SaveManager?.ActiveRunData?.CardPacks.Add( item.Pack!.Id );
-
-				LastPurchasedItem = item;
-				_packOpeningPanel?.Show();
-				warning?.Delete();
-			} ),
-			new Button( "No", "", () =>
-			{
-				warning?.Delete();
-			} )
-		] );
-	}
-
-	public void BuyRelic( ShopItem item )
-	{
-		if ( !ShopManager.IsValid() )
-		{
-			return;
-		}
-
-		if ( !ShopManager.CanBuyItem( item ) || Player.Local is not {} player || !SaveManager.IsValid() || !RelicManager.IsValid() || item.Relic is null )
-		{
-			return;
-		}
-
-		if ( SaveManager.ActiveRunData is not null )
-		{
-			SaveManager.ActiveRunData.Relics.Add( item.Relic.Id );
-			var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == SaveManager.ActiveRunData.Index );
-			run?.Relics.Add( item.Relic.Id );
-			PlayerData.Save();
-		}
-
-		WarningPanel? warning = null;
-		warning = WarningPanel.Create( "Buy Relic", $"Buy {item.Relic?.Name} for {item.Cost}g?", [
-			new Button( "Yes", "", () =>
-			{
-				PlayerData.Data.SeeRelic( item.Relic!.Id );
-				RelicManager.AddRelic( item.Relic );
-				Relics.Remove( item );
-				player.Money -= item.Cost;
-				LastPurchasedItem = item.Relic;
-				warning?.Delete();
-			} ),
-			new Button( "No", "", () =>
-			{
-				warning?.Delete();
-			} )
-		] );
-	}
-
-	private List<CardPack> GetKeywordWeightedCardList( List<CardPack> matching, List<CardPack> nonMatching )
-	{
-		var weightedMatching = matching.SelectMany( card =>
-		{
-			var weight = ShopManager?.CardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 ) ?? 0.0;
-			return Enumerable.Repeat( card, (int)(weight * 100 * ShopManager.ShopConfig.Weights.KeywordMatchBonus) );
-		} );
-
-		var weightedNonMatching = nonMatching.SelectMany( card =>
-		{
-			var weight = ShopManager?.CardPackRarityChances.GetValueOrDefault( card.Rarity, 0.0 ) ?? 0.0;
-			return Enumerable.Repeat( card, (int)(weight * 50) ); // lower weight
-		} );
-
-		return weightedMatching
-			.Concat( weightedNonMatching )
-			.OrderBy( _ => Game.Random.Next() )
-			.ToList();
-	}
-
-	private List<Relic> GetKeywordWeightedRelicList( List<Relic> matching, List<Relic> nonMatching )
-	{
-		var weightedMatching = matching.SelectMany( relic =>
-		{
-			var weight = ShopManager?.RelicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 ) ?? 0.0;
-			return Enumerable.Repeat( relic, (int)(weight * 100 * ShopManager.ShopConfig.Weights.KeywordMatchBonus) );
-		} );
-
-		var weightedNonMatching = nonMatching.SelectMany( relic =>
-		{
-			var weight = ShopManager?.RelicRarityChances.GetValueOrDefault( relic.Rarity, 0.0 ) ?? 0.0;
-			return Enumerable.Repeat( relic, (int)(weight * 50) );
-		} );
-
-		return weightedMatching
-			.Concat( weightedNonMatching )
-			.OrderBy( _ => Game.Random.Next() )
-			.ToList();
-	}
-
-	public void ToggleRelicSelection( Id relicId )
-	{
-		if ( _selectedRelicsForTradeIn.Remove( relicId ) )
-		{
-			return;
-		}
-
-		// Get the rarity of the selected relic
-		var relic = RelicManager?.Relics.FirstOrDefault( r => r.Data.Id.Equals( relicId ) );
-
-		if ( relic is null )
-		{
-			return;
-		}
-		{
-			var rarity = relic.Data.Rarity;
-
-			// Only add if it matches the current selection rarity
-			if ( _selectedRelicsForTradeIn.Count == 0 )
-			{
-				// First selection, set the target trade-in rarity
-				_selectedRelicsForTradeIn.Add( relicId );
-			}
-			else
-			{
-				// Check if this relic has the same rarity as others selected
-				var firstRelic = RelicManager?.Relics.FirstOrDefault( r => r.Data.Id.Equals( _selectedRelicsForTradeIn[0] ) );
-				if ( firstRelic?.Data?.Rarity == rarity )
-				{
-					_selectedRelicsForTradeIn.Add( relicId );
-				}
-			}
+			DeductMoney( ShopManager.HealCost );
 		}
 	}
 
-	public bool CanCompleteTrade()
+	private static bool CanAfford( int cost )
 	{
-		if ( _selectedRelicsForTradeIn.Count == 0 || RelicManager?.Relics is null )
+		return Player.Local?.Money >= cost;
+	}
+
+	private static bool CanPurchase( ShopItem item )
+	{
+		return ShopManager.IsValid() && ShopManager.CanBuyItem( item );
+	}
+
+	public static bool CanHeal()
+	{
+		var player = Player.Local;
+		if ( !player.IsValid() )
 		{
 			return false;
 		}
 
-		// Get the first selected relic to determine its rarity
-		var firstRelic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( _selectedRelicsForTradeIn[0] ) );
-		if ( firstRelic?.Data?.Rarity is null )
+		var unit = player.Unit;
+		if ( unit is null )
 		{
 			return false;
 		}
 
-		var rarity = firstRelic.Data.Rarity;
-
-		// Check if we have enough relics of the same rarity
-		if ( !_tradeInRequirements.TryGetValue( rarity, out var requiredAmount ) )
-		{
-			return false;
-		}
-
-		return _selectedRelicsForTradeIn.Count >= requiredAmount;
+		return !unit.IsMaxHp && CanAfford( ShopManager?.HealCost ?? 0 );
 	}
 
-	public void CompleteTradeIn()
+	private static void DeductMoney( int amount )
 	{
-		if ( !RelicManager.IsValid() || !ShopManager.IsValid() )
+		var player = Player.Local;
+		if ( !player.IsValid() )
 		{
 			return;
 		}
 
-		if ( !CanCompleteTrade() )
-		{
-			return;
-		}
-
-		var firstRelicId = _selectedRelicsForTradeIn.FirstOrDefault();
-		var firstRelic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( firstRelicId ) );
-		if ( firstRelic is null )
-		{
-			return;
-		}
-
-		var currentRarity = firstRelic.Data.Rarity;
-		if ( !_tradeInRequirements.TryGetValue( currentRarity, out var requiredAmount ) )
-		{
-			return;
-		}
-
-		var relicsToRemove = _selectedRelicsForTradeIn.Take( requiredAmount ).ToList();
-
-		// Remove the selected relics
-		foreach ( var relicId in relicsToRemove )
-		{
-			var relic = RelicManager.Relics.FirstOrDefault( r => r.Data.Id.Equals( relicId ) );
-			if ( relic is not null )
-			{
-				RelicManager.RemoveRelic( relic );
-			}
-
-			RemoveRelicFromSave( relicId );
-		}
-
-		var specificRelicId = ShopManager.FindTradeMatch( relicsToRemove );
-		if ( specificRelicId is not null )
-		{
-			var specificRelic = RelicDataList.All.FirstOrDefault( r => r.Id.Equals( specificRelicId ) );
-			if ( specificRelic is not null )
-			{
-				GrantRelic( specificRelic, $"Traded in specific relic combo for: {specificRelic.Name}" );
-				_selectedRelicsForTradeIn.Clear();
-				HideTradeMenu();
-				return;
-			}
-		}
-
-		var targetRarity = GetNextRarityUp( currentRarity );
-		var availableRelics = RelicDataList.All
-			.Where( r =>
-				r.Rarity == targetRarity &&
-				(r.Availabilities & Relic.RelicAvailabilities.Shop) != 0 &&
-				RelicManager.Relics.All( existing => !existing.Data.Id.Equals( r.Id ) ) )
-			.ToList();
-
-		if ( availableRelics.Count > 0 )
-		{
-			var newRelic = availableRelics[Game.Random.Next( availableRelics.Count )];
-			GrantRelic( newRelic, $"Traded in {requiredAmount} {currentRarity} relics for: {newRelic.Name}" );
-		}
-
-		_selectedRelicsForTradeIn.Clear();
-		HideTradeMenu();
+		player.Money -= amount;
 	}
 
-	private void AddRelicToSave( Id id )
+	private void AddRelic( Relic relic )
 	{
-		if ( !SaveManager.IsValid() )
-		{
-			return;
-		}
-
-		var runData = SaveManager.ActiveRunData;
-		if ( runData is null )
-		{
-			return;
-		}
-
-		runData.Relics.Add( id );
-		var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == runData.Index );
-		run?.Relics.Add( id );
-		PlayerData.Save();
-	}
-
-	private void RemoveRelicFromSave( Id id )
-	{
-		if ( !SaveManager.IsValid() )
-		{
-			return;
-		}
-
-		var runData = SaveManager.ActiveRunData;
-		if ( runData is null )
-		{
-			return;
-		}
-
-		runData.Relics.Remove( id );
-		var run = PlayerData.Data.Runs.FirstOrDefault( x => x.Index == runData.Index );
-		run?.Relics.Remove( id );
-		PlayerData.Save();
-	}
-
-	private void GrantRelic( Data.Relic relic, string logMessage )
-	{
-		if ( !RelicManager.IsValid() )
-		{
-			return;
-		}
-
 		AddRelicToSave( relic.Id );
 		PlayerData.Data.SeeRelic( relic.Id );
-		RelicManager.AddRelic( relic );
-		LastPurchasedItem = relic;
-
-		if ( Map.IsValid() )
-		{
-			if ( Map.RelicGainPanel.IsValid() )
-			{
-				Map.RelicGainPanel.Show( relic );
-			}
-		}
-
-		Log.Info( logMessage );
+		RelicManager?.AddRelic( relic );
+		Map?.RelicGainPanel?.Show( relic );
 	}
 
-	public void OpenRerollKeywordMenu()
+	private static void AddRelicToSave( Id id )
 	{
-		_keywordSelection?.Show();
+		SaveManager?.ActiveRunData?.Relics?.Add( id );
+		var run = PlayerData.Data.Runs?.FirstOrDefault( x => x.Index == SaveManager?.ActiveRunData?.Index );
+		run?.Relics?.Add( id );
+		PlayerData.Save();
 	}
 
-	public void OpenTypeSelection()
+	private static void RemoveRelicFromSave( Id id )
 	{
-		_typeSelection?.Show();
+		SaveManager?.ActiveRunData?.Relics?.Remove( id );
+		var run = PlayerData.Data.Runs?.FirstOrDefault( x => x.Index == SaveManager?.ActiveRunData?.Index );
+		run?.Relics?.Remove( id );
+		PlayerData.Save();
 	}
 
-	public void HideRerollKeywordMenu()
+	public void ToggleRerollKeywordMenu()
 	{
-		_keywordSelection?.Hide();
+		_keywordSelection?.ToggleClass( "hidden" );
 	}
 
-	public void HideTypeSelection()
+	public void ToggleTypeSelectionMenu()
 	{
-		_typeSelection?.Hide();
-	}
-	public void OpenTradeMenu()
-	{
-		_tradeMenu?.Show();
+		_typeSelection?.ToggleClass( "hidden" );
 	}
 
-	public void HideTradeMenu()
+	public void ToggleTradeMenu()
 	{
-		_tradeMenu?.Hide();
+		_tradeMenu?.ToggleClass( "hidden" );
 	}
 
 	public void ToggleTradeInfo()
 	{
-		if ( !_tradeInfo.IsValid() )
-		{
-			return;
-		}
-		
-		if ( _tradeInfo.HasClass( "hidden" ) )
-		{
-			_tradeInfo.Show();
-		}
-		else
-		{
-			_tradeInfo.Hide();
-		}
-	}
-
-	public bool CanReroll()
-	{
-		return Player.Local?.Money >= RerollCost;
-	}
-
-	public bool CanRerollByKeyword()
-	{
-		return Player.Local?.Money >= RerollKeywordCost;
-	}
-
-	public bool CanRerollByType()
-	{
-		return Player.Local?.Money >= RerollTypeCost;
-	}
-
-	public bool CanHeal()
-	{
-		if ( !Player.Local.IsValid() || Player.Local.Unit is null )
-		{
-			return false;
-		}
-
-		if ( Player.Local.Unit.IsMaxHp )
-		{
-			return false;
-		}
-
-		return Player.Local.Money >= HealCost;
+		_tradeInfo?.ToggleClass( "hidden" );
 	}
 
 	public void Close()
@@ -775,6 +431,6 @@ public partial class ShopPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( ShopManager?.RelicRarityCosts.Count, ShopManager?.CardPackRarityCosts.Count, RerollCost, Player.Local?.Money );
+		return HashCode.Combine( CardPacks.Count, Relics.Count, Player.Local?.Money );
 	}
 }

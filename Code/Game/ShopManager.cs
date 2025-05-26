@@ -95,6 +95,19 @@ public sealed class ShopManager : Singleton<ShopManager>
 		}
 	};
 	
+	public readonly Dictionary<Relic.RelicRarity, int> TradeInRequirements = new()
+	{
+		{
+			Relic.RelicRarity.Common, 2
+		},
+		{
+			Relic.RelicRarity.Uncommon, 2
+		},
+		{
+			Relic.RelicRarity.Rare, 2
+		}
+	};
+	
 	public readonly List<string> Keywords = ["Discard", "Enchanted"];
 
 	public bool CanBuyItem( ShopItem item )
@@ -127,17 +140,17 @@ public sealed class ShopManager : Singleton<ShopManager>
 
 		return null;
 	}
-	
-	public static class ShopConfig
-	{
-		public const int RerollCost = 5;
-		public const int RerollCostIncrement = 5;
+}
 
-		public static class Weights
-		{
-			public const double KeywordMatchBonus = 2.0;
-			public const double TypeMatchBonus = 1.5;
-		}
+public static class ShopConfig
+{
+	public const int RerollCost = 5;
+	public const int RerollCostIncrement = 5;
+
+	public static class Weights
+	{
+		public const double KeywordMatchBonus = 2.0;
+		public const double TypeMatchBonus = 1.5;
 	}
 }
 
