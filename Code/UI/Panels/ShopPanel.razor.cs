@@ -138,39 +138,6 @@ public partial class ShopPanel
 		SetRandomItems();
 	}
 
-	public void RerollByKeyword( string keyword )
-	{
-		_keywordSelection?.Hide();
-		if ( !ShopManager.IsValid() || !CanAfford( ShopManager.RerollKeywordCost ) )
-		{
-			return;
-		}
-
-		DeductMoney( ShopManager.RerollKeywordCost );
-		ShopManager.RerollKeywordCost += RerollCostIncrement;
-		PerformFilteredReroll<object>( item => HasKeyword( item, keyword ) );
-	}
-
-	public void RerollByType( Card.CardType type )
-	{
-		_typeSelection?.Hide();
-		if ( !ShopManager.IsValid() || !CanAfford( ShopManager.RerollTypeCost ) )
-		{
-			return;
-		}
-
-		DeductMoney( ShopManager.RerollTypeCost );
-		ShopManager.RerollTypeCost += RerollCostIncrement;
-		PerformFilteredReroll<object>( pack => pack is CardPack cardPack && cardPack.Cards.Select( CardDataList.GetById ).Any( card => card?.Type == type ) );
-	}
-
-	private static void PerformFilteredReroll<T>( Func<T, bool> filter )
-	{
-		CardPacks.Clear();
-		Relics.Clear();
-		PopulateItems();
-	}
-
 	private static bool HasKeyword<T>( T item, string keyword ) => item switch
 	{
 		CardPack pack => pack.Keywords?.Contains( keyword ) == true,
@@ -402,16 +369,6 @@ public partial class ShopPanel
 		var run = PlayerData.Data.Runs?.FirstOrDefault( x => x.Index == SaveManager?.ActiveRunData?.Index );
 		run?.Relics?.Remove( id );
 		PlayerData.Save();
-	}
-
-	public void ToggleRerollKeywordMenu()
-	{
-		_keywordSelection?.ToggleClass( "hidden" );
-	}
-
-	public void ToggleTypeSelectionMenu()
-	{
-		_typeSelection?.ToggleClass( "hidden" );
 	}
 
 	public void ToggleTradeMenu()

@@ -12,12 +12,6 @@ public sealed class ShopManager : Singleton<ShopManager>
 	
 	[Property]
 	public int RerollCost { get; set; } = ShopConfig.RerollCost;
-	
-	[Property]
-	public int RerollKeywordCost { get; set; } = 15;
-
-	[Property]
-	public int RerollTypeCost { get; set; } = 15;
 
 	[Property]
 	public int HealCost { get; set; } = 20;
@@ -108,8 +102,6 @@ public sealed class ShopManager : Singleton<ShopManager>
 		}
 	};
 	
-	public readonly List<string> Keywords = ["Discard", "Enchanted"];
-
 	public bool CanBuyItem( ShopItem item )
 	{
 		var player = Player.Local;

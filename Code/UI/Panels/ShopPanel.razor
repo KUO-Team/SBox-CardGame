@@ -36,10 +36,6 @@
 
 	<div class="button-container">
 		<button class="@( CanAfford(ShopManager.RerollCost) ? "" : "disabled" )" onclick="@Reroll">Reroll (@( ShopManager.RerollCost )g)</button>
-		<div class="row">
-			<button class="@( CanAfford(ShopManager.RerollKeywordCost) ? "" : "disabled" )" onclick="@ToggleRerollKeywordMenu">Reroll By Keyword (@( ShopManager.RerollKeywordCost )g)</button>
-			<button class="@( CanAfford(ShopManager.RerollTypeCost) ? "" : "disabled" )" onclick="@ToggleTypeSelectionMenu">Reroll By Type (@( ShopManager.RerollTypeCost )g)</button>
-		</div>
 		<button class="@( CanHeal() ? "" : "disabled" )" onclick="@Heal">Heal (@( ShopManager.HealCost )g)</button>
 		<button onclick="@ToggleTradeMenu">Trade</button>
 		<button onclick="@Close">Close</button>
@@ -64,28 +60,6 @@
 		<div class="button-container">
 			<button onclick="@CompleteTradeIn">Trade</button>
 			<button onclick="@ToggleTradeMenu">Close</button>
-		</div>
-	</div>
-
-	<div class="keyword-reroll-selection selection hidden" @ref="_keywordSelection">
-		<label class="title">Reroll By Keyword</label>
-		<div class="keywords">
-			@foreach ( var keyword in ShopManager?.Keywords ?? [] )
-			{
-				<button onclick="@( () => RerollByKeyword( keyword ) )">@keyword</button>
-			}
-			<button onclick="@ToggleRerollKeywordMenu">Close</button>
-		</div>
-	</div>
-
-	<div class="type-reroll-selection selection hidden" @ref="_typeSelection">
-		<label class="title">Reroll By Card Type</label>
-		<div class="keywords">
-			@foreach ( var type in Enum.GetValues<Card.CardType>() )
-			{
-				<button onclick="@( () => RerollByType( type ) )">@type</button>
-			}
-			<button onclick="@ToggleTypeSelectionMenu">Close</button>
 		</div>
 	</div>
 	
