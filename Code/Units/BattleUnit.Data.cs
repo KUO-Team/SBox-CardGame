@@ -39,6 +39,16 @@ public partial class BattleUnit
 		MaxMana = data.Mp;
 		Mana = MaxMana;
 
+		if ( Slots.IsValid() )
+		{
+			Slots.AddCardSlot( data.Slots );
+			foreach ( var slot in Slots )
+			{
+				slot.MinSpeed = data.Speed.Min;
+				slot.MaxSpeed = data.Speed.Max;
+			}
+		}
+
 		if ( HandComponent.IsValid() )
 		{
 			foreach ( var cardId in data.Deck )
@@ -53,25 +63,17 @@ public partial class BattleUnit
 			}
 		}
 
-		if ( Slots.IsValid() )
-		{
-			Slots.AddCardSlot( data.Slots );
-			foreach ( var slot in Slots )
-			{
-				slot.MinSpeed = data.Speed.Min;
-				slot.MaxSpeed = data.Speed.Max;
-			}
-		}
-
 		if ( Passives.IsValid() )
 		{
 			foreach ( var passiveId in data.Passives )
 			{
 				var passive = PassiveAbilityDataList.GetById( passiveId );
-				if ( passive is not null )
+				if ( passive is null )
 				{
-					Passives.AddPassiveAbility( passive );
+					continue;
 				}
+				
+				Passives.AddPassiveAbility( passive );
 			}
 		}
 

@@ -24,7 +24,7 @@
         },
         "Level": 1,
         "Mana": 3,
-        "MaxEnergy": 0,
+        "MaxEnergy": 3,
         "MaxMana": 3,
         "Name": "battleunit",
         "OnComponentDestroy": null,
@@ -154,31 +154,6 @@
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
           "component_type": "BattleUnit"
         }
-      },
-      {
-        "__type": "SpriteTools.SpriteComponent",
-        "__guid": "856f8683-b80a-4eb3-9d49-99970954c1f1",
-        "__version": 1,
-        "BroadcastEvents": {},
-        "CastShadows": "On",
-        "CreateAttachPoints": false,
-        "FlashTint": "1,1,1,0",
-        "MaterialOverride": null,
-        "OnAnimationComplete": null,
-        "OnBroadcastEvent": null,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "PlaybackSpeed": 1,
-        "Sprite": null,
-        "SpriteFlags": "None",
-        "StartingAnimationName": "",
-        "Tint": "1,1,1,1",
-        "UpDirection": "YPositive",
-        "UsePixelScale": false
       }
     ],
     "Children": [
