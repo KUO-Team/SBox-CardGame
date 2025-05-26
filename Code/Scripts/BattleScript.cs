@@ -1,5 +1,5 @@
-﻿using CardGame.Data;
-using Sandbox.Diagnostics;
+﻿using Sandbox.Diagnostics;
+using CardGame.Data;
 
 namespace CardGame.Scripts;
 

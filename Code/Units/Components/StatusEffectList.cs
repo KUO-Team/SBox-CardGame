@@ -202,10 +202,8 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 
 	private void OnTurnStart()
 	{
-		Log.EditorLog( $"Turn start for: {Owner?.GameObject.Name}" );
 		foreach ( var queued in _nextTurnItems )
 		{
-			Log.EditorLog( $"Queued: {queued}" );
 			AddStatusEffect( queued.StatusEffect, queued.Stack );
 		}
 
