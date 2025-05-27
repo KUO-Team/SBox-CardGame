@@ -90,7 +90,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		var owner = slot.Owner;
 		if ( !owner.IsValid() || !owner.HealthComponent.IsValid() || owner.HealthComponent.IsDead )
 		{
-			Log.Warning( "Invalid or dead owner tried to play a card." );
+			Log.EditorLog( "Invalid or dead owner tried to play a card.", LoggerExtensions.LogType.Warning );
 			return;
 		}
 
