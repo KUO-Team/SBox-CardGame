@@ -16,7 +16,7 @@ public class Card : IResource, IDeepCopyable<Card>
 	public string Name { get; set; } = string.Empty;
 
 	[InlineEditor]
-	public CardCost Cost { get; set; } = new();
+	public CardCost Cost { get; init; } = new();
 
 	public bool IsInstant { get; set; }
 
