@@ -17,7 +17,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 
 	private static readonly Logger Log = new( "SaveManager" );
 
-	public void Save( int? index = null )
+	public static void Save( int? index = null )
 	{
 		if ( !GameManager.IsValid() )
 		{
@@ -160,7 +160,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 		Scene.Load( SceneManager.MapScene );
 	}
 
-	public void Delete( int index )
+	public static void Delete( int index )
 	{
 		var run = Data.Runs.FirstOrDefault( x => x.Index == index );
 		if ( run is null )

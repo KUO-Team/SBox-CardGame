@@ -60,14 +60,10 @@ public partial class PackOpeningPanel
 		// Remove pack from inventory after opening
 		Player?.CardPacks.Remove( pack );
 
-		var cardPackData = PlayerData.Data.CardPacks;
-		cardPackData.Remove( pack.Id );
-
 		foreach ( var card in _openedCards )
 		{
 			PlayerData.Data.SeeCard( card.Id );
 		}
-		PlayerData.Save();
 	}
 
 	private async Task AnimatePackOpening()
