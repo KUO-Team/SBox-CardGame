@@ -9,7 +9,7 @@ public class Protection( Data.StatusEffect data ) : StatusEffect( data )
 		return $"Take {Stack} less physical damage for this turn.";
 	}
 
-	public override int DamageModifier( Card card, int damage )
+	public override int DamageModifier( int damage, Card? card )
 	{
 		return -Stack;
 	}

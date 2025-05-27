@@ -95,7 +95,7 @@ public abstract class StatusEffect( Data.StatusEffect data ) : IOwnable
 		return 0;
 	}
 
-	public virtual int DamageModifier( Card card, int damage )
+	public virtual int DamageModifier( int damage, Card? card )
 	{
 		return 0;
 	}

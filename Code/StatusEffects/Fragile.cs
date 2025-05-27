@@ -9,7 +9,7 @@ public class Fragile( Data.StatusEffect data ) : StatusEffect( data )
 		return $"Take {Stack} additional physical damage for this turn.";
 	}
 
-	public override int DamageModifier( Card card, int damage )
+	public override int DamageModifier( int damage, Card? card )
 	{
 		return Stack;
 	}

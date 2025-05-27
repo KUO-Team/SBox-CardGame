@@ -54,14 +54,9 @@ public class HealthComponent : Component, IOwnable
 		{
 			foreach ( var status in Owner.StatusEffects )
 			{
-				if ( card is null )
-				{
-					continue;
-				}
-
-				damage += status.DamageModifier( card, damage );
+				damage += status.DamageModifier( damage, card );
+				damage = Math.Max( damage, 0 );
 			}
-			damage = Math.Max( damage, 0 );
 		}
 
 		ProcessDamageEffects( damage, attacker );
