@@ -51,8 +51,6 @@ public class WitchVial( Data.Relic data ) : Relic( data )
 			return;
 		}
 		
-		status.Owner = Owner;
-		status.Stack = stack;
-		Owner.StatusEffects?.Add( status );
+		Owner.StatusEffects?.AddStatusEffect( status, stack );
 	}
 }

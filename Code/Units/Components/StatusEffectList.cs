@@ -11,8 +11,6 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 
 	public void AddStatusEffect( StatusEffect statusEffect, int stack = 1 )
 	{
-		statusEffect.Owner = Owner;
-		statusEffect.Stack = stack;
 		AddOrUpdate( statusEffect, stack );
 	}
 	
@@ -45,8 +43,6 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 	
 	public void AddStatusEffectNextTurn( StatusEffect statusEffect, int stack = 1 )
 	{
-		statusEffect.Owner = Owner;
-		statusEffect.Stack = stack;
 		AddOrUpdateQueued( statusEffect, stack );
 	}
 

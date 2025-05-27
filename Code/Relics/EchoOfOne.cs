@@ -1,6 +1,4 @@
-﻿using CardGame.Data;
-
-namespace CardGame.Relics;
+﻿namespace CardGame.Relics;
 
 public class EchoOfOne( Data.Relic data ) : Relic( data )
 {
