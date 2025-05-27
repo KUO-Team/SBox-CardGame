@@ -32,6 +32,9 @@ public class Player : Component
 
 		GameObject.BreakFromPrefab();
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
+		
+		var firstClass = PlayerClassDataList.All[0];
+		SetClass( firstClass );
 
 		base.OnStart();
 	}
