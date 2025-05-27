@@ -124,8 +124,7 @@ public class Player : Component
 		{
 			return;
 		}
-		
-		Class = data;
-		SetUnitData( data.Unit );
+
+		SetClass( data );
 	}
 }

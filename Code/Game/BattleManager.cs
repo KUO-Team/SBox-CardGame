@@ -172,22 +172,25 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 		}
 
 		InputComponent.SelectedSlot = null;
-
-		foreach ( var unit in Units )
+		
+		var player = Player.Local;
+		if ( player.IsValid() )
 		{
-			if ( unit.Faction != Faction.Player )
+			var playerUnit = player.Unit;
+			if ( playerUnit is not null )
 			{
-				continue;
-			}
-
-			if ( Player.Local is not { Unit: not null } )
-			{
-				continue;
-			}
-
-			if ( unit.HealthComponent.IsValid() && !unit.HealthComponent.IsDead )
-			{
-				Player.Local.Unit.Hp = unit.HealthComponent.Health;
+				foreach ( var unit in Units )
+				{
+					if ( unit.Faction != Faction.Player )
+					{
+						continue;
+					}
+			
+					if ( unit.HealthComponent.IsValid() && !unit.HealthComponent.IsDead )
+					{
+						playerUnit.Hp = unit.HealthComponent.Health;
+					}
+				}
 			}
 		}
 
