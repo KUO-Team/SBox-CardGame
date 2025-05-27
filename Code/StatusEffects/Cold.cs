@@ -8,7 +8,7 @@ public class Cold( Data.StatusEffect data ) : StatusEffect( data )
 
 	public override string Description()
 	{
-		return Stack > 0 ? $"Speed -{Stack} for this turn." : base.Description();
+		return $"Speed -{Stack} for this turn.";
 	}
 
 	public override void OnAddOrUpdate()

@@ -6,7 +6,7 @@ public class Protection( Data.StatusEffect data ) : StatusEffect( data )
 	
 	public override string Description()
 	{
-		return Stack > 0 ? $"Physical Damage -{Stack} for this turn." : base.Description();
+		return $"Take {Stack} less physical damage for this turn.";
 	}
 
 	public override int DamageModifier( Card card, int damage )

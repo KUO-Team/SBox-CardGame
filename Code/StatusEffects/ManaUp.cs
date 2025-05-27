@@ -6,7 +6,7 @@ public class ManaUp( Data.StatusEffect data ) : StatusEffect( data )
 	
 	public override string Description()
 	{
-		return Stack > 0 ? $"At the start of the turn, add {Stack} MP." : base.Description();
+		return $"At the start of the turn, add {Stack} MP.";
 	}
 
 	public override void OnTurnStart()

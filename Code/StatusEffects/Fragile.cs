@@ -6,7 +6,7 @@ public class Fragile( Data.StatusEffect data ) : StatusEffect( data )
 
 	public override string Description()
 	{
-		return Stack > 0 ? $"Take {Stack} additional damage from attacks for this turn." : base.Description();
+		return $"Take {Stack} additional physical damage for this turn.";
 	}
 
 	public override int DamageModifier( Card card, int damage )

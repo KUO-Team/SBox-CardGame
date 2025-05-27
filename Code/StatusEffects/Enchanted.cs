@@ -2,7 +2,7 @@
 
 public class Enchanted( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override StatusKey Keyword => StatusKey.Enchanted;	
+	public override StatusKey Keyword => StatusKey.Enchanted;
 	
 	public override void OnTurnEnd()
 	{

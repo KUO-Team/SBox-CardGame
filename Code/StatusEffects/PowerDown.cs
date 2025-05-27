@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CardGame.StatusEffects;
+﻿namespace CardGame.StatusEffects;
 
 public class PowerDown( Data.StatusEffect data ) : StatusEffect( data )
 {
@@ -8,7 +6,7 @@ public class PowerDown( Data.StatusEffect data ) : StatusEffect( data )
 	
 	public override string Description()
 	{
-		return Stack > 0 ? $"Attack Power -{Stack} for this turn." : base.Description();
+		return $"Attack Power -{Stack} for this turn.";
 	}
 
 	public override int PowerModifier( Card card, Action action )
@@ -18,8 +16,7 @@ public class PowerDown( Data.StatusEffect data ) : StatusEffect( data )
 			return 0;
 		}
 
-		var power = action.EffectivePower.Value;
-		return Math.Max( power - Stack, 0 );
+		return -Stack;
 	}
 		
 	public override void OnTurnEnd()

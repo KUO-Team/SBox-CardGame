@@ -240,7 +240,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		return contribution;
 	}
 
-	private void TriggerDamageEvents( BattleUnit attacker, BattleUnit target )
+	private static void TriggerDamageEvents( BattleUnit attacker, BattleUnit target )
 	{
 		foreach ( var status in target.StatusEffects?.ToList() ?? [] )
 		{
