@@ -100,7 +100,6 @@ public sealed class GameManager : Singleton<GameManager>
 
 		foreach ( var cardId in battle.Rewards.Cards )
 		{
-			PlayerData.Data.Cards.Add( cardId );
 			var card = CardDataList.GetById( cardId );
 			if ( card is null )
 			{
