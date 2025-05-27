@@ -10,13 +10,12 @@ public partial class MainMenu
 	private LoadRunPanel? _runs;
 	private StatisticsPanel? _statistics;
 	private CreditsPanel? _credits;
+	private ClassSelectionPanel? _classes;
 
 	private Panel? _webContainer;
 	private WebPanel? _webPanel;
 	
-	private static GameManager? GameManager => GameManager.Instance;
 	private static MapManager? MapManager => MapManager.Instance;
-	private static SceneManager? SceneManager => SceneManager.Instance;
 	private static SaveManager? SaveManager => SaveManager.Instance;
 	private static RelicManager? RelicManager => RelicManager.Instance;
 
@@ -63,31 +62,12 @@ public partial class MainMenu
 	
 	public void StartNewRun()
 	{
-		if ( RelicManager.IsValid() )
+		if ( !_classes.IsValid() )
 		{
-			RelicManager.ClearRelics();
+			return;
 		}
 		
-		if ( GameManager.IsValid() )
-		{
-			GameManager.Floor = GameManager.StartingFloor;
-		}
-		
-		if ( SaveManager.IsValid() )
-		{
-			SaveManager.ClearActiveRun();
-			SaveManager.ActiveRunData = new RunData();
-		}
-		
-		if ( MapManager.IsValid() )
-		{
-			MapManager.Index = 0;
-			MapManager.Seed = Game.Random.Next();
-		}
-		
-		Log.Info( $"Starting new run" );
-		Sandbox.Services.Stats.Increment( "runs", 1 );
-		SceneManager?.LoadScene( SceneManager.Scenes.Map );
+		_classes.Show();
 	}
 
 	public static void Tutorial()
