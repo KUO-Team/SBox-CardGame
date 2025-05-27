@@ -6,7 +6,7 @@ public class Haste( Card card ) : CardEffect( card )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Haste, Power.Value );
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Haste, Power );
 		base.OnPlay( detail );
 	}
 }

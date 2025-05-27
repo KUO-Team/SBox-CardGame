@@ -236,9 +236,6 @@ public sealed class CardSlot : Component, IOwnable
 				continue;
 			}
 
-			effect.Card = card;
-			effect.Power = action.EffectivePower.Value;
-
 			var detail = new CardEffect.CardEffectDetail
 			{
 				Unit = Owner, Target = target.Owner

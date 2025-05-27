@@ -6,7 +6,7 @@ public class Burn( Card card ) : CardEffect( card )
 	
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Burn, Power.Value );
+		detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Burn, Power );
 		base.OnPlay( detail );
 	}
 }

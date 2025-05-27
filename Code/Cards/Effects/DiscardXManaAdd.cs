@@ -2,7 +2,7 @@
 
 public class DiscardXManaAdd( Card card ) : CardEffect( card )
 {
-	public override string Description => Power.Min > 0 ? "Discard up to @ cards, add 1 MP for each card discarded this way" : "Discard a card, add 1 MP for each card discarded this way";
+	public override string Description => Power > 0 ? "Discard up to @ cards, add 1 MP for each card discarded this way" : "Discard a card, add 1 MP for each card discarded this way";
 
 	public override void OnPlay( CardEffectDetail detail )
 	{

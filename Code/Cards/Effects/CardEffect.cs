@@ -6,7 +6,7 @@ public abstract class CardEffect( Card card )
 {
 	public Card Card { get; set; } = card;
 
-	public RangedInt Power { get; set; } = 1;
+	public int Power { get; set; } = 1;
 
 	public virtual string Description { get; set; } = string.Empty;
 

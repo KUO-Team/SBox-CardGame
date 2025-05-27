@@ -2,7 +2,7 @@
 
 public class HealPercent( Card card ) : CardEffect( card )
 {
-	public override string Description { get; set; } = "Heal by @% of max HP";
+	public override string Description => "Heal by @% of max HP";
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
@@ -11,7 +11,7 @@ public class HealPercent( Card card ) : CardEffect( card )
 			return;
 		}
 
-		var amount = GetPercentageOfHealth( Power.Value / 100f, detail.Unit.HealthComponent.MaxHealth );
+		var amount = GetPercentageOfHealth( Power / 100f, detail.Unit.HealthComponent.MaxHealth );
 		detail.Unit.HealthComponent.Heal( amount );
 
 		base.OnPlay( detail );

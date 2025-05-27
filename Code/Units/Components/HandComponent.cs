@@ -188,13 +188,11 @@ public class HandComponent : Component, IOwnable
 				continue;
 			}
 
-			effect.Card = card;
-			effect.Power = action.EffectivePower.Value;
-
 			var detail = new CardEffect.CardEffectDetail
 			{
 				Unit = Owner
 			};
+			
 			effect.OnDraw( detail );
 		}
 	}
@@ -266,13 +264,11 @@ public class HandComponent : Component, IOwnable
 				continue;
 			}
 
-			effect.Card = card;
-			effect.Power = action.EffectivePower.Value;
-
 			var detail = new CardEffect.CardEffectDetail
 			{
 				Unit = Owner
 			};
+			
 			effect.OnDiscard( detail );
 
 			if ( RelicManager.Instance.IsValid() )
