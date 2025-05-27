@@ -33,21 +33,21 @@ public class Player : Component
 		GameObject.BreakFromPrefab();
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
 
-		foreach ( var packId in PlayerData.Data.CardPacks )
-		{
-			var cardPack = CardPackDataList.GetById( packId );
-			if ( cardPack is not null )
-			{
-				CardPacks.Add( cardPack );
-			}
-		}
-
 		foreach ( var cardId in PlayerData.Data.Cards )
 		{
 			var card = CardDataList.GetById( cardId );
 			if ( card is not null )
 			{
 				Cards.Add( card );
+			}
+		}
+
+		foreach ( var packId in PlayerData.Data.CardPacks )
+		{
+			var cardPack = CardPackDataList.GetById( packId );
+			if ( cardPack is not null )
+			{
+				CardPacks.Add( cardPack );
 			}
 		}
 

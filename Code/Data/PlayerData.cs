@@ -140,6 +140,8 @@ public class RunData
 
 	public int Money { get; set; }
 
+	public Id Class { get; set; } = Id.Invalid;
+
 	public UnitData UnitData { get; set; } = new();
 
 	public List<Id> Cards { get; set; } = [];

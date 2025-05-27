@@ -112,7 +112,6 @@ public sealed class GameManager : Singleton<GameManager>
 
 		foreach ( var packId in battle.Rewards.CardPacks )
 		{
-			PlayerData.Data.CardPacks.Add( packId );
 			var pack = CardPackDataList.GetById( packId );
 			if ( pack is null )
 			{

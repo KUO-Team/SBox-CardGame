@@ -54,6 +54,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 		if ( Player.Local is {} player )
 		{
 			run.Money = player.Money;
+			run.Class = player.Class?.Id;
 
 			if ( Player.Local.Unit is not null )
 			{
@@ -117,6 +118,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 		if ( Player.Local.IsValid() )
 		{
 			Player.Local.Money = data.Money;
+			Player.Local.SetClassById( data.Class );
 
 			foreach ( var cardId in data.Cards )
 			{
