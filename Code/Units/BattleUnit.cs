@@ -73,7 +73,7 @@ public partial class BattleUnit : BaseCharacter
 
 		if ( BattleManager.Instance.IsValid() )
 		{
-			BattleManager.Instance.OnTurnStart += OnTurnStart;
+			BattleManager.Instance.OnTurnEnd += OnTurnEnd;
 		}
 	}
 
@@ -91,7 +91,7 @@ public partial class BattleUnit : BaseCharacter
 
 		if ( BattleManager.Instance.IsValid() )
 		{
-			BattleManager.Instance.OnTurnStart -= OnTurnStart;
+			BattleManager.Instance.OnTurnEnd -= OnTurnEnd;
 		}
 
 		base.OnDestroy();
@@ -117,7 +117,7 @@ public partial class BattleUnit : BaseCharacter
 		Mana = Math.Max( 0, Mana - amount );
 	}
 
-	private void OnTurnStart()
+	private void OnTurnEnd()
 	{
 		if ( !HandComponent.IsValid() )
 		{

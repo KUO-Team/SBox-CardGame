@@ -39,7 +39,7 @@
       },
       "Icon": "",
       "Name": "Desperation",
-      "Description": "While below 20% of Max HP, all cards cost 1 less MP to play.",
+      "Description": "While below 80% of Max HP, all cards cost 1 less MP to play.",
       "Flavor": [
         "When the heart races against time, every breath is a bargain with the inevitable."
       ],
