@@ -132,11 +132,6 @@ public partial class BattleUnit : BaseCharacter
 
 	public async Task Die()
 	{
-		if ( HealthComponent.IsValid() )
-		{
-			HealthComponent.IsDead = true;
-		}
-
 		if ( SpriteComponent.IsValid() )
 		{
 			if ( HasAnimation( "die" ) )

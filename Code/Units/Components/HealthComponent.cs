@@ -8,15 +8,25 @@ public class HealthComponent : Component, IOwnable
 {
 	[Property, RequireComponent]
 	public BattleUnit? Owner { get; set; }
-	
-	[Property, Category( "State" )]
-	public int Health { get; set; } = 100;
 
 	[Property, Category( "State" )]
-	public int MaxHealth { get; set; } = 100;
+	public int Health
+	{
+		get => _health;
+		set => _health = Math.Clamp( value, 0, MaxHealth );
+	}
+	private int _health = 100;
 
 	[Property, Category( "State" )]
-	public bool IsDead { get; set; }
+	public int MaxHealth
+	{
+		get => _maxHealth;
+		set => _maxHealth = Math.Max( value, 1 );
+	}
+	private int _maxHealth = 100;
+
+	[Property, Category( "State" )]
+	public bool IsDead => Health <= 0;
 
 	[Property, Category( "State" )]
 	public float HealthPercentage => (float)Health / MaxHealth * 100;
@@ -34,7 +44,7 @@ public class HealthComponent : Component, IOwnable
 		{
 			return;
 		}
-		
+
 		if ( IsDead || damage <= 0 )
 		{
 			return;
@@ -44,48 +54,20 @@ public class HealthComponent : Component, IOwnable
 		{
 			foreach ( var status in Owner.StatusEffects )
 			{
-				damage += status.DamageModifier( card!, damage );
+				if ( card is null )
+				{
+					continue;
+				}
+
+				damage += status.DamageModifier( card, damage );
 			}
 			damage = Math.Max( damage, 0 );
-
-			var ownerPassives = Owner.Passives;
-			if ( ownerPassives.IsValid() )
-			{
-				foreach ( var passive in ownerPassives )
-				{
-					if ( !attacker.IsValid() )
-					{
-						continue;
-					}
-
-					passive.OnTakeDamage( damage, attacker );
-				}
-			}
-
-			if ( attacker.IsValid() )
-			{
-				var attackerPassives = attacker.Passives;
-				if ( attackerPassives.IsValid() )
-				{
-					foreach ( var passive in attackerPassives )
-					{
-						passive.OnDealDamage( damage, Owner );
-					}
-				}
-			}
 		}
 
-		if ( RelicManager.Instance.IsValid() )
-		{
-			foreach ( var relic in RelicManager.Instance.Relics )
-			{
-				relic.OnTakeDamage( damage, Owner, attacker );
-				relic.OnDealDamage( damage, Owner, attacker );
-			}
-		}
+		ProcessDamageEffects( damage, attacker );
 
 		Health = Math.Max( Health - damage, 0 );
-		OnTakeDamage?.Invoke( Health );
+		OnTakeDamage?.Invoke( damage );
 		DamageNumbers( damage );
 
 		if ( Health == 0 )
@@ -100,53 +82,16 @@ public class HealthComponent : Component, IOwnable
 		{
 			return;
 		}
-		
+
 		if ( IsDead || damage <= 0 )
 		{
 			return;
 		}
 
-		var owner = Components.Get<BattleUnit>();
-		if ( owner.IsValid() && owner.StatusEffects.IsValid() )
-		{
-			var ownerPassives = owner.Passives;
-			if ( ownerPassives.IsValid() && ownerPassives.Any() )
-			{
-				foreach ( var passive in ownerPassives )
-				{
-					if ( !attacker.IsValid() )
-					{
-						continue;
-					}
-
-					passive.OnTakeDamage( damage, attacker );
-				}
-			}
-
-			if ( attacker.IsValid() )
-			{
-				var attackerPassives = attacker.Passives;
-				if ( attackerPassives.IsValid() && attackerPassives.Any() )
-				{
-					foreach ( var passive in attackerPassives )
-					{
-						passive.OnDealDamage( damage, owner );
-					}
-				}
-			}
-		}
-		
-		if ( RelicManager.Instance.IsValid() )
-		{
-			foreach ( var relic in RelicManager.Instance.Relics )
-			{
-				relic.OnTakeDamage( damage, owner, attacker );
-				relic.OnDealDamage( damage, owner, attacker );
-			}
-		}
+		ProcessDamageEffects( damage, attacker );
 
 		Health = Math.Max( Health - damage, 0 );
-		OnTakeDamage?.Invoke( Health );
+		OnTakeDamage?.Invoke( damage );
 		DamageNumbers( damage );
 
 		if ( Health == 0 )
@@ -160,6 +105,25 @@ public class HealthComponent : Component, IOwnable
 		Health = Math.Min( Health + amount, MaxHealth );
 		OnHeal?.Invoke( amount );
 		DamageNumbers( amount, true );
+	}
+
+	public async Task Die()
+	{
+		if ( OnDied is not null )
+		{
+			foreach ( var @delegate in OnDied.GetInvocationList() )
+			{
+				try
+				{
+					var handler = (Func<Task>)@delegate;
+					await handler();
+				}
+				catch ( Exception ex )
+				{
+					Log.Warning( $"Die called an exception: {ex}" );
+				}
+			}
+		}
 	}
 
 	private void DamageNumbers( int amount, bool healing = false )
@@ -176,11 +140,11 @@ public class HealthComponent : Component, IOwnable
 		{
 			return;
 		}
-		
+
 		component.Init( GameObject );
 
 		if ( !healing )
-		{				
+		{
 			component.Text.Text = $"-{amount}HP";
 			component.Text.Color = Color.Red;
 		}
@@ -191,14 +155,45 @@ public class HealthComponent : Component, IOwnable
 		}
 	}
 
-	public async Task Die()
+	private void ProcessDamageEffects( int damage, BattleUnit? attacker = null )
 	{
-		if ( OnDied is not null )
+		if ( !Owner.IsValid() )
 		{
-			foreach ( var @delegate in OnDied.GetInvocationList() )
+			return;
+		}
+
+		var ownerPassives = Owner.Passives;
+		if ( ownerPassives.IsValid() )
+		{
+			foreach ( var passive in ownerPassives )
 			{
-				var handler = (Func<Task>)@delegate;
-				await handler();
+				if ( !attacker.IsValid() )
+				{
+					continue;
+				}
+
+				passive.OnTakeDamage( damage, attacker );
+			}
+		}
+
+		if ( attacker.IsValid() )
+		{
+			var attackerPassives = attacker.Passives;
+			if ( attackerPassives.IsValid() )
+			{
+				foreach ( var passive in attackerPassives )
+				{
+					passive.OnDealDamage( damage, Owner );
+				}
+			}
+		}
+
+		if ( RelicManager.Instance.IsValid() )
+		{
+			foreach ( var relic in RelicManager.Instance.Relics )
+			{
+				relic.OnTakeDamage( damage, Owner, attacker );
+				relic.OnDealDamage( damage, Owner, attacker );
 			}
 		}
 	}
