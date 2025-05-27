@@ -30,8 +30,6 @@ public class Player : Component
 			Local = this;
 		}
 
-		SetUnitData( _playerUnitId );
-
 		GameObject.BreakFromPrefab();
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
 
@@ -56,11 +54,18 @@ public class Player : Component
 		base.OnStart();
 	}
 
-	private Id _playerUnitId = 99;
+	[Property, ReadOnly]
+	public PlayerClass? Class { get; private set; }
+
+	private Id? _playerUnitId;
 
 	public void SetUnitData( Id id )
 	{
 		_playerUnitId = id;
+		if ( BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.PlayerUnit = _playerUnitId;
+		}
 
 		var source = UnitDataList.GetById( id );
 		if ( source is null )
@@ -75,6 +80,12 @@ public class Player : Component
 
 	public void ResetUnitData()
 	{
+		if ( _playerUnitId is null )
+		{
+			Log.Error( $"No player unit id found!" );
+			return;
+		}
+
 		if ( Unit is null )
 		{
 			Log.Error( "Cannot reset unit data before setting it." );
@@ -98,5 +109,23 @@ public class Player : Component
 		target.Hp = copy.Hp;
 		target.MaxHp = copy.Hp;
 		target.Xp = 0;
+	}
+
+	public void SetClass( PlayerClass playerClass )
+	{
+		Class = playerClass;
+		SetUnitData( playerClass.Unit );
+	}
+
+	public void SetClassById( Id classId )
+	{
+		var data = PlayerClassDataList.GetById( classId );
+		if ( data is null )
+		{
+			return;
+		}
+		
+		Class = data;
+		SetUnitData( data.Unit );
 	}
 }

@@ -1,0 +1,30 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "The Knight",
+      "Description": "Balanced fighter. Recommended for new players.",
+      "Unit": {
+        "Source": "",
+        "LocalId": 101
+      }
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "The Mage",
+      "Description": "Glass cannon. Revolves around spell casting.",
+      "Unit": {
+        "Source": "",
+        "LocalId": 102
+      }
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

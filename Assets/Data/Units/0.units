@@ -3,66 +3,6 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 99
-      },
-      "Name": "Player",
-      "Description": "",
-      "Sprite": {
-        "Resource": "sprites/witchgirl.sprite",
-        "Portrait": "materials/units/portraits/witchgirl.png"
-      },
-      "Prefab": null,
-      "Hp": 55,
-      "Ep": 0,
-      "Mp": 3,
-      "Speed": {
-        "Min": 1,
-        "Max": 6
-      },
-      "Slots": 1,
-      "Deck": [
-        {
-          "Source": "",
-          "LocalId": 1
-        },
-        {
-          "Source": "",
-          "LocalId": 1
-        },
-        {
-          "Source": "",
-          "LocalId": 1
-        },
-        {
-          "Source": "",
-          "LocalId": 2
-        },
-        {
-          "Source": "",
-          "LocalId": 2
-        },
-        {
-          "Source": "",
-          "LocalId": 2
-        },
-        {
-          "Source": "",
-          "LocalId": 3
-        },
-        {
-          "Source": "",
-          "LocalId": 3
-        },
-        {
-          "Source": "",
-          "LocalId": 3
-        }
-      ],
-      "Passives": []
-    },
-    {
-      "Id": {
-        "Source": "",
         "LocalId": 100
       },
       "Name": "Player",

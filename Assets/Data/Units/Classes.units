@@ -1,0 +1,126 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 101
+      },
+      "Name": "The Knight",
+      "Description": "Balanced fighter. Recommended for new players.",
+      "Sprite": {
+        "Resource": "sprites/witchgirl.sprite",
+        "Portrait": "materials/units/portraits/witchgirl.png"
+      },
+      "Prefab": null,
+      "Hp": 55,
+      "Ep": 0,
+      "Mp": 3,
+      "Speed": {
+        "Min": 1,
+        "Max": 6
+      },
+      "Slots": 1,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        }
+      ],
+      "Passives": []
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 102
+      },
+      "Name": "The Mage",
+      "Description": "Glass cannon. Revolves around spell casting.",
+      "Sprite": {
+        "Resource": "sprites/witchgirl.sprite",
+        "Portrait": "materials/units/portraits/witchgirl.png"
+      },
+      "Prefab": null,
+      "Hp": 35,
+      "Ep": 0,
+      "Mp": 5,
+      "Speed": {
+        "Min": 1,
+        "Max": 5
+      },
+      "Slots": 1,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 2
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        },
+        {
+          "Source": "",
+          "LocalId": 3
+        }
+      ],
+      "Passives": []
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}
