@@ -8,6 +8,11 @@ public sealed class CardModifiers
 	{
 		_modifiers.Add( modifier );
 	}
+	
+	public void RemoveModifier( ICardModifier modifier )
+	{
+		_modifiers.Remove( modifier );
+	}
 
 	public void TickDurations()
 	{
