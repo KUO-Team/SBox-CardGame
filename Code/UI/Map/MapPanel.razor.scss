@@ -1,11 +1,19 @@
 ﻿@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @keyframes panStars {
-  0% { transform: translate(0%, 0%); }
-  100% { transform: translate(-10%, -10%); }
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(-10%, -10%);
+  }
 }
 
 @import "/UI/Styles/Buttons.scss";
@@ -32,11 +40,11 @@ MapPanel {
     align-items: center;
     justify-content: space-between;
     background: linear-gradient(to right, #111, #222);
-    
+
     * {
       flex-shrink: 0;
     }
-    
+
     .player-bar {
       width: 100%;
       text-align: center;
@@ -44,25 +52,25 @@ MapPanel {
       justify-content: center;
       gap: 8px;
     }
-    
+
     .player-name {
       font-size: 35px;
       font-weight: 600;
       text-stroke: 1px black;
       text-shadow: 0 2px 2px black;
     }
-    
+
     .health {
       width: 50%;
       margin: 0 10px;
       align-items: flex-start;
       flex-direction: column;
-      
+
       .health-bar {
         width: 100%;
         height: 10px;
-        background-color: rgba(0,0,0,1);
-        
+        background-color: rgba(0, 0, 0, 1);
+
         .inner-bar {
           width: 100%;
           height: 100%;
@@ -70,7 +78,7 @@ MapPanel {
         }
       }
     }
-    
+
     .money {
       font-weight: 600;
       text-stroke: 1px black;
@@ -90,7 +98,7 @@ MapPanel {
     font-size: 50px;
     font-weight: 600;
   }
-  
+
   .map-key {
     position: absolute;
     pointer-events: none;
@@ -98,21 +106,21 @@ MapPanel {
     bottom: 50px;
     left: 50px;
     color: white;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     border: 1px solid white;
     padding: 10px;
     flex-direction: column;
-    
+
     .map-key-item {
       width: 100%;
       align-items: center;
       flex-shrink: 0;
-      
+
       .map-key-icon {
         font-size: 25px;
         margin-right: 5px;
       }
-      
+
       .map-key-label {
         font-size: 25px;
       }
@@ -163,19 +171,13 @@ MapPanel {
     height: 90%;
     //overflow-x: scroll;
     //overflow-y: hidden;
-    background-color: transparent;
     z-index: 2;
   }
 
   .map-line {
     position: absolute;
-    height: 10px;
-    background-image: linear-gradient(
-                    90deg,
-                    rgba(255, 255, 255, 0.05) 0%,
-                    rgba(255, 255, 255, 0.25) 50%,
-                    rgba(255, 255, 255, 0.05) 100%
-    );
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
     pointer-events: none;
     animation: shimmer 2s linear infinite;
     transition: background-color 0.2s ease;
@@ -197,7 +199,6 @@ MapPanel {
     font-family: "Pixel Operator";
     font-weight: 600;
     background-color: #ccc;
-    border-radius: 50%;
     box-shadow: 0 0 6px #000, 0 0 10px rgba(255, 255, 255, 0.2);
     align-items: center;
     justify-content: center;
@@ -206,35 +207,33 @@ MapPanel {
     z-index: 10;
     border: 2px solid #555;
 
-    &[data-type="start"] {
-      background-color: #2ecc71;
-    }
-
-    &[data-type="battle"] {
-      background-color: #e74c3c;
-    }
-
-    &[data-type="shop"] {
-      background-color: #f1c40f;
-    }
-
     &.current {
       border: 2px solid #fff;
       box-shadow: 0 0 12px #fff, 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    &.disabled:not(.current) {
+    &.disabled:not(.current),
+    &.disabled.current {
       opacity: 0.25;
       filter: grayscale(100%);
+      border: 2px solid #555;
+      box-shadow: none;
     }
 
-    &:hover:not(.disabled) {
+    &:hover:not(.current):not(.disabled) {
       transform: translate(-50%, -50%) scale(1.15);
       box-shadow: 0 0 8px #fff;
+    }
+
+    &:hover.current,
+    &:hover.disabled {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: inherit;
     }
 
     * {
       pointer-events: none;
     }
   }
+
 }
