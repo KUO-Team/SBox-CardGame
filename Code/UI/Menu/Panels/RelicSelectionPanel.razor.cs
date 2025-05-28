@@ -52,13 +52,18 @@ public partial class RelicSelectionPanel
 
 	public void StartRun()
 	{
+		if ( !Menu.IsValid() )
+		{
+			return;
+		}
+		
 		if ( SelectedRelic is not null )
 		{
-			MainMenu.StartRun( [SelectedRelic] );
+			Menu.StartRun( [SelectedRelic] );
 		}
 		else
 		{
-			MainMenu.StartRun();
+			Menu.StartRun();
 		}
 	}
 

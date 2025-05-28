@@ -6,6 +6,7 @@ namespace CardGame.UI;
 
 public partial class MainMenu
 {
+	private RelicGainPanel? _relicGainPanel;
 	private RelicSelectionPanel? _relics;
 	private ClassSelectionPanel? _classes;
 	private SettingsPanel? _settings;
@@ -88,21 +89,34 @@ public partial class MainMenu
 		_relics.Show();
 	}
 
-	public static void StartRun( List<Relic>? relics = null )
+	public void StartRun( List<Relic>? relics = null )
 	{
-		if ( RelicManager.IsValid() )
+		if ( !RelicManager.IsValid() )
 		{
-			RelicManager.ClearRelics();
-			
-			if ( relics is not null )
+			return;
+		}
+		
+		RelicManager.ClearRelics();
+
+		if ( relics is null )
+		{
+			StartRun();
+		}
+		else
+		{
+			foreach ( var relic in relics )
 			{
-				foreach ( var relic in relics )
+				RelicManager.AddRelic( relic );
+				if ( _relicGainPanel.IsValid() )
 				{
-					RelicManager.AddRelic( relic );
+					_relicGainPanel.Show( relic, StartRun );
 				}
 			}
 		}
-		
+	}
+
+	private void StartRun()
+	{
 		if ( GameManager.IsValid() )
 		{
 			GameManager.Floor = GameManager.StartingFloor;
@@ -124,7 +138,7 @@ public partial class MainMenu
 		Sandbox.Services.Stats.Increment( "runs", 1 );
 		SceneManager?.LoadScene( SceneManager.Scenes.Map );
 	}
-
+	
 	public static void Tutorial()
 	{
 		if ( RelicManager.IsValid() )
