@@ -228,7 +228,7 @@ MapPanel {
     &:hover.current,
     &:hover.disabled {
       transform: translate(-50%, -50%) scale(1);
-      box-shadow: inherit;
+      box-shadow: 0 0 12px #fff, 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
     * {
