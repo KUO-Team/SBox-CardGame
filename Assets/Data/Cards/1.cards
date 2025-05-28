@@ -3,7 +3,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 5
+        "LocalId": 8
       },
       "Name": "Scratch",
       "Cost": {
@@ -39,7 +39,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 6
+        "LocalId": 9
       },
       "Name": "Bite",
       "Cost": {
@@ -75,7 +75,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 7
+        "LocalId": 10
       },
       "Name": "Gnaw",
       "Cost": {
@@ -111,7 +111,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 8
+        "LocalId": 11
       },
       "Name": "Violent Gnawing",
       "Cost": {

@@ -72,50 +72,50 @@
         "Portrait": "materials/units/portraits/witchgirl.png"
       },
       "Prefab": null,
-      "Hp": 35,
+      "Hp": 30,
       "Ep": 0,
-      "Mp": 5,
+      "Mp": 3,
       "Speed": {
         "Min": 1,
-        "Max": 5
+        "Max": 6
       },
       "Slots": 1,
       "Deck": [
         {
           "Source": "",
-          "LocalId": 1
+          "LocalId": 4
         },
         {
           "Source": "",
-          "LocalId": 1
+          "LocalId": 4
         },
         {
           "Source": "",
-          "LocalId": 1
+          "LocalId": 5
         },
         {
           "Source": "",
-          "LocalId": 2
+          "LocalId": 5
         },
         {
           "Source": "",
-          "LocalId": 2
+          "LocalId": 5
         },
         {
           "Source": "",
-          "LocalId": 2
+          "LocalId": 6
         },
         {
           "Source": "",
-          "LocalId": 3
+          "LocalId": 6
         },
         {
           "Source": "",
-          "LocalId": 3
+          "LocalId": 7
         },
         {
           "Source": "",
-          "LocalId": 3
+          "LocalId": 7
         }
       ],
       "Passives": []

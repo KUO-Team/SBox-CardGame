@@ -23,35 +23,35 @@
       "Deck": [
         {
           "Source": "",
-          "LocalId": 5
+          "LocalId": 8
         },
         {
           "Source": "",
-          "LocalId": 5
+          "LocalId": 8
         },
         {
           "Source": "",
-          "LocalId": 5
+          "LocalId": 8
         },
         {
           "Source": "",
-          "LocalId": 5
+          "LocalId": 8
         },
         {
           "Source": "",
-          "LocalId": 6
+          "LocalId": 9
         },
         {
           "Source": "",
-          "LocalId": 6
+          "LocalId": 9
         },
         {
           "Source": "",
-          "LocalId": 7
+          "LocalId": 10
         },
         {
           "Source": "",
-          "LocalId": 7
+          "LocalId": 10
         }
       ],
       "Passives": [
@@ -88,35 +88,35 @@
       "Deck": [
         {
           "Source": "",
-          "LocalId": 5
-        },
-        {
-          "Source": "",
-          "LocalId": 5
-        },
-        {
-          "Source": "",
-          "LocalId": 5
-        },
-        {
-          "Source": "",
-          "LocalId": 6
-        },
-        {
-          "Source": "",
-          "LocalId": 6
-        },
-        {
-          "Source": "",
-          "LocalId": 7
-        },
-        {
-          "Source": "",
-          "LocalId": 7
+          "LocalId": 8
         },
         {
           "Source": "",
           "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 8
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 9
+        },
+        {
+          "Source": "",
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 10
+        },
+        {
+          "Source": "",
+          "LocalId": 11
         }
       ],
       "Passives": [
@@ -153,27 +153,27 @@
       "Deck": [
         {
           "Source": "",
-          "LocalId": 9
-        },
-        {
-          "Source": "",
-          "LocalId": 9
-        },
-        {
-          "Source": "",
-          "LocalId": 9
-        },
-        {
-          "Source": "",
-          "LocalId": 10
-        },
-        {
-          "Source": "",
-          "LocalId": 10
+          "LocalId": 12
         },
         {
           "Source": "",
           "LocalId": 12
+        },
+        {
+          "Source": "",
+          "LocalId": 12
+        },
+        {
+          "Source": "",
+          "LocalId": 13
+        },
+        {
+          "Source": "",
+          "LocalId": 13
+        },
+        {
+          "Source": "",
+          "LocalId": 14
         }
       ],
       "Passives": [
@@ -206,31 +206,7 @@
       "Deck": [
         {
           "Source": "",
-          "LocalId": 9
-        },
-        {
-          "Source": "",
-          "LocalId": 9
-        },
-        {
-          "Source": "",
-          "LocalId": 9
-        },
-        {
-          "Source": "",
-          "LocalId": 10
-        },
-        {
-          "Source": "",
-          "LocalId": 10
-        },
-        {
-          "Source": "",
-          "LocalId": 11
-        },
-        {
-          "Source": "",
-          "LocalId": 11
+          "LocalId": 12
         },
         {
           "Source": "",
@@ -239,6 +215,30 @@
         {
           "Source": "",
           "LocalId": 12
+        },
+        {
+          "Source": "",
+          "LocalId": 13
+        },
+        {
+          "Source": "",
+          "LocalId": 13
+        },
+        {
+          "Source": "",
+          "LocalId": 14
+        },
+        {
+          "Source": "",
+          "LocalId": 14
+        },
+        {
+          "Source": "",
+          "LocalId": 15
+        },
+        {
+          "Source": "",
+          "LocalId": 15
         }
       ],
       "Passives": [
