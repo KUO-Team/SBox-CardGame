@@ -7,15 +7,19 @@ namespace CardGame.UI;
 public partial class RelicGainPanel
 {
 	public Relic? Relic { get; set; }
+	
+	public System.Action? OnConfirm { get; private set; }
 
-	public void Show( Relic relic )
+	public void Show( Relic relic, System.Action? onConfirm = null )
 	{
 		Relic = relic;
+		OnConfirm = onConfirm;
 		this.Show();
 	}
 
 	public void Close()
 	{
+		OnConfirm?.Invoke();
 		this.Hide();
 	}
 
