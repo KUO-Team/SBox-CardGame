@@ -100,22 +100,18 @@ public partial class MainMenu
 
 		if ( relics is null )
 		{
-			StartRun();
+			StartRunInternal();
 		}
 		else
 		{
 			foreach ( var relic in relics )
 			{
 				RelicManager.AddRelic( relic );
-				if ( _relicGainPanel.IsValid() )
-				{
-					_relicGainPanel.Show( relic, StartRun );
-				}
 			}
 		}
 	}
 
-	private void StartRun()
+	private void StartRunInternal()
 	{
 		if ( GameManager.IsValid() )
 		{
