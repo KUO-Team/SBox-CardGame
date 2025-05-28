@@ -32,8 +32,9 @@
 							<h2>@SelectedClass.Name</h2>
 							<p>@SelectedClass.Description</p>
 							<div class="row">
-								<label>Hp: @unitData.Hp</label>
-								<label>Mp: @unitData.Mp</label>
+								<label>Hp: @(unitData.Hp)</label>
+								<label>Mp: @(unitData.Mp)</label>
+								<label>Speed: @(unitData.Speed.Min)~@(unitData.Speed.Max)</label>
 							</div>
 						</div>
 
