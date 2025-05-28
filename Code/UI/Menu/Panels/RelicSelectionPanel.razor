@@ -8,7 +8,7 @@
 		<div class="relics">
 			@foreach ( var relic in Relics )
 			{
-				<RelicPanel Relic="@relic" class="@(SelectedRelic == relic ? "selected" : "")" onclick="@(() => SelectRelic( relic ))"></RelicPanel>
+				<RelicPanel Relic="@relic" class="@( IsRelicSelected( relic ) ? "selected" : "" )" onclick="@( () => ToggleRelicSelection( relic ) )"></RelicPanel>
 			}
 		</div>
 

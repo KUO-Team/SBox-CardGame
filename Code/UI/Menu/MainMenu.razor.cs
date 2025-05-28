@@ -98,17 +98,15 @@ public partial class MainMenu
 		
 		RelicManager.ClearRelics();
 
-		if ( relics is null )
-		{
-			StartRunInternal();
-		}
-		else
+		if ( relics is not null && relics.Count != 0 )
 		{
 			foreach ( var relic in relics )
 			{
 				RelicManager.AddRelic( relic );
 			}
 		}
+		
+		StartRunInternal();
 	}
 
 	private void StartRunInternal()
