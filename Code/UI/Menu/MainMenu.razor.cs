@@ -6,22 +6,25 @@ namespace CardGame.UI;
 
 public partial class MainMenu
 {
+	private RelicSelectionPanel? _relics;
+	private ClassSelectionPanel? _classes;
 	private SettingsPanel? _settings;
 	private LoadRunPanel? _runs;
 	private StatisticsPanel? _statistics;
 	private CreditsPanel? _credits;
-	private ClassSelectionPanel? _classes;
 
 	private Panel? _webContainer;
 	private WebPanel? _webPanel;
-	
+
+	private static GameManager? GameManager => GameManager.Instance;
 	private static MapManager? MapManager => MapManager.Instance;
 	private static SaveManager? SaveManager => SaveManager.Instance;
+	private static SceneManager? SceneManager => SceneManager.Instance;
 	private static RelicManager? RelicManager => RelicManager.Instance;
 
 	private static readonly Logger Log = new( "MainMenu" );
 	
-	public void NewRun()
+	private void NewRun()
 	{
 		if ( !MapManager.IsValid() )
 		{
@@ -60,7 +63,12 @@ public partial class MainMenu
 		}
 	}
 	
-	public void StartNewRun()
+	private void StartNewRun()
+	{
+		Classes();
+	}
+
+	public void Classes()
 	{
 		if ( !_classes.IsValid() )
 		{
@@ -68,6 +76,53 @@ public partial class MainMenu
 		}
 		
 		_classes.Show();
+	}
+	
+	public void Relics()
+	{
+		if ( !_relics.IsValid() )
+		{
+			return;
+		}
+
+		_relics.Show();
+	}
+
+	public static void StartRun( List<Relic>? relics = null )
+	{
+		if ( RelicManager.IsValid() )
+		{
+			RelicManager.ClearRelics();
+			
+			if ( relics is not null )
+			{
+				foreach ( var relic in relics )
+				{
+					RelicManager.AddRelic( relic );
+				}
+			}
+		}
+		
+		if ( GameManager.IsValid() )
+		{
+			GameManager.Floor = GameManager.StartingFloor;
+		}
+		
+		if ( SaveManager.IsValid() )
+		{
+			SaveManager.ClearActiveRun();
+			SaveManager.ActiveRunData = new RunData();
+		}
+		
+		if ( MapManager.IsValid() )
+		{
+			MapManager.Index = 0;
+			MapManager.Seed = Game.Random.Next();
+		}
+		
+		Log.Info( $"Starting new run" );
+		Sandbox.Services.Stats.Increment( "runs", 1 );
+		SceneManager?.LoadScene( SceneManager.Scenes.Map );
 	}
 
 	public static void Tutorial()
