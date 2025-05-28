@@ -31,11 +31,14 @@ public partial class MapPanel
 	private static GameManager? GameManager => GameManager.Instance;
 	private static MapManager? MapManager => MapManager.Instance;
 	private static SaveManager? SaveManager => SaveManager.Instance;
+	private static RelicManager? RelicManager => RelicManager.Instance;
 
 	private static readonly Logger Log = new( "Map" );
 
 	private BattleInfoPanel? _battleInfoPanel;
 	private ShopPanel? _shopPanel;
+
+	private readonly Queue<Relics.Relic> _relics = [];
 
 	protected override void OnTreeFirstBuilt()
 	{
@@ -49,6 +52,19 @@ public partial class MapPanel
 		{
 			// Restore the saved node position
 			MapManager.Index = SaveManager.ActiveRunData.MapNodeIndex;
+		}
+
+		if ( RelicManager.IsValid() )
+		{
+			foreach ( var relic in RelicManager.Relics.Where( x => !RelicManager.ShownRelics.Contains( x ) ) )
+			{
+				_relics.Enqueue( relic );
+			}
+		}
+
+		if ( RelicGainPanel.IsValid() && _relics.Count > 0 )
+		{
+			ShowNextRelic();
 		}
 
 		base.OnTreeFirstBuilt();
@@ -98,6 +114,29 @@ public partial class MapPanel
 		}
 
 		base.OnTreeBuilt();
+	}
+
+	private void ShowNextRelic()
+	{
+		if ( !RelicManager.IsValid() )
+		{
+			return;
+		}
+		
+		if ( !RelicGainPanel.IsValid() )
+		{
+			return;
+		}
+
+		if ( _relics.Count == 0 )
+		{
+			RelicGainPanel.Hide();
+			return;
+		}
+
+		var relic = _relics.Dequeue();
+		RelicManager.ShownRelics.Add( relic );
+		RelicGainPanel.Show( relic.Data, ShowNextRelic );
 	}
 
 	private Vector2 GetPixelPosition( Vector2 percentPos )
@@ -621,7 +660,7 @@ public partial class MapPanel
 		{
 			return;
 		}
-		
+
 		_shopPanel.Show();
 	}
 

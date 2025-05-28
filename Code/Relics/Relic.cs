@@ -84,6 +84,7 @@ public abstract class Relic( Data.Relic data ) : IOwnable
 
 		if ( RelicManager.Instance.IsValid() )
 		{
+			RelicManager.Instance.ShownRelics.Remove( this );
 			RelicManager.Instance.Relics.Remove( this );
 		}
 	}

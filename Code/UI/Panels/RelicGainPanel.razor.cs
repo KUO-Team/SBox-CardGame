@@ -7,20 +7,20 @@ namespace CardGame.UI;
 public partial class RelicGainPanel
 {
 	public Relic? Relic { get; set; }
-	
-	public System.Action? OnConfirm { get; private set; }
+
+	private System.Action? _onConfirm;
 
 	public void Show( Relic relic, System.Action? onConfirm = null )
 	{
 		Relic = relic;
-		OnConfirm = onConfirm;
+		_onConfirm = onConfirm;
 		this.Show();
 	}
 
 	public void Close()
 	{
-		OnConfirm?.Invoke();
 		this.Hide();
+		_onConfirm?.Invoke();
 	}
 
 	protected override int BuildHash()
