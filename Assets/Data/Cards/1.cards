@@ -30,7 +30,7 @@
           "Type": "Attack",
           "Power": {
             "Min": 1,
-            "Max": 1
+            "Max": 2
           },
           "Script": null
         }
@@ -65,8 +65,8 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 1,
-            "Max": 2
+            "Min": 2,
+            "Max": 3
           },
           "Script": null
         }
@@ -101,7 +101,7 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
+            "Min": 3,
             "Max": 3
           },
           "Script": null
