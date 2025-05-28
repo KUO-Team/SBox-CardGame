@@ -19,14 +19,19 @@ public partial class RelicSelectionPanel
 			return;
 		}
 
+		SetRandomRelics();
+		base.OnAfterTreeRender( firstTime );
+	}
+
+	public void SetRandomRelics( int count = 3, Relic.RelicRarity rarity = Relic.RelicRarity.Common )
+	{
+		Relics.Clear();
 		var commonRelics = RelicDataList.All
 			.Where( x => x.IsAvailable )
-			.Where( x => x.Rarity == Relic.RelicRarity.Common );
+			.Where( x => x.Rarity == rarity );
 		
-		var randomCommonRelics = commonRelics.OrderBy( _ => Game.Random.Next() ).Take( 3 ).ToList();
+		var randomCommonRelics = commonRelics.OrderBy( _ => Game.Random.Next() ).Take( count ).ToList();
 		Relics.AddRange( randomCommonRelics );
-
-		base.OnAfterTreeRender( firstTime );
 	}
 
 	public void SelectRelic( Relic relic )
