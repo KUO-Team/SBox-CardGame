@@ -6,7 +6,12 @@ public class ManaRecover( Card card ) : CardEffect( card )
 	
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.RecoverMana( Power );
+		if ( !detail.Unit.IsValid() )
+		{
+			return;
+		}
+
+		detail.Unit.RecoverMana( Power );
 		base.OnPlay( detail );
 	}
 }

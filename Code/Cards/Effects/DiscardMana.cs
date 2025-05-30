@@ -6,7 +6,12 @@ public class DiscardMana( Card card ) : CardEffect( card )
 
 	public override void OnDiscard( CardEffectDetail detail )
 	{
-		detail.Unit?.RecoverMana( Power );
+		if ( !detail.Unit.IsValid() )
+		{
+			return;
+		}
+
+		detail.Unit.RecoverMana( Power );
 		base.OnDiscard( detail );
 	}
 }

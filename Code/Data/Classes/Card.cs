@@ -216,8 +216,13 @@ public class Card : IResource, IDeepCopyable<Card>
 	{
 		foreach ( var action in Actions )
 		{
-			var effect = action.Effect;
-			effect?.OnPlay( CreateDetail( owner, target ) );
+			if ( action.Effect is not {} effect )
+			{
+				continue;
+			}
+			
+			var detail = CreateDetail( owner, target );
+			effect.OnPlay( detail );
 		}
 
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )

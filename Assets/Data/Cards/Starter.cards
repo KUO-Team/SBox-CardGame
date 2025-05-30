@@ -197,8 +197,8 @@
         {
           "Type": "Effect",
           "Power": {
-            "Min": 2,
-            "Max": 2
+            "Min": 1,
+            "Max": 1
           },
           "Script": "Draw"
         }
