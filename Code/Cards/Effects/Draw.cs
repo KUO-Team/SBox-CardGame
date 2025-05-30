@@ -2,7 +2,7 @@
 
 public class Draw( Card card ) : CardEffect( card )
 {
-	public override string Description => Power > 0 ? "Draw @ Cards" : "Draw 1 Card";
+	public override string Description => Power == 1 ? "Draw 1 Card" : "Draw @ Cards";
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
