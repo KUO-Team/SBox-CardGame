@@ -6,7 +6,7 @@
         "LocalId": 1
       },
       "Name": "The Knight",
-      "Description": "Balanced fighter. Recommended for new players.",
+      "Description": "Recommended for new players.",
       "Unit": {
         "Source": "",
         "LocalId": 101
@@ -18,7 +18,7 @@
         "LocalId": 2
       },
       "Name": "The Mage",
-      "Description": "Glass cannon. Revolves around spell casting.",
+      "Description": "Revolves around spell casting.",
       "Unit": {
         "Source": "",
         "LocalId": 102
