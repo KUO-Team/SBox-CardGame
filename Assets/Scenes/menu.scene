@@ -3,13 +3,23 @@
   "GameObjects": [
     {
       "__guid": "d39b84e9-ab1f-403e-9bee-ac86baf0870b",
+      "__version": 1,
       "Flags": 0,
       "Name": "Menu",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.ScreenPanel",
           "__guid": "049e2a50-050f-43c6-8156-f8c133110fdc",
+          "__enabled": true,
           "AutoScreenScale": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -26,6 +36,7 @@
         {
           "__type": "CardGame.UI.MainMenu",
           "__guid": "b0513784-76c8-40b6-8319-054e84aea6c5",
+          "__enabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -38,14 +49,23 @@
     },
     {
       "__guid": "f821d2eb-8685-42db-9f0e-e0c2772cfc4c",
+      "__version": 1,
       "Flags": 0,
       "Name": "Camera",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
       "Tags": "maincamera",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.CameraComponent",
           "__guid": "2ab4192a-bef9-4e1c-9163-79e84f7be101",
+          "__enabled": true,
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
@@ -69,6 +89,555 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "19c3b5d9-069c-4630-8810-4bb86fc40528",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Game",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "CardGame.GameManager",
+          "__guid": "342b9e3d-3e53-43a0-9bae-456c96226b89",
+          "__enabled": true,
+          "Floor": 3,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RunOverPanel": {
+            "_type": "component",
+            "component_id": "c57b9ef2-492c-42e6-9fb9-f97261bd8346",
+            "go": "a07c69a8-7365-491e-a1fb-224a82b72815",
+            "component_type": "RunOverPanel"
+          }
+        },
+        {
+          "__type": "CardGame.SceneManager",
+          "__guid": "b34b25f8-a43a-4ab8-9ac7-a77d227a6bdf",
+          "__enabled": true,
+          "BattleScene": "scenes/battle.scene",
+          "MapScene": "scenes/map.scene",
+          "MenuScene": "scenes/menu.scene",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "CardGame.SaveManager",
+          "__guid": "699e990f-c918-4651-a850-0c7462aa3f38",
+          "__enabled": true,
+          "ActiveRunData": {
+            "Version": "",
+            "Index": 0,
+            "Seed": 0,
+            "MapNodeIndex": 0,
+            "CompletedNodes": [],
+            "Floor": 0,
+            "Money": 0,
+            "Class": {
+              "Source": "",
+              "LocalId": -1
+            },
+            "UnitData": {
+              "Hp": 0,
+              "MaxHp": 0,
+              "Level": 0,
+              "Xp": 0,
+              "Deck": []
+            },
+            "Cards": [],
+            "CardPacks": [],
+            "Relics": [],
+            "Date": "2025-04-26T17:23:57.4456675+03:00"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "CardGame.MapManager",
+          "__guid": "c8f66c75-6061-4d68-a357-e80b70547a91",
+          "__enabled": true,
+          "Index": 0,
+          "MapGenerated": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Seed": 0
+        },
+        {
+          "__type": "CardGame.RelicManager",
+          "__guid": "fd86c7aa-0b9e-49c5-8484-a0daffa55a47",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Relics": []
+        },
+        {
+          "__type": "CardGame.ShopManager",
+          "__guid": "9825cacc-b242-4776-b356-b9ffccfa2f51",
+          "__enabled": true,
+          "CardPackAmount": 6,
+          "CardPacks": [],
+          "HealCost": 20,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RelicAmount": 4,
+          "Relics": [],
+          "RerollCost": 5,
+          "Trades": [
+            {
+              "Input": [
+                {
+                  "Source": "",
+                  "LocalId": 101
+                },
+                {
+                  "Source": "",
+                  "LocalId": 102
+                }
+              ],
+              "Output": {
+                "Source": "",
+                "LocalId": 500
+              }
+            }
+          ]
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "a07c69a8-7365-491e-a1fb-224a82b72815",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Object",
+          "Position": "159.3134,169.3407,-187.3478",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": false,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ScreenPanel",
+              "__guid": "71aa0aea-9126-468d-a820-bcc00c5a9e60",
+              "__enabled": true,
+              "AutoScreenScale": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Opacity": 1,
+              "Scale": 1,
+              "ScaleStrategy": "ConsistentHeight",
+              "TargetCamera": null,
+              "ZIndex": 800
+            },
+            {
+              "__type": "CardGame.UI.RunOverPanel",
+              "__guid": "c57b9ef2-492c-42e6-9fb9-f97261bd8346",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "dc9ff008-e2b2-4a78-94d7-365050b73010",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Battle",
+      "Position": "182.9453,150.3321,-186.2894",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "CardGame.BattleManager",
+          "__guid": "62af7fb2-d49f-4b3e-9876-8fca6e0d4026",
+          "__enabled": true,
+          "Battle": {
+            "Id": {
+              "Source": "",
+              "LocalId": -1
+            },
+            "Name": "",
+            "Bgm": null,
+            "IsBoss": false,
+            "PlayerUnits": [],
+            "EnemyUnits": [],
+            "Rewards": {
+              "Cards": [],
+              "CardPacks": [],
+              "Relics": [],
+              "Money": 50
+            },
+            "Script": ""
+          },
+          "CanEndTurn": true,
+          "Hud": {
+            "_type": "component",
+            "component_id": "a6576104-cef1-49ee-992e-76592bbd8531",
+            "go": "d94ade54-8a9d-48b6-be2a-20c6fdb3263f",
+            "component_type": "BattleHud"
+          },
+          "IsTutorial": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerUnit": {
+            "Source": "",
+            "LocalId": 99
+          },
+          "ShowEndScreen": true,
+          "State": "Start",
+          "Turn": 0,
+          "UnitPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/battleunit.prefab"
+          }
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "d94ade54-8a9d-48b6-be2a-20c6fdb3263f",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Screen",
+          "Position": "-182.9453,-150.3321,186.2894",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ScreenPanel",
+              "__guid": "e35bccc4-b4cb-4084-91ab-8c97b9752809",
+              "__enabled": true,
+              "AutoScreenScale": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Opacity": 1,
+              "Scale": 1,
+              "ScaleStrategy": "ConsistentHeight",
+              "TargetCamera": null,
+              "ZIndex": 100
+            },
+            {
+              "__type": "CardGame.UI.BattleHud",
+              "__guid": "a6576104-cef1-49ee-992e-76592bbd8531",
+              "__enabled": true,
+              "BattleManager": {
+                "_type": "component",
+                "component_id": "62af7fb2-d49f-4b3e-9876-8fca6e0d4026",
+                "go": "dc9ff008-e2b2-4a78-94d7-365050b73010",
+                "component_type": "BattleManager"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "__guid": "70b0dbba-2c8a-4259-b5a4-9bba53f5e9e5",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Script Player",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "VNBase.ScriptPlayer",
+          "__guid": "f5afd4ac-400f-4781-b2f4-1b0ef5edd3ef",
+          "__enabled": true,
+          "Hud": {
+            "_type": "component",
+            "component_id": "847c7856-6313-4875-b97b-50f81d8bc4f3",
+            "go": "70b0dbba-2c8a-4259-b5a4-9bba53f5e9e5",
+            "component_type": "VNHud"
+          },
+          "InitialScript": null,
+          "IsAutomaticMode": false,
+          "IsAutomaticModeAvailable": true,
+          "IsScriptActive": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Settings": {
+            "_type": "component",
+            "component_id": "e32d7d8f-db7a-4565-a758-24bb51334712",
+            "go": "70b0dbba-2c8a-4259-b5a4-9bba53f5e9e5",
+            "component_type": "Settings"
+          },
+          "State": {
+            "DialogueText": null,
+            "Background": null,
+            "SpeakingCharacter": null,
+            "Characters": [],
+            "Choices": [],
+            "Sounds": [],
+            "IsDialogueFinished": false
+          }
+        },
+        {
+          "__type": "VNBase.Settings",
+          "__guid": "e32d7d8f-db7a-4565-a758-24bb51334712",
+          "__enabled": true,
+          "ControlPanelEnabled": true,
+          "HideUIInputs": [],
+          "HistoryInputs": [],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SettingsEnabled": true,
+          "SettingsInputs": [],
+          "SkipActionEnabled": true,
+          "SkipActions": [
+            {
+              "Action": "SkipDialogue"
+            }
+          ],
+          "StopMusicPlaybackOnUnload": true,
+          "TextEffectEnabled": true,
+          "TextEffectSpeed": "Normal"
+        },
+        {
+          "__type": "VNBase.UI.VNHud",
+          "__guid": "847c7856-6313-4875-b97b-50f81d8bc4f3",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Player": {
+            "_type": "component",
+            "component_id": "f5afd4ac-400f-4781-b2f4-1b0ef5edd3ef",
+            "go": "70b0dbba-2c8a-4259-b5a4-9bba53f5e9e5",
+            "component_type": "ScriptPlayer"
+          }
+        },
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "d9f5fc8a-7fbe-484a-bde5-56366f14571d",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 250
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "33364b6e-dc83-4e91-9d31-c5b671d632c1",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Hud",
+      "Position": "139.5365,88.69777,-235.882",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "6311c246-cab2-41a5-a830-3dfaed64c91a",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 500
+        },
+        {
+          "__type": "CardGame.UI.Hud",
+          "__guid": "d6504620-59e5-403f-9017-1f700dea3c26",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "ca7268fc-7131-4bc4-80ff-26e63aeca86d",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Tutorial",
+      "Position": "166.4367,88.40706,-224.3892",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "5e3da992-d0e9-4baa-87bc-560bd9af6e80",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 200
+        },
+        {
+          "__type": "CardGame.UI.Tutorial.TutorialPanel",
+          "__guid": "63fd47c6-44ab-4ef8-a4be-f58e4e1a456d",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "72832b93-b308-4df6-a0c7-026f55ed41c6",
+      "__version": 1,
+      "__Prefab": "prefabs/player.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "696fffcb-dcfd-4c95-975f-da4741250762"
+            },
+            "Property": "Position",
+            "Value": "141.758,-792.7673,2"
+          },
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "696fffcb-dcfd-4c95-975f-da4741250762"
+            },
+            "Property": "NetworkInterpolation",
+            "Value": false
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "696fffcb-dcfd-4c95-975f-da4741250762": "72832b93-b308-4df6-a0c7-026f55ed41c6",
+        "cd83fa49-ad7c-4183-be07-7775a4755f86": "8e9de387-872d-43f1-9664-0058e4561fe3"
+      }
     }
   ],
   "SceneProperties": {
@@ -89,9 +658,9 @@
       "IncludedBodies": ""
     }
   },
-  "ResourceVersion": 2,
+  "ResourceVersion": 3,
   "Title": null,
   "Description": null,
   "__references": [],
-  "__version": 2
+  "__version": 3
 }
