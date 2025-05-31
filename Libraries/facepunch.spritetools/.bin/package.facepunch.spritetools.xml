@@ -123,12 +123,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpriteTools.SpriteResource.CopyFrom(SpriteTools.SpriteResource)">
-            <summary>
-            Copies all the data from another sprite resource into this one.
-            </summary>
-            <param name="otherSprite"></param>
-        </member>
         <member name="T:SpriteTools.SpriteResource.LoopMode">
             <summary>
             The different types of looping for sprite animation.
