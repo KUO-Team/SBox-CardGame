@@ -89,10 +89,10 @@
         "Source": "",
         "LocalId": 4
       },
-      "Name": "T1",
+      "Name": "Focus",
       "Cost": {
         "Ep": 0,
-        "Mp": 1
+        "Mp": 0
       },
       "IsInstant": true,
       "Targets": 1,
@@ -117,7 +117,7 @@
         "Source": "",
         "LocalId": 5
       },
-      "Name": "T2",
+      "Name": "Flame Bolt",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -133,8 +133,8 @@
         {
           "Type": "Effect",
           "Power": {
-            "Min": 1,
-            "Max": 1
+            "Min": 2,
+            "Max": 2
           },
           "Script": "Burn"
         },
@@ -153,13 +153,13 @@
         "Source": "",
         "LocalId": 6
       },
-      "Name": "T3",
+      "Name": "Arcane Volley",
       "Cost": {
         "Ep": 0,
         "Mp": 2
       },
       "IsInstant": false,
-      "Targets": 2,
+      "Targets": 3,
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Uncommon",
@@ -169,8 +169,8 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 3,
-            "Max": 3
+            "Min": 2,
+            "Max": 2
           },
           "Script": ""
         }
@@ -184,7 +184,7 @@
       "Name": "T4",
       "Cost": {
         "Ep": 0,
-        "Mp": 2
+        "Mp": 1
       },
       "IsInstant": true,
       "Targets": 1,
@@ -197,8 +197,8 @@
         {
           "Type": "Effect",
           "Power": {
-            "Min": 1,
-            "Max": 1
+            "Min": 2,
+            "Max": 2
           },
           "Script": "Draw"
         }

@@ -72,7 +72,7 @@
         "Portrait": "materials/units/portraits/witchgirl.png"
       },
       "Prefab": null,
-      "Hp": 30,
+      "Hp": 35,
       "Ep": 0,
       "Mp": 3,
       "Speed": {
