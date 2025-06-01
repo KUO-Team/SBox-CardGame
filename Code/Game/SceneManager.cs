@@ -25,11 +25,16 @@ public sealed class SceneManager : Singleton<SceneManager>, ISceneLoadingEvents
 		OnSceneLoaded?.Invoke( scene );
 	}
 
-	public bool LoadScene( Scenes scene )
+	public bool LoadScene( Scenes scene, bool destroyPersistentObjects = false )
 	{
 		if ( scene != Scenes.Battle && BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.ForceEndBattle();
+		}
+
+		if ( destroyPersistentObjects )
+		{
+			Scene.DestroyPersistentObjects();
 		}
 		
 		return scene switch
