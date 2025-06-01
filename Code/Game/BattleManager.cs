@@ -9,8 +9,8 @@ namespace CardGame;
 
 public sealed partial class BattleManager : Singleton<BattleManager>
 {
-	[Property, ReadOnly]
-	public Battle? Battle { get; set; }
+	[Property, RequireComponent, Category( "Components" )]
+	public BattleHud? Hud { get; set; }
 
 	[Property, ReadOnly]
 	public bool IsTutorial => Battle is not null && Battle.Id.Equals( 1 );
@@ -27,8 +27,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 	[Property]
 	public bool CanEndTurn { get; set; } = true;
 
-	[Property, RequireComponent, Category( "Components" )]
-	public BattleHud? Hud { get; set; }
+	public Battle? Battle { get; set; }
 
 	public SoundHandle? Bgm { get; set; }
 

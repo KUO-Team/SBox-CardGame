@@ -5,15 +5,14 @@ namespace CardGame;
 
 public sealed partial class BattleManager
 {
-	public static List<BattleUnit> Units => Game.ActiveScene.GetAllComponents<BattleUnit>().ToList();
-
-	public static List<BattleUnit> AliveUnits => Units.Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
-
 	[Property, Category( "Prefabs" )]
 	public GameObject? UnitPrefab { get; set; }
 
-	[Property]
 	public Id? PlayerUnit { get; set; }
+
+	public static List<BattleUnit> Units => Game.ActiveScene.GetAllComponents<BattleUnit>().ToList();
+
+	public static List<BattleUnit> AliveUnits => Units.Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
 
 	public BattleUnit? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None )
 	{
@@ -95,26 +94,27 @@ public sealed partial class BattleManager
 
 		unit.GameObject.Name = Connection.Local.DisplayName;
 
-		if ( Player.Local.IsValid() && Player.Local.Unit is not null )
+		if ( !Player.Local.IsValid() || Player.Local.Unit is null )
 		{
-			foreach ( var cardId in Player.Local.Unit.Deck )
+			return unit;
+		}
+		
+		foreach ( var cardId in Player.Local.Unit.Deck )
+		{
+			var card = CardDataList.GetById( cardId );
+			if ( card is not null )
 			{
-				var card = CardDataList.GetById( cardId );
-				if ( card is not null )
-				{
-					unit.HandComponent?.Deck.Add( card );
-				}
+				unit.HandComponent?.Deck.Add( card );
 			}
-
-			if ( unit.HealthComponent.IsValid() )
-			{
-				unit.HealthComponent.Health = Player.Local.Unit.Hp;
-				unit.HealthComponent.MaxHealth = Player.Local.Unit.MaxHp;
-			}
-
-			Player.Local.Units.Add( unit );
 		}
 
+		if ( unit.HealthComponent.IsValid() )
+		{
+			unit.HealthComponent.Health = Player.Local.Unit.Hp;
+			unit.HealthComponent.MaxHealth = Player.Local.Unit.MaxHp;
+		}
+
+		Player.Local.Units.Add( unit );
 		return unit;
 	}
 

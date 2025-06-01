@@ -11,6 +11,9 @@ public class Player : Component
 	[Property]
 	public UnitData? Unit { get; private set; }
 
+	[Property, ReadOnly]
+	public PlayerClass? Class { get; private set; }
+
 	[Property]
 	public List<BattleUnit> Units { get; set; } = [];
 
@@ -38,9 +41,6 @@ public class Player : Component
 
 		base.OnStart();
 	}
-
-	[Property, ReadOnly]
-	public PlayerClass? Class { get; private set; }
 
 	private Id? _playerUnitId;
 
