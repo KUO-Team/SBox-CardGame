@@ -39,7 +39,7 @@ public partial class PauseMenu
 		RelicManager.Instance?.ClearRelics();
 		BattleManager.Instance?.UnloadBattleScript();
 		SaveManager?.ClearActiveRun();
-		SceneManager?.LoadScene( SceneManager.Scenes.Menu );
+		SceneManager?.LoadScene( SceneManager.Scenes.Menu, true );
 	}
 
 	protected override int BuildHash()

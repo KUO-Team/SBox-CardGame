@@ -204,7 +204,7 @@ public sealed class GameManager : Singleton<GameManager>
 	{
 		Stats.Increment( "game-over-win", 1 );
 		Platform.Achievement.Floor0.Unlock();
-		SceneManager?.LoadScene( SceneManager.Scenes.Menu );
+		SceneManager?.LoadScene( SceneManager.Scenes.Menu, true );
 	}
 }
 
