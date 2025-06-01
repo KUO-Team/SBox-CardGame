@@ -72,13 +72,18 @@ public sealed class MapManager : Singleton<MapManager>
 
 	public int GetTierCount()
 	{
-		return 10;
+		var floor = GameManager.Instance?.Floor ?? 0;
+		return floor switch
+		{
+			3 or 2 => 10,
+			1 or 0 => 12,
+			_ => 10
+		};
 	}
 
 	public int GetMaxNodesPerTier()
 	{
 		var floor = GameManager.Instance?.Floor ?? 0;
-
 		return floor switch
 		{
 			3 or 2 => 3,
