@@ -41,6 +41,7 @@ RelicSelectionPanel {
       RelicPanel {
         width: 65px;
         height: 65px;
+        cursor: pointer;
         transition: transform 0.2s ease-in-out;
         
         &.selected {
