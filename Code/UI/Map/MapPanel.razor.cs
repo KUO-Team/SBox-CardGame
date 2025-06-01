@@ -42,7 +42,7 @@ public partial class MapPanel
 
 	protected override void OnTreeFirstBuilt()
 	{
-		if ( !MapManager.IsValid() || !SaveManager.IsValid() )
+		if ( !MapManager.IsValid() || !SaveManager.IsValid() || !GameManager.IsValid() || !RelicManager.IsValid() )
 		{
 			return;
 		}
@@ -50,38 +50,8 @@ public partial class MapPanel
 		GenerateMapLayout( MapManager.Seed );
 		if ( SaveManager.ActiveRunData is not null )
 		{
-			// Restore the saved node position
 			MapManager.Index = SaveManager.ActiveRunData.MapNodeIndex;
-		}
 
-		if ( RelicManager.IsValid() )
-		{
-			foreach ( var relic in RelicManager.Relics.Where( x => !RelicManager.ShownRelics.Contains( x ) ) )
-			{
-				_relics.Enqueue( relic );
-			}
-		}
-
-		if ( RelicGainPanel.IsValid() && _relics.Count > 0 )
-		{
-			ShowNextRelic();
-		}
-
-		base.OnTreeFirstBuilt();
-	}
-
-	protected override void OnTreeBuilt()
-	{
-		if ( !GameManager.IsValid() || !MapManager.IsValid() || !SaveManager.IsValid() )
-		{
-			return;
-		}
-
-		Update();
-		UpdateNodeStates();
-
-		if ( SaveManager.ActiveRunData is not null )
-		{
 			foreach ( var index in SaveManager.ActiveRunData.CompletedNodes.ToArray() )
 			{
 				if ( index < 0 || index >= Nodes.Count )
@@ -105,13 +75,30 @@ public partial class MapPanel
 				else
 				{
 					MapManager.GenerateNewFloor();
-					StateHasChanged();
-					OnTreeBuilt();
 				}
 			}
-
-			Update();
 		}
+
+		foreach ( var relic in RelicManager.Relics.Where( x => !RelicManager.ShownRelics.Contains( x ) ) )
+		{
+			_relics.Enqueue( relic );
+		}
+
+		if ( RelicGainPanel.IsValid() && _relics.Count > 0 )
+		{
+			ShowNextRelic();
+		}
+		
+		RenderLines();
+
+		base.OnTreeFirstBuilt();
+	}
+
+	protected override void OnTreeBuilt()
+	{
+		UpdateNodeStyles();
+		UpdateNodeStates();
+		UpdateLines();
 
 		base.OnTreeBuilt();
 	}
@@ -122,7 +109,7 @@ public partial class MapPanel
 		{
 			return;
 		}
-		
+
 		if ( !RelicGainPanel.IsValid() )
 		{
 			return;
@@ -187,10 +174,9 @@ public partial class MapPanel
 			Map?.AddChild( node );
 		}
 
-		GenerateConnections( tiers );
 		MapManager.MapGenerated = true;
 		MapManager.Index = 0;
-		UpdateNodeStates();
+		GenerateConnections( tiers );
 	}
 
 	private List<List<int>> GenerateTiers( int totalTiers, int maxNodesPerTier )
@@ -254,6 +240,7 @@ public partial class MapPanel
 		}
 
 		var availableEvents = new Queue<Id>( events.OrderBy( _ => _seededRandom.Next() ) );
+
 		// Exclude tier 1
 		var middleTiers = Enumerable.Range( 2, tiers.Count - 3 ).OrderBy( _ => _seededRandom.Next() );
 
@@ -312,6 +299,12 @@ public partial class MapPanel
 			case MapNode.MapNodeType.Event when _events.TryGetValue( index, out var eventId ):
 				node.Event = eventId;
 				break;
+			case MapNode.MapNodeType.Start:
+			case MapNode.MapNodeType.Shop:
+			case MapNode.MapNodeType.Boss:
+				break;
+			default:
+				throw new ArgumentOutOfRangeException( type.ToString() );
 		}
 
 		node.AddEventListener( "onclick", () => Select( index ) );
@@ -391,9 +384,18 @@ public partial class MapPanel
 
 		foreach ( var conn in _mapConnections )
 		{
-			var fromNode = Nodes[conn.From];
-			var toNode = Nodes[conn.To];
+			var linePanel = new Panel();
+			linePanel.AddClass( "map-line" );
+			Map.AddChild( linePanel );
+			conn.LinePanel = linePanel;
+		}
+	}
 
+	private void UpdateLines()
+	{
+		foreach ( var conn in _mapConnections )
+		{
+			var fromNode = Nodes[conn.From];
 			var width = fromNode.Box.Rect.Width;
 			var height = fromNode.Box.Rect.Height;
 			var nodeSize = new Vector2( width, height );
@@ -407,23 +409,17 @@ public partial class MapPanel
 			var distance = MathF.Sqrt( dx * dx + dy * dy );
 			var angle = MathF.Atan2( dy, dx ) * (180 / MathF.PI);
 
-			var linePanel = new Panel();
-			linePanel.AddClass( "map-line" );
+			var linePanel = conn.LinePanel;
+			if ( !linePanel.IsValid() )
+			{
+				continue;
+			}
 			linePanel.Style.Left = Length.Pixels( from.x );
 			linePanel.Style.Top = Length.Pixels( from.y );
 			linePanel.Style.Width = Length.Pixels( distance );
 			linePanel.Style.Set( "transform-origin", "0 0" );
 			linePanel.Style.Set( "transform", $"rotate({angle}deg)" );
-
-			Map.AddChild( linePanel );
-			conn.LinePanel = linePanel;
 		}
-	}
-
-	private void Update()
-	{
-		UpdateNodeStyles();
-		RenderLines();
 	}
 
 	private void UpdateNodeStyles()
@@ -445,7 +441,7 @@ public partial class MapPanel
 		for ( var i = 0; i < Nodes.Count; i++ )
 		{
 			var node = Nodes[i];
-			var isEnabled = i == CurrentNodeIndex || (IsCurrentNodeCompleted() && validNextNodes.Contains( i ));
+			var isEnabled = i == CurrentNodeIndex || IsCurrentNodeCompleted() && validNextNodes.Contains( i );
 			node.Enabled = isEnabled;
 			node.SetClass( "disabled", !isEnabled );
 			node.SetClass( "current", i == CurrentNodeIndex );
@@ -457,33 +453,20 @@ public partial class MapPanel
 	public void OnNodeHover( int index )
 	{
 		_hoveredNode = index;
-		UpdateLineHighlights();
+
+		foreach ( var conn in _mapConnections.Where( conn => conn.From == _hoveredNode ) )
+		{
+			conn.LinePanel.AddClass( "highlighted" );
+		}
 	}
 
 	public void OnNodeUnhover()
 	{
 		_hoveredNode = -1;
-		UpdateLineHighlights();
-	}
 
-	private void UpdateLineHighlights()
-	{
 		foreach ( var conn in _mapConnections )
 		{
 			conn.LinePanel.RemoveClass( "highlighted" );
-		}
-
-		if ( _hoveredNode == -1 )
-		{
-			return;
-		}
-
-		foreach ( var conn in _mapConnections )
-		{
-			if ( conn.From == _hoveredNode )
-			{
-				conn.LinePanel.AddClass( "highlighted" );
-			}
 		}
 	}
 
@@ -508,16 +491,6 @@ public partial class MapPanel
 		if ( !CanSelectNode( index ) )
 		{
 			Log.EditorLog( $"Cannot move to node {index} from {CurrentNodeIndex} [{Nodes[index].Type}]" );
-			return;
-		}
-
-		if ( !IsCurrentNodeCompleted() )
-		{
-			MapManager.Index = index;
-			SaveManager.ActiveRunData.MapNodeIndex = index;
-
-			UpdateNodeStates();
-			RunNode( Nodes[index] );
 			return;
 		}
 
@@ -560,9 +533,13 @@ public partial class MapPanel
 		}
 
 		MapManager.Index = index;
-		UpdateNodeStates();
-
+		if ( SaveManager.IsValid() && SaveManager.ActiveRunData is not null )
+		{
+			SaveManager.ActiveRunData.MapNodeIndex = index;
+		}
+		
 		Log.Info( $"Selected node at index {index}" );
+		RunNode( Nodes[index] );
 	}
 
 	private void RunNode( MapNode node )
@@ -666,6 +643,6 @@ public partial class MapPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Map, CurrentNodeIndex, GameManager?.Floor, Player.Local?.Money, Player.Local?.Unit?.Hp );
+		return HashCode.Combine( Player.Local?.Money, Player.Local?.Unit?.Hp );
 	}
 }
