@@ -13,7 +13,7 @@ public partial class BattleUnit : BaseCharacter
 	public string Name => GameObject.Name;
 
 	[Property]
-	public int Level { get; set; } = 1;
+	public string Description { get; set; } = string.Empty;
 
 	[Property]
 	public Faction Faction { get; set; } = Faction.Enemy;
@@ -23,6 +23,9 @@ public partial class BattleUnit : BaseCharacter
 
 	[Property, RequireComponent, Category( "Components" )]
 	public HandComponent? HandComponent { get; set; }
+	
+	[Property, RequireComponent, Category( "Components" )]
+	public LevelComponent? LevelComponent { get; set; }
 
 	[Property, RequireComponent, Category( "Components" )]
 	public PassiveAbilityList? Passives { get; set; }

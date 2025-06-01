@@ -12,6 +12,7 @@ public partial class BattleUnit
 	{
 		Data = data;
 		GameObject.Name = data.Name;
+		Description = data.Description;
 		Faction = faction;
 
 		if ( SpriteComponent.IsValid() )
@@ -101,6 +102,16 @@ public partial class BattleUnit
 
 	private int GetScaledHp( int hp )
 	{
-		return (int)MathF.Ceiling( hp * (1 + (Level - 1) * 0.1f) );
+		if ( !HealthComponent.IsValid() )
+		{
+			return 100;
+		}
+		
+		if ( !LevelComponent.IsValid() )
+		{
+			return HealthComponent.Health;
+		}
+		
+		return (int)MathF.Ceiling( hp * (1 + (LevelComponent.Level - 1) * 0.1f) );
 	}
 }
