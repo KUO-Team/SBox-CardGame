@@ -14,7 +14,7 @@ public sealed partial class BattleManager
 
 	public static List<BattleUnit> AliveUnits => Units.Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
 
-	public BattleUnit? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None )
+	public BattleUnit? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None, Transform? transform = null )
 	{
 		if ( !UnitPrefab.IsValid() )
 		{
@@ -23,7 +23,7 @@ public sealed partial class BattleManager
 		}
 
 		var gameObject = !data.Prefab.IsValid() ? UnitPrefab.Clone() : data.Prefab.Clone();
-		if ( gameObject?.Components.TryGet( out BattleUnit unit ) != true )
+		if ( gameObject.Components.TryGet( out BattleUnit unit ) is not true )
 		{
 			Log.Warning( $"No unit component found; unable to set data!" );
 			return null;
@@ -35,8 +35,12 @@ public sealed partial class BattleManager
 			return null;
 		}
 
-		spawnPoint.IsOccupied = true;
-		unit.WorldTransform = spawnPoint.WorldTransform;
+		spawnPoint.Place( gameObject );
+		if ( transform.HasValue )
+		{
+			unit.WorldTransform = transform.Value;
+		}
+		
 		unit.SetData( data, faction );
 
 		if ( faction == Faction.Player && spriteFlags == SpriteFlags.None )

@@ -5,11 +5,17 @@ public class UnitSpawnPoint : Component
 	[Property] 
 	public Faction? Faction { get; set; }
 	
-	[Property] 
-	public bool IsOccupied { get; set; }
+	[Property, ReadOnly] 
+	public bool IsOccupied { get; private set; }
 	
 	[Property] 
 	public int Order { get; set; }
+	
+	public void Place( GameObject gameObject, bool occupied = true )
+	{		
+		IsOccupied = occupied;
+		gameObject.WorldTransform = WorldTransform;
+	}
 	
 	protected override void DrawGizmos()
 	{
