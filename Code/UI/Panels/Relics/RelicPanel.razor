@@ -9,8 +9,12 @@
 }
 
 <root>
-	@if ( !string.IsNullOrEmpty( Relic.Icon ) )
+	@if ( HasIcon && string.IsNullOrEmpty( Relic.Emoji ) )
 	{
 		<img class="relic-icon" src="@Relic.Icon" alt="Relic Icon"/>
+	}
+	else if ( !string.IsNullOrEmpty( Relic.Emoji ) )
+	{
+		<label class="relic-emoji">@(Relic.Emoji)</label>
 	}
 </root>

@@ -15,6 +15,8 @@ public class Relic : IResource, IDeepCopyable<Relic>
 
 	public string Description { get; set; } = string.Empty;
 
+	public string Emoji { get; set; } = string.Empty;
+
 	public List<string> Flavor { get; set; } = [];
 
 	public TagSet Keywords { get; set; } = new();
