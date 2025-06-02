@@ -11,11 +11,11 @@ public class Relic : IResource, IDeepCopyable<Relic>
 	[ImageAssetPath]
 	public string Icon { get; set; } = string.Empty;
 
+	public string Emoji { get; set; } = string.Empty;
+
 	public string Name { get; set; } = string.Empty;
 
 	public string Description { get; set; } = string.Empty;
-
-	public string Emoji { get; set; } = string.Empty;
 
 	public List<string> Flavor { get; set; } = [];
 

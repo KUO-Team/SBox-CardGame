@@ -6,9 +6,9 @@
         "LocalId": 1
       },
       "Icon": "",
+      "Emoji": "\uD83C\uDF00",
       "Name": "Echo Core",
       "Description": "At the start of the turn, for each card that was discarded last turn, gain 1 Power Up. (Max. 2) If you discarded no cards last turn, gain 1 Power Down.",
-      "Emoji": "\uD83C\uDF00",
       "Flavor": [
         "Echoes of past decisions reverberate, fueling your power with every discarded thought."
       ],
@@ -23,9 +23,9 @@
         "LocalId": 2
       },
       "Icon": "",
+      "Emoji": "✨",
       "Name": "Sigil of Excess",
       "Description": "All spell cards have +2 added to their effects, but all attack cards have -2 power.",
-      "Emoji": "✨",
       "Flavor": [
         "An ancient sigil, one that amplifies everything it touches, even the simplest incantation."
       ],
@@ -40,9 +40,9 @@
         "LocalId": 3
       },
       "Icon": "",
+      "Emoji": "\uD83D\uDC94",
       "Name": "Desperation",
       "Description": "While below 80% of Max HP, all cards cost 1 less MP to play.",
-      "Emoji": "\uD83D\uDC94",
       "Flavor": [
         "When the heart races against time, every breath is a bargain with the inevitable."
       ],
@@ -57,9 +57,9 @@
         "LocalId": 4
       },
       "Icon": "",
+      "Emoji": "\uD83D\uDD2E",
       "Name": "Mirror Spark",
       "Description": "When you play a spell card, it has a 50% chance to duplicate. Duplicated effects have a 50% chance to target randomly.",
-      "Emoji": "\uD83D\uDD2E",
       "Flavor": [
         "Reflection is more than mere image—sometimes it multiplies, sometimes it misleads."
       ],
@@ -74,9 +74,9 @@
         "LocalId": 5
       },
       "Icon": "",
+      "Emoji": "⚗️",
       "Name": "Witchglass Vial",
       "Description": "At the start of the turn, copy a random status affecting you.",
-      "Emoji": "⚗️",
       "Flavor": [
         "A vial filled with remnants of spells and curses, capturing the essence of your suffering and luck."
       ],
@@ -91,9 +91,9 @@
         "LocalId": 6
       },
       "Icon": "",
+      "Emoji": "\uD83E\uDE78",
       "Name": "Pact Brand",
       "Description": "When you play a card, if it’s an attack card, add +2 power to its attacks but lose 1 HP.",
-      "Emoji": "\uD83E\uDE78",
       "Flavor": [
         "A scar on your soul, offering power at the cost of your own vitality."
       ],
@@ -108,9 +108,9 @@
         "LocalId": 7
       },
       "Icon": "",
+      "Emoji": "\uD83D\uDC8D",
       "Name": "Ring of Power",
       "Description": "At the start of the turn, gain X Power Up and X Fragile. (X is the turn count (Max. 5))",
-      "Emoji": "\uD83D\uDC8D",
       "Flavor": [
         "Time spirals into your favor, but each passing moment chips away at your resolve."
       ],
@@ -125,9 +125,9 @@
         "LocalId": 8
       },
       "Icon": "",
+      "Emoji": "\uD83C\uDFB4",
       "Name": "Loose Pockets",
       "Description": "At the start of the turn, draw 2 extra cards, then discard 1 card randomly from your hand.",
-      "Emoji": "\uD83C\uDFB4",
       "Flavor": [
         "Bountiful distractions in your hands, but only chaos remains when the cards fall."
       ],
@@ -142,9 +142,9 @@
         "LocalId": 9
       },
       "Icon": "",
+      "Emoji": "\uD83C\uDF18",
       "Name": "Twilight Band",
       "Description": "Gain +1 Card Slot. Max HP reduced by 15%, and you gain 1 Fragile at the start of every turn.",
-      "Emoji": "\uD83C\uDF18",
       "Flavor": [
         "The band glows with the waning light of a forgotten promise, a weight both empowering and destructive."
       ],
@@ -159,9 +159,9 @@
         "LocalId": 10
       },
       "Icon": "",
+      "Emoji": "⛓️",
       "Name": "Memory Chain",
       "Description": "Gain +2 Card Slots. At the start of combat, if all card slots aren't filled, lose 2 HP for each unfilled slot.",
-      "Emoji": "⛓️",
       "Flavor": [
         "The past is a chain around your wrist, pulling you toward both your potential and your downfall."
       ],
@@ -176,9 +176,9 @@
         "LocalId": 11
       },
       "Icon": "",
+      "Emoji": "⚖️",
       "Name": "Uneven Odds",
       "Description": "At the start of the turn, if enemies outnumber allies, gain 1 Power Up per extra enemy; if allies outnumber enemies, a random ally gains 1 Fragile per extra ally.",
-      "Emoji": "⚖️",
       "Flavor": [
         "The fewer at his side, the stronger he stood. The more, the more brittle their hope became."
       ],
@@ -193,9 +193,9 @@
         "LocalId": 12
       },
       "Icon": "",
+      "Emoji": "\uD83E\uDDEA",
       "Name": "Hexbound Catalyst",
       "Description": "At the start of the turn, if any of your units are Enchanted, they gain 2 Power Up. If they aren't, they gain 2 Power Down.",
-      "Emoji": "\uD83E\uDDEA",
       "Flavor": [
         "Magic gives with one hand and takes with the other."
       ],
@@ -210,9 +210,9 @@
         "LocalId": 13
       },
       "Icon": "",
+      "Emoji": "\uD83E\uDDCD",
       "Name": "Echo of One",
       "Description": "At the start of the turn, if you are the only alive ally, gain 3 Power Up.",
-      "Emoji": "\uD83E\uDDCD",
       "Flavor": [
         "In silence, the lone echo grows louder, until all that’s left is purpose."
       ],
@@ -227,9 +227,9 @@
         "LocalId": 14
       },
       "Icon": "",
+      "Emoji": "\uD83D\uDD6F️",
       "Name": "Last Light",
       "Description": "When an ally would die, instead restore them to half of max HP with 1 Fragile. Can only trigger once per battle.",
-      "Emoji": "\uD83D\uDD6F️",
       "Flavor": [
         "Even the dimmest flame resists the dark… if only for a moment."
       ],
@@ -244,9 +244,9 @@
         "LocalId": 15
       },
       "Icon": "",
+      "Emoji": "\uD83D\uDD01❤️",
       "Name": "Recursive Heart",
       "Description": "The first card any of your units play each turn is returned to their hand.",
-      "Emoji": "\uD83D\uDD01❤️",
       "Flavor": [
         "It beats again. And again. And again."
       ],

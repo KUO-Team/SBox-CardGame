@@ -74,10 +74,43 @@ StatisticsPanel {
         margin: 5px 0;
       }
 
-      > .sub-title {
+      .sub-title {
         font-size: 35px;
         flex-shrink: 0;
         margin: 5px 0;
+      }
+      
+      .relic-container {
+        width: 100%;
+        flex-shrink: 0;
+        flex-direction: column;
+        
+        > .rarity-title {
+          font-size: 24px;
+          flex-shrink: 0;
+          margin-left: 5px;
+        }
+
+        .relics {
+          width: 100%;
+          flex-shrink: 0;
+          margin: 10px 10px;
+          gap: 10px;
+
+          RelicPanel {
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+
+            &.hide {
+              pointer-events: none;
+            }
+
+            &:hover {
+              border: 1px solid white;
+              transform: scale(1.05);
+            }
+          }
+        }
       }
 
       .item-container {
@@ -101,27 +134,6 @@ StatisticsPanel {
 
           &:hover {
             transform: scale(1.02);
-          }
-        }
-      }
-
-      .relics {
-        width: 100%;
-        flex-shrink: 0;
-        margin: 10px 10px;
-        gap: 10px;
-
-        RelicPanel {
-          flex-shrink: 0;
-          transition: transform 0.2s ease;
-          
-          &.hide {
-            pointer-events: none;
-          }
-
-          &:hover {
-            border: 1px solid white;
-            transform: scale(1.05);
           }
         }
       }
