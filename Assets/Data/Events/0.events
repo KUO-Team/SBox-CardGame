@@ -18,6 +18,34 @@
           }
         }
       ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Script": "Shop",
+      "Text": "An older man shuffles toward you, his cart groaning with age and rust. 'Take a look at my wares... will you?' he rasps, eyes glinting beneath his hood.",
+      "Choices": [
+        {
+          "Text": "Browse his wares",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        },
+        {
+          "Text": "Continue on your way",
+          "Enabled": true,
+          "HasEvent": false,
+          "Event": {
+            "Text": "",
+            "Choices": []
+          }
+        }
+      ]
     }
   ],
   "__references": [],

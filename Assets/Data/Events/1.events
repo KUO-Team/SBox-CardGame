@@ -3,7 +3,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 2
+        "LocalId": 3
       },
       "Script": "WeepingStatue",
       "Text": "A solemn statue looms atop a crumbling pedestal, silent tears of blood streaking its stone face. Take it?",
@@ -31,7 +31,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 3
+        "LocalId": 4
       },
       "Script": "Masks",
       "Text": "Two ornate masks rest atop a stone slab—one carved in joy, the other twisted in sorrow. A whisper slithers into your thoughts: 'Choose a face to wear... but know the mask may wear you.'",
