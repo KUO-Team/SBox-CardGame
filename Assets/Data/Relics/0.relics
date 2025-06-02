@@ -244,7 +244,7 @@
         "LocalId": 15
       },
       "Icon": "",
-      "Emoji": "\uD83D\uDD01❤️",
+      "Emoji": "❤️",
       "Name": "Recursive Heart",
       "Description": "The first card any of your units play each turn is returned to their hand.",
       "Flavor": [
