@@ -99,7 +99,7 @@
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Common",
-      "Availabilities": "Starter",
+      "Availabilities": "Shop, Starter",
       "Keywords": "",
       "Actions": [
         {
@@ -127,7 +127,7 @@
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Common",
-      "Availabilities": "Starter",
+      "Availabilities": "Shop, Starter",
       "Keywords": "",
       "Actions": [
         {
@@ -163,7 +163,7 @@
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Uncommon",
-      "Availabilities": "Starter",
+      "Availabilities": "Shop, Starter",
       "Keywords": "",
       "Actions": [
         {
@@ -191,7 +191,7 @@
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Common",
-      "Availabilities": "Starter",
+      "Availabilities": "Shop, Starter",
       "Keywords": "",
       "Actions": [
         {
