@@ -55,16 +55,16 @@ public sealed class MapManager : Singleton<MapManager>
 	public Dictionary<int, List<Id>> FloorEvents { get; set; } = new()
 	{
 		{
-			3, [1]
+			3, [1, 2]
 		},
 		{
-			2, [1, 2, 3]
+			2, [1, 2, 3, 4]
 		},
 		{
-			1, [1, 2, 3]
+			1, [1, 2, 3, 4]
 		},
 		{
-			0, [1, 2, 3]
+			0, [1, 2, 3, 4]
 		}
 	};
 
@@ -72,13 +72,18 @@ public sealed class MapManager : Singleton<MapManager>
 
 	public int GetTierCount()
 	{
-		return 10;
+		var floor = GameManager.Instance?.Floor ?? 0;
+		return floor switch
+		{
+			3 or 2 => 10,
+			1 or 0 => 12,
+			_ => 10
+		};
 	}
 
 	public int GetMaxNodesPerTier()
 	{
 		var floor = GameManager.Instance?.Floor ?? 0;
-
 		return floor switch
 		{
 			3 or 2 => 3,

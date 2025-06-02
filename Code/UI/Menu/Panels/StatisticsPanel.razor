@@ -1,6 +1,6 @@
-﻿@using CardGame.Data
-@using Sandbox.UI
+﻿@using Sandbox.UI
 @using Sandbox.Services
+@using CardGame.Data
 
 @inherits MenuSubPanel
 @namespace CardGame.UI
@@ -8,22 +8,14 @@
 <root>
 	<div class="main">
 		<div class="tab-selection">
-			<button class="@( SelectedTab?.Id == "seencards" ? "disabled" : "" )"
-			        onclick="@( () => ChangeTabs( "seencards" ) )">Collection
-			</button>
-			<button class="@( SelectedTab?.Id == "leaderboards" ? "disabled" : "" )"
-			        onclick="@( () => ChangeTabs( "leaderboards" ) )">Leaderboards
-			</button>
-			<button class="@( SelectedTab?.Id == "achievements" ? "disabled" : "" )"
-			        onclick="@( () => ChangeTabs( "achievements" ) )">Achievements
-			</button>
-			<button class="@( SelectedTab?.Id == "stats" ? "disabled" : "" )"
-			        onclick="@( () => ChangeTabs( "stats" ) )">Statistics
-			</button>
+			<button class="@( SelectedTab?.Id == "collection" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "collection" ) )">Collection</button>
+			<button class="@( SelectedTab?.Id == "leaderboards" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "leaderboards" ) )">Leaderboards</button>
+			<button class="@( SelectedTab?.Id == "achievements" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "achievements" ) )">Achievements</button>
+			<button class="@( SelectedTab?.Id == "stats" ? "disabled" : "" )" onclick="@( () => ChangeTabs( "stats" ) )">Statistics</button>
 		</div>
 
 		<div class="tabs" @ref="_tabContainer">
-			<div class="tab hidden" id="seencards">
+			<div class="tab hidden" id="collection">
 				@{
 					var cards = CardDataList.All
 						.Where( x => x.IsAvailable )
@@ -31,7 +23,7 @@
 					var relics = RelicDataList.All
 						.Where( x => x.IsAvailable )
 						.ToList();
-					
+
 					var seenCards = PlayerData.Data.SeenCards;
 					var seenRelics = PlayerData.Data.SeenRelics;
 					var totalCards = cards.Count;
@@ -45,7 +37,7 @@
 
 				<div class="row">
 					<div class="tab-title">Collection</div>
-					<div class="tab-title">@(totalCardsAndRelicsFound)/@(totalCardsAndRelics)</div>
+					<div class="tab-title">@( totalCardsAndRelicsFound )/@( totalCardsAndRelics )</div>
 				</div>
 
 				<label class="title">@( seenCards.Count )/@( cards.Count ) Cards</label>
@@ -59,36 +51,64 @@
 
 				<label class="title">@( seenRelics.Count )/@( relics.Count ) Relics</label>
 
-				<label class="sub-title">Found In Shops</label>
-				<div class="relics">
-					@foreach ( var relic in relics.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Shop ) ).OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
+				<div class="relic-container">
+					<label class="sub-title">Found In Shops</label>
+					@foreach ( var rarityGroup in relics
+						.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Shop ) )
+						.GroupBy( x => x.Rarity )
+						.OrderByDescending( g => g.Key ) )
 					{
-						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+						<label class="rarity-title">@( rarityGroup.Key.ToString() ) Relics</label>
+						<div class="relics">
+							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
+							{
+								<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )"
+								            Relic="@relic"></RelicPanel>
+							}
+						</div>
 					}
 				</div>
-				<label class="sub-title">Found In Events</label>
-				<div class="relics">
-					@foreach ( var relic in relics.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Event ) ).OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
+
+				<div class="relic-container">
+					<label class="sub-title">Found In Events</label>
+					@foreach ( var rarityGroup in relics
+						.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Event ) )
+						.GroupBy( x => x.Rarity )
+						.OrderByDescending( g => g.Key ) )
 					{
-						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+						<label class="rarity-title">@( rarityGroup.Key.ToString() ) Relics</label>
+						<div class="relics">
+							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
+							{
+								<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+							}
+						</div>
 					}
 				</div>
-				<label class="sub-title">Traded For</label>
-				<div class="relics">
-					@foreach ( var relic in relics.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Trade ) ).OrderByDescending( y => y.Rarity ).ThenBy( y => y.Name ) )
+
+				<div class="relic-container">
+					<label class="sub-title">Traded For</label>
+					@foreach ( var rarityGroup in relics
+						.Where( x => x.Availabilities.HasFlag( Relic.RelicAvailabilities.Trade ) )
+						.GroupBy( x => x.Rarity )
+						.OrderByDescending( g => g.Key ) )
 					{
-						<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+						<label class="rarity-title">@( rarityGroup.Key.ToString() ) Relics</label>
+						<div class="relics">
+							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
+							{
+								<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+							}
+						</div>
 					}
 				</div>
 			</div>
 
 			<div class="tab hidden" id="leaderboards">
 				<div class="tab-selection">
-					<button class="@( _openLeaderboard?.Id == "Runs Won" ? "disabled" : "" )"
-					        onclick="@( () => ChangeLeaderboard( "Runs Won" ) )">Runs Won
+					<button class="@( _openLeaderboard?.Id == "Runs Won" ? "disabled" : "" )" onclick="@( () => ChangeLeaderboard( "Runs Won" ) )">Runs Won
 					</button>
-					<button class="@( _openLeaderboard?.Id == "Runs" ? "disabled" : "" )"
-					        onclick="@( () => ChangeLeaderboard( "Runs" ) )">Runs
+					<button class="@( _openLeaderboard?.Id == "Runs" ? "disabled" : "" )" onclick="@( () => ChangeLeaderboard( "Runs" ) )">Runs
 					</button>
 				</div>
 				<div class="leaderboards" @ref="_leaderboardContainer">
@@ -97,14 +117,15 @@
 						<div class="leaderboard hidden" id="@board.Key">
 							<div class="row">
 								<div class="tab-title">@board.Key</div>
-								<i onclick="@(() => RefreshLeaderboard( board.Value ))">refresh</i>
+								<i onclick="@( () => RefreshLeaderboard( board.Value ) )">refresh</i>
 							</div>
 							<div class="board">
 								@if ( board.Value.Entries.Any() )
 								{
 									foreach ( var entry in board.Value.Entries )
 									{
-										<div class="entry @GetRank( (int)entry.Rank ) @( IsMe( entry.SteamId ) ? "me" : "" )">
+										<div
+											class="entry @GetRank( (int)entry.Rank ) @( IsMe( entry.SteamId ) ? "me" : "" )">
 											<label class="entry-rank">@( entry.Rank ).</label>
 											<img class="entry-avatar" src="avatar:@( entry.SteamId )" alt=""/>
 											<label class="entry-displayname">@( entry.DisplayName )</label>
@@ -131,7 +152,7 @@
 					@foreach ( var achievement in Achievements.All.OrderByDescending( x => x.IsVisible ) )
 					{
 						<div class="achievement @( achievement.IsUnlocked ? "unlocked" : "locked" )">
-							<img class="achievement-icon" src="@achievement.Icon"/>
+							<img class="achievement-icon" src="@achievement.Icon" alt="Achievement icon"/>
 							<div class="row">
 								<div class="achievement-title">
 									@if ( achievement.IsVisible )

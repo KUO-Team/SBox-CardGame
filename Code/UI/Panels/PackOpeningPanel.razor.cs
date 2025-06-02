@@ -60,14 +60,10 @@ public partial class PackOpeningPanel
 		// Remove pack from inventory after opening
 		Player?.CardPacks.Remove( pack );
 
-		var cardPackData = PlayerData.Data.CardPacks;
-		cardPackData.Remove( pack.Id );
-
 		foreach ( var card in _openedCards )
 		{
 			PlayerData.Data.SeeCard( card.Id );
 		}
-		PlayerData.Save();
 	}
 
 	private async Task AnimatePackOpening()
@@ -205,20 +201,15 @@ public partial class PackOpeningPanel
 			await Task.Delay( 250 );
 			card.AddClass( "shine" );
 
-			//if ( openedCard?.Rarity >= CardPack.CardPackRarity.Epic )
-			//{
-			//	card.AddClass( "special-glow" );
-			//}
+			if ( openedCard?.Rarity >= Card.CardRarity.Epic )
+			{
+				card.AddClass( "special-glow" );
+			}
 
 			// Add card to player's collection
-			if ( openedCard is not null )
+			if ( openedCard is not null && Player.IsValid() )
 			{
-				if ( Player.IsValid() )
-				{
-					Player.Cards.Add( openedCard );
-					PlayerData.Data.Cards.Add( openedCard.Id );
-					PlayerData.Save();
-				}
+				Player.Cards.Add( openedCard );
 			}
 		}
 

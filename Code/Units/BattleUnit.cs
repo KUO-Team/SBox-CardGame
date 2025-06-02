@@ -13,7 +13,7 @@ public partial class BattleUnit : BaseCharacter
 	public string Name => GameObject.Name;
 
 	[Property]
-	public int Level { get; set; } = 1;
+	public string Description { get; set; } = string.Empty;
 
 	[Property]
 	public Faction Faction { get; set; } = Faction.Enemy;
@@ -23,6 +23,9 @@ public partial class BattleUnit : BaseCharacter
 
 	[Property, RequireComponent, Category( "Components" )]
 	public HandComponent? HandComponent { get; set; }
+	
+	[Property, RequireComponent, Category( "Components" )]
+	public LevelComponent? LevelComponent { get; set; }
 
 	[Property, RequireComponent, Category( "Components" )]
 	public PassiveAbilityList? Passives { get; set; }
@@ -73,7 +76,7 @@ public partial class BattleUnit : BaseCharacter
 
 		if ( BattleManager.Instance.IsValid() )
 		{
-			BattleManager.Instance.OnTurnStart += OnTurnStart;
+			BattleManager.Instance.OnTurnEnd += OnTurnEnd;
 		}
 	}
 
@@ -91,7 +94,7 @@ public partial class BattleUnit : BaseCharacter
 
 		if ( BattleManager.Instance.IsValid() )
 		{
-			BattleManager.Instance.OnTurnStart -= OnTurnStart;
+			BattleManager.Instance.OnTurnEnd -= OnTurnEnd;
 		}
 
 		base.OnDestroy();
@@ -117,7 +120,7 @@ public partial class BattleUnit : BaseCharacter
 		Mana = Math.Max( 0, Mana - amount );
 	}
 
-	private void OnTurnStart()
+	private void OnTurnEnd()
 	{
 		if ( !HandComponent.IsValid() )
 		{

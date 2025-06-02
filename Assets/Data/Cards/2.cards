@@ -3,7 +3,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 9
+        "LocalId": 12
       },
       "Name": "Sword Slash",
       "Cost": {
@@ -31,7 +31,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 10
+        "LocalId": 13
       },
       "Name": "Shields Up!",
       "Cost": {
@@ -59,7 +59,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 11
+        "LocalId": 14
       },
       "Name": "Heavy Strike",
       "Cost": {
@@ -87,7 +87,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 12
+        "LocalId": 15
       },
       "Name": "Fetch Arsenal",
       "Cost": {

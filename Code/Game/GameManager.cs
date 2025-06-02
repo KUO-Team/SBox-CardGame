@@ -100,7 +100,6 @@ public sealed class GameManager : Singleton<GameManager>
 
 		foreach ( var cardId in battle.Rewards.Cards )
 		{
-			PlayerData.Data.Cards.Add( cardId );
 			var card = CardDataList.GetById( cardId );
 			if ( card is null )
 			{
@@ -113,7 +112,6 @@ public sealed class GameManager : Singleton<GameManager>
 
 		foreach ( var packId in battle.Rewards.CardPacks )
 		{
-			PlayerData.Data.CardPacks.Add( packId );
 			var pack = CardPackDataList.GetById( packId );
 			if ( pack is null )
 			{
@@ -206,7 +204,7 @@ public sealed class GameManager : Singleton<GameManager>
 	{
 		Stats.Increment( "game-over-win", 1 );
 		Platform.Achievement.Floor0.Unlock();
-		SceneManager?.LoadScene( SceneManager.Scenes.Menu );
+		SceneManager?.LoadScene( SceneManager.Scenes.Menu, true );
 	}
 }
 

@@ -8,15 +8,19 @@ public partial class RelicGainPanel
 {
 	public Relic? Relic { get; set; }
 
-	public void Show( Relic relic )
+	private System.Action? _onConfirm;
+
+	public void Show( Relic relic, System.Action? onConfirm = null )
 	{
 		Relic = relic;
+		_onConfirm = onConfirm;
 		this.Show();
 	}
 
 	public void Close()
 	{
 		this.Hide();
+		_onConfirm?.Invoke();
 	}
 
 	protected override int BuildHash()

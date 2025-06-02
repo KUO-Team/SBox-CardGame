@@ -1,0 +1,210 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop, Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Script": null
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "Strong Strike",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "Shop, Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 5,
+            "Max": 5
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 3
+      },
+      "Name": "Mystic Ward",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Shop, Starter",
+      "Keywords": "Protection",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Protection"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 4
+      },
+      "Name": "Focus",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 0
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Script": "ManaRecover"
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Name": "Flame Bolt",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": false,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Burn"
+        },
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 6
+      },
+      "Name": "Arcane Volley",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 2
+      },
+      "IsInstant": false,
+      "Targets": 3,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Uncommon",
+      "Availabilities": "Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": ""
+        }
+      ]
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 7
+      },
+      "Name": "T4",
+      "Cost": {
+        "Ep": 0,
+        "Mp": 1
+      },
+      "IsInstant": true,
+      "Targets": 1,
+      "Targeting": "Enemy",
+      "Type": "Spell",
+      "Rarity": "Common",
+      "Availabilities": "Starter",
+      "Keywords": "",
+      "Actions": [
+        {
+          "Type": "Effect",
+          "Power": {
+            "Min": 2,
+            "Max": 2
+          },
+          "Script": "Draw"
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

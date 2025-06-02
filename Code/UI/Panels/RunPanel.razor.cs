@@ -11,40 +11,18 @@ public partial class RunPanel
 	
 	public void LoadRun()
 	{
-		if ( Data is not null )
+		if ( Data is null )
 		{
-			if ( !Data.Version.Equals( GameInfo.Version ) )
-			{
-				WarningPanel? warning = null;
-				warning = WarningPanel.Create( "Version Mismatch", "This run was saved on a separate game version. It might be corrupted. Are you sure you wish to load it?", [
-					new Button( "Yes", "", () =>
-					{
-						SaveManager.Instance?.Load( Data );
-						warning?.Delete();
-					} ),
-					new Button( "No", "", () =>
-					{
-						warning?.Delete();
-					} )
-				] );
-			}
-			else
-			{
-				SaveManager.Instance?.Load( Data );
-			}
+			return;
 		}
-	}
-	
-	public void DeleteData()
-	{
-		if ( Data is not null )
+		
+		if ( !Data.Version.Equals( GameInfo.Version ) )
 		{
 			WarningPanel? warning = null;
-
-			warning = WarningPanel.Create( "Delete Run Data", "This action will delete the provided run data. Are you sure?", [
+			warning = WarningPanel.Create( "Version Mismatch", "This run was saved on a separate game version. It might be corrupted. Are you sure you wish to load it?", [
 				new Button( "Yes", "", () =>
 				{
-					SaveManager.Instance?.Delete( Data.Index );
+					SaveManager.Instance?.Load( Data );
 					warning?.Delete();
 				} ),
 				new Button( "No", "", () =>
@@ -53,6 +31,31 @@ public partial class RunPanel
 				} )
 			] );
 		}
+		else
+		{
+			SaveManager.Instance?.Load( Data );
+		}
+	}
+	
+	public void DeleteData()
+	{
+		if ( Data is null )
+		{
+			return;
+		}
+		
+		WarningPanel? warning = null;
+		warning = WarningPanel.Create( "Delete Run Data", "This action will delete the provided run data. Are you sure?", [
+			new Button( "Yes", "", () =>
+			{
+				SaveManager.Delete( Data.Index );
+				warning?.Delete();
+			} ),
+			new Button( "No", "", () =>
+			{
+				warning?.Delete();
+			} )
+		] );
 	}
 	
 	protected override int BuildHash()

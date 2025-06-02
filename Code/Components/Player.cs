@@ -11,6 +11,9 @@ public class Player : Component
 	[Property]
 	public UnitData? Unit { get; private set; }
 
+	[Property, ReadOnly]
+	public PlayerClass? Class { get; private set; }
+
 	[Property]
 	public List<BattleUnit> Units { get; set; } = [];
 
@@ -30,37 +33,24 @@ public class Player : Component
 			Local = this;
 		}
 
-		SetUnitData( _playerUnitId );
-
 		GameObject.BreakFromPrefab();
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
-
-		foreach ( var packId in PlayerData.Data.CardPacks )
-		{
-			var cardPack = CardPackDataList.GetById( packId );
-			if ( cardPack is not null )
-			{
-				CardPacks.Add( cardPack );
-			}
-		}
-
-		foreach ( var cardId in PlayerData.Data.Cards )
-		{
-			var card = CardDataList.GetById( cardId );
-			if ( card is not null )
-			{
-				Cards.Add( card );
-			}
-		}
+		
+		var firstClass = PlayerClassDataList.All[0];
+		SetClass( firstClass );
 
 		base.OnStart();
 	}
 
-	private Id _playerUnitId = 99;
+	private Id? _playerUnitId;
 
 	public void SetUnitData( Id id )
 	{
 		_playerUnitId = id;
+		if ( BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.PlayerUnit = _playerUnitId;
+		}
 
 		var source = UnitDataList.GetById( id );
 		if ( source is null )
@@ -75,6 +65,12 @@ public class Player : Component
 
 	public void ResetUnitData()
 	{
+		if ( _playerUnitId is null )
+		{
+			Log.Error( $"No player unit id found!" );
+			return;
+		}
+
 		if ( Unit is null )
 		{
 			Log.Error( "Cannot reset unit data before setting it." );
@@ -98,5 +94,22 @@ public class Player : Component
 		target.Hp = copy.Hp;
 		target.MaxHp = copy.Hp;
 		target.Xp = 0;
+	}
+
+	public void SetClass( PlayerClass playerClass )
+	{
+		Class = playerClass;
+		SetUnitData( playerClass.Unit );
+	}
+
+	public void SetClassById( Id classId )
+	{
+		var data = PlayerClassDataList.GetById( classId );
+		if ( data is null )
+		{
+			return;
+		}
+
+		SetClass( data );
 	}
 }

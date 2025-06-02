@@ -6,12 +6,6 @@ public class Desperation( Data.Relic data ) : Relic( data )
 {
 	public override void OnTurnStart()
 	{
-		base.OnTurnStart();
-		UpdateCardCosts();
-	}
-
-	private void UpdateCardCosts()
-	{
 		if ( !Owner.IsValid() || !Owner.HandComponent.IsValid() )
 		{
 			return;
@@ -27,6 +21,8 @@ public class Desperation( Data.Relic data ) : Relic( data )
 		{
 			card.Modifiers.AddModifier( new CostModifier( 0, -1, 1 ) );
 		}
+		
+		base.OnTurnStart();
 	}
 
 	private bool IsLowHp()
@@ -37,6 +33,6 @@ public class Desperation( Data.Relic data ) : Relic( data )
 		}
 
 		var healthPercent = (float)Owner.HealthComponent.Health / Owner.HealthComponent.MaxHealth;
-		return healthPercent < 0.8f;
+		return healthPercent < 0.2f;
 	}
 }

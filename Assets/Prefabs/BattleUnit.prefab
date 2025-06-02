@@ -1,13 +1,24 @@
 {
   "RootObject": {
     "__guid": "b9f07845-27d0-411c-a688-d488479ede8a",
+    "__version": 1,
     "Flags": 0,
     "Name": "battleunit",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
     "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "NetworkOrphaned": 0,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "CardGame.Units.BattleUnit",
         "__guid": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+        "__enabled": true,
+        "Description": "",
         "Energy": 3,
         "Faction": "Enemy",
         "HandComponent": {
@@ -22,7 +33,12 @@
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
           "component_type": "HealthComponent"
         },
-        "Level": 1,
+        "LevelComponent": {
+          "_type": "component",
+          "component_id": "625d7fc6-4e8b-4fa0-9b82-9d620a412465",
+          "go": "b9f07845-27d0-411c-a688-d488479ede8a",
+          "component_type": "LevelComponent"
+        },
         "Mana": 3,
         "MaxEnergy": 3,
         "MaxMana": 3,
@@ -61,6 +77,7 @@
       {
         "__type": "CardGame.Units.HealthComponent",
         "__guid": "1ec1d034-9415-4627-b854-d1d7bed46999",
+        "__enabled": true,
         "DamageNumbersPrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/damagenumbers.prefab"
@@ -85,6 +102,7 @@
       {
         "__type": "CardGame.Units.HandComponent",
         "__guid": "6a7a1081-28ba-4bfa-afdb-f6b889a73316",
+        "__enabled": true,
         "Deck": [],
         "Hand": [],
         "IsDiscardMode": false,
@@ -107,6 +125,7 @@
       {
         "__type": "CardGame.Units.PassiveAbilityList",
         "__guid": "a4dfab91-49b5-4101-8f86-e050ca7d7575",
+        "__enabled": true,
         "Items": [],
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -124,6 +143,7 @@
       {
         "__type": "CardGame.Units.StatusEffectList",
         "__guid": "6eafae18-188b-491f-af37-9bb3228e1d7c",
+        "__enabled": true,
         "Items": [],
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -141,7 +161,28 @@
       {
         "__type": "CardGame.Units.CardSlotList",
         "__guid": "7532429f-f4f5-4fb7-8933-11f5c69cc650",
+        "__enabled": true,
         "Items": [],
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Owner": {
+          "_type": "component",
+          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "go": "b9f07845-27d0-411c-a688-d488479ede8a",
+          "component_type": "BattleUnit"
+        }
+      },
+      {
+        "__type": "CardGame.Units.LevelComponent",
+        "__guid": "625d7fc6-4e8b-4fa0-9b82-9d620a412465",
+        "__enabled": true,
+        "Experience": 0,
+        "ExperienceToNextLevel": 100,
+        "Level": 1,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -159,23 +200,39 @@
     "Children": [
       {
         "__guid": "bd53691b-a071-4ece-8f6d-db91b8463b99",
+        "__version": 1,
         "Flags": 0,
         "Name": "InfoAnchor",
         "Position": "0,-96,25.05679",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
         "Components": [],
         "Children": [
           {
             "__guid": "168c45a5-e577-4bab-90c4-abc241b1d7bf",
+            "__version": 1,
             "Flags": 0,
             "Name": "Info",
             "Position": "0,0,-23.05679",
             "Rotation": "-0.4999999,-0.5000002,-0.5000001,0.4999998",
+            "Scale": "1,1,1",
+            "Tags": "",
             "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
             "Components": [
               {
                 "__type": "Sandbox.ScreenPanel",
                 "__guid": "be38b51d-c7de-4cff-910e-bf9b5acdb376",
+                "__enabled": true,
                 "AutoScreenScale": true,
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -192,6 +249,7 @@
               {
                 "__type": "CardGame.UI.UnitBattleInfoPanel",
                 "__guid": "88c224e2-af3b-42fa-860a-497b5fec1341",
+                "__enabled": true,
                 "AnchorObject": {
                   "_type": "gameobject",
                   "go": "bd53691b-a071-4ece-8f6d-db91b8463b99"
@@ -216,24 +274,39 @@
       },
       {
         "__guid": "c1c8084b-e4b7-46eb-9820-8f8a43091360",
+        "__version": 1,
         "Flags": 0,
         "Name": "SlotsAnchor",
         "Position": "0,155.1532,25.05679",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
         "Components": [],
         "Children": [
           {
             "__guid": "87188dd5-baaa-4085-a992-cc40689d1d12",
+            "__version": 1,
             "Flags": 0,
             "Name": "Card Slots",
             "Position": "0,36.8468,-23.05679",
             "Rotation": "-0.4999999,-0.5000002,-0.5000001,0.4999998",
             "Scale": "1,1.537953,1",
+            "Tags": "",
             "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
             "Components": [
               {
                 "__type": "Sandbox.ScreenPanel",
                 "__guid": "828489a5-e3e8-4f86-8afc-26d2ceccdb2d",
+                "__enabled": true,
                 "AutoScreenScale": true,
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -250,6 +323,7 @@
               {
                 "__type": "CardGame.UI.CardSlotsPanel",
                 "__guid": "02d9f856-63dd-4224-b2b1-fb91b38730cf",
+                "__enabled": true,
                 "AnchorObject": {
                   "_type": "gameobject",
                   "go": "c1c8084b-e4b7-46eb-9820-8f8a43091360"
@@ -274,15 +348,23 @@
       },
       {
         "__guid": "ba972956-5746-4afe-8fee-9fd4c2b257a0",
+        "__version": 1,
         "Flags": 0,
         "Name": "Sprite",
         "Position": "0,64,19.28627",
         "Rotation": "0.1305262,0,0,0.9914449",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "SpriteTools.SpriteComponent",
             "__guid": "ae7e9c24-00bb-40ac-83bc-74a44adab33f",
+            "__enabled": true,
             "__version": 1,
             "BroadcastEvents": {},
             "CastShadows": "Off",
@@ -310,13 +392,23 @@
       },
       {
         "__guid": "1f93b223-27f9-41f8-a817-a5bf05714168",
+        "__version": 1,
         "Flags": 0,
         "Name": "TargetingArrows",
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.LineRenderer",
             "__guid": "580885b7-7056-4e8f-9373-c63bc38788ac",
+            "__enabled": true,
             "Additive": false,
             "CastShadows": false,
             "Color": {
@@ -378,6 +470,24 @@
         "Children": []
       }
     ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
     "__variables": [
       {
         "Id": "Faction",
@@ -418,31 +528,13 @@
           }
         ]
       }
-    ],
-    "__properties": {
-      "NetworkInterpolation": true,
-      "TimeScale": 1,
-      "WantsSystemScene": true,
-      "Metadata": {},
-      "NavMesh": {
-        "Enabled": false,
-        "IncludeStaticBodies": true,
-        "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
-        "AgentHeight": 64,
-        "AgentRadius": 16,
-        "AgentStepSize": 18,
-        "AgentMaxSlope": 40,
-        "ExcludedBodies": "",
-        "IncludedBodies": ""
-      }
-    }
+    ]
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [],
-  "__version": 1
+  "__version": 2
 }

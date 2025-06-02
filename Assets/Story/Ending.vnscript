@@ -1,0 +1,31 @@
+(label e-1
+    (text "You stand at the precipice of your descent, before a towering gate veiled in an otherworldly shimmer.")
+    (after jump e-2)
+)
+
+(label e-2
+    (text "A heavy tension clings to the air, as if the world itself holds its breath.")
+    (after jump e-3)
+)
+
+(label e-3
+    (text "As you draw near and reach for the gate, a force surges forth, repelling you with unseen might.")
+    (after jump e-4)
+)
+
+(label e-4
+    (text "Your path ends not here. The gate remains shut—silent, unyielding, guarding the mysteries beyond.")
+    (after jump e-5)
+)
+
+(label e-5
+    (text "Perhaps, in time, you will uncover the path to what you truly seek.")
+    (after jump e-6)
+)
+
+(label e-6
+    (text "For now, you retreat—answers just out of reach, the gate behind you still and waiting.")
+    (after end-dialogue)
+)
+
+(start-dialogue e-1)

@@ -1,0 +1,63 @@
+﻿@using System
+@using CardGame.Data
+
+@inherits MenuSubPanel
+@namespace CardGame.UI
+
+@{
+	var classes = PlayerClassDataList.All;
+}
+
+<root>
+	<div class="main">
+		<h1>Select A Class</h1>
+
+		<div class="row">
+			<div class="class-selection">
+				@foreach ( var playerClass in classes )
+				{
+					var isSelected = SelectedClass == playerClass;
+					<button class="@( isSelected ? "disabled" : "" )" onclick="@( () => SelectClass( playerClass ) )">@playerClass.Name</button>
+				}
+			</div>
+
+			<div class="class-info">
+				@if ( SelectedClass is not null )
+				{
+					var unitData = UnitDataList.GetById( SelectedClass.Unit );
+
+					if ( unitData is not null )
+					{
+						<div class="class-data">
+							<h2>@SelectedClass.Name</h2>
+							<p>@SelectedClass.Description</p>
+							<div class="row">
+								<label>Hp: @(unitData.Hp)</label>
+								<label>Mp: @(unitData.Mp)</label>
+								<label>Speed: @(unitData.Speed.Min)~@(unitData.Speed.Max)</label>
+							</div>
+						</div>
+
+						<div class="class-deck">
+							@foreach ( var cardId in unitData.Deck )
+							{
+								var card = CardDataList.GetById( cardId );
+								if ( card is null )
+								{
+									continue;
+								}
+								
+								<CardPanel Card="@card"></CardPanel>
+							}
+						</div>
+					}
+				}
+			</div>
+		</div>
+
+		<div class="button-container">
+			<button class="@(SelectedClass is null ? "disabled" : "")" onclick="@StartRun">Start Run</button>
+			<button onclick="@Close">Close</button>
+		</div>
+	</div>
+</root>

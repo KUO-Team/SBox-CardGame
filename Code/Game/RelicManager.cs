@@ -8,6 +8,8 @@ public sealed class RelicManager : Singleton<RelicManager>
 	[Property, WideMode, InlineEditor]
 	public List<Relics.Relic> Relics { get; set; } = [];
 	
+	public List<Relics.Relic> ShownRelics { get; set; } = [];
+	
 	private static readonly Logger Log = new( "RelicManager" );
 
 	protected override void OnStart()

@@ -3,7 +3,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 5
+        "LocalId": 8
       },
       "Name": "Scratch",
       "Cost": {
@@ -30,7 +30,7 @@
           "Type": "Attack",
           "Power": {
             "Min": 1,
-            "Max": 1
+            "Max": 2
           },
           "Script": null
         }
@@ -39,7 +39,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 6
+        "LocalId": 9
       },
       "Name": "Bite",
       "Cost": {
@@ -65,8 +65,8 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 1,
-            "Max": 2
+            "Min": 2,
+            "Max": 3
           },
           "Script": null
         }
@@ -75,7 +75,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 7
+        "LocalId": 10
       },
       "Name": "Gnaw",
       "Cost": {
@@ -101,7 +101,7 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
+            "Min": 3,
             "Max": 3
           },
           "Script": null
@@ -111,7 +111,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 8
+        "LocalId": 11
       },
       "Name": "Violent Gnawing",
       "Cost": {

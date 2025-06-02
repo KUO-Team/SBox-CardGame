@@ -14,8 +14,6 @@ public class Timeline : Widget
 
     ScrollArea scrollArea;
     IconButton buttonPlay;
-    IconButton buttonFramePrevious;
-    IconButton buttonFrameNext;
 
     IntegerControlWidget widgetCurrentFrame;
     Label labelFrameCount;
@@ -65,7 +63,13 @@ public class Timeline : Widget
 
         bannerLayout.AddStretchCell();
 
-        buttonFramePrevious = new IconButton("navigate_before");
+        var buttonFrameFirst = new IconButton("first_page");
+        buttonFrameFirst.StatusTip = "First Frame";
+        buttonFrameFirst.OnClick = () => { MainWindow.FrameFirst(); };
+        bannerLayout.Add(buttonFrameFirst);
+        bannerLayout.AddSpacingCell(4);
+
+        var buttonFramePrevious = new IconButton("navigate_before");
         buttonFramePrevious.StatusTip = "Previous Frame";
         buttonFramePrevious.OnClick = () => { MainWindow.FramePrevious(); };
         bannerLayout.Add(buttonFramePrevious);
@@ -80,10 +84,16 @@ public class Timeline : Widget
         bannerLayout.AddSpacingCell(4);
         UpdatePlayButton();
 
-        buttonFrameNext = new IconButton("navigate_next");
+        var buttonFrameNext = new IconButton("navigate_next");
         buttonFrameNext.StatusTip = "Next Frame";
         buttonFrameNext.OnClick = () => { MainWindow.FrameNext(); };
         bannerLayout.Add(buttonFrameNext);
+        bannerLayout.AddSpacingCell(4);
+
+        var buttonFrameLast = new IconButton("last_page");
+        buttonFrameLast.StatusTip = "Last Frame";
+        buttonFrameLast.OnClick = () => { MainWindow.FrameLast(); };
+        bannerLayout.Add(buttonFrameLast);
         bannerLayout.AddSpacingCell(4);
 
         bannerLayout.AddStretchCell();
@@ -163,6 +173,15 @@ public class Timeline : Widget
                 Buttons.Add(frameButton);
                 index++;
             }
+        }
+
+        if (MainWindow.SelectedAnimation.LoopStart is not null && MainWindow.SelectedAnimation.LoopStart < 0)
+        {
+            MainWindow.SelectedAnimation.LoopStart = null;
+        }
+        if (MainWindow.SelectedAnimation.LoopEnd is not null && MainWindow.SelectedAnimation.LoopEnd >= MainWindow.SelectedAnimation.Frames.Count)
+        {
+            MainWindow.SelectedAnimation.LoopEnd = null;
         }
 
         var addButton = new IconButton("add");

@@ -16,7 +16,7 @@ public class Card : IResource, IDeepCopyable<Card>
 	public string Name { get; set; } = string.Empty;
 
 	[InlineEditor]
-	public CardCost Cost { get; set; } = new();
+	public CardCost Cost { get; init; } = new();
 
 	public bool IsInstant { get; set; }
 
@@ -97,8 +97,9 @@ public class Card : IResource, IDeepCopyable<Card>
 		var selectedTargets = SelectTargets( target, owner );
 		foreach ( var selected in selectedTargets )
 		{
-			TriggerOnPlayEffects( owner, selected );
+			TriggerBeforePlayEffects( owner, selected );
 			PlayOnTarget( owner, selected );
+			TriggerOnPlayEffects( owner, selected );
 		}
 
 		slot.AssignedCard = null;
@@ -127,10 +128,27 @@ public class Card : IResource, IDeepCopyable<Card>
 				damage += effect.DamageModifier( CreateDetail( owner, target ) );
 			}
 
-			if ( action.Type == Action.ActionType.Attack )
+			switch ( action.Type )
 			{
-				Log.EditorLog( $"{Name} | Base Power: {basePower} | Modified Power: {modifiedPower} | Final Damage: {damage}" );
-				target.HealthComponent?.TakeDamage( damage, owner );
+				case Action.ActionType.Attack:
+					Log.EditorLog( $"{Name} | Base Power: {basePower} | Modified Power: {modifiedPower} | Final Damage: {damage}" );
+					target.HealthComponent?.TakeDamage( damage, owner );
+					break;
+				case Action.ActionType.Effect:
+					{
+						if ( effect is null )
+						{
+							continue;
+						}
+
+						Log.EditorLog( $"{Name} | Base Power: {basePower} | Modified Power: {modifiedPower} | Power: {action.Power}" );
+						effect.Power = modifiedPower;
+						break;
+					}
+				case Action.ActionType.Defense:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException( action.Type.ToString() );
 			}
 		}
 	}
@@ -173,18 +191,18 @@ public class Card : IResource, IDeepCopyable<Card>
 		return targets.Where( u => u.IsValid() ).ToList();
 	}
 
-	private void TriggerOnPlayEffects( BattleUnit owner, BattleUnit target )
+	private void TriggerBeforePlayEffects( BattleUnit owner, BattleUnit target )
 	{
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
 		{
 			status.BeforePlayCard( this );
 		}
-		
+
 		foreach ( var passive in owner.Passives?.ToList() ?? [] )
 		{
 			passive.BeforePlayCard( this );
 		}
-		
+
 		if ( RelicManager.Instance.IsValid() )
 		{
 			foreach ( var relic in RelicManager.Instance.Relics )
@@ -192,11 +210,19 @@ public class Card : IResource, IDeepCopyable<Card>
 				relic.BeforePlayCard( this, owner );
 			}
 		}
+	}
 
+	private void TriggerOnPlayEffects( BattleUnit owner, BattleUnit target )
+	{
 		foreach ( var action in Actions )
 		{
-			var effect = action.Effect;
-			effect?.OnPlay( CreateDetail( owner, target ) );
+			if ( action.Effect is not {} effect )
+			{
+				continue;
+			}
+			
+			var detail = CreateDetail( owner, target );
+			effect.OnPlay( detail );
 		}
 
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )

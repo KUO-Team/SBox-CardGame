@@ -1,0 +1,20 @@
+﻿@inherits MenuSubPanel
+@namespace CardGame.UI
+
+<root>
+	<div class="main">
+		<h1>Select A Relic</h1>
+
+		<div class="relics">
+			@foreach ( var relic in Relics )
+			{
+				<RelicPanel Relic="@relic" class="@( IsRelicSelected( relic ) ? "selected" : "" )" onclick="@( () => ToggleRelicSelection( relic ) )"></RelicPanel>
+			}
+		</div>
+
+		<div class="button-container">
+			<button onclick="@StartRun">Start Run</button>
+			<button onclick="@Close">Close</button>
+		</div>
+	</div>
+</root>

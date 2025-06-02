@@ -6,6 +6,9 @@ namespace CardGame.UI;
 
 public partial class MainMenu
 {
+	private RelicGainPanel? _relicGainPanel;
+	private RelicSelectionPanel? _relics;
+	private ClassSelectionPanel? _classes;
 	private SettingsPanel? _settings;
 	private LoadRunPanel? _runs;
 	private StatisticsPanel? _statistics;
@@ -13,16 +16,16 @@ public partial class MainMenu
 
 	private Panel? _webContainer;
 	private WebPanel? _webPanel;
-	
+
 	private static GameManager? GameManager => GameManager.Instance;
 	private static MapManager? MapManager => MapManager.Instance;
-	private static SceneManager? SceneManager => SceneManager.Instance;
 	private static SaveManager? SaveManager => SaveManager.Instance;
+	private static SceneManager? SceneManager => SceneManager.Instance;
 	private static RelicManager? RelicManager => RelicManager.Instance;
 
 	private static readonly Logger Log = new( "MainMenu" );
 	
-	public void NewRun()
+	private void NewRun()
 	{
 		if ( !MapManager.IsValid() )
 		{
@@ -61,13 +64,53 @@ public partial class MainMenu
 		}
 	}
 	
-	public void StartNewRun()
+	private void StartNewRun()
 	{
-		if ( RelicManager.IsValid() )
+		Classes();
+	}
+
+	public void Classes()
+	{
+		if ( !_classes.IsValid() )
 		{
-			RelicManager.ClearRelics();
+			return;
 		}
 		
+		_classes.Show();
+	}
+	
+	public void Relics()
+	{
+		if ( !_relics.IsValid() )
+		{
+			return;
+		}
+
+		_relics.Show();
+	}
+
+	public void StartRun( List<Relic>? relics = null )
+	{
+		if ( !RelicManager.IsValid() )
+		{
+			return;
+		}
+		
+		RelicManager.ClearRelics();
+
+		if ( relics is not null && relics.Count != 0 )
+		{
+			foreach ( var relic in relics )
+			{
+				RelicManager.AddRelic( relic );
+			}
+		}
+		
+		StartRunInternal();
+	}
+
+	private void StartRunInternal()
+	{
 		if ( GameManager.IsValid() )
 		{
 			GameManager.Floor = GameManager.StartingFloor;
@@ -89,7 +132,7 @@ public partial class MainMenu
 		Sandbox.Services.Stats.Increment( "runs", 1 );
 		SceneManager?.LoadScene( SceneManager.Scenes.Map );
 	}
-
+	
 	public static void Tutorial()
 	{
 		if ( RelicManager.IsValid() )

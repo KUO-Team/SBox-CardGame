@@ -17,7 +17,7 @@ public sealed class SaveManager : Singleton<SaveManager>
 
 	private static readonly Logger Log = new( "SaveManager" );
 
-	public void Save( int? index = null )
+	public static void Save( int? index = null )
 	{
 		if ( !GameManager.IsValid() )
 		{
@@ -51,21 +51,27 @@ public sealed class SaveManager : Singleton<SaveManager>
 		run.Seed = MapManager.Seed;
 		run.MapNodeIndex = MapManager.Index;
 
-		if ( Player.Local is {} player )
+		var player = Player.Local;
+		if ( player.IsValid() )
 		{
 			run.Money = player.Money;
-
-			if ( Player.Local.Unit is not null )
+			if ( player.Class is not null )
 			{
-				run.UnitData = Player.Local.Unit;
+				run.Class = player.Class.Id;
 			}
 
-			foreach ( var card in Player.Local.Cards )
+			var playerUnit = player.Unit;
+			if ( playerUnit is not null )
+			{
+				run.UnitData = playerUnit;
+			}
+
+			foreach ( var card in player.Cards )
 			{
 				run.Cards.Add( card.Id );
 			}
 
-			foreach ( var cardPack in Player.Local.CardPacks )
+			foreach ( var cardPack in player.CardPacks )
 			{
 				run.CardPacks.Add( cardPack.Id );
 			}
@@ -104,6 +110,43 @@ public sealed class SaveManager : Singleton<SaveManager>
 		MapManager.Index = data.MapNodeIndex;
 		GameManager.Floor = data.Floor;
 
+		var player = Player.Local;
+		if ( player.IsValid() )
+		{
+			player.Money = data.Money;
+			player.SetClassById( data.Class );
+
+			var playerUnit = player.Unit;
+			if ( playerUnit is not null )
+			{
+				playerUnit.Hp = data.UnitData.Hp;
+				playerUnit.Deck.Clear();
+
+				foreach ( var cardId in data.UnitData.Deck )
+				{
+					playerUnit.Deck.Add( cardId );
+				}
+			}
+
+			foreach ( var cardId in data.Cards )
+			{
+				var card = CardDataList.GetById( cardId );
+				if ( card is not null )
+				{
+					player.Cards.Add( card );
+				}
+			}
+
+			foreach ( var packId in data.CardPacks )
+			{
+				var pack = CardPackDataList.GetById( packId );
+				if ( pack is not null )
+				{
+					player.CardPacks.Add( pack );
+				}
+			}
+		}
+		
 		RelicManager.Instance?.ClearRelics();
 		foreach ( var relicId in data.Relics )
 		{
@@ -114,33 +157,10 @@ public sealed class SaveManager : Singleton<SaveManager>
 			}
 		}
 
-		if ( Player.Local.IsValid() )
-		{
-			Player.Local.Money = data.Money;
-
-			foreach ( var cardId in data.Cards )
-			{
-				var card = CardDataList.GetById( cardId );
-				if ( card is not null )
-				{
-					Player.Local.Cards.Add( card );
-				}
-			}
-
-			foreach ( var packId in data.CardPacks )
-			{
-				var pack = CardPackDataList.GetById( packId );
-				if ( pack is not null )
-				{
-					Player.Local.CardPacks.Add( pack );
-				}
-			}
-		}
-
 		Scene.Load( SceneManager.MapScene );
 	}
 
-	public void Delete( int index )
+	public static void Delete( int index )
 	{
 		var run = Data.Runs.FirstOrDefault( x => x.Index == index );
 		if ( run is null )

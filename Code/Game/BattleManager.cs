@@ -9,8 +9,8 @@ namespace CardGame;
 
 public sealed partial class BattleManager : Singleton<BattleManager>
 {
-	[Property, ReadOnly]
-	public Battle? Battle { get; set; }
+	[Property, RequireComponent, Category( "Components" )]
+	public BattleHud? Hud { get; set; }
 
 	[Property, ReadOnly]
 	public bool IsTutorial => Battle is not null && Battle.Id.Equals( 1 );
@@ -27,8 +27,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 	[Property]
 	public bool CanEndTurn { get; set; } = true;
 
-	[Property, RequireComponent, Category( "Components" )]
-	public BattleHud? Hud { get; set; }
+	public Battle? Battle { get; set; }
 
 	public SoundHandle? Bgm { get; set; }
 
@@ -114,10 +113,13 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 					continue;
 				}
 
-				battleUnit.Level = unit.BaseLevel;
-				if ( unit.UseFloorLevelScaling )
+				if ( battleUnit.LevelComponent.IsValid() )
 				{
-					battleUnit.ApplyLevelScaling();
+					battleUnit.LevelComponent.Level = unit.BaseLevel;
+					if ( unit.UseFloorLevelScaling )
+					{
+						battleUnit.ApplyLevelScaling();
+					}
 				}
 			}
 			else
@@ -172,22 +174,25 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 		}
 
 		InputComponent.SelectedSlot = null;
-
-		foreach ( var unit in Units )
+		
+		var player = Player.Local;
+		if ( player.IsValid() )
 		{
-			if ( unit.Faction != Faction.Player )
+			var playerUnit = player.Unit;
+			if ( playerUnit is not null )
 			{
-				continue;
-			}
-
-			if ( Player.Local is not { Unit: not null } )
-			{
-				continue;
-			}
-
-			if ( unit.HealthComponent.IsValid() && !unit.HealthComponent.IsDead )
-			{
-				Player.Local.Unit.Hp = unit.HealthComponent.Health;
+				foreach ( var unit in Units )
+				{
+					if ( unit.Faction != Faction.Player )
+					{
+						continue;
+					}
+			
+					if ( unit.HealthComponent.IsValid() && !unit.HealthComponent.IsDead )
+					{
+						playerUnit.Hp = unit.HealthComponent.Health;
+					}
+				}
 			}
 		}
 

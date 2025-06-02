@@ -4,7 +4,7 @@ namespace CardGame;
 
 public abstract class OwnableListComponent<T> : ListComponent<T>, IOwnable
 {
-	[Property, RequireComponent]
+	[Property, RequireComponent, Order( -1 )]
 	public BattleUnit? Owner { get; set; }
 
 	protected override void OnStart()

@@ -10,6 +10,8 @@ public partial class RelicPanel
 	
 	private static Hud? Hud => UI.Hud.Instance;
 	
+	private bool HasIcon => !string.IsNullOrEmpty( Relic?.Icon );
+	
 	private RelicInfoPanel? _infoPanel;
 
 	public override void Delete( bool immediate = false )

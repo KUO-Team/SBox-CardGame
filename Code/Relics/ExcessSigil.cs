@@ -6,35 +6,47 @@ namespace CardGame.Relics;
 
 public class ExcessSigil( Data.Relic data ) : Relic( data )
 {
-	public override void OnTurnStart()
+	private PowerModifier? _powerModifier;
+
+	public override void BeforePlayCard( Card card, BattleUnit unit )
 	{
-		if ( !Owner.IsValid() || !Owner.HandComponent.IsValid() )
+		if ( unit != Owner )
+		{
+			return;
+		}
+		
+		switch ( card.Type )
+		{
+			case Card.CardType.Spell:
+				{
+					_powerModifier = new PowerModifier( 2, action => action.Type == Action.ActionType.Effect, 1 );
+					card.Modifiers.AddModifier( _powerModifier );
+					break;
+				}
+			case Card.CardType.Attack:
+				{
+					_powerModifier = new PowerModifier( -2, action => action.Type == Action.ActionType.Attack, 1 );
+					card.Modifiers.AddModifier( _powerModifier );
+					break;
+				}
+			case Card.CardType.Defense:
+			case Card.CardType.Item:
+				break;
+			default:
+				throw new ArgumentOutOfRangeException( card.Type.ToString() );
+		}
+		
+		base.BeforePlayCard( card, unit );
+	}
+
+	public override void OnPlayCard( Card card, BattleUnit unit )
+	{
+		if ( _powerModifier is null )
 		{
 			return;
 		}
 
-		foreach ( var card in Owner.HandComponent.Hand )
-		{
-			switch ( card.Type )
-			{
-				case Card.CardType.Spell:
-					{
-						card.Modifiers.AddModifier( new PowerModifier( 2, action => action.Type == Action.ActionType.Effect, 1 ) );
-						break;
-					}
-				case Card.CardType.Attack:
-					{
-						card.Modifiers.AddModifier( new PowerModifier( -2, action => action.Type == Action.ActionType.Attack, 1 ) );
-						break;
-					}
-				case Card.CardType.Defense:
-				case Card.CardType.Item:
-					break;
-				default:
-					throw new ArgumentOutOfRangeException( card.Type.ToString() );
-			}
-		}
-
-		base.OnTurnStart();
+		card.Modifiers.RemoveModifier( _powerModifier );
+		base.OnPlayCard( card, unit );
 	}
 }

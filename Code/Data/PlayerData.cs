@@ -23,10 +23,6 @@ public class PlayerData
 
 	public List<Id> SeenRelics { get; set; } = [];
 
-	public List<Id> Cards { get; set; } = [];
-
-	public List<Id> CardPacks { get; set; } = [];
-
 	private static readonly Logger Log = new( "PlayerData" );
 
 	public void SeeCard( Id id )
@@ -99,8 +95,6 @@ public class PlayerData
 	{
 		Data.FirstTime = true;
 		Data.Runs = [];
-		Data.Cards = [];
-		Data.CardPacks = [];
 		Data.SeenCards = [];
 		Data.SeenRelics = [];
 		Save();
@@ -139,6 +133,8 @@ public class RunData
 	public int Floor { get; set; }
 
 	public int Money { get; set; }
+
+	public Id Class { get; set; } = Id.Invalid;
 
 	public UnitData UnitData { get; set; } = new();
 

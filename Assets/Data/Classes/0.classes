@@ -1,0 +1,30 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 1
+      },
+      "Name": "The Knight",
+      "Description": "Recommended for new players.",
+      "Unit": {
+        "Source": "",
+        "LocalId": 101
+      }
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 2
+      },
+      "Name": "The Mage",
+      "Description": "Revolves around spell casting.",
+      "Unit": {
+        "Source": "",
+        "LocalId": 102
+      }
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

@@ -121,7 +121,7 @@ public class BattleTutorial : BattleScript
 		if ( SceneManager.Instance.IsValid() )
 		{
 			BattleManager?.UnloadBattleScript();
-			SceneManager.Instance.LoadScene( SceneManager.Scenes.Menu );
+			SceneManager.Instance.LoadScene( SceneManager.Scenes.Menu, true );
 		}
 	}
 
