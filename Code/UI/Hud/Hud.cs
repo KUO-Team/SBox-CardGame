@@ -8,12 +8,12 @@ namespace CardGame.UI;
 public class Hud : PanelComponent
 {
 	public static Hud? Instance { get; private set; }
-	
+
 	protected override void OnStart()
 	{
 		Instance = this;
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
-		
+
 		foreach ( var element in TypeLibrary.GetAttributes<HudAttribute>() )
 		{
 			var instance = TypeLibrary.Create<Panel>( element.TargetType );
@@ -21,7 +21,7 @@ public class Hud : PanelComponent
 			{
 				continue;
 			}
-			
+
 			AddElement( instance, element.Hidden );
 		}
 
@@ -46,21 +46,21 @@ public class Hud : PanelComponent
 		return element;
 	}
 
-	public void ClearElements()
+	public void ClearElements( bool immediate = false )
 	{
-		Panel.DeleteChildren();
+		Panel.DeleteChildren( immediate );
 	}
 
-	public void ClearElements<T>() where T : Panel
+	public void ClearElements<T>( bool immediate = false ) where T : Panel
 	{
 		if ( !Panel.IsValid() )
 		{
 			return;
 		}
-		
+
 		foreach ( var element in Panel.ChildrenOfType<T>().ToList() )
 		{
-			element?.Delete();
+			element?.Delete( immediate );
 		}
 	}
 
@@ -88,7 +88,7 @@ public class Hud : PanelComponent
 	{
 		return !Hud.Instance.IsValid() ? null : Hud.Instance.GetFirstElement<T>();
 	}
-	
+
 	private void StyleHack()
 	{
 		var root = Panel.FindRootPanel();
