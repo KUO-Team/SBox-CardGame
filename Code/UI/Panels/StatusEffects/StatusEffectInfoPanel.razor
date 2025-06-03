@@ -12,6 +12,6 @@
 	<img class="status-icon" src="@Status.Data.Icon" alt="Status icon"/>
 	<div class="information">
 		<label class="status-name">@Status.Data.Name</label>
-		<label class="status-description">@Status.Description()</label>
+		<label class="status-description" IsRich="@true">@Status.Description().Replace( "\n", "<br>" )</label>
 	</div>
 </root>

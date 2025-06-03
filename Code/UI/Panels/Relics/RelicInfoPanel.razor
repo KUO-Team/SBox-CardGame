@@ -16,14 +16,14 @@
 	
 	<div class="information">
 		<div class="row">
-			<label class="relic-name">@(Relic.Name)</label>
-			<label class="relic-rarity @( Relic.Rarity )">@(Relic.Rarity) Relic</label>
+			<label class="relic-name">@( Relic.Name )</label>
+			<label class="relic-rarity @( Relic.Rarity )">@( Relic.Rarity ) Relic</label>
 		</div>
-		<label class="relic-description">@(Relic.Description)</label>
+		<label class="relic-description" IsRich="@true">@Relic.Description.Replace( "\n", "<br>" )</label>
 		<div class="relic-flavortexts">
 			@foreach ( var flavor in Relic.Flavor )
 			{
-				<label class="relic-flavor">@(flavor)</label>
+				<label class="relic-flavor" IsRich="@true">@( flavor.Replace( "\n", "<br>" ) )</label>
 			}
 		</div>
 	</div>
