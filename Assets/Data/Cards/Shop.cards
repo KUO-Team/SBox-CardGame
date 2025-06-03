@@ -97,7 +97,7 @@
         "Source": "",
         "LocalId": 53
       },
-      "Name": "Discarded 1",
+      "Name": "Wild Swing",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -225,7 +225,7 @@
         "Source": "",
         "LocalId": 57
       },
-      "Name": "Ep",
+      "Name": "Amplify",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -261,7 +261,7 @@
         "Source": "",
         "LocalId": 58
       },
-      "Name": "Discarded 4",
+      "Name": "Fortify",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -325,7 +325,7 @@
         "Source": "",
         "LocalId": 60
       },
-      "Name": "Discarded 3",
+      "Name": "Mana Essence",
       "Cost": {
         "Ep": 0,
         "Mp": 2
@@ -417,7 +417,7 @@
         "Source": "",
         "LocalId": 65
       },
-      "Name": "",
+      "Name": "Mana Conversion",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -473,7 +473,7 @@
         "Source": "",
         "LocalId": 68
       },
-      "Name": "",
+      "Name": "Emergency Shield",
       "Cost": {
         "Ep": 0,
         "Mp": 2
@@ -501,7 +501,7 @@
         "Source": "",
         "LocalId": 69
       },
-      "Name": "Discarded 2",
+      "Name": "Gambit",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -637,7 +637,7 @@
         "Source": "",
         "LocalId": 73
       },
-      "Name": "Haste",
+      "Name": "Hasten Up",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -665,7 +665,7 @@
         "Source": "",
         "LocalId": 74
       },
-      "Name": "Freeze",
+      "Name": "Freeze Spell",
       "Cost": {
         "Ep": 0,
         "Mp": 1
@@ -693,7 +693,7 @@
         "Source": "",
         "LocalId": 75
       },
-      "Name": "Recover",
+      "Name": "Adrenaline Rush",
       "Cost": {
         "Ep": 0,
         "Mp": 1
