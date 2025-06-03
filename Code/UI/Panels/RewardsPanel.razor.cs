@@ -5,6 +5,7 @@ namespace CardGame.UI;
 
 public partial class RewardsPanel
 {
+	[Parameter]
 	public BattleRewards? Rewards { get; set; }
 
 	public void ClaimReward( RewardType type )

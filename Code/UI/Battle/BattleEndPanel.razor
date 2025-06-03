@@ -5,17 +5,27 @@
 
 <root class="hidden">
 	<div class="main">
-		@if ( IsWin )
-		{
-			<label class="title">VICTORY</label>
-		}
-		else
-		{
-			<label class="title">DEFEAT</label>
-		}
-		
-		<div class="input">
-			Press <InputGlyph action="attack1"></InputGlyph> To Continue
+		<div class="header">
+			@if ( IsWin )
+			{
+				<div class="victory section">
+					<h1 class="result title victory">Victory</h1>
+				</div>
+			}
+			else
+			{
+				<div class="defeat section">
+					<h1 class="result title defeat">Defeat</h1>
+				</div>
+			}
+		</div>
+
+		<div class="rewards-section">
+			<RewardsPanel Rewards="@RewardData" @ref="Rewards"></RewardsPanel>
+		</div>
+
+		<div class="button-container">
+			<button onclick="@Close">Continue</button>
 		</div>
 	</div>
 </root>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CardGame.Data;
 using Sandbox.UI;
 
 namespace CardGame.UI;
@@ -57,7 +58,7 @@ public partial class BattleHud
 		}
 	}
 
-	public void OnBattleEnd( Faction winner )
+	public void OnBattleEnd( Faction winner, Battle battle )
 	{
 		if ( !BattleEndPanel.IsValid() )
 		{
@@ -74,7 +75,7 @@ public partial class BattleHud
 
 		if ( isWin )
 		{
-			BattleEndPanel.Show();
+			BattleEndPanel.OnWin( battle.Rewards );
 		}
 	}
 

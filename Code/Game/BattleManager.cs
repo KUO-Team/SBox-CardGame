@@ -204,7 +204,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 		}
 
 		Bgm?.Stop( 1f );
-		Hud?.OnBattleEnd( winner );
+		Hud?.OnBattleEnd( winner, Battle );
 		OnBattleEnd?.Invoke( Battle );
 		UnloadBattleScript();
 	}

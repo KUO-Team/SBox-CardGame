@@ -1,4 +1,5 @@
 ﻿using System;
+using CardGame.Data;
 using Sandbox.UI;
 
 namespace CardGame.UI;
@@ -8,15 +9,19 @@ public partial class BattleEndPanel
 	[Parameter]
 	public bool IsWin { get; set; }
 	
-	private Faction WinningFaction => IsWin ? Faction.Player : Faction.Enemy;
+	public BattleRewards? RewardData { get; set; }
 	
-	protected override void OnClick( MousePanelEvent e )
+	public RewardsPanel? Rewards { get; set; }
+	
+	private Faction WinningFaction => IsWin ? Faction.Player : Faction.Enemy;
+
+	public void OnWin( BattleRewards rewards )
 	{
-		OnBattleEnd();
-		base.OnClick( e );
+		RewardData = rewards;
+		this.Show();
 	}
 	
-	private void OnBattleEnd()
+	public void Close()
 	{
 		GameManager.Instance?.OnBattleEnd( WinningFaction );
 		this.Hide();

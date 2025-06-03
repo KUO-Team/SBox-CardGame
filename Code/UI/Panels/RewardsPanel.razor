@@ -10,43 +10,56 @@
 }
 
 <root>
-	@foreach ( var relicId in Rewards.Relics )
+	@if ( Rewards.Relics.Any() )
 	{
-		var relic = RelicDataList.GetById( relicId );
-		if ( relic is not null )
+		<h1>Relics Obtained</h1>
+		@foreach ( var relicId in Rewards.Relics )
 		{
-			<div class="reward" onclick="@( () => ClaimReward( RewardType.Relic ) )">
-				<label class="relic-name">@relic.Name</label>
-			</div>
+			var relic = RelicDataList.GetById( relicId );
+			if ( relic is not null )
+			{
+				<div class="reward" onclick="@( () => ClaimReward( RewardType.Relic ) )">
+					<label class="relic-name">@(relic.Name)</label>
+				</div>
+			}
 		}
 	}
-	
-	@foreach ( var cardId in Rewards.Cards )
+
+	@if ( Rewards.Cards.Any() )
 	{
-		var card = CardDataList.GetById( cardId );
-		if ( card is not null )
+		<h1>Cards Obtained</h1>
+		@foreach ( var cardId in Rewards.Cards )
 		{
-			<div class="reward" onclick="@( () => ClaimReward( RewardType.Card ) )">
-				<label class="card-name">@card.Name</label>
-			</div>
+			var card = CardDataList.GetById( cardId );
+			if ( card is not null )
+			{
+				<div class="reward" onclick="@( () => ClaimReward( RewardType.Card ) )">
+					<label class="card-name">@(card.Name)</label>
+				</div>
+			}
 		}
 	}
-	
-	@foreach ( var cardPackId in Rewards.CardPacks )
+
+	@if ( Rewards.CardPacks.Any() )
 	{
-		var cardPack = CardPackDataList.GetById( cardPackId );
-		if ( cardPack is not null )
+		<h1>Card Packs Obtained</h1>
+		@foreach ( var cardPackId in Rewards.CardPacks )
 		{
-			<div class="reward" onclick="@( () => ClaimReward( RewardType.CardPack ) )">
-				<label class="pack-name">@cardPack.Name</label>
-			</div>
+			var cardPack = CardPackDataList.GetById( cardPackId );
+			if ( cardPack is not null )
+			{
+				<div class="reward" onclick="@( () => ClaimReward( RewardType.CardPack ) )">
+					<label class="pack-name">@(cardPack.Name)</label>
+				</div>
+			}
 		}
 	}
-	
+
 	@if ( Rewards.Money > 0 )
 	{
+		<h1>Gold Obtained</h1>
 		<div class="reward" onclick="@( () => ClaimReward( RewardType.Money ) )">
-			<label class="money">@Rewards.Money</label>
+			<label class="money">@(Rewards.Money)g</label>
 		</div>
 	}
 </root>
