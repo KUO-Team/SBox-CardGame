@@ -1,0 +1,143 @@
+﻿@import "/UI/Styles/Colors.scss";
+@import "/UI/Styles/Buttons.scss";
+
+UnitInfoPanel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: "VT323";
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: opacity 0.2s ease;
+  
+  > .main {
+    width: 95%;
+    height: 95%;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .tab-selection {
+    width: 100%;
+    gap: 8px;
+    flex-shrink: 0;
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  .tabs {
+    width: 100%;
+    flex-grow: 1;
+
+    .tab {
+      width: 100%;
+      height: 100%;
+
+      &.hidden {
+        display: none;
+        opacity: 0;
+      }
+    }
+
+    .unit-deck {
+      gap: 10px;
+      justify-content: center;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      flex-wrap: wrap;
+
+      .card {
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .unit-passives {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .row {
+    width: 100%;
+    color: white;
+    justify-content: space-between;
+  }
+
+  .unit-stats {
+    flex-direction: column;
+    gap: 4px;
+
+    .unit-name {
+      font-size: 34px;
+    }
+
+    .unit-level {
+      font-size: 34px;
+    }
+
+    .health, .mana {
+      font-size: 25px;
+    }
+
+    .health-bar, .mana-bar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+
+      > .inner-bar {
+        transition: width 0.2s ease;
+        border-right: 2px solid white;
+      }
+    }
+
+    .health {
+      color: $health-color;
+    }
+
+    .mana {
+      color: $mana-color;
+    }
+
+    .health-bar {
+      height: 20px;
+
+      > .inner-bar {
+        background-color: darkred;
+      }
+    }
+
+    .mana-bar {
+      height: 6px;
+
+      > .inner-bar {
+        background-color: $mana-color;
+      }
+    }
+  }
+
+  .button-container {
+    width: 100%;
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  &.hidden {
+    display: none;
+    opacity: 0;
+  }
+}

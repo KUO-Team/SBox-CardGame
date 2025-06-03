@@ -2,7 +2,7 @@
 using Sandbox.UI;
 using CardGame.Data;
 
-namespace CardGame.UI.Map;
+namespace CardGame.UI;
 
 public partial class BattleInfoPanel
 {

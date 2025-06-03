@@ -1,5 +1,5 @@
 ﻿@using Sandbox.UI
-@using CardGame.Data;
+@using CardGame.Data
 
 @inherits Panel
 @namespace CardGame.UI
@@ -44,7 +44,7 @@
 			</div>
 		}
 
-		<div class="tabs" @ref="_tabContainer">
+		<div class="tabs" @ref=" _tabContainer">
 			<div class="tab unit-deck hidden" id="deck">
 				@if ( unit is not null )
 				{
