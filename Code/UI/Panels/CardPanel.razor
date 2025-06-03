@@ -51,7 +51,6 @@
 						}
 						else
 						{
-
 							<label class="action">Deal @( action.EffectivePower.Min ) damage</label>
 						}
 						break;
@@ -62,11 +61,15 @@
 						{
 							if ( action.EffectivePower.IsRandom )
 							{
-								<label class="action effect">@desc.Replace( "@", $"{action.EffectivePower.Min}~{action.EffectivePower.Max}" )</label>
+								<label class="action effect" IsRich="@true">
+									@desc.Replace("@", $"{action.EffectivePower.Min}~{action.EffectivePower.Max}").Replace("\n", "<br>"))
+								</label>
 							}
 							else
 							{
-								<label class="action effect">@desc.Replace( "@", action.EffectivePower.Min.ToString() )</label>
+								<label class="action effect" IsRich="@true">
+									@desc.Replace("@", action.EffectivePower.Min.ToString()).Replace("\n", "<br>"))
+								</label>
 							}
 						}
 						break;
