@@ -37,13 +37,13 @@ public sealed class CardSlot : Component, IOwnable
 	[Property]
 	public int Speed { get; set; }
 	
-	[Property, Category( "Components" )]
 	public LineRenderer? LineRenderer { get; set; }
 
 	public CardSlotPanel? Panel { get; set; }
 
 	public static Action<CardSlot, Card, CardSlot>? OnSlotAssigned { get; set; }
 
+	private CameraComponent Camera => Scene.Camera;
 	private Ray _mouseRay;
 
 	protected override void OnStart()
@@ -170,7 +170,7 @@ public sealed class CardSlot : Component, IOwnable
 		OnSlotAssigned?.Invoke( this, card, target );
 		HandPanel.SelectedCard = null;
 
-		if ( !Panel.IsValid() )
+		if ( !Panel.IsValid() || !Target.Panel.IsValid() )
 		{
 			return;
 		}
@@ -182,7 +182,7 @@ public sealed class CardSlot : Component, IOwnable
 
 	public void UnassignCard()
 	{
-		if ( !IsAssigned )
+		if ( !IsAssigned || AssignedCard is null )
 		{
 			return;
 		}
@@ -192,7 +192,7 @@ public sealed class CardSlot : Component, IOwnable
 			return;
 		}
 
-		Owner.Energy += AssignedCard!.EffectiveCost.Ep;
+		Owner.Energy += AssignedCard.EffectiveCost.Ep;
 		Owner.Mana += AssignedCard.EffectiveCost.Mp;
 		var hand = Owner.HandComponent;
 		hand?.Hand.Add( AssignedCard );
@@ -252,13 +252,13 @@ public sealed class CardSlot : Component, IOwnable
 
 	public async Task PlayAsync( BattleUnit target, CardSlot slot )
 	{
-		if ( !IsAssigned )
+		if ( !IsAssigned || AssignedCard is null )
 		{
 			return;
 		}
 
 		ClearTargetingArrows();
-		slot.AssignedCard!.Play( target, slot );
+		slot.AssignedCard?.Play( target, slot );
 		await Task.DelaySeconds( GetCardAnimationDuration() );
 	}
 
@@ -280,12 +280,7 @@ public sealed class CardSlot : Component, IOwnable
 			return false;
 		}
 
-		if ( !Owner.HealthComponent.IsValid() || Owner.HealthComponent.IsDead )
-		{
-			return false;
-		}
-
-		return true;
+		return Owner.HealthComponent.IsValid() && !Owner.HealthComponent.IsDead;
 	}
 	
 	public void DrawTargetingArrows( Vector3 start, Vector3 end )
