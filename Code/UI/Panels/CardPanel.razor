@@ -47,7 +47,7 @@
 					case CardGame.Action.ActionType.Attack:
 						if ( action.EffectivePower.IsRandom )
 						{
-							<label class="action">Deal @( action.EffectivePower.Min )~@( action.EffectivePower.Max ) damage</label>
+							<label class="action">Deal @( action.EffectivePower.Min )-@( action.EffectivePower.Max ) damage</label>
 						}
 						else
 						{
@@ -62,7 +62,7 @@
 							if ( action.EffectivePower.IsRandom )
 							{
 								<label class="action effect" IsRich="@true">
-									@desc.Replace("@", $"{action.EffectivePower.Min}~{action.EffectivePower.Max}").Replace("\n", "<br>"))
+									@desc.Replace("@", $"{action.EffectivePower.Min}-{action.EffectivePower.Max}").Replace("\n", "<br>"))
 								</label>
 							}
 							else
