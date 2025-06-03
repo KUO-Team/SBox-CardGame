@@ -193,6 +193,17 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	private void TriggerBeforePlayEffects( BattleUnit owner, BattleUnit target )
 	{
+		foreach ( var action in Actions )
+		{
+			if ( action.Effect is not {} effect )
+			{
+				continue;
+			}
+			
+			var detail = CreateDetail( owner, target );
+			effect.BeforePlay( detail );
+		}
+		
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
 		{
 			status.BeforePlayCard( this );

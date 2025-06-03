@@ -14,6 +14,11 @@ public abstract class CardEffect( Card card )
 	{
 
 	}
+	
+	public virtual void BeforePlay( CardEffectDetail detail )
+	{
+		
+	}
 
 	public virtual void OnPlay( CardEffectDetail detail )
 	{
