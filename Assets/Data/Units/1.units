@@ -6,7 +6,7 @@
         "LocalId": 1
       },
       "Name": "Zombie",
-      "Description": "Undead husk of an adventurer, reanimated though unknown means.",
+      "Description": "Undead husk of an adventurer, reanimated through unknown means.",
       "Sprite": {
         "Resource": "sprites/zombie.sprite",
         "Portrait": "materials/units/portraits/zombie.png"
@@ -71,7 +71,7 @@
         "LocalId": 2
       },
       "Name": "Elite Zombie",
-      "Description": "Stronger version of a zombie, with more resilience and power.",
+      "Description": "Stronger version of a zombie.",
       "Sprite": {
         "Resource": "sprites/zombie.sprite",
         "Portrait": "materials/units/portraits/zombie.png"
