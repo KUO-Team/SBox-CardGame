@@ -37,6 +37,7 @@ public partial class MapPanel
 
 	private BattleInfoPanel? _battleInfoPanel;
 	private ShopPanel? _shopPanel;
+	private Label? _mapIndicator;
 
 	private readonly Queue<Relics.Relic> _relics = [];
 
@@ -78,6 +79,13 @@ public partial class MapPanel
 				}
 			}
 		}
+		
+		_mapIndicator = new Label
+		{
+			Text = "\u25bc",
+			Classes = "indicator"
+		};
+		Map?.AddChild( _mapIndicator );
 
 		foreach ( var relic in RelicManager.Relics.Where( x => !RelicManager.ShownRelics.Contains( x ) ) )
 		{
@@ -88,7 +96,7 @@ public partial class MapPanel
 		{
 			ShowNextRelic();
 		}
-		
+
 		RenderLines();
 
 		base.OnTreeFirstBuilt();
@@ -99,10 +107,33 @@ public partial class MapPanel
 		UpdateNodeStyles();
 		UpdateNodeStates();
 		UpdateLines();
-
+		UpdateMapIndicator();
 		base.OnTreeBuilt();
 	}
+	
+	private void UpdateMapIndicator()
+	{
+		if ( !_mapIndicator.IsValid() )
+		{
+			return;
+		}
+		
+		if ( CurrentNodeIndex < 0 || CurrentNodeIndex >= Nodes.Count )
+		{
+			_mapIndicator.Style.Display = DisplayMode.None;
+			return;
+		}
 
+		if ( !Map.IsValid() )
+		{
+			return;
+		}
+
+		var currentNodePosition = _nodePositions[CurrentNodeIndex];
+		_mapIndicator.Style.Left = Length.Percent( currentNodePosition.x + 0.1f );
+		_mapIndicator.Style.Top = Length.Percent( currentNodePosition.y - 6 );
+	}
+	
 	private void ShowNextRelic()
 	{
 		if ( !RelicManager.IsValid() )
@@ -124,21 +155,6 @@ public partial class MapPanel
 		var relic = _relics.Dequeue();
 		RelicManager.ShownRelics.Add( relic );
 		RelicGainPanel.Show( relic.Data, ShowNextRelic );
-	}
-
-	private Vector2 GetPixelPosition( Vector2 percentPos )
-	{
-		if ( !Map.IsValid() )
-		{
-			return Vector2.Zero;
-		}
-
-		var width = Map.Box.Rect.Width;
-		var height = Map.Box.Rect.Height;
-		var x = percentPos.x / 100f * width;
-		var y = percentPos.y / 100f * height;
-
-		return new Vector2( x, y );
 	}
 
 	public void GenerateMapLayout( int? seed = null )
@@ -393,30 +409,43 @@ public partial class MapPanel
 
 	private void UpdateLines()
 	{
+		if ( !Map.IsValid() )
+		{
+			return;
+		}
+
 		foreach ( var conn in _mapConnections )
 		{
-			var fromNode = Nodes[conn.From];
-			var width = fromNode.Box.Rect.Width;
-			var height = fromNode.Box.Rect.Height;
-			var nodeSize = new Vector2( width, height );
+			var mapWidth = Map.Box.Rect.Width;
+			var mapHeight = Map.Box.Rect.Height;
+		
+			if ( mapWidth <= 0 || mapHeight <= 0 )
+			{
+				continue;
+			}
 
-			var from = GetPixelPosition( _nodePositions[conn.From] ) + nodeSize / 2;
-			var to = GetPixelPosition( _nodePositions[conn.To] ) + nodeSize / 2;
-
-			var dx = to.x - from.x;
-			var dy = to.y - from.y;
-
-			var distance = MathF.Sqrt( dx * dx + dy * dy );
+			var fromPos = _nodePositions[conn.From];
+			var toPos = _nodePositions[conn.To];
+		
+			var fromPixelX = (fromPos.x / 100f) * mapWidth;
+			var fromPixelY = (fromPos.y / 100f) * mapHeight;
+			var toPixelX = (toPos.x / 100f) * mapWidth;
+			var toPixelY = (toPos.y / 100f) * mapHeight;
+			var dx = toPixelX - fromPixelX;
+			var dy = toPixelY - fromPixelY;
+			var pixelDistance = MathF.Sqrt( dx * dx + dy * dy );
 			var angle = MathF.Atan2( dy, dx ) * (180 / MathF.PI);
+			var percentageDistance = (pixelDistance / mapWidth) * 100f;
 
 			var linePanel = conn.LinePanel;
 			if ( !linePanel.IsValid() )
 			{
 				continue;
 			}
-			linePanel.Style.Left = Length.Pixels( from.x );
-			linePanel.Style.Top = Length.Pixels( from.y );
-			linePanel.Style.Width = Length.Pixels( distance );
+
+			linePanel.Style.Left = Length.Percent( fromPos.x );
+			linePanel.Style.Top = Length.Percent( fromPos.y );
+			linePanel.Style.Width = Length.Percent( percentageDistance );
 			linePanel.Style.Set( "transform-origin", "0 0" );
 			linePanel.Style.Set( "transform", $"rotate({angle}deg)" );
 		}
@@ -537,7 +566,7 @@ public partial class MapPanel
 		{
 			SaveManager.ActiveRunData.MapNodeIndex = index;
 		}
-		
+
 		Log.Info( $"Selected node at index {index}" );
 		RunNode( Nodes[index] );
 	}
