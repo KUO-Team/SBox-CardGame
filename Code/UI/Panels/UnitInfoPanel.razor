@@ -22,7 +22,7 @@
 					
 					@if ( !string.IsNullOrEmpty( unit.Description ) )
 					{
-						<label class="unit-description">@(unit.Description)</label>
+						<label class="unit-description" IsRich="@true">@(unit.Description.Replace( "\n", "<br>" ))</label>
 					}
 
 					<div class="health-bar">
