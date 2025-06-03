@@ -388,7 +388,66 @@
             "UsePixelScale": false
           }
         ],
-        "Children": []
+        "Children": [
+          {
+            "__guid": "841d26da-f7f9-44d6-b3b4-77bbfe121619",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "World",
+            "Position": "-0.000004768372,11.86781,91.40262",
+            "Rotation": "-0.4956177,-0.4956177,-0.5043442,0.5043442",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [
+              {
+                "__type": "Sandbox.WorldPanel",
+                "__guid": "aea2306b-b1df-443b-99fe-ed5f58c3f608",
+                "__enabled": true,
+                "HorizontalAlign": "Center",
+                "InteractionRange": 99000,
+                "LookAtCamera": true,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "PanelSize": "2564.698,1778.7",
+                "RenderOptions": {
+                  "GameLayer": true,
+                  "OverlayLayer": false,
+                  "BloomLayer": false,
+                  "AfterUILayer": false
+                },
+                "RenderScale": 1,
+                "VerticalAlign": "Center"
+              },
+              {
+                "__type": "CardGame.UI.UnitPanel",
+                "__guid": "1f75a760-9e7e-4387-b7c3-2b2b3aea173f",
+                "__enabled": true,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "Unit": {
+                  "_type": "component",
+                  "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+                  "go": "b9f07845-27d0-411c-a688-d488479ede8a",
+                  "component_type": "BattleUnit"
+                }
+              }
+            ],
+            "Children": []
+          }
+        ]
       },
       {
         "__guid": "1f93b223-27f9-41f8-a817-a5bf05714168",

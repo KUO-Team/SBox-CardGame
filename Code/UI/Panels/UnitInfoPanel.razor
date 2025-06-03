@@ -19,6 +19,8 @@
 						<label class="unit-name">@( unit.Name )</label>
 						<label class="unit-level">Lv.@( BattleUnit.BaseLevel )</label>
 					</div>
+					
+					<label class="unit-description">@(unit.Description)</label>
 
 					<div class="health-bar">
 						<div class="inner-bar" style="width: @( unit.Hp / unit.Hp * 100 )%"></div>
@@ -31,6 +33,11 @@
 					<div class="row">
 						<label class="health">@( unit.Hp )/@( unit.Hp )</label>
 						<label class="mana">@( unit.Mp )/@( unit.Mp )</label>
+					</div>
+					
+					<div class="misc-stats">
+						<label class="speed">Speed: @( unit.Speed.Min )-@( unit.Speed.Max )</label>
+						<label class="slots">Slots: @( unit.Slots )</label>
 					</div>
 				}
 			</div>
