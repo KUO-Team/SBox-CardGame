@@ -4,7 +4,7 @@ namespace CardGame.Effects;
 
 public abstract class CardEffect( Card card )
 {
-	public Card Card { get; set; } = card;
+	protected Card Card { get; set; } = card;
 
 	public int Power { get; set; } = 1;
 
