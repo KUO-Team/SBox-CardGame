@@ -50,6 +50,7 @@ MapPanel {
     justify-content: space-between;
     background-color: rgba(20,20,20,0.9);
     z-index: 20;
+    flex-shrink: 0;
 
     .player-row {
       align-items: center;
@@ -154,6 +155,7 @@ MapPanel {
     height: 100%;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   .map {
