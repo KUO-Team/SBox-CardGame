@@ -24,6 +24,15 @@ public class PlayerData
 	public List<Id> SeenRelics { get; set; } = [];
 
 	private static readonly Logger Log = new( "PlayerData" );
+	
+	[JsonIgnore, Hide]
+	public bool HasSeenAllCards => SeenCards.Count >= CardDataList.All.Count( x => x.IsAvailable );
+	
+	[JsonIgnore, Hide]
+	public bool HasSeenAllRelics => SeenRelics.Count >= RelicDataList.All.Count( x => x.IsAvailable );
+	
+	[JsonIgnore, Hide]
+	public bool HasSeenAll => HasSeenAllCards && HasSeenAllRelics;
 
 	public void SeeCard( Id id )
 	{
@@ -33,10 +42,16 @@ public class PlayerData
 		}
 
 		SeenCards.Add( id );
-		if ( SeenCards.Count >= CardDataList.All.Count( x => x.IsAvailable ) )
+		if ( HasSeenAllCards )
 		{
 			Platform.Achievement.AllCards.Unlock();
 		}
+
+		if ( HasSeenAll )
+		{
+			Platform.Achievement.Collector.Unlock();
+		}
+		
 		Save();
 	}
 
@@ -48,10 +63,16 @@ public class PlayerData
 		}
 
 		SeenRelics.Add( id );
-		if ( SeenRelics.Count >= RelicDataList.All.Count( x => x.IsAvailable ) )
+		if ( HasSeenAllRelics )
 		{
 			Platform.Achievement.AllRelics.Unlock();
 		}
+		
+		if ( HasSeenAll )
+		{
+			Platform.Achievement.Collector.Unlock();
+		}
+		
 		Save();
 	}
 

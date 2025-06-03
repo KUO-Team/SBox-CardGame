@@ -17,7 +17,9 @@ public enum Achievement
 	[Title( "all-cards" )]
 	AllCards,
 	[Title( "all-relics" )]
-	AllRelics
+	AllRelics,
+	[Title( "collector" )]
+	Collector
 }
 
 public static class Platform
