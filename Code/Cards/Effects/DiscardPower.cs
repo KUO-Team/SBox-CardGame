@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class DiscardPower( Card card ) : CardEffect( card )
+public class DiscardPower( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "If this card is discarded, gain @ Power Up";
 

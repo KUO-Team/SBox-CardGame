@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Burn( Card card ) : CardEffect( card )
+public class Burn( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Inflict @ Burn";
 	

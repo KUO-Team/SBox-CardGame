@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class HealPercent( Card card ) : CardEffect( card )
+public class HealPercent( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Heal by @% of max HP";
 

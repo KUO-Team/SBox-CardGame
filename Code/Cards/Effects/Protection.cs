@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Protection( Card card ) : CardEffect( card )
+public class Protection( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Gain @ Protection";
 	

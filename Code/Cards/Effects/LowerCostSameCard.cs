@@ -2,7 +2,7 @@
 
 namespace CardGame.Effects;
 
-public class LowerCostSameCard( Card card ) : CardEffect( card )
+public class LowerCostSameCard( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Lower the cost of this card by @";
 

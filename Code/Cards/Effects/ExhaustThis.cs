@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class ExhaustThis( Card card ) : CardEffect( card )
+public class ExhaustThis( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Exhaust this card";
 

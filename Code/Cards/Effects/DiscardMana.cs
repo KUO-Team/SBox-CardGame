@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class DiscardMana( Card card ) : CardEffect( card )
+public class DiscardMana( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "If this card is discarded, recover @ MP";
 

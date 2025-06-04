@@ -1,8 +1,8 @@
 ﻿namespace CardGame.Effects;
 
-public class DiscardXProtection( Card card ) : CardEffect( card )
+public class DiscardXProtection( Card card, RangedInt power ) : CardEffect( card, power )
 {
-	public override string Description => Power == 1 ? "Discard a card, gain 1 Protection for each card discarded this way" : "Discard up to @ cards, gain 1 Protection for each card discarded this way";
+	public override string Description => PowerRange.Max == 1 ? "Discard a card, gain 1 Protection for each card discarded this way" : "Discard up to @ cards, gain 1 Protection for each card discarded this way";
 
 	public override void OnPlay( CardEffectDetail detail )
 	{

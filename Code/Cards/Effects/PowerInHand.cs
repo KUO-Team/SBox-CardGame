@@ -2,7 +2,7 @@
 
 namespace CardGame.Effects;
 
-public class PowerInHand( Card card ) : CardEffect( card )
+public class PowerInHand( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => $"Gain power equal to the amount of cards named {Card.Name} in hand";
 

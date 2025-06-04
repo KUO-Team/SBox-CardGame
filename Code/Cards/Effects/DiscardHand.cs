@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class DiscardHand( Card card ) : CardEffect( card )
+public class DiscardHand( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Discard your hand";
 

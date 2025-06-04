@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Bleed( Card card ) : CardEffect( card )
+public class Bleed( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Inflict @ Bleed";
 

@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class StunnedNextTurn( Card card ) : CardEffect( card )
+public class StunnedNextTurn( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Become Stunned Next Turn";
 	

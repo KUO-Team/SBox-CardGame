@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class InflictRandomBleedBurn( Card card ) : CardEffect( card )
+public class InflictRandomBleedBurn( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Randomly inflict @ of the following: Bleed, Burn";
 	

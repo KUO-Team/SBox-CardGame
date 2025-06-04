@@ -50,7 +50,7 @@ public class Action : IDeepCopyable<Action>
 			return;
 		}
 
-		Effect = TypeLibrary.Create<CardEffect>( Script, [Card] );
+		Effect = TypeLibrary.Create<CardEffect>( Script, [Card, Power] );
 	}
 
 	public Action DeepCopy()

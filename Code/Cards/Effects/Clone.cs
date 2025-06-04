@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Clone( Card card ) : CardEffect( card )
+public class Clone( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Create a copy of the highest costing card in hand";
 

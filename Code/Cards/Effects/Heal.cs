@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Heal( Card card ) : CardEffect( card )
+public class Heal( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Heal @ HP";
 	

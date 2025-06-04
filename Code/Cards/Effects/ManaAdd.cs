@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class ManaAdd( Card card ) : CardEffect( card )
+public class ManaAdd( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Add @ MP";
 	

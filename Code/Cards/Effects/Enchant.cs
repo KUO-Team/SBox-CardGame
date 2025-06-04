@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Enchant( Card card ) : CardEffect( card )
+public class Enchant( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Become Enchanted";
 

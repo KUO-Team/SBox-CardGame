@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class Haste( Card card ) : CardEffect( card )
+public class Haste( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Gain @ Haste";
 

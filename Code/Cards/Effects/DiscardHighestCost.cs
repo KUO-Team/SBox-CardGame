@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class DiscardHighestCost( Card card ) : CardEffect( card )
+public class DiscardHighestCost( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Discard the highest costing card in hand";
 

@@ -2,9 +2,11 @@
 
 namespace CardGame.Effects;
 
-public abstract class CardEffect( Card card )
+public abstract class CardEffect( Card card, RangedInt power )
 {
 	protected Card Card { get; set; } = card;
+	
+	protected RangedInt PowerRange { get; set; } = power;
 
 	public int Power { get; set; } = 1;
 

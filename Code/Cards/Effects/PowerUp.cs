@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class PowerUp( Card card ) : CardEffect( card )
+public class PowerUp( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Gain @ Power Up";
 	

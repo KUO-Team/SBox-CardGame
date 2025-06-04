@@ -1,6 +1,6 @@
 ﻿namespace CardGame.Effects;
 
-public class EnchantedOnly( Card card ) : CardEffect( card )
+public class EnchantedOnly( Card card, RangedInt power ) : CardEffect( card, power )
 {
 	public override string Description => "Only playable if the owner is Enchanted";
 
