@@ -178,7 +178,7 @@
       "Icon": "",
       "Emoji": "⚖️",
       "Name": "Uneven Odds",
-      "Description": "At the start of the turn, if enemies outnumber allies, gain 1 Attack Power Up per extra enemy.<br>If allies outnumber enemies, a random ally gains 1 Fragile per extra ally.",
+      "Description": "At the start of the turn, if enemies outnumber allies, gain 1 Attack Power Up per extra enemy; if allies outnumber enemies, a random ally gains 1 Fragile per extra ally.",
       "Flavor": [
         "The fewer at his side, the stronger he stood. The more, the more brittle their hope became."
       ],
