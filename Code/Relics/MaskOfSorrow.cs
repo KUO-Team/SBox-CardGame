@@ -6,6 +6,8 @@ namespace CardGame.Relics;
 public class MaskOfSorrow( Data.Relic data ) : Relic( data )
 {
 	private int _damageTaken;
+	
+	private const int MaxBuffAmount = 3;
 
 	public override void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
 	{
@@ -33,15 +35,15 @@ public class MaskOfSorrow( Data.Relic data ) : Relic( data )
 		var amount = _damageTaken / 5;
 		if ( amount > 0 )
 		{
-			var max = Math.Min( amount, 3 );
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, max );
+			var max = Math.Min( amount, MaxBuffAmount );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Protection, max );
 		}
-		
-		if ( _damageTaken <= 0 )
+		else
 		{
-			Owner.SpendMana( 1 );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Fragile );	
 		}
-		
+
+		_damageTaken = 0;
 		base.OnTurnStart();
 	}
 }

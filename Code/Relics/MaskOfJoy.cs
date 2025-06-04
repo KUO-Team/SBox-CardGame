@@ -6,6 +6,8 @@ namespace CardGame.Relics;
 public class MaskOfJoy( Data.Relic data ) : Relic( data )
 {
 	private int _damageTaken;
+	
+	private const int MaxBuffAmount = 3;
 
 	public override void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
 	{
@@ -33,18 +35,12 @@ public class MaskOfJoy( Data.Relic data ) : Relic( data )
 		var amount = _damageTaken / 5;
 		if ( amount > 0 )
 		{
-			var max = Math.Min( amount, 3 );
+			var max = Math.Min( amount, MaxBuffAmount );
 			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, max );
 		}
-
-		if ( _damageTaken >= 10 )
+		else
 		{
-			Owner.Mana += 1;
-		}
-
-		if ( _damageTaken < 5 )
-		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown, 1 );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown );	
 		}
 
 		_damageTaken = 0;
