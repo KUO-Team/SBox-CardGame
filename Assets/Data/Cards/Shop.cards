@@ -481,7 +481,7 @@
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
-      "Type": "Spell",
+      "Type": "Defense",
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "Protection",
@@ -725,8 +725,8 @@
         {
           "Type": "Effect",
           "Power": {
-            "Min": 2,
-            "Max": 2
+            "Min": 1,
+            "Max": 1
           },
           "Script": "Draw"
         }
