@@ -7,7 +7,7 @@
       },
       "Icon": "",
       "Name": "Masquerade",
-      "Description": "At the start of the turn, halve all status ailments on self. Gain either 1 Power Up or 1 Protection randomly.",
+      "Description": "At the start of the turn, halve all status ailments on self.<br>Gain either 2 Power Up or 2 Protection randomly.",
       "Emoji": "\uD83C\uDFAD",
       "Flavor": [
         "A grand performance where joy and sorrow dance in tandem."

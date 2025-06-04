@@ -6,7 +6,7 @@
         "LocalId": 1
       },
       "Name": "Bloodfeeding",
-      "Description": "If this unit damages a target with Bleed, heal damage dealt. (Max. 2)\u000AThis effect can trigger once per turn.",
+      "Description": "If this unit damages a target with Bleed, heal damage dealt. (Max. 2)<br>This effect can trigger once per turn.",
       "Script": "Bloodfeeding"
     },
     {
