@@ -176,7 +176,7 @@ public partial class MainMenu
 	public void ClearData()
 	{
 		WarningPanel? warning = null;
-		warning = WarningPanel.Create( "Clear Data", "This action will clear all of your collection, player and run data. It will not clear your achievements, stats or leaderboard placements. This action is irreversible. Are you sure?", [
+		warning = WarningPanel.Create( "Clear Data", "This action will clear all of your collection, player and run data. It will not clear your achievements, stats or leaderboard placements.<br><br>This action is irreversible. Are you sure?", [
 			new Button( "Yes", "", () =>
 			{
 				PlayerData.Clear();

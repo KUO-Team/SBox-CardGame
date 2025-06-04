@@ -11,13 +11,19 @@ public class WarningPanel : Panel
 
 	private readonly Panel _buttonContainer;
 
+	private Panel? _main;
+	private Label? _titleLabel;
+	private Label? _warningLabel;
+
 	public WarningPanel( string title, string warning, List<Button>? buttons = null )
 	{
-		var main = Add.Panel( "main" );
-		main.Add.Label( title, "title" );
-		main.Add.Label( warning, "warning" );
+		_main = Add.Panel( "main" );
+		_titleLabel = _main.Add.Label( title, "title" );
+		_titleLabel.IsRich = true;
+		_warningLabel = _main.Add.Label( warning, "warning" );
+		_warningLabel.IsRich = true;
 
-		_buttonContainer = main.Add.Panel( "buttons" );
+		_buttonContainer = _main.Add.Panel( "buttons" );
 		if ( buttons != null )
 		{
 			InitializeButtons( buttons );

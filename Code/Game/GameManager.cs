@@ -27,7 +27,7 @@ public sealed class GameManager : Singleton<GameManager>
 	{
 		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
 		PlayerData.Load();
-
+		
 		var settings = Settings.Data;
 		Mixer.FindMixerByName( "Master" ).Volume = settings.MasterVolume;
 		Mixer.FindMixerByName( "Music" ).Volume = settings.MusicVolume;

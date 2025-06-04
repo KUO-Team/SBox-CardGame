@@ -15,6 +15,7 @@ public partial class RelicGainPanel
 		Relic = relic;
 		_onConfirm = onConfirm;
 		PlayerData.Data.SeeRelic( relic.Id );
+		
 		this.Show();
 	}
 
