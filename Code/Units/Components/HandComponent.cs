@@ -31,7 +31,44 @@ public class HandComponent : Component, IOwnable
 
 	public Card? DiscardModeActivator { get; set; }
 
-	public void EnterDiscardMode( Card activator )
+	private int _maxDiscardableCards = 3;
+
+	protected override void OnStart()
+	{
+		HandPanel.SelectedCards?.Clear();
+		
+		if ( Deck.Count > 0 )
+		{
+			foreach ( var card in Hand.ToArray() )
+			{
+				var newCard = card.DeepCopy();
+				Hand.Remove( card );
+				Hand.Add( newCard );
+			}
+
+			foreach ( var card in Deck.ToArray() )
+			{
+				var newCard = card.DeepCopy();
+				Deck.Remove( card );
+				Deck.Add( newCard );
+			}
+		}
+
+		if ( BattleManager.Instance.IsValid() )
+		{
+			BattleManager.Instance.OnCombatStart += LeaveDiscardMode;
+		}
+
+		base.OnStart();
+	}
+	
+	protected override void OnDisabled()
+	{
+		HandPanel.SelectedCards?.Clear();
+		base.OnDisabled();
+	}
+
+	public void EnterDiscardMode( Card activator, int maxCards = 3 )
 	{
 		if ( !BattleManager.Instance.IsValid() )
 		{
@@ -40,6 +77,7 @@ public class HandComponent : Component, IOwnable
 
 		IsDiscardMode = true;
 		DiscardModeActivator = activator;
+		_maxDiscardableCards = maxCards;
 
 		HandPanel.OnCardSelected += OnCardSelected;
 		HandPanel.OnCardDeselected += OnCardDeselected;
@@ -48,13 +86,22 @@ public class HandComponent : Component, IOwnable
 	private void OnCardSelected( Card card )
 	{
 		var selectedCards = HandPanel.SelectedCards;
-		if ( !selectedCards.Remove( card ) )
+    
+		if ( selectedCards.Contains( card ) )
 		{
-			selectedCards.Add( card );
+			selectedCards.Remove( card );
+			return;
 		}
+
+		if ( selectedCards.Count >= _maxDiscardableCards )
+		{
+			return;
+		}
+
+		selectedCards.Add( card );
 	}
 
-	private void OnCardDeselected( Card card )
+	private static void OnCardDeselected( Card card )
 	{
 		var selectedCards = HandPanel.SelectedCards;
 		if ( !selectedCards.Contains( card ) )
@@ -141,33 +188,6 @@ public class HandComponent : Component, IOwnable
 		HandPanel.OnCardDeselected -= OnCardDeselected;
 	}
 
-	protected override void OnStart()
-	{
-		if ( Deck.Count > 0 )
-		{
-			foreach ( var card in Hand.ToArray() )
-			{
-				var newCard = card.DeepCopy();
-				Hand.Remove( card );
-				Hand.Add( newCard );
-			}
-
-			foreach ( var card in Deck.ToArray() )
-			{
-				var newCard = card.DeepCopy();
-				Deck.Remove( card );
-				Deck.Add( newCard );
-			}
-		}
-
-		if ( BattleManager.Instance.IsValid() )
-		{
-			BattleManager.Instance.OnCombatStart += LeaveDiscardMode;
-		}
-
-		base.OnStart();
-	}
-
 	public void Draw()
 	{
 		var deck = Deck.ToArray();
@@ -192,7 +212,7 @@ public class HandComponent : Component, IOwnable
 			{
 				Unit = Owner
 			};
-			
+
 			effect.OnDraw( detail );
 		}
 	}
@@ -268,7 +288,7 @@ public class HandComponent : Component, IOwnable
 			{
 				Unit = Owner
 			};
-			
+
 			effect.OnDiscard( detail );
 
 			if ( RelicManager.Instance.IsValid() )

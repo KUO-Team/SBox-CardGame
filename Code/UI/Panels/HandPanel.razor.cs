@@ -12,7 +12,7 @@ public partial class HandPanel
 
 	public static Card? SelectedCard { get; set; }
 
-	public static List<Card> SelectedCards { get; set; } = [];
+	public static List<Card> SelectedCards { get; internal set; } = [];
 
 	public static event Action<Card>? OnCardSelected;
 	public static event Action<Card>? OnCardDeselected;

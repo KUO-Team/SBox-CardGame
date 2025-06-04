@@ -11,9 +11,9 @@ public class WarningPanel : Panel
 
 	private readonly Panel _buttonContainer;
 
-	private Panel? _main;
-	private Label? _titleLabel;
-	private Label? _warningLabel;
+	private readonly Panel? _main;
+	private readonly Label? _titleLabel;
+	private readonly Label? _warningLabel;
 
 	public WarningPanel( string title, string warning, List<Button>? buttons = null )
 	{
