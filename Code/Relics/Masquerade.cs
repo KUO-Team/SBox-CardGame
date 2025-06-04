@@ -9,13 +9,8 @@ public class Masquerade( Data.Relic data ) : Relic( data )
 			return;
 		}
 
-		foreach ( var effect in Owner.StatusEffects.ToList() )
+		foreach ( var effect in Owner.StatusEffects.ToList().Where( effect => effect.Data.IsNegative ) )
 		{
-			if ( !effect.Data.IsNegative )
-			{
-				continue;
-			}
-			
 			effect.Stack /= 2;
 			if ( effect.Stack <= 0 )
 			{
@@ -25,11 +20,11 @@ public class Masquerade( Data.Relic data ) : Relic( data )
 
 		if ( Game.Random.Int( 1 ) == 0 )
 		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 2 );
 		}
 		else
 		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Protection );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Protection, 2 );
 		}
 		
 		base.OnTurnStart();
