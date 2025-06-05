@@ -1,12 +1,7 @@
-﻿@using System
-@using CardGame.Data
+﻿@using CardGame.Data
 
 @inherits MenuSubPanel
 @namespace CardGame.UI
-
-@{
-	var classes = PlayerClassDataList.All;
-}
 
 <root>
 	<div class="main">
@@ -14,10 +9,10 @@
 
 		<div class="row">
 			<div class="class-selection">
-				@foreach ( var playerClass in classes )
+				@foreach ( var playerClass in PlayerClasses )
 				{
 					var isSelected = SelectedClass == playerClass;
-					<button class="@( isSelected ? "disabled" : "" )" onclick="@( () => SelectClass( playerClass ) )">@playerClass.Name</button>
+					<button class="@( isSelected ? "disabled" : "" ) @(playerClass.IsUnlocked ? "" : "disabled")" onclick="@( () => SelectClass( playerClass ) )">@playerClass.Name</button>
 				}
 			</div>
 
@@ -29,25 +24,45 @@
 					if ( unitData is not null )
 					{
 						<div class="class-data">
-							<h2>@SelectedClass.Name</h2>
-							<p>@SelectedClass.Description</p>
+							<h2 class="class-name">@SelectedClass.Name</h2>
+							<p class="class-description">@SelectedClass.Description</p>
 							<div class="row">
-								<label>Hp: @(unitData.Hp)</label>
-								<label>Mp: @(unitData.Mp)</label>
-								<label>Speed: @(unitData.Speed.Min)~@(unitData.Speed.Max)</label>
+								<label class="class-health">Hp: @(unitData.Hp)</label>
+								<label class="class-mana">Mp: @(unitData.Mp)</label>
+								<label class="class-speed">Speed: @(unitData.Speed.Min)~@(unitData.Speed.Max)</label>
 							</div>
 						</div>
-
-						<div class="class-deck">
-							@foreach ( var cardId in unitData.Deck )
-							{
-								var card = CardDataList.GetById( cardId );
-								if ( card is null )
+						
+						<div class="class-collection">
+							<h2>Deck</h2>
+							<div class="class-deck collection">
+								@foreach ( var cardId in unitData.Deck )
 								{
-									continue;
+									var card = CardDataList.GetById( cardId );
+									if ( card is null )
+									{
+										continue;
+									}
+
+									<CardPanel Card="@card"></CardPanel>
 								}
-								
-								<CardPanel Card="@card"></CardPanel>
+							</div>
+
+							@if ( SelectedClass.Relics.Any() )
+							{
+								<h2>Relics</h2>
+								<div class="class-relics collection">
+									@foreach ( var relicId in SelectedClass.Relics )
+									{
+										var relic = RelicDataList.GetById( relicId );
+										if ( relic is null )
+										{
+											continue;
+										}
+
+										<RelicPanel Relic="@relic"></RelicPanel>
+									}
+								</div>
 							}
 						</div>
 					}

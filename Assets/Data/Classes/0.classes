@@ -10,7 +10,14 @@
       "Unit": {
         "Source": "",
         "LocalId": 101
-      }
+      },
+      "Relics": [
+        {
+          "Source": "",
+          "LocalId": 101
+        }
+      ],
+      "IsUnlocked": true
     },
     {
       "Id": {
@@ -22,7 +29,9 @@
       "Unit": {
         "Source": "",
         "LocalId": 102
-      }
+      },
+      "Relics": [],
+      "IsUnlocked": true
     }
   ],
   "__references": [],

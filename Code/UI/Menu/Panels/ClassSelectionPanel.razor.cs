@@ -6,6 +6,8 @@ namespace CardGame.UI;
 
 public partial class ClassSelectionPanel
 {
+	private List<PlayerClass> PlayerClasses { get; set; } = [];
+	
 	private static PlayerClass? SelectedClass => Player.Local?.Class;
 	
 	private static GameManager? GameManager => GameManager.Instance;
@@ -13,10 +15,45 @@ public partial class ClassSelectionPanel
 	private static SaveManager? SaveManager => SaveManager.Instance;
 	private static RelicManager? RelicManager => RelicManager.Instance;
 	private static SceneManager? SceneManager => SceneManager.Instance;
-	
+
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		if ( !firstTime )
+		{
+			return;
+		}
+		
+		PlayerClasses.Clear();
+		foreach ( var @class in PlayerClassDataList.All )
+		{
+			var copy = @class.DeepCopy();
+			PlayerClasses.Add( copy );
+		}
+		
+		base.OnAfterTreeRender( firstTime );
+	}
+
 	private static void SelectClass( PlayerClass playerClass )
 	{
 		Player.Local?.SetClass( playerClass );
+	}
+
+	private void AddRelic( Relic relic )
+	{
+		var relicSelectionPanel = GetMenuSubPanel<RelicSelectionPanel>();
+		if ( relicSelectionPanel.IsValid() )
+		{
+			relicSelectionPanel.SelectedRelics.Add( relic );
+		}
+	}
+	
+	private void ClearRelics()
+	{
+		var relicSelectionPanel = GetMenuSubPanel<RelicSelectionPanel>();
+		if ( relicSelectionPanel.IsValid() )
+		{
+			relicSelectionPanel.SelectedRelics.Clear();
+		}
 	}
 	
 	public void StartRun()
@@ -24,6 +61,23 @@ public partial class ClassSelectionPanel
 		if ( !Menu.IsValid() )
 		{
 			return;
+		}
+		
+		if ( SelectedClass is null )
+		{
+			return;
+		}
+		
+		ClearRelics();
+		foreach ( var relicId in SelectedClass.Relics )
+		{
+			var relic = RelicDataList.GetById( relicId );
+			if ( relic is null )
+			{
+				continue;
+			}
+			
+			AddRelic( relic );
 		}
 		
 		Menu.Relics();
