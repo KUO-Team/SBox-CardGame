@@ -9,6 +9,8 @@ public partial class RelicSelectionPanel
 	public List<Relic> Relics { get; set; } = [];
 
 	public List<Relic> SelectedRelics { get; private set; } = [];
+	
+	private List<Relic> _playerSelectedRelics = [];
 
 	/// <summary>
 	/// How many relics can be selected at once.
@@ -52,6 +54,7 @@ public partial class RelicSelectionPanel
 		}
 		
 		SelectedRelics.Add( relic );
+		_playerSelectedRelics.Add( relic );
 	}
 	
 	public void DeselectRelic( Relic relic )
@@ -67,6 +70,7 @@ public partial class RelicSelectionPanel
 		}
 		
 		SelectedRelics.Remove( relic );
+		_playerSelectedRelics.Remove( relic );
 	}
 	
 	public void ToggleRelicSelection( Relic relic, bool deselectOld = true )
@@ -78,7 +82,9 @@ public partial class RelicSelectionPanel
 		
 		if ( deselectOld && MaxSelectableRelics == 1 )
 		{
-			foreach ( var selectedRelic in SelectedRelics.ToList().Where( selectedRelic => selectedRelic != relic ) )
+			var selectedRelics = SelectedRelics.ToList();
+			var relicsToDeselect = selectedRelics.Where( selectedRelic => selectedRelic != relic && Relics.Contains( selectedRelic ) ).ToList();
+			foreach ( var selectedRelic in relicsToDeselect )
 			{
 				DeselectRelic( selectedRelic );
 			}
@@ -109,7 +115,7 @@ public partial class RelicSelectionPanel
 			return false;
 		}
 		
-		if ( SelectedRelics.Count >= MaxSelectableRelics )
+		if ( _playerSelectedRelics.Count >= MaxSelectableRelics )
 		{
 			return false;
 		}
