@@ -12,7 +12,7 @@
 				@foreach ( var playerClass in PlayerClasses )
 				{
 					var isSelected = SelectedClass == playerClass;
-					<button class="@( isSelected ? "disabled" : "" ) @(playerClass.IsUnlocked ? "" : "disabled")" onclick="@( () => SelectClass( playerClass ) )">@playerClass.Name</button>
+					<button class="@( isSelected ? "disabled" : "" ) @( playerClass.IsUnlocked ? "" : "disabled" )" onclick="@( () => SelectClass( playerClass ) )">@playerClass.Name</button>
 				}
 			</div>
 

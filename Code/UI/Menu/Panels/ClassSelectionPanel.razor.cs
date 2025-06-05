@@ -29,6 +29,9 @@ public partial class ClassSelectionPanel
 			var copy = @class.DeepCopy();
 			PlayerClasses.Add( copy );
 		}
+
+		var firstClass = PlayerClasses[0];
+		SelectClass( firstClass );
 		
 		base.OnAfterTreeRender( firstTime );
 	}
@@ -90,6 +93,6 @@ public partial class ClassSelectionPanel
 
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Player.Local?.Class );
+		return HashCode.Combine( Player.Local?.Class, SelectedClass );
 	}
 }
