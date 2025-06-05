@@ -1,4 +1,5 @@
 ﻿@import "/UI/Styles/Buttons.scss";
+@import "/UI/Styles/Colors.scss";
 
 HandPanel {
   position: absolute;
@@ -27,7 +28,8 @@ HandPanel {
     margin-left: -50px;
     transform: rotateZ(3deg);
     flex-shrink: 0;
-    transition: transform 0.14s ease;
+    border: none;
+    transition: transform 0.1s ease, top 0.2s linear, border 1s linear;
     z-index: 1;
 
     &:hover {
@@ -39,8 +41,8 @@ HandPanel {
     &.selected {
       z-index: 5;
       position: relative;
-      top: -10px;
-      border: 2px solid gold;
+      top: -15px;
+      border: 3px solid $selected-color;
     }
   }
   

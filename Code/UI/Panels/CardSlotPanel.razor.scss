@@ -1,3 +1,5 @@
+@import "/UI/Styles/Colors.scss";
+
 CardSlotPanel {
   pointer-events: all;
   width: 50px;
@@ -32,21 +34,21 @@ CardSlotPanel {
     border: 2px solid #666;
 
     .speed {
-      color: #88ccff;
+      color: $selected-color;
     }
 
     &:hover {
-      border: 2px solid #88ccff;
+      border: 2px solid $selected-color;
       background-color: #333;
     }
   }
 
   &.selected {
-    border: 2px solid #88ccff;
+    border: 2px solid $selected-color;
     animation: selectedPulse 1s linear infinite;
 
     .speed {
-      color: white;
+      color: $selected-color;
     }
   }
 
