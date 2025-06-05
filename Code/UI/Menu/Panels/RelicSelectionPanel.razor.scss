@@ -12,13 +12,15 @@ RelicSelectionPanel {
   z-index: 10;
 
   > .main {
-    width: 40%;
-    height: 90%;
+    width: 35%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
-    color: white;
+    border: 1px solid white;
+    padding: 24px;
+    gap: 18px;
 
     h1 {
       font-size: 50px;
