@@ -45,6 +45,7 @@ public class MapNode : Panel
 		{
 			Text = Type switch
 			{
+				MapNodeType.Start => "X",
 				MapNodeType.Battle => "B",
 				MapNodeType.Shop => "S",
 				MapNodeType.Event => "?",
