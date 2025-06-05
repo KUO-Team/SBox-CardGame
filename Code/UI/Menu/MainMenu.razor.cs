@@ -6,7 +6,6 @@ namespace CardGame.UI;
 
 public partial class MainMenu
 {
-	private RelicGainPanel? _relicGainPanel;
 	private RelicSelectionPanel? _relics;
 	private ClassSelectionPanel? _classes;
 	private SettingsPanel? _settings;
@@ -109,7 +108,7 @@ public partial class MainMenu
 		StartRunInternal();
 	}
 
-	private void StartRunInternal()
+	private static void StartRunInternal()
 	{
 		if ( GameManager.IsValid() )
 		{
@@ -173,7 +172,7 @@ public partial class MainMenu
 		_settings?.Show();
 	}
 
-	public void ClearData()
+	public static void ClearData()
 	{
 		WarningPanel? warning = null;
 		warning = WarningPanel.Create( "Clear Data", "This action will clear all of your collection, player and run data. It will not clear your achievements, stats or leaderboard placements.<br><br>This action is irreversible. Are you sure?", [
@@ -211,5 +210,12 @@ public partial class MainMenu
 
 		_webPanel.Url = string.Empty;
 		_webContainer.Hide();
+	}
+	
+ #pragma warning disable CA1822
+	public T? GetSubPanel<T>() where T : MenuSubPanel
+ #pragma warning restore CA1822
+	{
+		return Panel.Children.OfType<T>().FirstOrDefault();
 	}
 }
