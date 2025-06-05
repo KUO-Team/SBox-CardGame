@@ -50,24 +50,34 @@ UnitBattleInfoPanel {
     background-color: rgba(0, 0, 0, 0.9);
 
     > .inner-bar {
-      transition: width 0.2s ease;
+      transition: width 0.1s linear;
       border-right: 2px solid white;
     }
   }
 
   .health-bar {
-    height: 10px;
+    height: 12px;
 
     > .inner-bar {
-      background-color: darkred;
+      background: linear-gradient(
+                      0deg,
+                      #000000 0%,
+                      #e21a1a 50%,
+                      $health-color 100%
+      );
     }
   }
 
   .mana-bar {
-    height: 2px;
+    height: 6px;
 
     > .inner-bar {
-      background-color: $mana-color;
+      background: linear-gradient(
+                      0deg,
+                      #000000 0%,
+                      #7e7eb4 50%,
+                      $mana-color 100%
+      );
     }
   }
 
