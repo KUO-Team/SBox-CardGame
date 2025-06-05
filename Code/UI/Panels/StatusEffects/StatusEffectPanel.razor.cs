@@ -13,6 +13,11 @@ public partial class StatusEffectPanel
 	
 	private StatusEffectInfoPanel? _infoPanel;
 	
+	public StatusEffectPanel()
+	{
+		AddClass( "status" );
+	}
+	
 	public override void Delete( bool immediate = false )
 	{
 		Clear();

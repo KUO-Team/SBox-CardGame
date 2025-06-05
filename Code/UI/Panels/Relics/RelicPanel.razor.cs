@@ -13,6 +13,11 @@ public partial class RelicPanel
 	private bool HasIcon => !string.IsNullOrEmpty( Relic?.Icon );
 	
 	private RelicInfoPanel? _infoPanel;
+	
+	public RelicPanel()
+	{
+		AddClass( "relic" );
+	}
 
 	public override void Delete( bool immediate = false )
 	{
