@@ -9,6 +9,7 @@
       "Emoji": "\uD83D\uDDFF",
       "Name": "Bleeding Statue",
       "Description": "At the start of the turn, all units gain Bleed equal to the turn count. (Max. 5)<br>Allies with 5 or more Bleed gain 2 Attack Power Up. Allies who end the turn with 10+ Bleed take 5 fixed damage.",
+      "IsActivatable": false,
       "Flavor": [
         "A mysterious statue that reeks with a metallic stench of blood."
       ],
@@ -26,6 +27,7 @@
       "Emoji": "\uD83D\uDE04",
       "Name": "Mask Of Joy",
       "Description": "At the start of the turn, gain 1 Attack Power Up for every 5 damage taken last turn. (Max. 3)<br>If you took less than 5 damage, gain 1 Attack Power Down instead.",
+      "IsActivatable": false,
       "Flavor": [
         "An ancient comedy mask. It laughs as you suffer."
       ],
@@ -43,6 +45,7 @@
       "Emoji": "\uD83D\uDE22",
       "Name": "Mask Of Sorrow",
       "Description": "At the start of the turn, gain 1 Protection for every 5 damage taken last turn. (Max. 3)<br>If you took less than 5 damage, gain 1 Fragile instead.",
+      "IsActivatable": false,
       "Flavor": [
         "An ancient tragedy mask. It weeps for your cowardice."
       ],

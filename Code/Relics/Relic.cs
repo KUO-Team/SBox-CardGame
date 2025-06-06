@@ -71,6 +71,11 @@ public abstract class Relic( Data.Relic data ) : IOwnable
 		
 	}
 
+	public virtual void OnActivate()
+	{
+		
+	}
+
 	public virtual void Destroy()
 	{
 		if ( BattleManager.Instance.IsValid() )

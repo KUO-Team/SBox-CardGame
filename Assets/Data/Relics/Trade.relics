@@ -6,9 +6,10 @@
         "LocalId": 500
       },
       "Icon": "",
+      "Emoji": "\uD83C\uDFAD",
       "Name": "Masquerade",
       "Description": "At the start of the turn, halve all status ailments on self.<br>Gain either 2 Power Up or 2 Protection randomly.",
-      "Emoji": "\uD83C\uDFAD",
+      "IsActivatable": false,
       "Flavor": [
         "A grand performance where joy and sorrow dance in tandem."
       ],

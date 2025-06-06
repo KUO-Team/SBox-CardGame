@@ -17,8 +17,10 @@ public class Relic : IResource, IDeepCopyable<Relic>
 
 	public string Description { get; set; } = string.Empty;
 
+	public bool IsActivatable { get; set; } = false;
+	
 	public List<string> Flavor { get; set; } = [];
-
+	
 	public TagSet Keywords { get; set; } = new();
 
 	public RelicRarity Rarity { get; set; } = RelicRarity.Common;
