@@ -15,7 +15,7 @@ namespace VNBase;
 [Title( "VN Script Player" )]
 [Category( "VNBase" )]
 [Icon( "menu_book" )]
-public sealed partial class ScriptPlayer : Singleton<ScriptPlayer>
+public sealed partial class ScriptPlayer : Component
 {
 	/// <summary>
 	/// The currently active script.
@@ -68,8 +68,6 @@ public sealed partial class ScriptPlayer : Singleton<ScriptPlayer>
 
 	protected override void OnStart()
 	{
-		GameObject.Flags = GameObjectFlags.DontDestroyOnLoad;
-		
 		if ( !string.IsNullOrEmpty( InitialScript ) )
 		{
 			LoadScript( InitialScript );
@@ -83,7 +81,7 @@ public sealed partial class ScriptPlayer : Singleton<ScriptPlayer>
 
 	private bool SkipActionPressed => Settings?.SkipActions.Any( x => x.Pressed ) ?? false;
 
-	protected override void OnFixedUpdate()
+	protected override void OnUpdate()
 	{
 		if ( ActiveScript is null || ActiveLabel is null )
 		{

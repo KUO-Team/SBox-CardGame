@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Sandbox;
 
 namespace VNBase.Assets;
@@ -20,6 +19,6 @@ public interface IAsset
 /// </summary>
 public abstract class AssetResource : GameResource, IAsset
 {
-	[JsonIgnore, Hide]
+	[Hide]
 	public string Path { get => ResourcePath; set => ResourcePath = value; }
 }

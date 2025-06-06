@@ -101,7 +101,7 @@ public class Settings : Component
 	/// <summary>
 	/// Path to the character resources.
 	/// </summary>
-	public const string CharacterResourcesPath = "/data/characters/";
+	public const string CharacterResourcesPath = "/characters/";
 
 	/// <summary>
 	/// The amount of time to wait if we are in automatic mode before switching labels.
