@@ -21,10 +21,10 @@ public class PlayerData
 
 	public List<Id> SeenCards { get; set; } = [];
 
+	public List<Id> SeenCardPacks { get; set; } = [];
+	
 	public List<Id> SeenRelics { get; set; } = [];
 
-	private static readonly Logger Log = new( "PlayerData" );
-	
 	[JsonIgnore, Hide]
 	public bool HasSeenAllCards => SeenCards.Count >= CardDataList.All.Count( x => x.IsAvailable );
 	
@@ -34,6 +34,8 @@ public class PlayerData
 	[JsonIgnore, Hide]
 	public bool HasSeenAll => HasSeenAllCards && HasSeenAllRelics;
 
+	private static readonly Logger Log = new( "PlayerData" );
+
 	public void SeeCard( Id id )
 	{
 		if ( SeenCards.Contains( id ) )
@@ -42,6 +44,27 @@ public class PlayerData
 		}
 
 		SeenCards.Add( id );
+		if ( HasSeenAllCards )
+		{
+			Platform.Achievement.AllCards.Unlock();
+		}
+
+		if ( HasSeenAll )
+		{
+			Platform.Achievement.Collector.Unlock();
+		}
+		
+		Save();
+	}
+	
+	public void SeeCardPack( Id id )
+	{
+		if ( SeenCardPacks.Contains( id ) )
+		{
+			return;
+		}
+
+		SeenCardPacks.Add( id );
 		if ( HasSeenAllCards )
 		{
 			Platform.Achievement.AllCards.Unlock();
@@ -91,6 +114,24 @@ public class PlayerData
 		}
 
 		Log.Warning( $"Removed {before - after} invalid seen cards." );
+		Save();
+	}
+	
+	public void ValidateSeenCardPacks()
+	{
+		var before = SeenCardPacks.Count;
+
+		SeenCardPacks = SeenCardPacks
+			.Where( id => CardPackDataList.All.Any( pack => pack.Id.Equals( id ) && pack.IsAvailable ) )
+			.ToList();
+
+		var after = SeenCardPacks.Count;
+		if ( before == after )
+		{
+			return;
+		}
+
+		Log.Warning( $"Removed {before - after} invalid seen card packs." );
 		Save();
 	}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace CardGame.Data;
 
@@ -17,6 +18,30 @@ public class CardPack : IResource, IDeepCopyable<CardPack>
 
 	[InlineEditor, WideMode]
 	public List<Id> Cards { get; set; } = [];
+	
+	[Hide, JsonIgnore]
+	public bool IsAvailable
+	{
+		get
+		{
+			if ( Availabilities.HasFlag( CardPack.CardPackAvailabilities.Starter ) )
+			{
+				return true;
+			}
+
+			if ( Availabilities.HasFlag( CardPack.CardPackAvailabilities.Shop ) )
+			{
+				return true;
+			}
+
+			if ( Availabilities.HasFlag( CardPack.CardPackAvailabilities.Event ) )
+			{
+				return true;
+			}
+
+			return false;
+		}
+	}
 
 	public List<Card> Open( int amount = 3 )
 	{
