@@ -19,6 +19,24 @@ public static class EventUtility
 
 		player.Unit?.HealToMax();
 	}
+
+	public static void TakePlayerDamage( int amount )
+	{
+		var player = Player.Local;
+		if ( !player.IsValid() )
+		{
+			return;
+		}
+
+		var unit = player.Unit;
+		if ( unit is null )
+		{
+			return;
+		}
+		
+		amount = Math.Max( 0, amount );
+		unit.Damage( amount );
+	}
 	
 	public static void AddMoney( int amount )
 	{
