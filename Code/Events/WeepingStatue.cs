@@ -46,11 +46,6 @@ public class WeepingStatue( Data.Event data ) : Event( data )
 			return;
 		}
 
-		if ( player.Unit is null )
-		{
-			return;
-		}
-		
 		switch ( index )
 		{
 			case 0:

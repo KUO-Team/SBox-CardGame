@@ -20,7 +20,7 @@ public static class EventUtility
 		player.Unit?.HealToMax();
 	}
 
-	public static void TakePlayerDamage( int amount )
+	public static void HealPlayer( int amount )
 	{
 		var player = Player.Local;
 		if ( !player.IsValid() )
@@ -33,11 +33,35 @@ public static class EventUtility
 		{
 			return;
 		}
-		
+
 		amount = Math.Max( 0, amount );
 		unit.Damage( amount );
 	}
-	
+
+	public static void TakePlayerDamage( int amount )
+	{
+		if ( amount <= 0 )
+		{
+			Log.Warning( $"Tried healing a negative amount! Did you mean {nameof( HealPlayer )}?" );
+			return;
+		}
+
+		var player = Player.Local;
+		if ( !player.IsValid() )
+		{
+			return;
+		}
+
+		var unit = player.Unit;
+		if ( unit is null )
+		{
+			return;
+		}
+
+		amount = Math.Max( 0, amount );
+		unit.Damage( amount );
+	}
+
 	public static void AddMoney( int amount )
 	{
 		var player = Player.Local;
@@ -45,10 +69,10 @@ public static class EventUtility
 		{
 			return;
 		}
-		
+
 		player.Money += amount;
 	}
-	
+
 	public static void SubtractMoney( int amount, bool clamp = true )
 	{
 		var player = Player.Local;
@@ -74,12 +98,31 @@ public static class EventUtility
 		{
 			return;
 		}
-		
+
 		var card = CardDataList.GetById( id );
 		if ( card is not null )
 		{
 			PlayerData.Data.SeeCard( id );
 			player.Cards.Add( card );
+		}
+		else
+		{
+			Log.Warning( $"Unable to add card: no card with ID {id} found!" );
+		}
+	}
+
+	public static void AddCardPack( Id id )
+	{
+		var player = Player.Local;
+		if ( !player.IsValid() )
+		{
+			return;
+		}
+
+		var pack = CardPackDataList.GetById( id );
+		if ( pack is not null )
+		{
+			player.CardPacks.Add( pack );
 		}
 		else
 		{
@@ -100,7 +143,7 @@ public static class EventUtility
 			{
 				return;
 			}
-			
+
 			if ( panel.RelicGainPanel.IsValid() )
 			{
 				panel.RelicGainPanel?.Show( relic );
