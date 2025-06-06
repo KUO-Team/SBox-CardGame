@@ -6,7 +6,7 @@
         "LocalId": 3
       },
       "Script": "WeepingStatue",
-      "Text": "A solemn statue looms atop a crumbling pedestal, silent tears of blood streaking its stone face. Take it?",
+      "Text": "A solemn statue looms atop a crumbling pedestal, silent tears of blood streaking its stone face. It compels you to take it... Will you?",
       "Choices": [
         {
           "Text": "Take the statue",
