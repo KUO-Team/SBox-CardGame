@@ -30,7 +30,7 @@
         "An ancient comedy mask. It laughs as you suffer."
       ],
       "Keywords": "Power Up, Power Down",
-      "Rarity": "Rare",
+      "Rarity": "Uncommon",
       "Availabilities": "Event",
       "Script": "MaskOfJoy"
     },
@@ -47,7 +47,7 @@
         "An ancient tragedy mask. It weeps for your cowardice."
       ],
       "Keywords": "Protection, Fragile",
-      "Rarity": "Rare",
+      "Rarity": "Uncommon",
       "Availabilities": "Event",
       "Script": "MaskOfSorrow"
     }
