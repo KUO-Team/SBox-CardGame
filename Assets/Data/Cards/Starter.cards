@@ -125,7 +125,7 @@
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
-      "Type": "Spell",
+      "Type": "Attack",
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
@@ -161,7 +161,7 @@
       "IsInstant": false,
       "Targets": 3,
       "Targeting": "Enemy",
-      "Type": "Spell",
+      "Type": "Attack",
       "Rarity": "Uncommon",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
@@ -169,8 +169,8 @@
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
-            "Max": 2
+            "Min": 3,
+            "Max": 3
           },
           "Script": ""
         }
@@ -181,7 +181,7 @@
         "Source": "",
         "LocalId": 7
       },
-      "Name": "T4",
+      "Name": "Insight",
       "Cost": {
         "Ep": 0,
         "Mp": 1
