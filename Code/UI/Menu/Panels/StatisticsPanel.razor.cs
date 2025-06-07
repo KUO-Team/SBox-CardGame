@@ -182,12 +182,12 @@ public partial class StatisticsPanel
 	[ConCmd]
 	private static void ShowAll()
 	{
-		foreach ( var card in CardDataList.All )
+		foreach ( var card in CardDataList.All.Where( x => x.IsAvailable && !SeenCards.Contains( x.Id ) ) )
 		{
 			SeenCards.Add( card.Id );
 		}
 
-		foreach ( var relic in RelicDataList.All )
+		foreach ( var relic in RelicDataList.All.Where( x => x.IsAvailable && !SeenRelics.Contains( x.Id ) ) )
 		{
 			SeenRelics.Add( relic.Id );
 		}
