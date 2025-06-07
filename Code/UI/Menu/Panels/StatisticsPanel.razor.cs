@@ -11,6 +11,8 @@ public partial class StatisticsPanel
 	public Panel? SelectedTab { get; private set; }
 
 	private static PlayerData Data => PlayerData.Data;
+	private static List<Id> SeenCards => Data.SeenCards;
+	private static List<Id> SeenRelics => Data.SeenRelics;
 
 	private Stats.GlobalStats? _globalStats;
 	private Stats.PlayerStats? _playerStats;
@@ -71,7 +73,7 @@ public partial class StatisticsPanel
 		{
 			ChangeTabs( firstTab.Id );
 		}
-		
+
 		var firstLeaderboard = _leaderboardContainer.Children.FirstOrDefault();
 		if ( firstLeaderboard.IsValid() )
 		{
@@ -104,7 +106,7 @@ public partial class StatisticsPanel
 		{
 			return;
 		}
-		
+
 		var selectedLeaderboard = GetLeaderboardById( id );
 		HideAllLeaderboards();
 
@@ -130,7 +132,7 @@ public partial class StatisticsPanel
 		board.Refresh();
 		board.CenterOnMe();
 	}
-	
+
 	private static string GetRank( int position )
 	{
 		return position switch
@@ -154,7 +156,8 @@ public partial class StatisticsPanel
 			return [];
 		}
 
-		return [
+		return
+		[
 			new StatEntry( "Runs", globalStats.Get( "runs" ).Value.ToString( CultureInfo.CurrentCulture ) ),
 			new StatEntry( "Runs Lost", globalStats.Get( "game-over-loss" ).Value.ToString( CultureInfo.CurrentCulture ) ),
 			new StatEntry( "Runs Won", globalStats.Get( "game-over-win" ).Value.ToString( CultureInfo.CurrentCulture ) )
@@ -168,11 +171,26 @@ public partial class StatisticsPanel
 			return [];
 		}
 
-		return [
+		return
+		[
 			new StatEntry( "Runs", playerStats.Get( "runs" ).Value.ToString( CultureInfo.CurrentCulture ) ),
 			new StatEntry( "Runs Lost", playerStats.Get( "game-over-loss" ).Value.ToString( CultureInfo.CurrentCulture ) ),
 			new StatEntry( "Runs Won", playerStats.Get( "game-over-win" ).Value.ToString( CultureInfo.CurrentCulture ) )
 		];
+	}
+
+	[ConCmd]
+	private static void ShowAll()
+	{
+		foreach ( var card in CardDataList.All.Where( x => x.IsAvailable && !SeenCards.Contains( x.Id ) ) )
+		{
+			SeenCards.Add( card.Id );
+		}
+
+		foreach ( var relic in RelicDataList.All.Where( x => x.IsAvailable && !SeenRelics.Contains( x.Id ) ) )
+		{
+			SeenRelics.Add( relic.Id );
+		}
 	}
 
 	private void HideAllTabs()
@@ -225,7 +243,7 @@ public partial class StatisticsPanel
 	{
 		public string Name { get; }
 		public string Value { get; }
-		
+
 		// ReSharper disable once ConvertToPrimaryConstructor
 		public StatEntry( string name, string value )
 		{

@@ -24,14 +24,12 @@
 						.Where( x => x.IsAvailable )
 						.ToList();
 
-					var seenCards = PlayerData.Data.SeenCards;
-					var seenRelics = PlayerData.Data.SeenRelics;
 					var totalCards = cards.Count;
 					var totalRelics = relics.Count;
 					var totalCardsAndRelics = totalCards + totalRelics;
 
-					var foundCards = seenCards.Count;
-					var foundRelics = seenRelics.Count;
+					var foundCards = SeenCards.Count;
+					var foundRelics = SeenRelics.Count;
 					var totalCardsAndRelicsFound = foundCards + foundRelics;
 				}
 
@@ -40,16 +38,16 @@
 					<div class="tab-title">@( totalCardsAndRelicsFound )/@( totalCardsAndRelics )</div>
 				</div>
 
-				<label class="title">@( seenCards.Count )/@( cards.Count ) Cards</label>
+				<label class="title">@( SeenCards.Count )/@( cards.Count ) Cards</label>
 
 				<div class="cards">
 					@foreach ( var card in cards.OrderByDescending( y => y.Rarity ).ThenBy( x => x.Type ).ThenBy( y => y.Name ) )
 					{
-						<CardPanel class="@( seenCards.Contains( card.Id ) ? "" : "hide" )" Card="@card"></CardPanel>
+						<CardPanel class="@( SeenCards.Contains( card.Id ) ? "" : "hide" )" Card="@card"></CardPanel>
 					}
 				</div>
 
-				<label class="title">@( seenRelics.Count )/@( relics.Count ) Relics</label>
+				<label class="title">@( SeenRelics.Count )/@( relics.Count ) Relics</label>
 
 				<div class="relic-container">
 					<label class="sub-title">Found In Shops</label>
@@ -62,7 +60,7 @@
 						<div class="relics">
 							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
 							{
-								<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )"
+								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )"
 								            Relic="@relic"></RelicPanel>
 							}
 						</div>
@@ -80,7 +78,7 @@
 						<div class="relics">
 							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
 							{
-								<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 							}
 						</div>
 					}
@@ -97,7 +95,7 @@
 						<div class="relics">
 							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
 							{
-								<RelicPanel class="@( seenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
+								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 							}
 						</div>
 					}
