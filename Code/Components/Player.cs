@@ -93,6 +93,8 @@ public class Player : Component
 		target.Deck = copy.Deck;
 		target.Hp = copy.Hp;
 		target.MaxHp = copy.Hp;
+		target.Mp = copy.Mp;
+		target.MaxMp = copy.Mp;
 		target.Xp = 0;
 	}
 

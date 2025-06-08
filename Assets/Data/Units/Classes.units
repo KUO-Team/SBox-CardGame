@@ -58,7 +58,12 @@
           "LocalId": 3
         }
       ],
-      "Passives": []
+      "Passives": [
+        {
+          "Source": "",
+          "LocalId": 100
+        }
+      ]
     },
     {
       "Id": {
@@ -118,7 +123,12 @@
           "LocalId": 7
         }
       ],
-      "Passives": []
+      "Passives": [
+        {
+          "Source": "",
+          "LocalId": 100
+        }
+      ]
     }
   ],
   "__references": [],

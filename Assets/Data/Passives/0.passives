@@ -3,38 +3,11 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 1
+        "LocalId": 100
       },
-      "Name": "Bloodfeeding",
-      "Description": "If this unit damages a target with Bleed, heal damage dealt. (Max. 2)<br>This effect can trigger once per turn.",
-      "Script": "Bloodfeeding"
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 2
-      },
-      "Name": "Starved For Blood",
-      "Description": "At the start of the turn, if this unit failed to heal from Bloodfeeding last turn, gain 1 Power Down and take 2 fixed damage.",
-      "Script": "BloodStarved"
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 3
-      },
-      "Name": "Preparation",
-      "Description": "At the start of the first turn, draw 2 cards.",
-      "Script": "Preparation"
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 4
-      },
-      "Name": "Bulky Armor",
-      "Description": "At the start of the turn, gain 2 Protection.",
-      "Script": "BulkyArmor"
+      "Name": "???",
+      "Description": "If this unit perishes the run is over.",
+      "Script": "Player"
     }
   ],
   "__references": [],
