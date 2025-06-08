@@ -18,6 +18,12 @@ public sealed class MapManager : Singleton<MapManager>
 	[Property, ReadOnly]
 	public bool MapGenerated { get; set; }
 
+	[Property]
+	public int NodesCompleted { get; set; }
+
+	[Property]
+	public int EnemyLevel { get; set; } = 1;
+	
 	public MapPanel? Map => Scene.GetInstance<MapPanel>();
 
 	public Dictionary<int, List<Id>> FloorBattles { get; set; } = new()
@@ -125,6 +131,7 @@ public sealed class MapManager : Singleton<MapManager>
 		{
 			if ( SaveManager.Instance.ActiveRunData is not null )
 			{
+				NodesCompleted = 0;
 				SaveManager.Instance.ActiveRunData.CompletedNodes.Clear();
 				SaveManager.Instance.ActiveRunData.MapNodeIndex = 0;
 				PlayerData.Save();

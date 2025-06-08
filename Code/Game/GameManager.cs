@@ -80,6 +80,10 @@ public sealed class GameManager : Singleton<GameManager>
 				if ( !runData.CompletedNodes.Contains( wIndex ) )
 				{
 					runData.CompletedNodes.Add( wIndex );
+					if ( MapManager.Instance.IsValid() )
+					{
+						MapManager.Instance.NodesCompleted++;
+					}
 				}
 				PlayerData.Save();
 			}
