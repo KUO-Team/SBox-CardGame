@@ -17,6 +17,14 @@
             "Source": "",
             "LocalId": 2
           }
+        },
+        {
+          "UseFloorLevelScaling": true,
+          "BaseLevel": 1,
+          "Id": {
+            "Source": "",
+            "LocalId": 1
+          }
         }
       ],
       "Rewards": {
