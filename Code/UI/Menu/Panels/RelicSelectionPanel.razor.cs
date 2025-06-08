@@ -80,9 +80,9 @@ public partial class RelicSelectionPanel
 			return;
 		}
 		
+		var selectedRelics = SelectedRelics.ToList();
 		if ( deselectOld && MaxSelectableRelics == 1 )
 		{
-			var selectedRelics = SelectedRelics.ToList();
 			var relicsToDeselect = selectedRelics.Where( selectedRelic => selectedRelic != relic && Relics.Contains( selectedRelic ) ).ToList();
 			foreach ( var selectedRelic in relicsToDeselect )
 			{
@@ -143,8 +143,10 @@ public partial class RelicSelectionPanel
 		Menu.StartRun( SelectedRelics );
 	}
 
-	public void Close()
+	private void Close()
 	{
+		SelectedRelics.Clear();
+		_playerSelectedRelics.Clear();
 		this.Hide();
 	}
 
