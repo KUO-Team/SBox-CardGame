@@ -59,10 +59,9 @@ public class HealthComponent : Component, IOwnable
 			}
 		}
 
-		ProcessDamageEffects( damage, attacker );
-
 		Health = Math.Max( Health - damage, 0 );
 		OnTakeDamage?.Invoke( damage );
+		ProcessDamageEffects( damage, attacker );
 		DamageNumbers( damage );
 
 		if ( Health == 0 )
@@ -83,10 +82,10 @@ public class HealthComponent : Component, IOwnable
 			return;
 		}
 
-		ProcessDamageEffects( damage, attacker );
 
 		Health = Math.Max( Health - damage, 0 );
 		OnTakeDamage?.Invoke( damage );
+		ProcessDamageEffects( damage, attacker );
 		DamageNumbers( damage );
 
 		if ( Health == 0 )
