@@ -98,7 +98,7 @@
       "Icon": "",
       "Emoji": "\uD83E\uDE78",
       "Name": "Pact Brand",
-      "Description": "When you play an attack card, add +2 power to it's attacks but take 2 fixed damage.",
+      "Description": "When you play an attack card, add +2 power to its attacks but take 2 fixed damage.",
       "IsActivatable": false,
       "Flavor": [
         "A scar on your soul, offering power at the cost of your own vitality."
@@ -116,7 +116,7 @@
       "Icon": "",
       "Emoji": "\uD83D\uDC8D",
       "Name": "Ring of Power",
-      "Description": "At the start of the turn, gain X Attack Power Up and X Fragile. (X is the turn count (Max. 5))",
+      "Description": "At the start of the turn, gain X Attack Power Up and X Fragile. (X is the turn count (Max. 3))",
       "IsActivatable": false,
       "Flavor": [
         "Time spirals into your favor, but each passing moment chips away at your resolve."
