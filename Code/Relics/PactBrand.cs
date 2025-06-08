@@ -19,7 +19,7 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 			return;
 		}
 
-		Owner?.HealthComponent?.TakeFixedDamage( 1 );
+		Owner?.HealthComponent?.TakeFixedDamage( 2 );
 		_powerModifier = new PowerModifier( 2, x => x.Type == Action.ActionType.Attack, 1 );
 		card.Modifiers.AddModifier( _powerModifier );
 		base.BeforePlayCard( card, unit );
