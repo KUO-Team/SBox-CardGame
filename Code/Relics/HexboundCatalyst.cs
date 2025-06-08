@@ -17,7 +17,7 @@ public class HexboundCatalyst( Data.Relic data ) : Relic( data )
 			}
 			else
 			{
-				unit.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown, 2 );
+				unit.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown );
 			}
 		}
 		
