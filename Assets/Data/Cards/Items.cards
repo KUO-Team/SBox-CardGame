@@ -16,7 +16,7 @@
       "Type": "Item",
       "Rarity": "Common",
       "Availabilities": "Shop",
-      "Keywords": "Heal,Recovery",
+      "Keywords": "",
       "Actions": [
         {
           "Type": "Effect",
@@ -44,7 +44,7 @@
       "Type": "Item",
       "Rarity": "Common",
       "Availabilities": "Shop",
-      "Keywords": "Recovery",
+      "Keywords": "",
       "Actions": [
         {
           "Type": "Effect",
@@ -72,7 +72,7 @@
       "Type": "Item",
       "Rarity": "Common",
       "Availabilities": "Shop",
-      "Keywords": "Power Up",
+      "Keywords": "Attack Power Up",
       "Actions": [
         {
           "Type": "Effect",

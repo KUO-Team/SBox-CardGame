@@ -1,14 +1,14 @@
 {
   "List": [
     {
-      "Name": "Power Up",
+      "Name": "Attack Power Up",
       "Description": "Attack Power +X for this turn.",
       "Markers": {
         "X": "Stack"
       }
     },
     {
-      "Name": "Power Down",
+      "Name": "Attack Power Down",
       "Description": "Attack Power -X for this turn.",
       "Markers": {
         "X": "Stack"
@@ -16,34 +16,34 @@
     },
     {
       "Name": "Protection",
-      "Description": "Block X damage for this turn.",
+      "Description": "Take X less physical damage for this turn.",
       "Markers": {
         "X": "Stack"
       }
     },
     {
       "Name": "Fragile",
-      "Description": "Take X additional damage from attacks for this turn.",
+      "Description": "Take X additional physical damage for this turn.",
       "Markers": {
         "X": "Stack"
       }
     },
     {
       "Name": "Burn",
-      "Description": "At the end of your turn, take X damage.",
+      "Description": "At the end of the turn, take X fixed damage, then halve the stack.",
       "Markers": {
         "X": "Stack"
       }
     },
     {
       "Name": "Bleed",
-      "Description": "Upon playing an attack card, take X damage. Then decrement the stack by 1.",
+      "Description": "Upon playing an attack card, take X fixed damage, then halve the stack.",
       "Markers": {
         "X": "Stack"
       }
     },
     {
-      "Name": "Immobilized",
+      "Name": "Stunned",
       "Description": "All card slots become unavailable for X turns.",
       "Markers": {
         "X": "Stack"
@@ -56,8 +56,15 @@
     },
     {
       "Name": "Enchanted",
-      "Description": "Used for certain card effects.",
+      "Description": "Used for certain card effects. At the end of the turn, exhausts.",
       "Markers": null
+    },
+    {
+      "Name": "Haste",
+      "Description": "Speed +X for this turn.",
+      "Markers": {
+        "X": "Stack"
+      }
     },
     {
       "Name": "Cold",
@@ -84,11 +91,6 @@
     {
       "Name": "Instant",
       "Description": "Card is played immediately upon being assigned to a card slot.",
-      "Markers": null
-    },
-    {
-      "Name": "Singleton",
-      "Description": "Active if the deck does not contain duplicate copies of cards.",
       "Markers": null
     }
   ]

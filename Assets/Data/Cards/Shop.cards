@@ -16,7 +16,7 @@
       "Type": "Spell",
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
-      "Keywords": "Power Up",
+      "Keywords": "Attack Power Up",
       "Actions": [
         {
           "Type": "Effect",
@@ -308,7 +308,7 @@
       "Type": "Spell",
       "Rarity": "Rare",
       "Availabilities": "Shop",
-      "Keywords": "",
+      "Keywords": "Bleed,Burn",
       "Actions": [
         {
           "Type": "Effect",
@@ -456,7 +456,7 @@
       "Type": "Defense",
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
-      "Keywords": "",
+      "Keywords": "Protection",
       "Actions": [
         {
           "Type": "Effect",
@@ -484,7 +484,7 @@
       "Type": "Defense",
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
-      "Keywords": "Protection",
+      "Keywords": "Protection,Discard",
       "Actions": [
         {
           "Type": "Effect",
@@ -518,7 +518,7 @@
           "Type": "Effect",
           "Power": {
             "Min": 2,
-            "Max": 4
+            "Max": 2
           },
           "Script": "DiscardHealth"
         },
@@ -676,7 +676,7 @@
       "Type": "Spell",
       "Rarity": "Common",
       "Availabilities": "None",
-      "Keywords": "",
+      "Keywords": "Cold",
       "Actions": [
         {
           "Type": "Effect",
@@ -704,7 +704,7 @@
       "Type": "Spell",
       "Rarity": "Epic",
       "Availabilities": "Shop",
-      "Keywords": "",
+      "Keywords": "Stunned",
       "Actions": [
         {
           "Type": "Effect",
