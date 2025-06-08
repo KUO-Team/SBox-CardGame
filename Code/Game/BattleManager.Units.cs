@@ -116,6 +116,8 @@ public sealed partial class BattleManager
 		{
 			unit.HealthComponent.Health = Player.Local.Unit.Hp;
 			unit.HealthComponent.MaxHealth = Player.Local.Unit.MaxHp;
+			unit.Mana = Player.Local.Unit.Mp;
+			unit.MaxMana = Player.Local.Unit.MaxMp;
 		}
 
 		Player.Local.Units.Add( unit );

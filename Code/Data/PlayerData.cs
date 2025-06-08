@@ -214,6 +214,10 @@ public class UnitData : IDeepCopyable<UnitData>
 	public int Hp { get; set; }
 
 	public int MaxHp { get; set; }
+	
+	public int Mp { get; set; }
+	
+	public int MaxMp { get; set; }
 
 	public int Level { get; set; }
 
@@ -256,6 +260,8 @@ public class UnitData : IDeepCopyable<UnitData>
 		{
 			Hp = Hp,
 			MaxHp = MaxHp,
+			Mp = Mp,
+			MaxMp = MaxMp,
 			Level = Level,
 			Xp = Xp,
 			Deck = [..Deck]
