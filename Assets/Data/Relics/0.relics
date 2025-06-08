@@ -60,42 +60,6 @@
         "LocalId": 4
       },
       "Icon": "",
-      "Emoji": "\uD83D\uDD2E",
-      "Name": "Mirror Spark",
-      "Description": "When you play a spell card, it has a 50% chance to duplicate.<br>Duplicated effects have a 50% chance to target randomly.",
-      "IsActivatable": false,
-      "Flavor": [
-        "Reflection is more than mere image—sometimes it multiplies, sometimes it misleads."
-      ],
-      "Keywords": "",
-      "Rarity": "Common",
-      "Availabilities": "None",
-      "Script": "MirrorSpark"
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 5
-      },
-      "Icon": "",
-      "Emoji": "⚗️",
-      "Name": "Witchglass Vial",
-      "Description": "At the start of the turn, copy a random status affecting you.",
-      "IsActivatable": false,
-      "Flavor": [
-        "A vial filled with remnants of spells and curses, capturing the essence of your suffering and luck."
-      ],
-      "Keywords": "",
-      "Rarity": "Common",
-      "Availabilities": "None",
-      "Script": "WitchVial"
-    },
-    {
-      "Id": {
-        "Source": "",
-        "LocalId": 6
-      },
-      "Icon": "",
       "Emoji": "\uD83E\uDE78",
       "Name": "Pact Brand",
       "Description": "When you play an attack card, add +2 power to its attacks but take 2 fixed damage.",
@@ -111,7 +75,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 7
+        "LocalId": 5
       },
       "Icon": "",
       "Emoji": "\uD83D\uDC8D",
@@ -129,7 +93,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 8
+        "LocalId": 6
       },
       "Icon": "",
       "Emoji": "\uD83C\uDFB4",
@@ -147,7 +111,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 9
+        "LocalId": 7
       },
       "Icon": "",
       "Emoji": "\uD83C\uDF18",
@@ -165,7 +129,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 10
+        "LocalId": 8
       },
       "Icon": "",
       "Emoji": "⛓️",
@@ -183,7 +147,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 11
+        "LocalId": 9
       },
       "Icon": "",
       "Emoji": "⚖️",
@@ -201,12 +165,12 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 12
+        "LocalId": 10
       },
       "Icon": "",
       "Emoji": "\uD83E\uDDEA",
       "Name": "Hexbound Catalyst",
-      "Description": "At the start of the turn, if any of your units are Enchanted, they gain 2 Attack Power Up. If they aren't, they gain 2 Power Down.",
+      "Description": "At the start of the turn, if any of your units are Enchanted, they gain 2 Attack Power Up. If they aren't, they gain 1 Attack Power Down.",
       "IsActivatable": false,
       "Flavor": [
         "Magic gives with one hand and takes with the other."
@@ -219,7 +183,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 13
+        "LocalId": 11
       },
       "Icon": "",
       "Emoji": "\uD83E\uDDCD",
@@ -237,7 +201,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 14
+        "LocalId": 12
       },
       "Icon": "",
       "Emoji": "\uD83D\uDD6F️",
@@ -255,7 +219,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 15
+        "LocalId": 13
       },
       "Icon": "",
       "Emoji": "❤️",
@@ -273,7 +237,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 16
+        "LocalId": 14
       },
       "Icon": "",
       "Emoji": "\uD83D\uDC9B",
@@ -291,7 +255,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 17
+        "LocalId": 15
       },
       "Icon": "",
       "Emoji": "\uD83D\uDC8C",
@@ -309,7 +273,7 @@
     {
       "Id": {
         "Source": "",
-        "LocalId": 18
+        "LocalId": 16
       },
       "Icon": "",
       "Emoji": "💊",
