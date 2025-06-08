@@ -88,15 +88,4 @@ public class Hud : PanelComponent
 	{
 		return !Hud.Instance.IsValid() ? null : Hud.Instance.GetFirstElement<T>();
 	}
-
-	private void StyleHack()
-	{
-		var root = Panel.FindRootPanel();
-		foreach ( var stylesheet in root.AllStyleSheets.ToList() )
-		{
-			root.StyleSheet.Remove( stylesheet );
-		}
-
-		root.StyleSheet.Load( "/UI/Hud/Hud.cs.scss" );
-	}
 }
