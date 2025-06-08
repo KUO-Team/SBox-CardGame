@@ -15,7 +15,7 @@
         "LocalId": 2
       },
       "Name": "Starved For Blood",
-      "Description": "At the start of the turn, if this unit failed to heal from Bloodfeeding last turn, gain 1 Power Down and take 2 fixed damage.",
+      "Description": "At the start of the turn, if this unit failed to heal from Bloodfeeding last turn, gain 1 Attack Power Down.",
       "Script": "BloodStarved"
     },
     {

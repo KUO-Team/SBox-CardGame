@@ -30,8 +30,6 @@ public class BloodStarved( Data.PassiveAbility data ) : PassiveAbility( data )
 		}
 
 		Owner.StatusEffects.AddStatusEffectByKey( StatusEffect.StatusKey.AttackPowerDown );
-		Owner.HealthComponent.TakeFixedDamage( 2 );
-
 		base.OnTurnStart();
 	}
 
