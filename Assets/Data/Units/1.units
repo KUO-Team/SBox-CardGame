@@ -7,7 +7,7 @@
       },
       "Name": "Zombie",
       "Description": "Undead husk of an adventurer, reanimated through unknown means.",
-      "Type": "None",
+      "Type": "Normal",
       "Sprite": {
         "Resource": "sprites/zombie.sprite",
         "Portrait": "materials/units/portraits/zombie.png"
@@ -139,7 +139,7 @@
       },
       "Name": "Knight",
       "Description": "Member of the expedition force.",
-      "Type": "None",
+      "Type": "Normal",
       "Sprite": {
         "Resource": "sprites/knight.sprite",
         "Portrait": "materials/units/portraits/knight.png"
