@@ -23,16 +23,32 @@ public sealed class MapManager : Singleton<MapManager>
 	public Dictionary<int, List<Id>> FloorBattles { get; set; } = new()
 	{
 		{
-			3, [2, 3]
+			3, [3]
 		},
 		{
 			2, [3, 4, 5, 6]
 		},
 		{
-			1, [3, 4, 5, 6, 7]
+			1, [3, 4, 5, 6]
 		},
 		{
-			0, [3, 4, 5, 6, 7]
+			0, [3, 4, 5, 6]
+		}
+	};
+	
+	public Dictionary<int, List<Id>> FloorElites { get; set; } = new()
+	{
+		{
+			3, [2]
+		},
+		{
+			2, [2]
+		},
+		{
+			1, [2, 7]
+		},
+		{
+			0, [2, 7]
 		}
 	};
 

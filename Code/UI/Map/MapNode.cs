@@ -46,9 +46,10 @@ public class MapNode : Panel
 			Text = Type switch
 			{
 				MapNodeType.Start => "X",
-				MapNodeType.Battle => "B",
 				MapNodeType.Shop => "S",
 				MapNodeType.Event => "?",
+				MapNodeType.Battle => "B",
+				MapNodeType.Elite => "E",
 				MapNodeType.Boss => "!",
 				_ => "?"
 			}
@@ -75,9 +76,10 @@ public class MapNode : Panel
 	public enum MapNodeType
 	{
 		Start,
-		Battle,
 		Shop,
+		Event,
+		Battle,
+		Elite,
 		Boss,
-		Event
 	}
 }

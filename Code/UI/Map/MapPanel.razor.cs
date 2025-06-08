@@ -178,6 +178,7 @@ public partial class MapPanel
 		var tiers = GenerateTiers( totalTiers, maxNodesPerTier );
 		InjectShopNode( tiers );
 		InjectEventNodes( tiers );
+		InjectEliteNode( tiers );
 
 		_nodeTypes[tiers.First()[0]] = MapNode.MapNodeType.Start;
 		_nodeTypes[tiers.Last()[0]] = MapNode.MapNodeType.Boss;
@@ -236,6 +237,38 @@ public partial class MapPanel
 
 		var shopIndex = candidates[_seededRandom.Next( candidates.Count )];
 		_nodeTypes[shopIndex] = MapNode.MapNodeType.Shop;
+	}
+
+	private void InjectEliteNode( List<List<int>> tiers )
+	{
+		if ( !GameManager.IsValid() || !MapManager.IsValid() )
+		{
+			return;
+		}
+
+		// Check if elites exist for this floor
+		if ( !MapManager.FloorElites.TryGetValue( GameManager.Floor, out var elites ) || elites.Count == 0 || tiers.Count <= 3 )
+		{
+			return;
+		}
+
+		// Skip tier 1 entirely — start from tier 2, but exclude the last tier (boss tier)
+		var eligibleTiers = Enumerable.Range( 2, tiers.Count - 3 ).ToList();
+		if ( eligibleTiers.Count == 0 )
+		{
+			return;
+		}
+
+		var randomTier = eligibleTiers[_seededRandom.Next( eligibleTiers.Count )];
+		var candidates = tiers[randomTier].Where( i => _nodeTypes[i] == MapNode.MapNodeType.Battle ).ToList();
+		
+		if ( candidates.Count == 0 )
+		{
+			return;
+		}
+
+		var eliteIndex = candidates[_seededRandom.Next( candidates.Count )];
+		_nodeTypes[eliteIndex] = MapNode.MapNodeType.Elite;
 	}
 
 	private void InjectEventNodes( List<List<int>> tiers )
@@ -311,6 +344,12 @@ public partial class MapPanel
 		{
 			case MapNode.MapNodeType.Battle:
 				node.Battle = Game.Random.FromList( MapManager.FloorBattles[GameManager.Floor]! );
+				break;
+			case MapNode.MapNodeType.Elite:
+				if ( MapManager.FloorElites.TryGetValue( GameManager.Floor, out var elites ) && elites.Count > 0 )
+				{
+					node.Battle = Game.Random.FromList( elites! );
+				}
 				break;
 			case MapNode.MapNodeType.Event when _events.TryGetValue( index, out var eventId ):
 				node.Event = eventId;
@@ -585,6 +624,29 @@ public partial class MapPanel
 					if ( node.Battle is null )
 					{
 						Log.Error( $"No battle set on node {node}!" );
+						return;
+					}
+
+					var battle = BattleDataList.GetById( node.Battle );
+					if ( battle is null )
+					{
+						return;
+					}
+
+					_battleInfoPanel?.Delete();
+					_battleInfoPanel = new BattleInfoPanel
+					{
+						Battle = battle
+					};
+
+					Panel.AddChild( _battleInfoPanel );
+					break;
+				}
+			case MapNode.MapNodeType.Elite:
+				{
+					if ( node.Battle is null )
+					{
+						Log.Error( $"No elite battle set on node {node}!" );
 						return;
 					}
 
