@@ -6,8 +6,8 @@
         "LocalId": 2
       },
       "Name": "Strong Undead",
+      "Type": "Elite",
       "Bgm": null,
-      "IsBoss": false,
       "PlayerUnits": [],
       "EnemyUnits": [
         {
@@ -33,8 +33,8 @@
         "LocalId": 3
       },
       "Name": "The Undead",
+      "Type": "Normal",
       "Bgm": null,
-      "IsBoss": false,
       "PlayerUnits": [],
       "EnemyUnits": [
         {
@@ -68,8 +68,8 @@
         "LocalId": 4
       },
       "Name": "The Undead",
+      "Type": "Boss",
       "Bgm": null,
-      "IsBoss": true,
       "PlayerUnits": [],
       "EnemyUnits": [
         {

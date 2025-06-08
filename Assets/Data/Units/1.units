@@ -7,6 +7,7 @@
       },
       "Name": "Zombie",
       "Description": "Undead husk of an adventurer, reanimated through unknown means.",
+      "Type": "None",
       "Sprite": {
         "Resource": "sprites/zombie.sprite",
         "Portrait": "materials/units/portraits/zombie.png"
@@ -72,6 +73,7 @@
       },
       "Name": "Elite Zombie",
       "Description": "Stronger version of a zombie.",
+      "Type": "Elite",
       "Sprite": {
         "Resource": "sprites/zombie.sprite",
         "Portrait": "materials/units/portraits/zombie.png"
@@ -137,6 +139,7 @@
       },
       "Name": "Knight",
       "Description": "Member of the expedition force.",
+      "Type": "None",
       "Sprite": {
         "Resource": "sprites/knight.sprite",
         "Portrait": "materials/units/portraits/knight.png"
@@ -190,6 +193,7 @@
       },
       "Name": "Elite Knight",
       "Description": "Armorclad knight of the expedition force. Better trained and equipped than a regular knight.",
+      "Type": "Elite",
       "Sprite": {
         "Resource": "sprites/eliteknight.sprite",
         "Portrait": "materials/units/portraits/eliteknight.png"

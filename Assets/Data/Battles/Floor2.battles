@@ -6,8 +6,8 @@
         "LocalId": 5
       },
       "Name": "The Knight",
+      "Type": "Normal",
       "Bgm": null,
-      "IsBoss": false,
       "PlayerUnits": [],
       "EnemyUnits": [
         {
@@ -33,8 +33,8 @@
         "LocalId": 6
       },
       "Name": "The Knights",
+      "Type": "Normal",
       "Bgm": null,
-      "IsBoss": false,
       "PlayerUnits": [],
       "EnemyUnits": [
         {
@@ -68,8 +68,8 @@
         "LocalId": 7
       },
       "Name": "The Elite Knight",
+      "Type": "Boss",
       "Bgm": null,
-      "IsBoss": true,
       "PlayerUnits": [],
       "EnemyUnits": [
         {

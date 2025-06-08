@@ -7,10 +7,10 @@ public class Battle : IResource, IDeepCopyable<Battle>
 
 	public string Name { get; set; } = string.Empty;
 
+	public BattleType Type { get; set; } = BattleType.Normal;
+	
 	public SoundEvent? Bgm { get; set; }
-
-	public bool IsBoss { get; set; }
-
+	
 	[InlineEditor, WideMode]
 	public List<Id> PlayerUnits { get; set; } = [];
 	
@@ -28,8 +28,8 @@ public class Battle : IResource, IDeepCopyable<Battle>
 		{
 			Id = Id,
 			Name = Name,
+			Type = Type,
 			Bgm = Bgm,
-			IsBoss = IsBoss,
 			EnemyUnits = [..EnemyUnits],
 			Rewards = Rewards,
 			Script = Script
@@ -39,6 +39,13 @@ public class Battle : IResource, IDeepCopyable<Battle>
 	public override string ToString()
 	{
 		return $"Battle: {Name} - Id: {Id.LocalId}";
+	}
+
+	public enum BattleType
+	{
+		Normal,
+		Elite,
+		Boss
 	}
 
 	public class BattleUnit

@@ -8,6 +8,8 @@ public class Unit : IResource, IDeepCopyable<Unit>
 	public string Name { get; set; } = "";
 
 	public string Description { get; set; } = "";
+	
+	public UnitType Type { get; set; } = UnitType.Normal;
 
 	[InlineEditor]
 	public SpriteInfo? Sprite { get; set; }
@@ -41,6 +43,7 @@ public class Unit : IResource, IDeepCopyable<Unit>
 			Id = Id,
 			Name = Name,
 			Description = Description,
+			Type = Type,
 			Sprite = Sprite,
 			Prefab = Prefab,
 			Hp = Hp,
@@ -56,6 +59,13 @@ public class Unit : IResource, IDeepCopyable<Unit>
 	public override string ToString()
 	{
 		return $"Unit: {Name} - Id: {Id.LocalId}";
+	}
+
+	public enum UnitType
+	{
+		Normal,
+		Elite,
+		Boss
 	}
 
 	public class SpriteInfo
