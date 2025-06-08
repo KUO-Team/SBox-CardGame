@@ -26,7 +26,7 @@
       "Icon": "",
       "Emoji": "✨",
       "Name": "Sigil of Excess",
-      "Description": "All spell cards have +2 added to their effects, but all attack cards have -2 power.",
+      "Description": "All spell cards have +2 added to their effects, but all attacks have -2 power.",
       "IsActivatable": false,
       "Flavor": [
         "An ancient sigil, one that amplifies everything it touches, even the simplest incantation."
@@ -269,6 +269,60 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Script": "RecursiveHeart"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 16
+      },
+      "Icon": "",
+      "Emoji": "\uD83D\uDC9B",
+      "Name": "Fate's Favor",
+      "Description": "At the start of the turn, if you have no cards in hand, gain 2 Protection.",
+      "IsActivatable": false,
+      "Flavor": [
+        "When fate smiles, it grants both power and protection."
+      ],
+      "Keywords": "",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Script": "FatesFavor"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 17
+      },
+      "Icon": "",
+      "Emoji": "\uD83D\uDC8C",
+      "Name": "Echoing Shield",
+      "Description": "At the start of the turn, gain 1 Protection for each card that was played last turn. (Max. 3)",
+      "IsActivatable": false,
+      "Flavor": [
+        "The echoes of your past actions shield you, but only if you remember to listen."
+      ],
+      "Keywords": "",
+      "Rarity": "Rare",
+      "Availabilities": "Shop",
+      "Script": "EchoingShield"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 18
+      },
+      "Icon": "",
+      "Emoji": "💊",
+      "Name": "Overchannel Organ",
+      "Description": "Gain +2 Max MP.<br>At the start of combat, take fixed damage equal to half the unspent MP.",
+      "IsActivatable": false,
+      "Flavor": [
+        "It feeds on restraint, punishing hesitation with internal collapse."
+      ],
+      "Keywords": "",
+      "Rarity": "Uncommon",
+      "Availabilities": "Shop",
+      "Script": "OverchannelOrgan"
     }
   ],
   "__references": [],
