@@ -42,7 +42,7 @@ public class BleedingStatue( Data.Relic data ) : Relic( data )
 			
 			if ( bleed.Stack >= 5 )
 			{
-				unit.StatusEffects.AddStatusEffectByKey( StatusEffect.StatusKey.PowerUp, 2 );
+				unit.StatusEffects.AddStatusEffectByKey( StatusEffect.StatusKey.AttackPowerUp, 2 );
 			}
 
 			if ( bleed.Stack >= 10 )

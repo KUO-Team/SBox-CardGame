@@ -2,7 +2,7 @@
 
 public class PowerUp( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override StatusKey Keyword => StatusKey.PowerUp;
+	public override StatusKey Keyword => StatusKey.AttackPowerUp;
 	
 	public override string Description()
 	{

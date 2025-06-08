@@ -20,7 +20,7 @@ public class Masquerade( Data.Relic data ) : Relic( data )
 
 		if ( Game.Random.Int( 1 ) == 0 )
 		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 2 );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerUp, 2 );
 		}
 		else
 		{

@@ -2,7 +2,7 @@
 
 public class PowerDown( Data.StatusEffect data ) : StatusEffect( data )
 {
-	public override StatusKey Keyword => StatusKey.PowerDown;
+	public override StatusKey Keyword => StatusKey.AttackPowerDown;
 	
 	public override string Description()
 	{

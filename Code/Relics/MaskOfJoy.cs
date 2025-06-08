@@ -36,11 +36,11 @@ public class MaskOfJoy( Data.Relic data ) : Relic( data )
 		if ( amount > 0 )
 		{
 			var max = Math.Min( amount, MaxBuffAmount );
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, max );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerUp, max );
 		}
 		else
 		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown );	
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerDown );	
 		}
 
 		_damageTaken = 0;

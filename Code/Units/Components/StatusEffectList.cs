@@ -159,8 +159,8 @@ public class StatusEffectList : OwnableListComponent<StatusEffect>
 	{
 		return key switch
 		{
-			StatusEffect.StatusKey.PowerUp => 1,
-			StatusEffect.StatusKey.PowerDown => 2,
+			StatusEffect.StatusKey.AttackPowerUp => 1,
+			StatusEffect.StatusKey.AttackPowerDown => 2,
 			StatusEffect.StatusKey.Protection => 3,
 			StatusEffect.StatusKey.Fragile => 4,
 			StatusEffect.StatusKey.Burn => 5,

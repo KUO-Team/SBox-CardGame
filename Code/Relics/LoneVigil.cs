@@ -22,7 +22,7 @@ public class LoneVigil( Data.Relic data ) : Relic( data )
 					// More enemies than allies: gain 1 Power Up for each extra enemy
 					for ( var i = 0; i < difference; i++ )
 					{
-						Owner.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp );
+						Owner.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerUp );
 					}
 					break;
 				}

@@ -116,8 +116,8 @@ public abstract class StatusEffect( Data.StatusEffect data ) : IOwnable
 
 	public enum StatusKey
 	{
-		PowerUp,
-		PowerDown,
+		AttackPowerUp,
+		AttackPowerDown,
 		Protection,
 		Fragile,
 		Burn,

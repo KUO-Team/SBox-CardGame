@@ -23,12 +23,12 @@ public class EchoCore( Data.Relic data ) : Relic( data )
 		var powerUpCount = Math.Min( _lastTurnDiscards, 2 );
 		for ( var i = 0; i < powerUpCount; i++ )
 		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerUp );
 		}
 
 		if ( powerUpCount == 0 )
 		{
-			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerDown );
+			Owner.StatusEffects.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerDown );
 		}
 
 		base.OnTurnStart();

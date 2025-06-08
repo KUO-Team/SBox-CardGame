@@ -19,7 +19,7 @@ public class EchoOfOne( Data.Relic data ) : Relic( data )
 			return;
 		}
 		
-		Owner.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.PowerUp, 3 );
+		Owner.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.AttackPowerUp, 3 );
 		base.OnTurnStart();
 	}
 }
