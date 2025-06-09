@@ -81,8 +81,7 @@ public class HealthComponent : Component, IOwnable
 		{
 			return;
 		}
-
-
+		
 		Health = Math.Max( Health - damage, 0 );
 		OnTakeDamage?.Invoke( damage );
 		ProcessDamageEffects( damage, attacker );
@@ -103,19 +102,21 @@ public class HealthComponent : Component, IOwnable
 
 	public async Task Die()
 	{
-		if ( OnDied is not null )
+		if ( OnDied is null )
 		{
-			foreach ( var @delegate in OnDied.GetInvocationList() )
+			return;
+		}
+		
+		foreach ( var @delegate in OnDied.GetInvocationList() )
+		{
+			try
 			{
-				try
-				{
-					var handler = (Func<Task>)@delegate;
-					await handler();
-				}
-				catch ( Exception ex )
-				{
-					Log.Warning( $"Die called an exception: {ex}" );
-				}
+				var handler = (Func<Task>)@delegate;
+				await handler();
+			}
+			catch ( Exception ex )
+			{
+				Log.Warning( $"Die called an exception: {ex}" );
 			}
 		}
 	}

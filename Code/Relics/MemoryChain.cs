@@ -23,11 +23,12 @@ public class MemoryChain( Data.Relic data ) : Relic( data )
 
 		foreach ( var slot in Owner.Slots )
 		{
-			if ( !slot.IsAssigned )
+			if ( slot.IsAssigned )
 			{
-				// Oh no, a slot is empty. Guess we punish the player for being a failure.
-				Owner.HealthComponent.TakeDamage( 2 );
+				continue;
 			}
+			
+			Owner.HealthComponent.TakeFixedDamage( 2 );
 		}
 	}
 }
