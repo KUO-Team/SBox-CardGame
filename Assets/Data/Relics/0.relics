@@ -44,7 +44,7 @@
       "Icon": "",
       "Emoji": "\uD83D\uDC94",
       "Name": "Desperation",
-      "Description": "While below 80% of Max HP, all cards cost 1 less MP to play.",
+      "Description": "While below 75% of Max HP, all cards cost 1 less MP to play.",
       "IsActivatable": false,
       "Flavor": [
         "When the heart races against time, every breath is a bargain with the inevitable."
@@ -276,7 +276,7 @@
         "LocalId": 16
       },
       "Icon": "",
-      "Emoji": "💊",
+      "Emoji": "\uD83D\uDC8A",
       "Name": "Overchannel Organ",
       "Description": "Gain +2 Max MP.<br>At the start of combat, take fixed damage equal to half the unspent MP.",
       "IsActivatable": false,

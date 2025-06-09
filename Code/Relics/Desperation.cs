@@ -52,6 +52,7 @@ public class Desperation( Data.Relic data ) : Relic( data )
 			card.Modifiers.RemoveModifier( mod.Modifier );
 			_modifiers.Remove( mod );
 		}
+		
 		base.OnTurnEnd();
 	}
 
@@ -63,7 +64,7 @@ public class Desperation( Data.Relic data ) : Relic( data )
 		}
 
 		var healthPercent = (float)Owner.HealthComponent.Health / Owner.HealthComponent.MaxHealth;
-		return healthPercent < 0.2f;
+		return healthPercent < 0.35f;
 	}
 
 	private class Mod
