@@ -38,6 +38,11 @@ public partial class MapPanel
 	private BattleInfoPanel? _battleInfoPanel;
 	private ShopPanel? _shopPanel;
 	private Label? _mapIndicator;
+	
+	private Panel? _mapKey;
+	private Button? _mapKeyButton;
+
+	private int _hoveredNode = -1;
 
 	private readonly Queue<Relics.Relic> _relics = [];
 
@@ -108,6 +113,7 @@ public partial class MapPanel
 		UpdateNodeStates();
 		UpdateLines();
 		UpdateMapIndicator();
+		
 		base.OnTreeBuilt();
 	}
 	
@@ -155,6 +161,33 @@ public partial class MapPanel
 		var relic = _relics.Dequeue();
 		RelicManager.ShownRelics.Add( relic );
 		RelicGainPanel.Show( relic.Data, ShowNextRelic );
+	}
+
+	public void ShowShop()
+	{
+		if ( !_shopPanel.IsValid() )
+		{
+			return;
+		}
+
+		_shopPanel.Show();
+	}
+	
+	private void ToggleMapKey()
+	{
+		if ( !_mapKey.IsValid() )
+		{
+			return;
+		}
+
+		if ( _mapKey.HasClass( "hidden" ) )
+		{
+			_mapKey.Show();
+		}
+		else
+		{
+			_mapKey.Hide();
+		}
 	}
 
 	public void GenerateMapLayout( int? seed = null )
@@ -516,8 +549,6 @@ public partial class MapPanel
 		}
 	}
 
-	private int _hoveredNode = -1;
-
 	public void OnNodeHover( int index )
 	{
 		_hoveredNode = index;
@@ -720,16 +751,6 @@ public partial class MapPanel
 			default:
 				throw new ArgumentOutOfRangeException( node.Type.ToString() );
 		}
-	}
-
-	public void ShowShop()
-	{
-		if ( !_shopPanel.IsValid() )
-		{
-			return;
-		}
-
-		_shopPanel.Show();
 	}
 
 	protected override int BuildHash()

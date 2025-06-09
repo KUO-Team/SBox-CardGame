@@ -23,6 +23,7 @@
 				<label class="player-money">@( player.Money )g</label>
 			}
 		</div>
+		<button class="key-button" onclick="@ToggleMapKey" @ref="_mapKeyButton">Toggle Map Key</button>
 	</div>
 	<label class="floor">Floor @( GameManager?.Floor )</label>
 
@@ -30,7 +31,7 @@
 		<div class="map" @ref="Map"></div>
 	</div>
 	
-	<div class="map-key">
+	<div class="map-key hidden" @ref="_mapKey">
 		<div class="map-key-item">
 			<div class="map-key-icon">X</div>
 			<label class="map-key-label">- Start</label>
