@@ -6,8 +6,8 @@
         "LocalId": 1
       },
       "Name": "Tutorial",
+      "Type": "Normal",
       "Bgm": null,
-      "IsBoss": false,
       "PlayerUnits": [
         {
           "Source": "",
@@ -16,8 +16,9 @@
       ],
       "EnemyUnits": [
         {
-          "UseFloorLevelScaling": false,
-          "BaseLevel": 1,
+          "UseLevelScaling": true,
+          "UseFloorLevel": false,
+          "BaseLevel": 2,
           "Id": {
             "Source": "",
             "LocalId": 1

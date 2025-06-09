@@ -8,12 +8,12 @@ public class Battle : IResource, IDeepCopyable<Battle>
 	public string Name { get; set; } = string.Empty;
 
 	public BattleType Type { get; set; } = BattleType.Normal;
-	
+
 	public SoundEvent? Bgm { get; set; }
-	
+
 	[InlineEditor, WideMode]
 	public List<Id> PlayerUnits { get; set; } = [];
-	
+
 	[InlineEditor, WideMode]
 	public List<BattleUnit> EnemyUnits { get; set; } = [];
 
@@ -50,8 +50,11 @@ public class Battle : IResource, IDeepCopyable<Battle>
 
 	public class BattleUnit
 	{
-		public bool UseFloorLevelScaling { get; set; } = true;
+		public bool UseLevelScaling { get; set; } = true;
 
+		public bool UseFloorLevel { get; set; } = true;
+
+		[HideIf( nameof( UseFloorLevel ), true )]
 		public int BaseLevel { get; set; } = 1;
 
 		[InlineEditor]

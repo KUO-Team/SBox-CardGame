@@ -14,7 +14,7 @@ public sealed partial class BattleManager
 
 	public static List<BattleUnit> AliveUnits => Units.Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
 
-	public BattleUnit? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None, Transform? transform = null )
+	public BattleUnit? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None, Transform? transform = null, int? level = null )
 	{
 		if ( !UnitPrefab.IsValid() )
 		{
@@ -43,6 +43,14 @@ public sealed partial class BattleManager
 		
 		unit.SetData( data, faction );
 
+		if ( level.HasValue && faction == Faction.Enemy )
+		{
+			if ( unit.LevelComponent.IsValid() )
+			{
+				unit.LevelComponent.Level = level.Value;
+			}
+		}
+
 		if ( faction == Faction.Player && spriteFlags == SpriteFlags.None )
 		{
 			if ( unit.SpriteComponent.IsValid() )
@@ -50,26 +58,9 @@ public sealed partial class BattleManager
 				unit.SpriteComponent.SpriteFlags = SpriteFlags.HorizontalFlip;
 			}
 		}
-
+		
 		Log.Info( $"Spawned unit {data.Name}" );
 		return unit;
-	}
-
-	public UnitSpawnPoint? GetRandomAvailableSpawnPoint( Faction? faction = null )
-	{
-		var spawnPoints = Scene.GetAllComponents<UnitSpawnPoint>();
-
-		if ( faction.HasValue )
-		{
-			spawnPoints = spawnPoints.Where( x => x.Faction == faction.Value );
-		}
-
-		var availableSpawnPoints = spawnPoints
-			.Where( x => !x.IsOccupied )
-			.OrderByDescending( x => x.Order )
-			.ToList();
-
-		return availableSpawnPoints.FirstOrDefault();
 	}
 
 	public BattleUnit? SpawnPlayerUnit()
@@ -122,6 +113,23 @@ public sealed partial class BattleManager
 
 		Player.Local.Units.Add( unit );
 		return unit;
+	}
+
+	public UnitSpawnPoint? GetRandomAvailableSpawnPoint( Faction? faction = null )
+	{
+		var spawnPoints = Scene.GetAllComponents<UnitSpawnPoint>();
+
+		if ( faction.HasValue )
+		{
+			spawnPoints = spawnPoints.Where( x => x.Faction == faction.Value );
+		}
+
+		var availableSpawnPoints = spawnPoints
+			.Where( x => !x.IsOccupied )
+			.OrderByDescending( x => x.Order )
+			.ToList();
+
+		return availableSpawnPoints.FirstOrDefault();
 	}
 
 	public static List<BattleUnit> GetUnits( Faction faction )

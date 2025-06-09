@@ -4,6 +4,7 @@ using Sandbox.Audio;
 using Sandbox.Diagnostics;
 using CardGame.Data;
 using CardGame.UI;
+using CardGame.Units;
 
 namespace CardGame;
 
@@ -107,7 +108,18 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 			var unitData = UnitDataList.GetById( unit.Id );
 			if ( unitData is not null )
 			{
-				var battleUnit = SpawnUnitFromData( unitData, Faction.Enemy );
+				BattleUnit? battleUnit = null;
+				var mapManager = MapManager.Instance;
+				if ( mapManager.IsValid() )
+				{
+					var enemyLevel = unit.UseFloorLevel ? mapManager.EnemyLevel : unit.BaseLevel;
+					battleUnit = SpawnUnitFromData( unitData, Faction.Enemy, level: enemyLevel );
+				}
+				else
+				{
+					battleUnit = SpawnUnitFromData( unitData, Faction.Enemy, level: unit.BaseLevel );
+				}
+				
 				if ( !battleUnit.IsValid() )
 				{
 					continue;
@@ -116,7 +128,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 				if ( battleUnit.LevelComponent.IsValid() )
 				{
 					battleUnit.LevelComponent.Level = unit.BaseLevel;
-					if ( unit.UseFloorLevelScaling )
+					if ( unit.UseLevelScaling )
 					{
 						battleUnit.ApplyLevelScaling();
 					}

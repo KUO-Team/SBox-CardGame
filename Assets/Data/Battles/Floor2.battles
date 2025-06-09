@@ -11,7 +11,8 @@
       "PlayerUnits": [],
       "EnemyUnits": [
         {
-          "UseFloorLevelScaling": true,
+          "UseLevelScaling": true,
+          "UseFloorLevel": true,
           "BaseLevel": 1,
           "Id": {
             "Source": "",
@@ -38,7 +39,8 @@
       "PlayerUnits": [],
       "EnemyUnits": [
         {
-          "UseFloorLevelScaling": true,
+          "UseLevelScaling": true,
+          "UseFloorLevel": true,
           "BaseLevel": 1,
           "Id": {
             "Source": "",
@@ -46,7 +48,8 @@
           }
         },
         {
-          "UseFloorLevelScaling": true,
+          "UseLevelScaling": true,
+          "UseFloorLevel": true,
           "BaseLevel": 1,
           "Id": {
             "Source": "",
@@ -73,7 +76,8 @@
       "PlayerUnits": [],
       "EnemyUnits": [
         {
-          "UseFloorLevelScaling": true,
+          "UseLevelScaling": true,
+          "UseFloorLevel": true,
           "BaseLevel": 1,
           "Id": {
             "Source": "",
@@ -81,7 +85,8 @@
           }
         },
         {
-          "UseFloorLevelScaling": true,
+          "UseLevelScaling": true,
+          "UseFloorLevel": true,
           "BaseLevel": 1,
           "Id": {
             "Source": "",
@@ -89,7 +94,8 @@
           }
         },
         {
-          "UseFloorLevelScaling": true,
+          "UseLevelScaling": true,
+          "UseFloorLevel": true,
           "BaseLevel": 1,
           "Id": {
             "Source": "",
