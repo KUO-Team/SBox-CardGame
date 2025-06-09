@@ -16,7 +16,7 @@ SettingsPanel {
     align-items: center;
     justify-content: space-between;
     
-    .button{
+    .button {
       width: 100%;
     }
   }
@@ -25,23 +25,20 @@ SettingsPanel {
     width: 50%;
     height: 50%;
     align-items: center;
-    justify-content: center;
   }
   
   .tab {
     width: 100%;
     height: 100%;
     color: white;
-    justify-content: center;
     flex-direction: column;
-    gap: 10px;
     opacity: 1;
     
     > .title {
       font-size: 50px;
       text-align: center;
       font-weight: 600;
-      font-family: "Pixel Operator";
+      margin: 5px 0;
     }
     
     .setting-group {
@@ -58,8 +55,8 @@ SettingsPanel {
         
         .group-name {
           font-size: 30px;
-          border-bottom: 2px solid white;
           text-align: center;
+          margin-bottom: 6px;
         }
         
         .action {

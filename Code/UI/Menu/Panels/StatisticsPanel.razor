@@ -41,7 +41,10 @@
 				<label class="title">@( SeenCards.Count )/@( cards.Count ) Cards</label>
 
 				<div class="cards">
-					@foreach ( var card in cards.OrderByDescending( y => y.Rarity ).ThenBy( x => x.Type ).ThenBy( y => y.Name ) )
+					@foreach ( var card in cards
+						.OrderByDescending( y => y.Rarity )
+						.ThenBy( y => string.Join(",", y.Keywords.TryGetAll()) )
+						.ThenBy( y => y.Name ) )
 					{
 						<CardPanel class="@( SeenCards.Contains( card.Id ) ? "" : "hide" )" Card="@card"></CardPanel>
 					}
@@ -58,10 +61,11 @@
 					{
 						<label class="rarity-title">@( rarityGroup.Key.ToString() ) Relics</label>
 						<div class="relics">
-							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
+							@foreach ( var relic in rarityGroup
+								.OrderBy( x => string.Join(",", x.Keywords?.TryGetAll() ?? []) )
+								.ThenBy( x => x.Name ) )
 							{
-								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )"
-								            Relic="@relic"></RelicPanel>
+								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 							}
 						</div>
 					}
@@ -76,7 +80,9 @@
 					{
 						<label class="rarity-title">@( rarityGroup.Key.ToString() ) Relics</label>
 						<div class="relics">
-							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
+							@foreach ( var relic in rarityGroup
+								.OrderBy( x => string.Join(",", x.Keywords?.TryGetAll() ?? []) )
+								.ThenBy( x => x.Name ) )
 							{
 								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 							}
@@ -93,7 +99,9 @@
 					{
 						<label class="rarity-title">@( rarityGroup.Key.ToString() ) Relics</label>
 						<div class="relics">
-							@foreach ( var relic in rarityGroup.OrderBy( x => x.Name ) )
+							@foreach ( var relic in rarityGroup
+								.OrderBy( x => string.Join(",", x.Keywords?.TryGetAll() ?? []) )
+								.ThenBy( x => x.Name ) )
 							{
 								<RelicPanel class="@( SeenRelics.Contains( relic.Id ) ? "" : "hide" )" Relic="@relic"></RelicPanel>
 							}
@@ -198,7 +206,7 @@
 		</div>
 
 		<div class="button-container">
-			<button onclick="@this.Hide">Close</button>
+			<button onclick="@Close">Close</button>
 		</div>
 	</div>
 </root>

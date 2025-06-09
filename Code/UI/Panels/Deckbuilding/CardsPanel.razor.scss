@@ -19,8 +19,20 @@
     }
   }
   
+  .textentry {
+    width: 250px;
+    height: 50px;
+    padding: 8px;
+    font-size: 30px;
+    color: white;
+    border-radius: 6px;
+    align-items: center;
+    background-color: rgba(0,0,0,0.9);
+  }
+  
   .filter {
     width: 250px;
+    height: 50px;
     padding: 8px;
     font-size: 30px;
     color: white;
@@ -30,7 +42,7 @@
   }
 
   .scrollbar {
-    width: 10px;
+    width: 25px;
     height: 100%;
     background-color: rgba(0,0,0,0.9);
 
@@ -53,8 +65,8 @@
     
     .card-count {
       position: absolute;
-      right: -10px;
-      bottom: -10px;
+      right: -15px;
+      bottom: -15px;
       width: 50px;
       height: 50px;
       color: white;

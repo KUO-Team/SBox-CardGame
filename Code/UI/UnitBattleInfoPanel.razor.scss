@@ -83,8 +83,9 @@ UnitBattleInfoPanel {
 
   .status-container {
     pointer-events: all;
+    justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
-    flex-grow: 1;
-    gap: 5px;
+    gap: 8px;
   }
 }

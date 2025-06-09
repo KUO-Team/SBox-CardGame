@@ -11,6 +11,8 @@ public partial class DeckbuildingPanel
 	
 	private CardsPanel? _cardsPanel;
 	
+	private const int DesiredDeckSize = 9;
+	
 	public void Remove( Card card )
 	{
 		UnitData?.Deck.Remove( card.Id );
@@ -40,11 +42,9 @@ public partial class DeckbuildingPanel
 			collection.Add( card );
 		}
 
-		const int desiredDeckSize = 9;
-
 		var shuffled = collection.OrderBy( _ => Game.Random.Next() ).ToList();
 
-		for ( int i = 0; i < Math.Min( desiredDeckSize, shuffled.Count ); i++ )
+		for ( int i = 0; i < Math.Min( DesiredDeckSize, shuffled.Count ); i++ )
 		{
 			var card = shuffled[i];
 			collection.Remove( card );

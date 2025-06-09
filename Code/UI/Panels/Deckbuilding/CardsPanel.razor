@@ -7,9 +7,8 @@
 	<label class="title">Owned Cards</label>
 	
 	<div class="row">
-		<h2>Filter</h2>
+		<h2>Order</h2>
 		<select class="filter" onchange="@OnFilterChanged" @ref="_filter">
-			<option>All</option>
 			<option>Rarity</option>
 			<option>Cost</option>
 			<option>Type</option>
@@ -29,7 +28,7 @@
 								<div class="slot">
 									<div class="card-stack">
 										<CardPanel Card="@item.Card" onclick="@( () => AddCard( item.Card ) )"/>
-										<div class="card-count">@item.Count</div>
+										<div class="card-count">x@(item.Count)</div>
 									</div>
 								</div>
 							}

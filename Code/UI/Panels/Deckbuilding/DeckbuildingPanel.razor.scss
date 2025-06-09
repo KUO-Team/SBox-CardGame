@@ -53,8 +53,6 @@ DeckbuildingPanel {
 			gap: 4px;
 			padding: 10px;
 			justify-content: center;
-			//overflow-y: scroll;
-			//overflow-x: hidden;
 
 			.slot {
 				height: 305px;
@@ -100,10 +98,18 @@ DeckbuildingPanel {
 			.slot {
 				height: 320px;
 				width: 235px;
+				transform: rotateZ(2deg);
 				align-items: center;
 				justify-content: center;
-				background-color: white;
-				transition: all 0.5s ease;
+				transition: all 0.2s ease;
+
+				&:intro {
+					transform: scale(1.1);
+				}
+
+				&:outro {
+					transform: scale(0.5);
+				}
 			}
 		}
 	}

@@ -117,6 +117,11 @@ public partial class StatisticsPanel
 		}
 	}
 
+	private void Close()
+	{
+		this.Hide();
+	}
+
 	public Panel? GetTabById( string id )
 	{
 		return _tabContainer?.Children.FirstOrDefault( tab => tab.Id == id );

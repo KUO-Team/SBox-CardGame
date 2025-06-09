@@ -15,21 +15,27 @@
 		<div class="relic-info">
 			@if ( !string.IsNullOrEmpty( Relic.Icon ) )
 			{
-				<img class="relic-icon" src="@(Relic.Icon)" alt="Relic Icon"/>
+				<img class="relic-icon" src="@( Relic.Icon )" alt="Relic Icon"/>
+			}
+			else if ( !string.IsNullOrEmpty( Relic.Emoji ) )
+			{
+				<label class="relic-icon">@Relic.Emoji</label>
 			}
 			
-			<div class="row">
-				<label class="relic-name">@(Relic.Name)</label>
-				<label class="relic-rarity">@(Relic.Rarity) Relic</label>
-			</div>
+			<div class="column">
+				<div class="row">
+					<label class="relic-name">@( Relic.Name )</label>
+					<label class="relic-rarity">@( Relic.Rarity ) Relic</label>
+				</div>
+				
+				<label class="relic-description" IsRich="@true">@Relic.Description.Replace( "\n", "<br>" )</label>
 
-			<label class="relic-description" IsRich="@true">@Relic.Description.Replace( "\n", "<br>" )</label>
-			
-			<div class="relic-flavortexts">
-				@foreach ( var flavor in Relic.Flavor )
-				{
-					<label class="relic-flavor" IsRich="@true">@( flavor.Replace( "\n", "<br>" ) )</label>
-				}
+				<div class="relic-flavortexts">
+					@foreach ( var flavor in Relic.Flavor )
+					{
+						<label class="relic-flavor" IsRich="@true">@( flavor.Replace( "\n", "<br>" ) )</label>
+					}
+				</div>
 			</div>
 		</div>
 		

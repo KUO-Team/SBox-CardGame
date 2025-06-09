@@ -14,7 +14,7 @@
 
 <root class="hidden">
 	<div class="deck">
-		<label class="title">Deck</label>
+		<label class="title">Deck (@(UnitData?.Deck?.Count)/@(DesiredDeckSize))</label>
 		<div class="slots">
 			@for ( var row = 0; row < 3; row++ )
 			{
@@ -26,7 +26,10 @@
 							@if ( sortedDeck is not null && i < sortedDeck.Count )
 							{
 								var card = sortedDeck[i];
-								<CardPanel Card="@card" onclick="@( () => Remove( card ) )"/>
+								if ( card is not null )
+								{
+									<CardPanel Card="@card" onclick="@( () => Remove( card ) )"/>
+								}
 							}
 						</div>
 					}
