@@ -4,5 +4,5 @@ namespace CardGame;
 
 public interface IOwnable
 {
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 }

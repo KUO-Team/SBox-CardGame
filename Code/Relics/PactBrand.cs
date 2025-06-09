@@ -7,9 +7,9 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 {
 	private PowerModifier? _powerModifier;
 	
-	public override void BeforePlayCard( Card card, BattleUnit unit )
+	public override void BeforePlayCard( Card card, BattleUnitComponent unitComponent )
 	{
-		if ( unit != Owner )
+		if ( unitComponent != Owner )
 		{
 			return;
 		}
@@ -22,10 +22,10 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 		Owner?.HealthComponent?.TakeFixedDamage( 2 );
 		_powerModifier = new PowerModifier( 2, x => x.Type == Action.ActionType.Attack, 1 );
 		card.Modifiers.AddModifier( _powerModifier );
-		base.BeforePlayCard( card, unit );
+		base.BeforePlayCard( card, unitComponent );
 	}
 
-	public override void OnPlayCard( Card card, BattleUnit unit )
+	public override void OnPlayCard( Card card, BattleUnitComponent unitComponent )
 	{
 		if ( _powerModifier is null )
 		{
@@ -33,6 +33,6 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 		}
 
 		card.Modifiers.RemoveModifier( _powerModifier );
-		base.OnPlayCard( card, unit );
+		base.OnPlayCard( card, unitComponent );
 	}
 }

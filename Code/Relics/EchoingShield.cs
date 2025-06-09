@@ -28,9 +28,9 @@ public class EchoingShield( Data.Relic data ) : Relic( data )
 		base.OnTurnStart();
 	}
 
-	public override void OnPlayCard( Card card, BattleUnit unit )
+	public override void OnPlayCard( Card card, BattleUnitComponent unitComponent )
 	{
 		_lastTurnPlayedCards++;
-		base.OnPlayCard( card, unit );
+		base.OnPlayCard( card, unitComponent );
 	}
 }

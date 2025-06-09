@@ -108,7 +108,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 			var unitData = UnitDataList.GetById( unit.Id );
 			if ( unitData is not null )
 			{
-				BattleUnit? battleUnit = null;
+				BattleUnitComponent? battleUnit = null;
 				var mapManager = MapManager.Instance;
 				if ( mapManager.IsValid() )
 				{

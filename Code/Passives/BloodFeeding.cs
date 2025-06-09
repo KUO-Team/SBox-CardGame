@@ -10,7 +10,7 @@ public class BloodFeeding( Data.PassiveAbility data ) : PassiveAbility( data )
 	public int AmountHealed { get; private set; }
 	public int LastTurnAmountHealed { get; private set; }
 
-	public override void OnDealDamage( int damage, BattleUnit target )
+	public override void OnDealDamage( int damage, BattleUnitComponent target )
 	{
 		if ( !Owner.IsValid() || !Owner.HealthComponent.IsValid() || !target.StatusEffects.IsValid() || Triggered || damage < 1 )
 		{

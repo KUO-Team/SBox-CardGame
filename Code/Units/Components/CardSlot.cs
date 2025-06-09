@@ -11,7 +11,7 @@ namespace CardGame;
 public sealed class CardSlot : Component, IOwnable
 {
 	[Property, Category( "Components" ), RequireComponent]
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	[Property, JsonIgnore, ReadOnly]
 	public Card? AssignedCard { get; set; }
@@ -250,7 +250,7 @@ public sealed class CardSlot : Component, IOwnable
 		return true;
 	}
 
-	public async Task PlayAsync( BattleUnit target, CardSlot slot )
+	public async Task PlayAsync( BattleUnitComponent target, CardSlot slot )
 	{
 		if ( !IsAssigned || AssignedCard is null )
 		{

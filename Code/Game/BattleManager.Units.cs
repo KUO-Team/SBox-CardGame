@@ -10,11 +10,11 @@ public sealed partial class BattleManager
 
 	public Id? PlayerUnit { get; set; }
 
-	public static List<BattleUnit> Units => Game.ActiveScene.GetAllComponents<BattleUnit>().ToList();
+	public static List<BattleUnitComponent> Units => Game.ActiveScene.GetAllComponents<BattleUnitComponent>().ToList();
 
-	public static List<BattleUnit> AliveUnits => Units.Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
+	public static List<BattleUnitComponent> AliveUnits => Units.Where( x => x.HealthComponent.IsValid() && !x.HealthComponent.IsDead ).ToList();
 
-	public BattleUnit? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None, Transform? transform = null, int? level = null )
+	public BattleUnitComponent? SpawnUnitFromData( Unit data, Faction faction, SpriteFlags spriteFlags = SpriteFlags.None, Transform? transform = null, int? level = null )
 	{
 		if ( !UnitPrefab.IsValid() )
 		{
@@ -23,7 +23,7 @@ public sealed partial class BattleManager
 		}
 
 		var gameObject = !data.Prefab.IsValid() ? UnitPrefab.Clone() : data.Prefab.Clone();
-		if ( gameObject.Components.TryGet( out BattleUnit unit ) is not true )
+		if ( gameObject.Components.TryGet( out BattleUnitComponent unit ) is not true )
 		{
 			Log.Warning( $"No unit component found; unable to set data!" );
 			return null;
@@ -63,7 +63,7 @@ public sealed partial class BattleManager
 		return unit;
 	}
 
-	public BattleUnit? SpawnPlayerUnit()
+	public BattleUnitComponent? SpawnPlayerUnit()
 	{
 		if ( PlayerUnit is null )
 		{
@@ -132,22 +132,22 @@ public sealed partial class BattleManager
 		return availableSpawnPoints.FirstOrDefault();
 	}
 
-	public static List<BattleUnit> GetUnits( Faction faction )
+	public static List<BattleUnitComponent> GetUnits( Faction faction )
 	{
 		return Units.Where( x => x.Faction == faction ).ToList();
 	}
 
-	public static List<BattleUnit> GetAliveUnits( Faction faction )
+	public static List<BattleUnitComponent> GetAliveUnits( Faction faction )
 	{
 		return AliveUnits.Where( x => x.Faction == faction ).ToList();
 	}
 
-	public static BattleUnit? GetRandomUnit( Faction faction )
+	public static BattleUnitComponent? GetRandomUnit( Faction faction )
 	{
 		return Game.Random.FromList( GetUnits( faction )! );
 	}
 
-	public static BattleUnit? GetRandomAliveUnit( Faction faction )
+	public static BattleUnitComponent? GetRandomAliveUnit( Faction faction )
 	{
 		return Game.Random.FromList( GetAliveUnits( faction )! );
 	}

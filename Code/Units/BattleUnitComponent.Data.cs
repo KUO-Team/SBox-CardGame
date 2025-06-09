@@ -4,7 +4,7 @@ using CardGame.Passives;
 
 namespace CardGame.Units;
 
-public partial class BattleUnit
+public partial class BattleUnitComponent
 {
 	public Unit? Data { get; private set; }
 

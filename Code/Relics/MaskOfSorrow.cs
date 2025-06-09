@@ -9,7 +9,7 @@ public class MaskOfSorrow( Data.Relic data ) : Relic( data )
 	
 	private const int MaxBuffAmount = 3;
 
-	public override void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
+	public override void OnTakeDamage( int damage, BattleUnitComponent target, BattleUnitComponent? attacker = null )
 	{
 		if ( target != Owner )
 		{

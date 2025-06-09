@@ -7,7 +7,7 @@ public abstract class Relic( Data.Relic data ) : IOwnable
 {
 	public Data.Relic Data { get; } = data;
 
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	public virtual void OnAdd()
 	{
@@ -46,27 +46,27 @@ public abstract class Relic( Data.Relic data ) : IOwnable
 		
 	}
 	
-	public virtual void BeforePlayCard( Card card, BattleUnit unit )
+	public virtual void BeforePlayCard( Card card, BattleUnitComponent unitComponent )
 	{
 		
 	}
 	
-	public virtual void OnPlayCard( Card card, BattleUnit unit )
+	public virtual void OnPlayCard( Card card, BattleUnitComponent unitComponent )
 	{
 		
 	}
 	
-	public virtual void OnDiscardCard( Card card, BattleUnit unit )
+	public virtual void OnDiscardCard( Card card, BattleUnitComponent unitComponent )
 	{
 		
 	}
 	
-	public virtual void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
+	public virtual void OnTakeDamage( int damage, BattleUnitComponent target, BattleUnitComponent? attacker = null )
 	{
 		
 	}
 	
-	public virtual void OnDealDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
+	public virtual void OnDealDamage( int damage, BattleUnitComponent target, BattleUnitComponent? attacker = null )
 	{
 		
 	}

@@ -7,7 +7,7 @@ namespace CardGame.Units;
 public class HandComponent : Component, IOwnable
 {
 	[Property, RequireComponent]
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	[Property, WideMode]
 	public List<Card> Hand { get; set; } = [];

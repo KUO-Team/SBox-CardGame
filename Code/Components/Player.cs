@@ -15,7 +15,7 @@ public class Player : Component
 	public PlayerClass? Class { get; private set; }
 
 	[Property]
-	public List<BattleUnit> Units { get; set; } = [];
+	public List<BattleUnitComponent> Units { get; set; } = [];
 
 	[Property]
 	public List<CardPack> CardPacks { get; set; } = [];

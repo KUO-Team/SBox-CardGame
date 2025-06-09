@@ -7,7 +7,7 @@ public abstract class StatusEffect( Data.StatusEffect data ) : IOwnable
 {
 	public Data.StatusEffect Data { get; } = data;
 
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	public int Stack { get; set; }
 
@@ -65,12 +65,12 @@ public abstract class StatusEffect( Data.StatusEffect data ) : IOwnable
 
 	}
 
-	public virtual void OnTakeDamage( BattleUnit dealer )
+	public virtual void OnTakeDamage( BattleUnitComponent dealer )
 	{
 
 	}
 
-	public virtual void OnDealDamage( BattleUnit target )
+	public virtual void OnDealDamage( BattleUnitComponent target )
 	{
 
 	}

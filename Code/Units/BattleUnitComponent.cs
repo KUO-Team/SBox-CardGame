@@ -4,10 +4,7 @@ using Sandbox.Diagnostics;
 
 namespace CardGame.Units;
 
-/// <summary>
-/// Represents a character in battle.
-/// </summary>
-public partial class BattleUnit : BaseCharacter
+public partial class BattleUnitComponent : CharacterComponent
 {
 	[Property]
 	public string Name => GameObject.Name;
@@ -48,7 +45,7 @@ public partial class BattleUnit : BaseCharacter
 	[Property, Category( "Mana" )]
 	public int MaxMana { get; set; } = 3;
 
-	public static BattleUnit? ActiveUnit { get; set; }
+	public static BattleUnitComponent? ActiveUnit { get; set; }
 
 	private static readonly Logger Log = new( "BattleUnit" );
 

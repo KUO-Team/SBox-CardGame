@@ -2,7 +2,7 @@ using SpriteTools;
 
 namespace CardGame;
 
-public class BaseCharacter : Component
+public abstract class CharacterComponent : Component
 {
 	[Property, RequireComponent, Category( "Components" )]
 	public SpriteComponent? SpriteComponent { get; set; }

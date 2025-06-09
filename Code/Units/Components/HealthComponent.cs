@@ -7,7 +7,7 @@ namespace CardGame.Units;
 public class HealthComponent : Component, IOwnable
 {
 	[Property, RequireComponent]
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	[Property, Category( "State" )]
 	public int Health
@@ -38,7 +38,7 @@ public class HealthComponent : Component, IOwnable
 	public event Action<int>? OnHeal;
 	public event Func<Task>? OnDied;
 
-	public void TakeDamage( int damage, BattleUnit? attacker = null, Card? card = null )
+	public void TakeDamage( int damage, BattleUnitComponent? attacker = null, Card? card = null )
 	{
 		if ( !Owner.IsValid() )
 		{
@@ -70,7 +70,7 @@ public class HealthComponent : Component, IOwnable
 		}
 	}
 
-	public void TakeFixedDamage( int damage, BattleUnit? attacker = null, StatusEffect? statusEffect = null )
+	public void TakeFixedDamage( int damage, BattleUnitComponent? attacker = null, StatusEffect? statusEffect = null )
 	{
 		if ( !Owner.IsValid() )
 		{
@@ -149,7 +149,7 @@ public class HealthComponent : Component, IOwnable
 		}
 	}
 
-	private void ProcessDamageEffects( int damage, BattleUnit? attacker = null )
+	private void ProcessDamageEffects( int damage, BattleUnitComponent? attacker = null )
 	{
 		if ( !Owner.IsValid() )
 		{

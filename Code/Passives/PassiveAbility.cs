@@ -7,7 +7,7 @@ public abstract class PassiveAbility( Data.PassiveAbility data ) : IOwnable
 {
 	public Data.PassiveAbility Data { get; } = data;
 
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	public virtual string Description()
 	{
@@ -66,12 +66,12 @@ public abstract class PassiveAbility( Data.PassiveAbility data ) : IOwnable
 
 	}
 
-	public virtual void OnTakeDamage( int damage, BattleUnit attacker )
+	public virtual void OnTakeDamage( int damage, BattleUnitComponent attacker )
 	{
 
 	}
 
-	public virtual void OnDealDamage( int damage, BattleUnit target )
+	public virtual void OnDealDamage( int damage, BattleUnitComponent target )
 	{
 
 	}

@@ -85,7 +85,7 @@ public class Card : IResource, IDeepCopyable<Card>
 	/// </summary>
 	/// <param name="target">The target to apply the card effects on.</param>
 	/// <param name="slot">The slot from which the card is played.</param>
-	public void Play( BattleUnit target, CardSlot slot )
+	public void Play( BattleUnitComponent target, CardSlot slot )
 	{
 		var owner = slot.Owner;
 		if ( !owner.IsValid() || !owner.HealthComponent.IsValid() || owner.HealthComponent.IsDead )
@@ -113,7 +113,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private void PlayOnTarget( BattleUnit owner, BattleUnit target )
+	private void PlayOnTarget( BattleUnitComponent owner, BattleUnitComponent target )
 	{
 		foreach ( var action in Actions )
 		{
@@ -153,10 +153,10 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private List<BattleUnit> SelectTargets( BattleUnit mainTarget, BattleUnit owner )
+	private List<BattleUnitComponent> SelectTargets( BattleUnitComponent mainTarget, BattleUnitComponent owner )
 	{
 		var allValid = GetValidTargets( owner, Targeting ).Where( u => u != mainTarget ).ToList();
-		var targets = new List<BattleUnit>
+		var targets = new List<BattleUnitComponent>
 		{
 			mainTarget
 		};
@@ -169,9 +169,9 @@ public class Card : IResource, IDeepCopyable<Card>
 		return targets;
 	}
 
-	public static List<BattleUnit> GetValidTargets( BattleUnit user, CardTargets targeting )
+	public static List<BattleUnitComponent> GetValidTargets( BattleUnitComponent user, CardTargets targeting )
 	{
-		var targets = new List<BattleUnit>();
+		var targets = new List<BattleUnitComponent>();
 
 		if ( targeting.HasFlag( CardTargets.Self ) )
 		{
@@ -191,7 +191,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		return targets.Where( u => u.IsValid() ).ToList();
 	}
 
-	private void TriggerBeforePlayEffects( BattleUnit owner, BattleUnit target )
+	private void TriggerBeforePlayEffects( BattleUnitComponent owner, BattleUnitComponent target )
 	{
 		foreach ( var action in Actions )
 		{
@@ -223,7 +223,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private void TriggerOnPlayEffects( BattleUnit owner, BattleUnit target )
+	private void TriggerOnPlayEffects( BattleUnitComponent owner, BattleUnitComponent target )
 	{
 		foreach ( var action in Actions )
 		{
@@ -255,7 +255,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private int TriggerPowerEffects( BattleUnit source, Card card, Action action )
+	private int TriggerPowerEffects( BattleUnitComponent source, Card card, Action action )
 	{
 		if ( action.Type == Action.ActionType.Defense )
 		{
@@ -277,7 +277,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		return contribution;
 	}
 
-	private static void TriggerDamageEvents( BattleUnit attacker, BattleUnit target )
+	private static void TriggerDamageEvents( BattleUnitComponent attacker, BattleUnitComponent target )
 	{
 		foreach ( var status in target.StatusEffects?.ToList() ?? [] )
 		{
@@ -290,7 +290,7 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private static CardEffect.CardEffectDetail CreateDetail( BattleUnit owner, BattleUnit? target = null )
+	private static CardEffect.CardEffectDetail CreateDetail( BattleUnitComponent owner, BattleUnitComponent? target = null )
 	{
 		return new CardEffect.CardEffectDetail
 		{

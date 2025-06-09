@@ -15,8 +15,8 @@
     "OwnerTransfer": 1,
     "Components": [
       {
-        "__type": "CardGame.Units.BattleUnit",
-        "__guid": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+        "__type": "CardGame.Units.BattleUnitComponent",
+        "__guid": "658508a1-1a44-4dbb-988a-afcab23a5729",
         "__enabled": true,
         "Description": "",
         "Energy": 3,
@@ -40,7 +40,7 @@
           "component_type": "LevelComponent"
         },
         "Mana": 3,
-        "MaxEnergy": 3,
+        "MaxEnergy": 0,
         "MaxMana": 3,
         "Name": "battleunit",
         "OnComponentDestroy": null,
@@ -94,9 +94,9 @@
         "OnComponentUpdate": null,
         "Owner": {
           "_type": "component",
-          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-          "component_type": "BattleUnit"
+          "component_type": "BattleUnitComponent"
         }
       },
       {
@@ -117,9 +117,9 @@
         "OnComponentUpdate": null,
         "Owner": {
           "_type": "component",
-          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-          "component_type": "BattleUnit"
+          "component_type": "BattleUnitComponent"
         }
       },
       {
@@ -135,9 +135,9 @@
         "OnComponentUpdate": null,
         "Owner": {
           "_type": "component",
-          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-          "component_type": "BattleUnit"
+          "component_type": "BattleUnitComponent"
         }
       },
       {
@@ -153,9 +153,9 @@
         "OnComponentUpdate": null,
         "Owner": {
           "_type": "component",
-          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-          "component_type": "BattleUnit"
+          "component_type": "BattleUnitComponent"
         }
       },
       {
@@ -171,9 +171,9 @@
         "OnComponentUpdate": null,
         "Owner": {
           "_type": "component",
-          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-          "component_type": "BattleUnit"
+          "component_type": "BattleUnitComponent"
         }
       },
       {
@@ -191,9 +191,9 @@
         "OnComponentUpdate": null,
         "Owner": {
           "_type": "component",
-          "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+          "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-          "component_type": "BattleUnit"
+          "component_type": "BattleUnitComponent"
         }
       }
     ],
@@ -262,9 +262,9 @@
                 "OnComponentUpdate": null,
                 "Unit": {
                   "_type": "component",
-                  "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+                  "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
                   "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-                  "component_type": "BattleUnit"
+                  "component_type": "BattleUnitComponent"
                 }
               }
             ],
@@ -439,9 +439,9 @@
                 "OnComponentUpdate": null,
                 "Unit": {
                   "_type": "component",
-                  "component_id": "ea51c8c8-ab53-414d-89e4-e47c068ff306",
+                  "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
                   "go": "b9f07845-27d0-411c-a688-d488479ede8a",
-                  "component_type": "BattleUnit"
+                  "component_type": "BattleUnitComponent"
                 }
               }
             ],

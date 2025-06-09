@@ -54,7 +54,7 @@ public abstract class CardEffect( Card card, RangedInt power )
 	
 	public struct CardEffectDetail
 	{
-		public BattleUnit? Unit { get; set; }
-		public BattleUnit? Target { get; set; }
+		public BattleUnitComponent? Unit { get; set; }
+		public BattleUnitComponent? Target { get; set; }
 	}
 }

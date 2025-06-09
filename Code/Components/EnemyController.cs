@@ -5,7 +5,7 @@ namespace CardGame;
 public class EnemyController : Component
 {
 	[Property, RequireComponent]
-	public BattleUnit? Unit { get; set; }
+	public BattleUnitComponent? Unit { get; set; }
 
 	protected override void OnStart()
 	{

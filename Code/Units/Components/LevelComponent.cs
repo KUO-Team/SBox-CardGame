@@ -5,7 +5,7 @@ namespace CardGame.Units;
 public class LevelComponent : Component, ILeveling, IOwnable
 {
 	[Property, RequireComponent]
-	public BattleUnit? Owner { get; set; }
+	public BattleUnitComponent? Owner { get; set; }
 
 	[Property, Category( "State" )]
 	public int Level

@@ -8,9 +8,9 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 {
 	private PowerModifier? _powerModifier;
 
-	public override void BeforePlayCard( Card card, BattleUnit unit )
+	public override void BeforePlayCard( Card card, BattleUnitComponent unitComponent )
 	{
-		if ( unit != Owner )
+		if ( unitComponent != Owner )
 		{
 			return;
 		}
@@ -36,10 +36,10 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 				throw new ArgumentOutOfRangeException( card.Type.ToString() );
 		}
 		
-		base.BeforePlayCard( card, unit );
+		base.BeforePlayCard( card, unitComponent );
 	}
 
-	public override void OnPlayCard( Card card, BattleUnit unit )
+	public override void OnPlayCard( Card card, BattleUnitComponent unitComponent )
 	{
 		if ( _powerModifier is null )
 		{
@@ -47,6 +47,6 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 		}
 
 		card.Modifiers.RemoveModifier( _powerModifier );
-		base.OnPlayCard( card, unit );
+		base.OnPlayCard( card, unitComponent );
 	}
 }

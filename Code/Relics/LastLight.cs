@@ -7,7 +7,7 @@ public class LastLight( Data.Relic data ) : Relic( data )
 {
 	private bool _triggered;
 	
-	public override void OnTakeDamage( int damage, BattleUnit target, BattleUnit? attacker = null )
+	public override void OnTakeDamage( int damage, BattleUnitComponent target, BattleUnitComponent? attacker = null )
 	{
 		if ( target.Faction != Faction.Player )
 		{

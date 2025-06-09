@@ -4,7 +4,7 @@ namespace CardGame.Passives;
 
 public class Player( Data.PassiveAbility data ) : PassiveAbility( data )
 {
-	public override void OnTakeDamage( int damage, BattleUnit attacker )
+	public override void OnTakeDamage( int damage, BattleUnitComponent attacker )
 	{
 		if ( !Owner.IsValid() || !Owner.HealthComponent.IsValid() )
 		{
@@ -19,7 +19,7 @@ public class Player( Data.PassiveAbility data ) : PassiveAbility( data )
 		base.OnTakeDamage( damage, attacker );
 	}
 
-	protected virtual void OnKilledByAttack( BattleUnit attacker )
+	protected virtual void OnKilledByAttack( BattleUnitComponent attacker )
 	{
 		GameManager.Instance?.EndRunInLoss();
 	}

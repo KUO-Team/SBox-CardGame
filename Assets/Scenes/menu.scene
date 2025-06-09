@@ -156,6 +156,8 @@
             "UnitData": {
               "Hp": 0,
               "MaxHp": 0,
+              "Mp": 0,
+              "MaxMp": 0,
               "Level": 0,
               "Xp": 0,
               "Deck": []
@@ -176,8 +178,10 @@
           "__type": "CardGame.MapManager",
           "__guid": "c8f66c75-6061-4d68-a357-e80b70547a91",
           "__enabled": true,
+          "EnemyLevel": 1,
           "Index": 0,
           "MapGenerated": false,
+          "NodesCompleted": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -302,24 +306,6 @@
           "__type": "CardGame.BattleManager",
           "__guid": "62af7fb2-d49f-4b3e-9876-8fca6e0d4026",
           "__enabled": true,
-          "Battle": {
-            "Id": {
-              "Source": "",
-              "LocalId": -1
-            },
-            "Name": "",
-            "Bgm": null,
-            "IsBoss": false,
-            "PlayerUnits": [],
-            "EnemyUnits": [],
-            "Rewards": {
-              "Cards": [],
-              "CardPacks": [],
-              "Relics": [],
-              "Money": 50
-            },
-            "Script": ""
-          },
           "CanEndTurn": true,
           "Hud": {
             "_type": "component",
@@ -334,10 +320,6 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "PlayerUnit": {
-            "Source": "",
-            "LocalId": 99
-          },
           "ShowEndScreen": true,
           "State": "Start",
           "Turn": 0,

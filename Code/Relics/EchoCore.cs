@@ -41,13 +41,13 @@ public class EchoCore( Data.Relic data ) : Relic( data )
 		base.OnTurnEnd();
 	}
 
-	public override void OnDiscardCard( Card card, BattleUnit unit )
+	public override void OnDiscardCard( Card card, BattleUnitComponent unitComponent )
 	{
-		if ( unit == Owner )
+		if ( unitComponent == Owner )
 		{
 			_currentTurnDiscards++;
 		}
 
-		base.OnDiscardCard( card, unit );
+		base.OnDiscardCard( card, unitComponent );
 	}
 }

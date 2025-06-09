@@ -7,7 +7,7 @@ namespace CardGame.UI;
 public partial class UnitBattleInfoPanel
 {
 	[Property, TextArea] 
-	public BattleUnit? Unit { get; set; }
+	public BattleUnitComponent? Unit { get; set; }
 	
 	[Property] 
 	public GameObject? AnchorObject { get; set; }
