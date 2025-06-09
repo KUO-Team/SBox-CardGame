@@ -109,7 +109,7 @@ public class BattleTutorial : BattleScript
 		
 		TutorialPanel.Instance?.SetInputLock( true );
 		await ShowStepMessage( "This concludes the combat tutorial." );
-		await ShowStepMessage( "You may always choose to replay the tutorial from the main menu, or view the manual in-game for additional details not covered here" );
+		await ShowStepMessage( "You can always replay this tutorial from the main menu or view the in-game manual for additional details not covered here." );
 		await ShowStepMessage( "Good luck on your descent into the abyss!" );
 		
 		if ( BattleManager.IsValid() )
@@ -128,10 +128,10 @@ public class BattleTutorial : BattleScript
 	private async Task SlotTutorial()
 	{
 		await ShowStepMessage( "The icons above units in battle are called card slots." );
-		await ShowStepMessage( "Empty card slots are shown in gray. Filled card slots are shown in black." );
-		await ShowStepMessage( "The number inside the card slot is its speed. Speed determines the order in which assigned cards are played during combat. Speed is determined individually by each card slot at turn start based on a range." );
+		await ShowStepMessage( "Empty card slots appear gray, while filled card slots appear black." );
+		await ShowStepMessage( "The number inside each card slot is its speed.<br>Speed determines the order in which assigned cards are played during combat.<br>Each card slot's speed is randomly determined at turn start based on the unit's speed range." );
 		await ShowStepMessage( "Click on the card slot above your unit to select it.",
-			position: (Length.Percent( 22 ), Length.Pixels( 500 )),
+			position: (Length.Percent( 24 ), Length.Pixels( 500 )),
 			size: (Length.Pixels( 100 ), Length.Pixels( 100 ))
 		);
 
@@ -146,7 +146,7 @@ public class BattleTutorial : BattleScript
 	private async Task SlotAssignmentTutorial()
 	{
 		TutorialPanel.Instance?.SetInputLock( true );
-		await ShowStepMessage( "Selected card slots have a golden border around them." );
+		await ShowStepMessage( "Selected card slots have a blue border around them." );
 		await ShowStepMessage( "When you select a card slot, its owner's hand is displayed below." );
 		await ShowStepMessage( "Click on a card in the unit's hand to select it." );
 
@@ -161,9 +161,9 @@ public class BattleTutorial : BattleScript
 	private async Task CardPlayTutorial()
 	{
 		TutorialPanel.Instance?.SetInputLock( true );
-		await ShowStepMessage( "When you have a card selected, it will have a golden border around it." );
-		await ShowStepMessage( "Cards cost a resource called ´MP´ (Mana Points) to play. You may view the amount of MP each unit has available to the right of their health value in blue." );
-		await ShowStepMessage( "To queue the selected card to be played, you must select a valid target. Click on the enemy unit's card slot." );
+		await ShowStepMessage( "When you have a card selected, it will have a blue border." );
+		await ShowStepMessage( "Cards cost a resource called 'MP' (Mana Points) to play.<br>You can view each unit's available MP to the right of their health value, displayed in blue." );
+		await ShowStepMessage( "To queue the selected card for play, you must select a valid target.<br>Click on the enemy unit's card slot." );
 
 		_slotAssignmentTaskSource = new TaskCompletionSource<bool>();
 		TutorialPanel.Instance?.SetInputLock( false );
@@ -172,15 +172,15 @@ public class BattleTutorial : BattleScript
 		await _slotAssignmentTaskSource.Task;
 
 		TutorialPanel.Instance?.SetInputLock( true );
-		await ShowStepMessage( "Notice the change in the background color of the card slot. Hovering over a filled card slot allows you to view the assigned card." );
-		await ShowStepMessage( "If you wish to cancel your selection, right-click the filled card slot to unassign its card." );
+		await ShowStepMessage( "Notice how the card slot's background color changed.<br>You can hover over any filled card slot to view its assigned card." );
+		await ShowStepMessage( "To cancel your selection, right-click the filled card slot to unassign its card." );
 		await TurnTutorial();
 	}
 	private async Task TurnTutorial()
 	{
-		await ShowStepMessage( "Turns are divided into two phases; the assignment phase, and the combat phase." );
-		await ShowStepMessage( "During the assignment phase you may assign cards to card slots and determine your turn order." );
-		await ShowStepMessage( "Once you are ready, you may either press the End Turn button at the top of the HUD or space bar to begin combat." );
+		await ShowStepMessage( "Turns are divided into two phases: the assignment phase and the combat phase." );
+		await ShowStepMessage( "During the assignment phase, you can assign cards to card slots and determine your turn order." );
+		await ShowStepMessage( "When you're ready, press either the End Turn button at the top of the HUD or the spacebar to begin combat." );
 		
 		if ( BattleManager.IsValid() )
 		{
@@ -193,9 +193,9 @@ public class BattleTutorial : BattleScript
 	private async Task CombatTutorial()
 	{
 		TutorialPanel.Instance?.SetInputLock( true );
-		await ShowStepMessage( "During the combat phase, cards are played in order based on their assigned slots speeds — from highest to lowest." );
-		await ShowStepMessage( "If two slots share the same speed, the game will randomly decide which is played first. Enemy slots are always played first." );
-		await ShowStepMessage( "Cards are then played, triggering their effects such as dealing damage, healing, or applying various status effects." );
+		await ShowStepMessage( "During the combat phase, cards are played in order based on their assigned slot's speed — from highest to lowest." );
+		await ShowStepMessage( "If two or more slots have the same speed, one is chosen randomly to play first.<br><br>However, enemy slots are always played before player slots when speeds are tied." );
+		await ShowStepMessage( "Cards then activate, triggering their effects such as dealing damage or causing various effects." );
 		await ShowStepMessage( "Let's finish this fight! Use what you've learned to defeat the enemy." );
 
 		Game.ActiveScene.TimeScale = 1;
