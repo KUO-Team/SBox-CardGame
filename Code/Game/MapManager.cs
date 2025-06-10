@@ -97,9 +97,7 @@ public sealed class MapManager : Singleton<MapManager>
 		var floor = GameManager.Instance?.Floor ?? 0;
 		return floor switch
 		{
-			3 or 2 => 10,
-			1 or 0 => 12,
-			_ => 10
+			_ => 12
 		};
 	}
 
@@ -109,7 +107,6 @@ public sealed class MapManager : Singleton<MapManager>
 		return floor switch
 		{
 			3 or 2 => 3,
-			1 or 0 => 4,
 			_ => 3
 		};
 	}
