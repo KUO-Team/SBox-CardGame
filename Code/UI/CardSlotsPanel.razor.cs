@@ -49,6 +49,6 @@ public partial class CardSlotsPanel
 	
 	protected override int BuildHash()
 	{
-		return HashCode.Combine( Slots, Slots?.Count, Slots?.Owner, Slots?.Owner?.HealthComponent?.IsDead );
+		return HashCode.Combine( Slots, Slots?.Count, Slots?.Owner, Slots?.HashCombine( x => x.Speed ), Slots?.Owner?.HealthComponent?.IsDead );
 	}
 }
