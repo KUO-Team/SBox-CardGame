@@ -1,0 +1,55 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 999
+      },
+      "Name": "???",
+      "Description": "???",
+      "Type": "Boss",
+      "Sprite": {
+        "Resource": null,
+        "Portrait": ""
+      },
+      "Prefab": null,
+      "Hp": 50,
+      "Mp": 9,
+      "Speed": {
+        "Min": 3,
+        "Max": 6
+      },
+      "Slots": 5,
+      "Deck": [
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 1
+        },
+        {
+          "Source": "",
+          "LocalId": 50
+        }
+      ],
+      "Passives": [
+        {
+          "Source": "",
+          "LocalId": 5
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

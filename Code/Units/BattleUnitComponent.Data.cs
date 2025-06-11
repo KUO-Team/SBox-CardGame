@@ -17,13 +17,8 @@ public partial class BattleUnitComponent
 
 		if ( SpriteComponent.IsValid() )
 		{
-			if ( data.Sprite is not null )
+			if ( data.Sprite.Resource.IsValid() )
 			{
-				if ( !data.Sprite.Resource.IsValid() )
-				{
-					return;
-				}
-
 				SpriteComponent.Sprite = data.Sprite.Resource;
 			}
 		}
@@ -57,7 +52,8 @@ public partial class BattleUnitComponent
 					continue;
 				}
 
-				HandComponent.Deck.Add( card.DeepCopy() );
+				var copy = card.DeepCopy();
+				HandComponent.Deck.Add( copy );
 			}
 		}
 

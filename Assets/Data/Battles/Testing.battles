@@ -1,0 +1,34 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 999
+      },
+      "Name": "Testing",
+      "Type": "Boss",
+      "Bgm": null,
+      "PlayerUnits": [],
+      "EnemyUnits": [
+        {
+          "UseLevelScaling": false,
+          "UseFloorLevel": false,
+          "BaseLevel": 50,
+          "Id": {
+            "Source": "",
+            "LocalId": 999
+          }
+        }
+      ],
+      "Rewards": {
+        "Cards": [],
+        "CardPacks": [],
+        "Relics": [],
+        "Money": 50
+      },
+      "Script": "TestingBattle"
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

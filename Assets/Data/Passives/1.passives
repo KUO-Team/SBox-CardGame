@@ -35,6 +35,15 @@
       "Name": "Bulky Armor",
       "Description": "At the start of the turn, gain 2 Protection.",
       "Script": "BulkyArmor"
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 5
+      },
+      "Name": "Boss Enemy",
+      "Description": "At the start of the turn, draw the deck and recover up to maximum mana.",
+      "Script": "Boss"
     }
   ],
   "__references": [],
