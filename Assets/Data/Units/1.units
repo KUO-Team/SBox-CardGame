@@ -14,7 +14,6 @@
       },
       "Prefab": null,
       "Hp": 5,
-      "Ep": 0,
       "Mp": 3,
       "Speed": {
         "Min": 1,
@@ -80,7 +79,6 @@
       },
       "Prefab": null,
       "Hp": 12,
-      "Ep": 0,
       "Mp": 5,
       "Speed": {
         "Min": 1,
@@ -146,7 +144,6 @@
       },
       "Prefab": null,
       "Hp": 15,
-      "Ep": 0,
       "Mp": 5,
       "Speed": {
         "Min": 1,
@@ -200,7 +197,6 @@
       },
       "Prefab": null,
       "Hp": 35,
-      "Ep": 0,
       "Mp": 5,
       "Speed": {
         "Min": 1,

@@ -18,8 +18,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 
 	public int Hp { get; set; }
 	
-	public int Ep { get; set; }
-
 	public int Mp { get; set; } = 0;
 	
 	[InlineEditor]
@@ -47,7 +45,6 @@ public class Unit : IResource, IDeepCopyable<Unit>
 			Sprite = Sprite,
 			Prefab = Prefab,
 			Hp = Hp,
-			Ep = Ep,
 			Mp = Mp,
 			Speed = Speed,
 			Slots = Slots,

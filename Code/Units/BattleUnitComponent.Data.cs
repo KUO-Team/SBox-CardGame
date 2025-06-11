@@ -34,9 +34,6 @@ public partial class BattleUnitComponent
 			HealthComponent.Health = HealthComponent.MaxHealth;
 		}
 
-		MaxEnergy = data.Ep;
-		Energy = MaxEnergy;
-
 		MaxMana = data.Mp;
 		Mana = MaxMana;
 

@@ -33,12 +33,6 @@ public partial class BattleUnitComponent : CharacterComponent
 	[Property, RequireComponent, Category( "Components" )]
 	public CardSlotList? Slots { get; set; }
 
-	[Property, Category( "Energy" )]
-	public int Energy { get; set; } = 3;
-
-	[Property, Category( "Energy" )]
-	public int MaxEnergy { get; set; }
-
 	[Property, Category( "Mana" )]
 	public int Mana { get; set; } = 3;
 
@@ -95,16 +89,6 @@ public partial class BattleUnitComponent : CharacterComponent
 		}
 
 		base.OnDestroy();
-	}
-
-	public void RecoverEnergy( int amount )
-	{
-		Energy = Math.Min( MaxEnergy, Energy + amount );
-	}
-
-	public void SpendEnergy( int amount )
-	{
-		Energy = Math.Max( 0, Energy - amount );
 	}
 
 	public void RecoverMana( int amount )

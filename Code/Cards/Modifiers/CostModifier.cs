@@ -2,19 +2,16 @@
 
 public class CostModifier : ICardModifier
 {
-	public int EpDelta { get; }
-	
-	public int MpDelta { get; }
+	public int Delta { get; }
 
 	public bool IsExpired => _remainingTurns <= 0;
 	
 	private int _remainingTurns;
 
 	// ReSharper disable once ConvertToPrimaryConstructor
-	public CostModifier( int epDelta, int mpDelta, int duration )
+	public CostModifier( int delta, int duration )
 	{
-		EpDelta = epDelta;
-		MpDelta = mpDelta;
+		Delta = delta;
 		_remainingTurns = duration;
 	}
 

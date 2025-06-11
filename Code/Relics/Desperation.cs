@@ -21,7 +21,7 @@ public class Desperation( Data.Relic data ) : Relic( data )
 
 		foreach ( var card in Owner.HandComponent.Hand )
 		{
-			var modifier = new CostModifier( 0, -1, 1 );
+			var modifier = new CostModifier( -1, 1 );
 			var mod = new Mod
 			{
 				Card = card, Modifier = modifier

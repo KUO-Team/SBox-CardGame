@@ -27,23 +27,23 @@ public sealed class CardModifiers
 		}
 	}
 
-	public Card.CardCost GetCostDelta()
+	public int GetCostDelta()
 	{
-		var total = new Card.CardCost();
-		foreach ( var costMod in _modifiers.OfType<CostModifier>() )
-		{
-			total.Ep += costMod.EpDelta;
-			total.Mp += costMod.MpDelta;
-		}
-		
-		return total;
+		return _modifiers.OfType<CostModifier>().Sum( costMod => costMod.Delta );
 	}
 
-	public int GetPowerDelta( Action action )
+	public int GetActionPowerDelta( Action action )
 	{
 		return _modifiers
-			.OfType<PowerModifier>()
+			.OfType<ActionPowerModifier>()
 			.Where( m => m.Targets( action ) )
+			.Sum( m => m.Delta );
+	}
+	
+	public int GetEffectPowerDelta( Effects.CardEffect effect )
+	{
+		return _modifiers
+			.OfType<EffectPowerModifier>()
 			.Sum( m => m.Delta );
 	}
 }
