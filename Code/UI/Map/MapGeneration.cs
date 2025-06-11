@@ -14,7 +14,7 @@ public partial class MapPanel
 
 	public void GenerateMapLayout( int? seed = null )
 	{
-		if ( !GameManager.IsValid() || !Map.IsValid() || !MapManager.IsValid() )
+		if ( !Map.IsValid() || !GameManager.IsValid() || !MapManager.IsValid() )
 		{
 			Log.Warning( "Unable to generate map; invalid state." );
 			return;
@@ -107,7 +107,7 @@ public partial class MapPanel
 			return;
 		}
 
-		// Skip tier 1 entirely — start from tier 2, but exclude the last tier (boss tier)
+		// Skip tier 1 entirely — start from tier 2, but also exclude the last tier (boss)
 		var eligibleTiers = Enumerable.Range( 2, tiers.Count - 3 ).ToList();
 		if ( eligibleTiers.Count == 0 )
 		{
@@ -128,12 +128,7 @@ public partial class MapPanel
 
 	private void InjectEventNodes( List<List<int>> tiers )
 	{
-		if ( !GameManager.IsValid() )
-		{
-			return;
-		}
-
-		if ( !MapManager.IsValid() )
+		if ( !GameManager.IsValid() || !MapManager.IsValid() )
 		{
 			return;
 		}
@@ -173,12 +168,7 @@ public partial class MapPanel
 
 	private MapNode? CreateMapNode( int index )
 	{
-		if ( !GameManager.IsValid() )
-		{
-			return null;
-		}
-
-		if ( !MapManager.IsValid() )
+		if ( !GameManager.IsValid() || !MapManager.IsValid() )
 		{
 			return null;
 		}
@@ -253,7 +243,7 @@ public partial class MapPanel
 				{
 					// Spread connections across tiers
 					AddConnection( currentTier[0], nextTier[0] );
-					AddConnection( currentTier[0], nextTier[nextTier.Count - 1] );
+					AddConnection( currentTier[0], nextTier[^1] );
 					if ( connectTo > 2 )
 					{
 						AddConnection( currentTier[0], nextTier[nextTier.Count / 2] );
@@ -300,13 +290,13 @@ public partial class MapPanel
 			}
 
 			// Ensure every node in next tier is reachable
-			var reachableNext = MapConnections.Where( c => currentTier.Contains( c.From ) )
+			var reachableNext = MapConnections
+				.Where( c => currentTier.Contains( c.From ) )
 				.Select( c => c.To ).ToHashSet();
 
 			foreach ( var unreachable in nextTier.Except( reachableNext ) )
 			{
-				var closest = currentTier.OrderBy( n =>
-					Math.Abs( _nodePositions[n].y - _nodePositions[unreachable].y ) ).First();
+				var closest = currentTier.OrderBy( n => Math.Abs( _nodePositions[n].y - _nodePositions[unreachable].y ) ).First();
 				AddConnection( closest, unreachable );
 			}
 		}

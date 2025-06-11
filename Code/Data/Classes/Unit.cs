@@ -12,7 +12,7 @@ public class Unit : IResource, IDeepCopyable<Unit>
 	public UnitType Type { get; set; } = UnitType.Normal;
 
 	[InlineEditor]
-	public SpriteInfo? Sprite { get; set; }
+	public SpriteInfo Sprite { get; set; } = new();
 	
 	public GameObject? Prefab { get; set; }
 
