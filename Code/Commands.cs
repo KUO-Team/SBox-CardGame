@@ -60,7 +60,15 @@ public static class Commands
 			return;
 		}
 
-		unit.HandComponent?.Draw( id );
+		var card = CardDataList.GetById( id );
+		if ( card is null )
+		{
+			return;
+		}
+		
+		var copy = card.DeepCopy();
+		unit.HandComponent?.Draw( copy );
+		
 		Platform.Platform.CheatedRun = true;
 	}
 	
@@ -107,5 +115,27 @@ public static class Commands
 			RelicManager.Instance.AddRelic( relic );
 		}
 		Platform.Platform.CheatedRun = true;
+	}
+
+	[ConCmd]
+	public static async void StartBattle( int id )
+	{
+		if ( !Game.IsEditor && !Game.CheatsEnabled )
+		{
+			return;
+		}
+
+		if ( !BattleManager.Instance.IsValid() )
+		{
+			return;
+		}
+		
+		var battle = BattleDataList.GetById( id );
+		if ( battle is null )
+		{
+			return;
+		}
+
+		await BattleManager.Instance.StartBattle( battle );
 	}
 }
