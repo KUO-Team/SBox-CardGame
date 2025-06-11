@@ -36,4 +36,5 @@ public sealed record Id( string Source, int LocalId ) : IComparable<Id>
 
 	public static implicit operator int( Id id ) => id.LocalId;
 	public static implicit operator Id( int id ) => new( string.Empty, id );
+	public static implicit operator Id( (string source, int localId) id ) => new( id.source, id.localId );
 }
