@@ -5,7 +5,7 @@
         "Source": "",
         "LocalId": 100
       },
-      "Name": "Player",
+      "Name": "???",
       "Description": "",
       "Type": "Normal",
       "Sprite": {
@@ -42,6 +42,29 @@
           "LocalId": 2
         }
       ],
+      "Passives": []
+    },
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 99
+      },
+      "Name": "Zombie",
+      "Description": "",
+      "Type": "Normal",
+      "Sprite": {
+        "Resource": "sprites/zombie.sprite",
+        "Portrait": ""
+      },
+      "Prefab": null,
+      "Hp": 5,
+      "Mp": 3,
+      "Speed": {
+        "Min": 1,
+        "Max": 6
+      },
+      "Slots": 1,
+      "Deck": [],
       "Passives": []
     }
   ],

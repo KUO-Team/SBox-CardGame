@@ -16,12 +16,12 @@
       ],
       "EnemyUnits": [
         {
-          "UseLevelScaling": true,
+          "UseLevelScaling": false,
           "UseFloorLevel": false,
-          "BaseLevel": 2,
+          "BaseLevel": 1,
           "Id": {
             "Source": "",
-            "LocalId": 1
+            "LocalId": 99
           }
         }
       ],
