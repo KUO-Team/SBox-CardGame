@@ -5,7 +5,7 @@ namespace CardGame.Relics;
 
 public class PactBrand( Data.Relic data ) : Relic( data )
 {
-	private PowerModifier? _powerModifier;
+	private ActionPowerModifier? _powerModifier;
 	
 	public override void BeforePlayCard( Card card, BattleUnitComponent unitComponent )
 	{
@@ -20,7 +20,7 @@ public class PactBrand( Data.Relic data ) : Relic( data )
 		}
 
 		Owner?.HealthComponent?.TakeFixedDamage( 2 );
-		_powerModifier = new PowerModifier( 2, x => x.Type == Action.ActionType.Attack, 1 );
+		_powerModifier = new ActionPowerModifier( 2, x => x.Type == Action.ActionType.Attack, 1 );
 		card.Modifiers.AddModifier( _powerModifier );
 		base.BeforePlayCard( card, unitComponent );
 	}

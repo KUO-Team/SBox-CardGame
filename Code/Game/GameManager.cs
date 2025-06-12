@@ -34,16 +34,18 @@ public sealed class GameManager : Singleton<GameManager>
 		Mixer.FindMixerByName( "Game" ).Volume = settings.GameVolume;
 		Mixer.FindMixerByName( "UI" ).Volume = settings.UIVolume;
 
+		PlayerData.Data.ValidateSeenCards();
+		PlayerData.Data.ValidateSeenRelics();
+		
 		foreach ( var card in CardDataList.All )
 		{
+			card.InitEffect();
 			card.Actions.ForEach( x =>
 			{
 				x.Card = card;
 				x.InitEffect();
 			} );
 		}
-		PlayerData.Data.ValidateSeenCards();
-		PlayerData.Data.ValidateSeenRelics();
 
 		base.OnStart();
 	}

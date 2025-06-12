@@ -1,12 +1,12 @@
 ﻿using System;
-using CardGame.Modifiers;
 using CardGame.Units;
+using CardGame.Modifiers;
 
 namespace CardGame.Relics;
 
 public class ExcessSigil( Data.Relic data ) : Relic( data )
 {
-	private PowerModifier? _powerModifier;
+	private ICardModifier? _modifier;
 
 	public override void BeforePlayCard( Card card, BattleUnitComponent unitComponent )
 	{
@@ -19,14 +19,14 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 		{
 			case Card.CardType.Spell:
 				{
-					_powerModifier = new PowerModifier( 2, action => action.Type == Action.ActionType.Effect, 1 );
-					card.Modifiers.AddModifier( _powerModifier );
+					_modifier = new EffectPowerModifier( 2,1 );
+					card.Modifiers.AddModifier( _modifier );
 					break;
 				}
 			case Card.CardType.Attack:
 				{
-					_powerModifier = new PowerModifier( -2, action => action.Type == Action.ActionType.Attack, 1 );
-					card.Modifiers.AddModifier( _powerModifier );
+					_modifier = new ActionPowerModifier( -2, action => action.Type == Action.ActionType.Attack, 1 );
+					card.Modifiers.AddModifier( _modifier );
 					break;
 				}
 			case Card.CardType.Defense:
@@ -41,12 +41,12 @@ public class ExcessSigil( Data.Relic data ) : Relic( data )
 
 	public override void OnPlayCard( Card card, BattleUnitComponent unitComponent )
 	{
-		if ( _powerModifier is null )
+		if ( _modifier is null )
 		{
 			return;
 		}
 
-		card.Modifiers.RemoveModifier( _powerModifier );
+		card.Modifiers.RemoveModifier( _modifier );
 		base.OnPlayCard( card, unitComponent );
 	}
 }

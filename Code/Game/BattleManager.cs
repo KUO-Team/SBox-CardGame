@@ -258,7 +258,7 @@ public sealed partial class BattleManager : Singleton<BattleManager>
 				continue;
 			}
 
-			await slot.PlayAsync( target, slot );
+			await slot.PlayAsync( slot.Target );
 		}
 
 		State = TurnState.End;
