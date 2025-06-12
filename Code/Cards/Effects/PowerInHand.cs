@@ -6,7 +6,7 @@ public class PowerInHand( Card card, RangedInt power ) : CardEffect( card, power
 {
 	public override string Description => $"Gain power equal to the amount of cards named {Card.Name} in hand";
 
-	private PowerModifier? _modifier;
+	private ActionPowerModifier? _modifier;
 
 	public override void BeforePlay( CardEffectDetail detail )
 	{
@@ -26,7 +26,7 @@ public class PowerInHand( Card card, RangedInt power ) : CardEffect( card, power
 			return;
 		}
 
-		_modifier = new PowerModifier( amount, action => action.Type == Action.ActionType.Attack, 1 );
+		_modifier = new ActionPowerModifier( amount, action => action.Type == Action.ActionType.Attack, 1 );
 		Card.Modifiers.AddModifier( _modifier );
 		
 		base.BeforePlay( detail );

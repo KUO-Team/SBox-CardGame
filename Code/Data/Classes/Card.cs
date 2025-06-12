@@ -15,8 +15,7 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	public string Name { get; set; } = string.Empty;
 
-	[InlineEditor]
-	public CardCost Cost { get; init; } = new();
+	public int Cost { get; init; }
 
 	public bool IsInstant { get; set; }
 
@@ -31,6 +30,13 @@ public class Card : IResource, IDeepCopyable<Card>
 	public CardAvailabilities Availabilities { get; set; } = CardAvailabilities.None;
 
 	public TagSet Keywords { get; set; } = new();
+
+	[Title( "Card Effect" )]
+	[InlineEditor]
+	public CardEffect Effect { get; set; } = new();
+
+	[Hide, JsonIgnore]
+	public Effects.CardEffect? ActiveEffect { get; set; }
 
 	[InlineEditor, WideMode]
 	public List<Action> Actions { get; set; } = [];
@@ -62,43 +68,50 @@ public class Card : IResource, IDeepCopyable<Card>
 	[Hide, JsonIgnore]
 	public CardModifiers Modifiers { get; } = new();
 
-	/// <summary>
-	/// The cost you actually have to pay
-	/// </summary>
 	[Hide, JsonIgnore]
-	public CardCost EffectiveCost
+	public int EffectiveCost
 	{
 		get
 		{
 			var delta = Modifiers.GetCostDelta();
-			return new CardCost
-			{
-				Ep = Math.Max( 0, Cost.Ep + delta.Ep ), Mp = Math.Max( 0, Cost.Mp + delta.Mp )
-			};
+			return Math.Max( 0, Cost + delta );
 		}
 	}
 
 	private static readonly Logger Log = new( "Card" );
+	
+	public void InitEffect()
+	{
+		if ( string.IsNullOrWhiteSpace( Effect.Script ) )
+		{
+			return;
+		}
+
+		ActiveEffect = TypeLibrary.Create<Effects.CardEffect>( Effect.Script, [this, Effect.Power] );
+	}
 
 	/// <summary>
 	/// Plays the card on the specified target using the given slot.
 	/// </summary>
-	/// <param name="target">The target to apply the card effects on.</param>
-	/// <param name="slot">The slot from which the card is played.</param>
-	public void Play( BattleUnitComponent target, CardSlot slot )
+	public void Play( CardSlot slot, CardSlot target )
 	{
 		var owner = slot.Owner;
 		if ( !owner.IsValid() || !owner.HealthComponent.IsValid() || owner.HealthComponent.IsDead )
 		{
-			Log.EditorLog( "Invalid or dead owner tried to play a card.", LoggerExtensions.LogType.Warning );
+			return;
+		}
+		
+		var targetUnit = target.Owner;
+		if ( !targetUnit.IsValid() || !targetUnit.HealthComponent.IsValid() || targetUnit.HealthComponent.IsDead )
+		{
 			return;
 		}
 
-		var selectedTargets = SelectTargets( target, owner );
+		var selectedTargets = SelectTargets( targetUnit, owner );
 		foreach ( var selected in selectedTargets )
 		{
 			TriggerBeforePlayEffects( owner, selected );
-			PlayOnTarget( owner, selected );
+			PlayOnTarget( owner, targetUnit, target.AssignedCard );
 			TriggerOnPlayEffects( owner, selected );
 		}
 
@@ -113,43 +126,48 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private void PlayOnTarget( BattleUnitComponent owner, BattleUnitComponent target )
+	private void PlayOnTarget( BattleUnitComponent owner, BattleUnitComponent target, Card? opposingCard )
 	{
 		foreach ( var action in Actions )
 		{
-			var basePower = action.EffectivePower.Value;
-			var modifiedPower = basePower + TriggerPowerEffects( owner, this, action );
-			var effect = action.Effect;
-
-			TriggerDamageEvents( owner, target );
-			var damage = modifiedPower;
-			if ( effect is not null )
-			{
-				damage += effect.DamageModifier( CreateDetail( owner, target ) );
-			}
-
+			var power = action.GetPowerRoll( owner, this );
+			
 			switch ( action.Type )
 			{
 				case Action.ActionType.Attack:
-					Log.EditorLog( $"{Name} | Base Power: {basePower} | Modified Power: {modifiedPower} | Final Damage: {damage}" );
-					target.HealthComponent?.TakeDamage( damage, owner );
-					break;
-				case Action.ActionType.Effect:
+					var damage = power;
+					if ( ActiveEffect is not null )
 					{
-						if ( effect is null )
-						{
-							continue;
-						}
-
-						Log.EditorLog( $"{Name} | Base Power: {basePower} | Modified Power: {modifiedPower} | Power: {action.Power}" );
-						effect.Power = modifiedPower;
-						break;
+						damage += ActiveEffect.DamageModifier( CreateCardDetail( owner, target ) );
 					}
+					
+					Log.EditorLog( $"{Name} | Power: {power} | Damage: {damage}" );
+
+					// ReSharper disable once UseNullPropagation
+					if ( opposingCard is not null )
+					{
+						var defenseAction = opposingCard.Actions.FirstOrDefault( a => a.Type == Action.ActionType.Defense );
+						if ( defenseAction is not null )
+						{
+							var defensePower = defenseAction.GetPowerRoll( target, opposingCard );
+							Log.EditorLog( $"{opposingCard.Name} | Defense Power: {defensePower}" );
+							damage -= defensePower;
+						}
+					}
+					
+					target.HealthComponent?.TakeDamage( damage, owner );
+					if ( damage > 0 && action.ActiveEffect is not null )
+					{
+						action.ActiveEffect.OnHit( CreateActionDetail( owner, target ) );
+					}
+					break;
 				case Action.ActionType.Defense:
 					break;
 				default:
 					throw new ArgumentOutOfRangeException( action.Type.ToString() );
 			}
+
+			TriggerDamageEvents( owner, target );
 		}
 	}
 
@@ -193,15 +211,10 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	private void TriggerBeforePlayEffects( BattleUnitComponent owner, BattleUnitComponent target )
 	{
-		foreach ( var action in Actions )
+		if ( ActiveEffect is not null )
 		{
-			if ( action.Effect is not {} effect )
-			{
-				continue;
-			}
-			
-			var detail = CreateDetail( owner, target );
-			effect.BeforePlay( detail );
+			var detail = CreateCardDetail( owner, target );
+			ActiveEffect.BeforePlay( detail );
 		}
 		
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
@@ -225,17 +238,12 @@ public class Card : IResource, IDeepCopyable<Card>
 
 	private void TriggerOnPlayEffects( BattleUnitComponent owner, BattleUnitComponent target )
 	{
-		foreach ( var action in Actions )
-		{
-			if ( action.Effect is not {} effect )
-			{
-				continue;
-			}
-			
-			var detail = CreateDetail( owner, target );
-			effect.OnPlay( detail );
+		if ( ActiveEffect is not null ) 
+		{ 
+			var detail = CreateCardDetail( owner, target ); 
+			ActiveEffect.OnPlay( detail );
 		}
-
+			
 		foreach ( var status in owner.StatusEffects?.ToList() ?? [] )
 		{
 			status.OnPlayCard( this );
@@ -255,28 +263,6 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private int TriggerPowerEffects( BattleUnitComponent source, Card card, Action action )
-	{
-		if ( action.Type == Action.ActionType.Defense )
-		{
-			return 0;
-		}
-
-		var contribution = 0;
-		contribution += Modifiers.GetPowerDelta( action );
-		foreach ( var status in source.StatusEffects?.ToList() ?? [] )
-		{
-			contribution += status.PowerModifier( card, action );
-		}
-
-		foreach ( var passive in source.Passives?.ToList() ?? [] )
-		{
-			contribution += passive.PowerModifier( card, action );
-		}
-
-		return contribution;
-	}
-
 	private static void TriggerDamageEvents( BattleUnitComponent attacker, BattleUnitComponent target )
 	{
 		foreach ( var status in target.StatusEffects?.ToList() ?? [] )
@@ -290,9 +276,17 @@ public class Card : IResource, IDeepCopyable<Card>
 		}
 	}
 
-	private static CardEffect.CardEffectDetail CreateDetail( BattleUnitComponent owner, BattleUnitComponent? target = null )
+	private static Effects.CardEffect.CardEffectDetail CreateCardDetail( BattleUnitComponent owner, BattleUnitComponent? target = null )
 	{
-		return new CardEffect.CardEffectDetail
+		return new Effects.CardEffect.CardEffectDetail
+		{
+			Unit = owner, Target = target
+		};
+	}
+	
+	private static Effects.ActionEffect.ActionEffectDetail CreateActionDetail( BattleUnitComponent owner, BattleUnitComponent? target = null )
+	{
+		return new Effects.ActionEffect.ActionEffectDetail
 		{
 			Unit = owner, Target = target
 		};
@@ -315,6 +309,8 @@ public class Card : IResource, IDeepCopyable<Card>
 			Rarity = Rarity,
 			Availabilities = Availabilities,
 			Keywords = Keywords,
+			Effect = Effect,
+			ActiveEffect = ActiveEffect,
 			Actions = Actions.Select( x => x.DeepCopy() ).ToList()
 		};
 
@@ -324,12 +320,6 @@ public class Card : IResource, IDeepCopyable<Card>
 	public override string ToString()
 	{
 		return $"Card: {Name} - Id: {Id.LocalId}";
-	}
-
-	public class CardCost
-	{
-		public int Ep { get; set; }
-		public int Mp { get; set; }
 	}
 
 	public enum CardType
@@ -374,5 +364,13 @@ public class Card : IResource, IDeepCopyable<Card>
 		Event = 1 << 4,
 		[Description( "Only available in dev builds/testing" )]
 		DevOnly = 1 << 5,
+	}
+
+	public class CardEffect
+	{
+		public string Script { get; set; } = string.Empty;
+		
+		[InlineEditor]
+		public RangedInt Power { get; set; } = 1;
 	}
 }

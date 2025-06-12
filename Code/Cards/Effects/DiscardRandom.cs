@@ -12,7 +12,7 @@ public class DiscardRandom( Card card, RangedInt power ) : CardEffect( card, pow
 			return;
 		}
 		
-		for ( var i = 0; i < Power; i++ )
+		for ( var i = 0; i < EffectivePower; i++ )
 		{
 			var randomCard = Game.Random.FromList( hand.Hand! );
 			if ( randomCard is not null )

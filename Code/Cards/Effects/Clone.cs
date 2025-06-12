@@ -24,12 +24,7 @@ public class Clone( Card card, RangedInt power ) : CardEffect( card, power )
 		}
 
 		return detail.Unit.HandComponent.Hand
-			.OrderByDescending( GetTotalCost )
+			.OrderByDescending( x => x.EffectiveCost )
 			.FirstOrDefault();
-	}
-
-	private static int GetTotalCost( Card card )
-	{
-		return (card.EffectiveCost?.Mp ?? 0) + (card.EffectiveCost?.Ep ?? 0);
 	}
 }

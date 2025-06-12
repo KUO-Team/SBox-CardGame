@@ -11,7 +11,7 @@ public class HealPercent( Card card, RangedInt power ) : CardEffect( card, power
 			return;
 		}
 
-		var amount = GetPercentageOfHealth( Power / 100f, detail.Unit.HealthComponent.MaxHealth );
+		var amount = GetPercentageOfHealth( EffectivePower / 100f, detail.Unit.HealthComponent.MaxHealth );
 		detail.Unit.HealthComponent.Heal( amount );
 
 		base.OnPlay( detail );

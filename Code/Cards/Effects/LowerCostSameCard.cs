@@ -8,7 +8,7 @@ public class LowerCostSameCard( Card card, RangedInt power ) : CardEffect( card,
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		Card.Modifiers.AddModifier( new CostModifier( 0, -1, 1 ) );
+		Card.Modifiers.AddModifier( new CostModifier( -1, 1 ) );
 		base.OnPlay( detail );
 	}
 }

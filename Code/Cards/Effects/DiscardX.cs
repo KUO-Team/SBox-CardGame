@@ -6,7 +6,7 @@ public class DiscardX( Card card, RangedInt power ) : CardEffect( card, power )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.HandComponent?.EnterDiscardMode( Card, Power );
+		detail.Unit?.HandComponent?.EnterDiscardMode( Card, EffectivePower );
 		base.OnPlay( detail );
 	}
 }

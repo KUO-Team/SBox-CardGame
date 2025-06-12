@@ -23,12 +23,7 @@ public class DiscardLowestCost( Card card, RangedInt power ) : CardEffect( card,
 		}
 
 		return detail.Unit.HandComponent.Hand
-			.OrderBy( GetTotalCost )
+			.OrderBy( x => x.EffectiveCost )
 			.FirstOrDefault();
-	}
-
-	private static int GetTotalCost( Card card )
-	{
-		return (card.EffectiveCost?.Mp ?? 0) + (card.EffectiveCost?.Ep ?? 0);
 	}
 }

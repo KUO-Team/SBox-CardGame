@@ -6,7 +6,7 @@ public class DiscardHealth( Card card, RangedInt power ) : CardEffect( card, pow
 
 	public override void OnDiscard( CardEffectDetail detail )
 	{
-		detail.Unit?.HealthComponent?.Heal( Power );
+		detail.Unit?.HealthComponent?.Heal( EffectivePower );
 		base.OnDiscard( detail );
 	}
 }

@@ -6,7 +6,7 @@ public class Cold( Card card, RangedInt power ) : CardEffect( card, power )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Cold, Power );
+		detail.Target?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Cold, EffectivePower );
 		base.OnPlay( detail );
 	}
 }

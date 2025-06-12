@@ -11,7 +11,7 @@ public class ManaAdd( Card card, RangedInt power ) : CardEffect( card, power )
 			return;
 		}
 
-		detail.Unit.Mana += Power;
+		detail.Unit.Mana += EffectivePower;
 		base.OnPlay( detail );
 	}
 }

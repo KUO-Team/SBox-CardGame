@@ -6,7 +6,7 @@ public class Protection( Card card, RangedInt power ) : CardEffect( card, power 
 	
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Protection, Power );
+		detail.Unit?.StatusEffects?.AddStatusEffectByKey( StatusEffects.StatusEffect.StatusKey.Protection, EffectivePower );
 		base.OnPlay( detail );
 	}
 }

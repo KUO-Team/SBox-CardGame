@@ -11,7 +11,7 @@ public class DiscardMana( Card card, RangedInt power ) : CardEffect( card, power
 			return;
 		}
 
-		detail.Unit.RecoverMana( Power );
+		detail.Unit.RecoverMana( EffectivePower );
 		base.OnDiscard( detail );
 	}
 }

@@ -6,7 +6,7 @@ public class Heal( Card card, RangedInt power ) : CardEffect( card, power )
 	
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.HealthComponent?.Heal( Power );
+		detail.Unit?.HealthComponent?.Heal( EffectivePower );
 		base.OnPlay( detail );
 	}
 }

@@ -6,7 +6,7 @@ public class Draw( Card card, RangedInt power ) : CardEffect( card, power )
 
 	public override void OnPlay( CardEffectDetail detail )
 	{
-		detail.Unit?.HandComponent?.DrawX( Power );
+		detail.Unit?.HandComponent?.DrawX( EffectivePower );
 		base.OnPlay( detail );
 	}
 }

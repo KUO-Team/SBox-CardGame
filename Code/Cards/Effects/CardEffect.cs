@@ -2,13 +2,24 @@
 
 namespace CardGame.Effects;
 
-public abstract class CardEffect( Card card, RangedInt power )
+public abstract class CardEffect( Card card, RangedInt power ) : IEffect
 {
 	protected Card Card { get; set; } = card;
 	
 	protected RangedInt PowerRange { get; set; } = power;
 
-	public int Power { get; set; } = 1;
+	protected int EffectivePower
+	{
+		get
+		{
+			var defaultPower = PowerRange.Value;
+			var delta = Card.Modifiers.GetEffectPowerDelta();
+			var modifiedPower = defaultPower + delta;
+			
+			Log.EditorLog( $"Power: {modifiedPower} | Base Roll: {defaultPower} | Delta: {delta}" );
+			return modifiedPower;
+		}
+	}
 
 	public virtual string Description { get; set; } = string.Empty;
 
@@ -57,4 +68,9 @@ public abstract class CardEffect( Card card, RangedInt power )
 		public BattleUnitComponent? Unit { get; set; }
 		public BattleUnitComponent? Target { get; set; }
 	}
+}
+
+public interface IEffect
+{
+	
 }
