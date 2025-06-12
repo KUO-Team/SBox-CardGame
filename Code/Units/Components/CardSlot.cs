@@ -158,7 +158,7 @@ public sealed class CardSlot : Component, IOwnable
 			return;
 		}
 
-		Owner.Mana -= card.EffectiveCost;
+		Owner.SpendMana( card.EffectiveCost );
 		AssignedCard = card;
 		Target = target;
 
@@ -195,7 +195,7 @@ public sealed class CardSlot : Component, IOwnable
 			return;
 		}
 
-		Owner.Mana += AssignedCard.EffectiveCost;
+		Owner.RecoverMana( AssignedCard.EffectiveCost );
 		var hand = Owner.HandComponent;
 		hand?.Hand.Add( AssignedCard );
 		AssignedCard = null;
