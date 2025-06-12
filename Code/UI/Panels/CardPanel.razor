@@ -40,15 +40,11 @@
 			{
 				if ( Card.Effect.Power.IsRandom )
 				{
-					<label class="card-effect" IsRich="@true">
-						@Card.ActiveEffect.Description.Replace( "@", $"{Card.Effect.Power.Min}-{Card.Effect.Power.Max}" ).Replace( "\n", "<br>" ))
-					</label>
+					<label class="card-effect" IsRich="@true">@Card.ActiveEffect.Description.Replace( "@", $"{Card.Effect.Power.Min}-{Card.Effect.Power.Max}" ).Replace( "\n", "<br>" )</label>
 				}
 				else
 				{
-					<label class="card-effect" IsRich="@true">
-						@Card.ActiveEffect.Description.Replace( "@", Card.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" ))
-					</label>
+					<label class="card-effect" IsRich="@true">@Card.ActiveEffect.Description.Replace( "@", Card.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" )</label>
 				}
 			}
 		}
@@ -75,15 +71,11 @@
 						{
 							if ( action.Effect.Power.IsRandom )
 							{
-								<label class="effect" IsRich="@true">
-									@desc.Replace( "@", $"{action.Effect.Power.Min}-{action.Effect.Power.Max}" ).Replace( "\n", "<br>" ))
-								</label>
+								<label class="effect" IsRich="@true">@desc.Replace( "@", $"{action.Effect.Power.Min}-{action.Effect.Power.Max}" ).Replace( "\n", "<br>" )</label>
 							}
 							else
 							{
-								<label class="effect" IsRich="@true">
-									@desc.Replace( "@", action.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" ))
-								</label>
+								<label class="effect" IsRich="@true">@desc.Replace( "@", action.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" )</label>
 							}
 						}
 					</div>
@@ -104,15 +96,11 @@
 						{
 							if ( action.Effect.Power.IsRandom )
 							{
-								<label class="effect" IsRich="@true">
-									@desc.Replace( "@", $"{action.Effect.Power.Min}-{action.Effect.Power.Max}" ).Replace( "\n", "<br>" ))
-								</label>
+								<label class="effect" IsRich="@true">@desc.Replace( "@", $"{action.Effect.Power.Min}-{action.Effect.Power.Max}" ).Replace( "\n", "<br>" )</label>
 							}
 							else
 							{
-								<label class="effect" IsRich="@true">
-									@desc.Replace( "@", action.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" ))
-								</label>
+								<label class="effect" IsRich="@true">@desc.Replace( "@", action.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" )</label>
 							}
 						}
 					</div>
@@ -128,5 +116,7 @@
 		<img class="missing-icon" src="/materials/cards/missing.png" alt="?"/>
 	}
 
-	<div class="card-type @( Card.Rarity )">- @( Card.Type ) Card -</div>
+	<div class="footer @( Card.Rarity )">
+		<label class="card-type">- @( Card.Type ) Card -</label>
+	</div>
 </root>

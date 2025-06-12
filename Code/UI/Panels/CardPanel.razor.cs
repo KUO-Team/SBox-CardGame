@@ -1,5 +1,4 @@
 ﻿using System;
-using Sandbox.UI;
 
 namespace CardGame.UI;
 
@@ -17,12 +16,7 @@ public partial class CardPanel
 	{
 		return HashCode.Combine(
 			Card,
-			Card?.Name,
-			Card?.Cost,
-			Card?.EffectiveCost,
-			Card?.Rarity,
-			Card?.Actions.Count,
-			string.Join( ",", Card?.Actions.Select( a => a.Type + (int)a.EffectivePower + (a.ActiveEffect?.Description ?? "") ) ?? Array.Empty<string>() )
+			Card?.EffectiveCost
 		);
 	}
 }
