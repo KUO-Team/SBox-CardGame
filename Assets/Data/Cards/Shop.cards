@@ -6,10 +6,7 @@
         "LocalId": 50
       },
       "Name": "Focus Within",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -17,16 +14,14 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "Attack Power Up",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 3,
-            "Max": 3
-          },
-          "Script": "PowerUp"
+      "Effect": {
+        "Script": "PowerUp",
+        "Power": {
+          "Min": 3,
+          "Max": 3
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -34,10 +29,7 @@
         "LocalId": 51
       },
       "Name": "Knife Stab",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 0,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -45,22 +37,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Bleed",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "Bleed"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 1,
             "Max": 1
           },
-          "Script": ""
+          "Effect": {
+            "Script": "Bleed",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -70,10 +67,7 @@
         "LocalId": 52
       },
       "Name": "High Card",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -81,16 +75,14 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "Discard",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "DiscardHand"
+      "Effect": {
+        "Script": "DiscardHand",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -98,10 +90,7 @@
         "LocalId": 53
       },
       "Name": "Wild Swing",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -109,22 +98,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Discard",
+      "Effect": {
+        "Script": "DiscardDraw",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "DiscardDraw"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 1,
             "Max": 3
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -134,10 +128,7 @@
         "LocalId": 54
       },
       "Name": "Powerful Strike",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 3
-      },
+      "Cost": 3,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -145,22 +136,27 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "",
+      "Effect": {
+        "Script": "LowerCostSameCard",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "LowerCostSameCard"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 2,
             "Max": 15
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -170,10 +166,7 @@
         "LocalId": 55
       },
       "Name": "Swipe",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 3,
       "Targeting": "Enemy",
@@ -181,6 +174,13 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Keywords": "",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
           "Type": "Attack",
@@ -188,7 +188,13 @@
             "Min": 4,
             "Max": 4
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -198,10 +204,7 @@
         "LocalId": 56
       },
       "Name": "Healing Spell",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -209,16 +212,14 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 10,
-            "Max": 10
-          },
-          "Script": "HealPercent"
+      "Effect": {
+        "Script": "HealPercent",
+        "Power": {
+          "Min": 10,
+          "Max": 10
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -226,10 +227,7 @@
         "LocalId": 57
       },
       "Name": "Amplify",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -237,22 +235,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "",
+      "Effect": {
+        "Script": "PowerInHand",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "PowerInHand"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 0,
             "Max": 0
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -262,33 +265,35 @@
         "LocalId": 58
       },
       "Name": "Fortify",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Defense",
-      "Rarity": "Uncommon",
+      "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Discard,Protection",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
-          "Type": "Effect",
+          "Type": "Defense",
           "Power": {
-            "Min": 2,
-            "Max": 2
+            "Min": 4,
+            "Max": 4
           },
-          "Script": "DiscardPower"
-        },
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 3
-          },
-          "Script": "Protection"
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -298,10 +303,7 @@
         "LocalId": 59
       },
       "Name": "Incantation",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -309,16 +311,14 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Keywords": "Bleed,Burn",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 10
-          },
-          "Script": "InflictRandomBleedBurn"
+      "Effect": {
+        "Script": "InflictRandomBurnBleed",
+        "Power": {
+          "Min": 2,
+          "Max": 6
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -326,10 +326,7 @@
         "LocalId": 60
       },
       "Name": "Mana Essence",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -337,22 +334,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Discard",
+      "Effect": {
+        "Script": "DiscardMana",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "DiscardMana"
-        },
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
-            "Max": 4
+            "Min": 1,
+            "Max": 3
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -362,10 +364,7 @@
         "LocalId": 61
       },
       "Name": "Sleight-Of-Hand",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -373,16 +372,14 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "Draw"
+      "Effect": {
+        "Script": "Draw",
+        "Power": {
+          "Min": 2,
+          "Max": 2
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -390,10 +387,7 @@
         "LocalId": 62
       },
       "Name": "Clone",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -401,16 +395,14 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "Clone"
+      "Effect": {
+        "Script": "Clone",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -418,10 +410,7 @@
         "LocalId": 65
       },
       "Name": "Mana Conversion",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -429,16 +418,14 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "Discard",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 3,
-            "Max": 3
-          },
-          "Script": "DiscardXManaAdd"
+      "Effect": {
+        "Script": "DiscardMana",
+        "Power": {
+          "Min": 2,
+          "Max": 2
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -446,10 +433,7 @@
         "LocalId": 67
       },
       "Name": "Protect",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -457,14 +441,27 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "Protection",
+      "Effect": {
+        "Script": "Protection",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
-          "Type": "Effect",
+          "Type": "Defense",
           "Power": {
-            "Min": 5,
-            "Max": 5
+            "Min": 3,
+            "Max": 3
           },
-          "Script": "Protection"
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -474,10 +471,7 @@
         "LocalId": 68
       },
       "Name": "Emergency Shield",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -485,16 +479,14 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop",
       "Keywords": "Protection,Discard",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 3,
-            "Max": 3
-          },
-          "Script": "DiscardXProtection"
+      "Effect": {
+        "Script": "DiscardXProtection",
+        "Power": {
+          "Min": 3,
+          "Max": 3
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -502,10 +494,7 @@
         "LocalId": 69
       },
       "Name": "Gambit",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -513,22 +502,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Discard",
+      "Effect": {
+        "Script": "DiscardHealth",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "DiscardHealth"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 1,
             "Max": 3
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -538,10 +532,7 @@
         "LocalId": 70
       },
       "Name": "Enchant",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -549,16 +540,14 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Keywords": "Enchanted",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "Enchant"
+      "Effect": {
+        "Script": "Enchant",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -566,10 +555,7 @@
         "LocalId": 71
       },
       "Name": "Enchanted Strike",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 3
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -577,22 +563,27 @@
       "Rarity": "Epic",
       "Availabilities": "Shop",
       "Keywords": "Enchanted",
+      "Effect": {
+        "Script": "EnchantedOnly",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "EnchantedOnly"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 24,
             "Max": 24
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -602,10 +593,7 @@
         "LocalId": 72
       },
       "Name": "Enchanted Blast",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 3
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 5,
       "Targeting": "Enemy",
@@ -613,22 +601,27 @@
       "Rarity": "Epic",
       "Availabilities": "Shop",
       "Keywords": "Enchanted",
+      "Effect": {
+        "Script": "EnchantedOnly",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "EnchantedOnly"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 12,
             "Max": 12
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -638,10 +631,7 @@
         "LocalId": 73
       },
       "Name": "Hasten Up",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -649,16 +639,14 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Haste",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 2
-          },
-          "Script": "Haste"
+      "Effect": {
+        "Script": "Haste",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -666,27 +654,22 @@
         "LocalId": 74
       },
       "Name": "Freeze Spell",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Common",
-      "Availabilities": "None",
+      "Availabilities": "Shop",
       "Keywords": "Cold",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 2
-          },
-          "Script": "Cold"
+      "Effect": {
+        "Script": "Cold",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -694,10 +677,7 @@
         "LocalId": 75
       },
       "Name": "Adrenaline Rush",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -705,32 +685,14 @@
       "Rarity": "Epic",
       "Availabilities": "Shop",
       "Keywords": "Stunned",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "StunnedNextTurn"
-        },
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 3,
-            "Max": 3
-          },
-          "Script": "ManaAdd"
-        },
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "Draw"
+      "Effect": {
+        "Script": "Adrenaline",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     }
   ],
   "__references": [],

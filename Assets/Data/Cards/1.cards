@@ -6,10 +6,7 @@
         "LocalId": 8
       },
       "Name": "Scratch",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -17,22 +14,27 @@
       "Rarity": "Common",
       "Availabilities": "None",
       "Keywords": "Bleed",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "Bleed"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 1,
-            "Max": 2
+            "Max": 1
           },
-          "Script": null
+          "Effect": {
+            "Script": "Bleed",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -42,10 +44,7 @@
         "LocalId": 9
       },
       "Name": "Bite",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -53,22 +52,27 @@
       "Rarity": "Common",
       "Availabilities": "None",
       "Keywords": "Bleed",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 2
-          },
-          "Script": "Bleed"
-        },
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
+            "Min": 1,
             "Max": 3
           },
-          "Script": null
+          "Effect": {
+            "Script": "Bleed",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -78,10 +82,7 @@
         "LocalId": 10
       },
       "Name": "Gnaw",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -89,22 +90,27 @@
       "Rarity": "Uncommon",
       "Availabilities": "None",
       "Keywords": "Bleed",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 2
-          },
-          "Script": "Bleed"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 3,
             "Max": 3
           },
-          "Script": null
+          "Effect": {
+            "Script": "Bleed",
+            "Power": {
+              "Min": 2,
+              "Max": 2
+            }
+          }
         }
       ]
     },
@@ -114,10 +120,7 @@
         "LocalId": 11
       },
       "Name": "Violent Gnawing",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 3
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -125,22 +128,27 @@
       "Rarity": "Rare",
       "Availabilities": "None",
       "Keywords": "Bleed",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 2
-          },
-          "Script": "Bleed"
-        },
         {
           "Type": "Attack",
           "Power": {
             "Min": 3,
             "Max": 5
           },
-          "Script": ""
+          "Effect": {
+            "Script": "Bleed",
+            "Power": {
+              "Min": 2,
+              "Max": 2
+            }
+          }
         }
       ]
     }

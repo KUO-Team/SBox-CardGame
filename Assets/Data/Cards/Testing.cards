@@ -1,0 +1,44 @@
+{
+  "List": [
+    {
+      "Id": {
+        "Source": "",
+        "LocalId": 999
+      },
+      "Name": "Cheat",
+      "Cost": 0,
+      "IsInstant": true,
+      "Targets": 999,
+      "Targeting": "All",
+      "Type": "Attack",
+      "Rarity": "Common",
+      "Availabilities": "None",
+      "Keywords": "",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Power": {
+            "Min": 999,
+            "Max": 999
+          },
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "__references": [],
+  "__version": 0
+}

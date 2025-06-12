@@ -6,10 +6,7 @@
         "LocalId": 1
       },
       "Name": "Strike",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -17,14 +14,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
           "Type": "Attack",
           "Power": {
-            "Min": 3,
+            "Min": 1,
             "Max": 3
           },
-          "Script": null
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -34,10 +44,7 @@
         "LocalId": 2
       },
       "Name": "Strong Strike",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -45,14 +52,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
           "Type": "Attack",
           "Power": {
-            "Min": 5,
-            "Max": 5
+            "Min": 3,
+            "Max": 3
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -61,26 +81,36 @@
         "Source": "",
         "LocalId": 3
       },
-      "Name": "Mystic Ward",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
-      "IsInstant": true,
+      "Name": "Guard",
+      "Cost": 1,
+      "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
       "Type": "Spell",
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "Protection",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
-          "Type": "Effect",
+          "Type": "Defense",
           "Power": {
             "Min": 2,
             "Max": 2
           },
-          "Script": "Protection"
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -90,10 +120,7 @@
         "LocalId": 4
       },
       "Name": "Focus",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 0,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -101,16 +128,14 @@
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 1,
-            "Max": 1
-          },
-          "Script": "ManaRecover"
+      "Effect": {
+        "Script": "ManaRecover",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -118,10 +143,7 @@
         "LocalId": 5
       },
       "Name": "Flame Bolt",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": false,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -129,22 +151,27 @@
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "Burn"
-        },
         {
           "Type": "Attack",
           "Power": {
-            "Min": 2,
-            "Max": 2
+            "Min": 1,
+            "Max": 3
           },
-          "Script": ""
+          "Effect": {
+            "Script": "Burn",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -154,10 +181,7 @@
         "LocalId": 6
       },
       "Name": "Arcane Volley",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 2
-      },
+      "Cost": 2,
       "IsInstant": false,
       "Targets": 3,
       "Targeting": "Enemy",
@@ -165,6 +189,13 @@
       "Rarity": "Uncommon",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
+      "Effect": {
+        "Script": "",
+        "Power": {
+          "Min": 1,
+          "Max": 1
+        }
+      },
       "Actions": [
         {
           "Type": "Attack",
@@ -172,7 +203,13 @@
             "Min": 3,
             "Max": 3
           },
-          "Script": ""
+          "Effect": {
+            "Script": "",
+            "Power": {
+              "Min": 1,
+              "Max": 1
+            }
+          }
         }
       ]
     },
@@ -182,10 +219,7 @@
         "LocalId": 7
       },
       "Name": "Insight",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 1
-      },
+      "Cost": 1,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -193,16 +227,14 @@
       "Rarity": "Common",
       "Availabilities": "Shop, Starter",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "Draw"
+      "Effect": {
+        "Script": "Draw",
+        "Power": {
+          "Min": 2,
+          "Max": 2
         }
-      ]
+      },
+      "Actions": []
     }
   ],
   "__references": [],

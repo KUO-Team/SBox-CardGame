@@ -6,10 +6,7 @@
         "LocalId": 100
       },
       "Name": "Health Potion",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 0,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -17,16 +14,14 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 20,
-            "Max": 20
-          },
-          "Script": "HealPercent"
+      "Effect": {
+        "Script": "HealPercent",
+        "Power": {
+          "Min": 20,
+          "Max": 20
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -34,10 +29,7 @@
         "LocalId": 101
       },
       "Name": "Mana Potion",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 0,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -45,16 +37,14 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 3,
-            "Max": 3
-          },
-          "Script": "ManaRecover"
+      "Effect": {
+        "Script": "ManaRecover",
+        "Power": {
+          "Min": 3,
+          "Max": 3
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -62,10 +52,7 @@
         "LocalId": 102
       },
       "Name": "Strength Potion",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 0,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -73,16 +60,14 @@
       "Rarity": "Common",
       "Availabilities": "Shop",
       "Keywords": "Attack Power Up",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 2,
-            "Max": 2
-          },
-          "Script": "PowerUp"
+      "Effect": {
+        "Script": "PowerUp",
+        "Power": {
+          "Min": 2,
+          "Max": 2
         }
-      ]
+      },
+      "Actions": []
     },
     {
       "Id": {
@@ -90,10 +75,7 @@
         "LocalId": 103
       },
       "Name": "Expand Mind",
-      "Cost": {
-        "Ep": 0,
-        "Mp": 0
-      },
+      "Cost": 0,
       "IsInstant": true,
       "Targets": 1,
       "Targeting": "Enemy",
@@ -101,16 +83,14 @@
       "Rarity": "Rare",
       "Availabilities": "Shop",
       "Keywords": "",
-      "Actions": [
-        {
-          "Type": "Effect",
-          "Power": {
-            "Min": 9,
-            "Max": 9
-          },
-          "Script": "DrawDeck"
+      "Effect": {
+        "Script": "DrawDeck",
+        "Power": {
+          "Min": 1,
+          "Max": 1
         }
-      ]
+      },
+      "Actions": []
     }
   ],
   "__references": [],
