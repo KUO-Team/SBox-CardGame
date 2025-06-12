@@ -37,13 +37,13 @@ public sealed class CardSlot : Component, IOwnable
 	[Property]
 	public int Speed { get; set; }
 	
+	[Property, Category("Components")]
 	public LineRenderer? LineRenderer { get; set; }
 
 	public CardSlotPanel? Panel { get; set; }
 
 	public static Action<CardSlot, Card, CardSlot>? OnSlotAssigned { get; set; }
 
-	private CameraComponent Camera => Scene.Camera;
 	private Ray _mouseRay;
 
 	protected override void OnStart()
@@ -55,12 +55,16 @@ public sealed class CardSlot : Component, IOwnable
 			BattleManager.Instance.OnCombatStart += OnCombatStart;
 		}
 
-		LineRenderer = Components.GetInChildren<LineRenderer>();
 		base.OnStart();
 	}
 
 	protected override void OnDestroy()
 	{
+		if ( LineRenderer.IsValid() )
+		{
+			LineRenderer.DestroyGameObject();
+		}
+		
 		if ( BattleManager.Instance.IsValid() )
 		{
 			BattleManager.Instance.OnTurnStart -= OnTurnStart;
@@ -154,8 +158,7 @@ public sealed class CardSlot : Component, IOwnable
 			return;
 		}
 
-		Owner.Energy -= card.EffectiveCost.Ep;
-		Owner.Mana -= card.EffectiveCost.Mp;
+		Owner.Mana -= card.EffectiveCost;
 		AssignedCard = card;
 		Target = target;
 
@@ -164,7 +167,7 @@ public sealed class CardSlot : Component, IOwnable
 
 		if ( card.IsInstant && target.Owner.IsValid() )
 		{
-			card.Play( target.Owner, this );
+			card.Play( this, target );
 		}
 
 		OnSlotAssigned?.Invoke( this, card, target );
@@ -192,8 +195,7 @@ public sealed class CardSlot : Component, IOwnable
 			return;
 		}
 
-		Owner.Energy += AssignedCard.EffectiveCost.Ep;
-		Owner.Mana += AssignedCard.EffectiveCost.Mp;
+		Owner.Mana += AssignedCard.EffectiveCost;
 		var hand = Owner.HandComponent;
 		hand?.Hand.Add( AssignedCard );
 		AssignedCard = null;
@@ -219,29 +221,19 @@ public sealed class CardSlot : Component, IOwnable
 			return false;
 		}
 
-		if ( Owner.Energy < card.EffectiveCost.Ep )
+		if ( Owner.Mana < card.EffectiveCost )
 		{
 			return false;
 		}
-
-		if ( Owner.Mana < card.EffectiveCost.Mp )
+		
+		if ( card.ActiveEffect is not null )
 		{
-			return false;
-		}
-
-		foreach ( var action in card.Actions )
-		{
-			if ( action.Effect is not {} effect )
-			{
-				continue;
-			}
-
 			var detail = new CardEffect.CardEffectDetail
 			{
 				Unit = Owner, Target = target.Owner
 			};
 
-			if ( !effect.CanPlay( detail ) )
+			if ( !card.ActiveEffect.CanPlay( detail ) )
 			{
 				return false;
 			}
@@ -250,7 +242,7 @@ public sealed class CardSlot : Component, IOwnable
 		return true;
 	}
 
-	public async Task PlayAsync( BattleUnitComponent target, CardSlot slot )
+	public async Task PlayAsync( CardSlot target )
 	{
 		if ( !IsAssigned || AssignedCard is null )
 		{
@@ -258,7 +250,7 @@ public sealed class CardSlot : Component, IOwnable
 		}
 
 		ClearTargetingArrows();
-		slot.AssignedCard?.Play( target, slot );
+		AssignedCard?.Play( this, target );
 		await Task.DelaySeconds( GetCardAnimationDuration() );
 	}
 

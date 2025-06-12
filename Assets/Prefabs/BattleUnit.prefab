@@ -19,7 +19,6 @@
         "__guid": "658508a1-1a44-4dbb-988a-afcab23a5729",
         "__enabled": true,
         "Description": "",
-        "Energy": 3,
         "Faction": "Enemy",
         "HandComponent": {
           "_type": "component",
@@ -40,7 +39,6 @@
           "component_type": "LevelComponent"
         },
         "Mana": 3,
-        "MaxEnergy": 0,
         "MaxMana": 3,
         "Name": "battleunit",
         "OnComponentDestroy": null,
@@ -174,6 +172,10 @@
           "component_id": "658508a1-1a44-4dbb-988a-afcab23a5729",
           "go": "b9f07845-27d0-411c-a688-d488479ede8a",
           "component_type": "BattleUnitComponent"
+        },
+        "TargetingArrowPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/targetingrenderer.prefab"
         }
       },
       {
@@ -203,7 +205,7 @@
         "__version": 1,
         "Flags": 0,
         "Name": "InfoAnchor",
-        "Position": "0,-95,0",
+        "Position": "0,-130.0296,0",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",
         "Tags": "",
@@ -277,7 +279,7 @@
         "__version": 1,
         "Flags": 0,
         "Name": "SlotsAnchor",
-        "Position": "0,168,0",
+        "Position": "0,120,0",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",
         "Tags": "",
@@ -351,7 +353,7 @@
         "__version": 1,
         "Flags": 0,
         "Name": "Sprite",
-        "Position": "0,64,12.94262",
+        "Position": "0,0,10",
         "Rotation": "0.1305262,0,0,0.9914449",
         "Scale": "1,1,1",
         "Tags": "",
@@ -367,7 +369,7 @@
             "__enabled": true,
             "__version": 1,
             "BroadcastEvents": {},
-            "CastShadows": "Off",
+            "CastShadows": "On",
             "CreateAttachPoints": false,
             "FlashTint": "1,1,1,0",
             "MaterialOverride": null,
@@ -394,7 +396,7 @@
             "__version": 1,
             "Flags": 0,
             "Name": "World",
-            "Position": "-0.000004768372,11.86781,91.40262",
+            "Position": "-0.00000475347,-11.50408,4.177538",
             "Rotation": "-0.4956177,-0.4956177,-0.5043442,0.5043442",
             "Scale": "1,1,1",
             "Tags": "",
@@ -448,85 +450,6 @@
             "Children": []
           }
         ]
-      },
-      {
-        "__guid": "1f93b223-27f9-41f8-a817-a5bf05714168",
-        "__version": 1,
-        "Flags": 0,
-        "Name": "TargetingArrows",
-        "Position": "0,0,0",
-        "Rotation": "0,0,0,1",
-        "Scale": "1,1,1",
-        "Tags": "",
-        "Enabled": true,
-        "NetworkMode": 2,
-        "NetworkInterpolation": true,
-        "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
-        "Components": [
-          {
-            "__type": "Sandbox.LineRenderer",
-            "__guid": "580885b7-7056-4e8f-9373-c63bc38788ac",
-            "__enabled": true,
-            "Additive": false,
-            "CastShadows": false,
-            "Color": {
-              "blend": "Linear",
-              "color": [
-                {
-                  "t": 0.5,
-                  "c": "0,1,1,1"
-                }
-              ],
-              "alpha": []
-            },
-            "DepthFeather": 0,
-            "EndCap": "Arrow",
-            "Face": "Camera",
-            "FogStrength": 1,
-            "Lighting": false,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Opaque": true,
-            "Points": [],
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": true,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "SplineBias": 0,
-            "SplineContinuity": 0,
-            "SplineInterpolation": 0,
-            "SplineTension": 0,
-            "StartCap": "None",
-            "Texturing": {
-              "Texture": null,
-              "WorldSpace": true,
-              "UnitsPerTexture": 10,
-              "Scale": 1,
-              "Offset": 0,
-              "Scroll": 0
-            },
-            "UseVectorPoints": true,
-            "VectorPoints": [],
-            "Width": [
-              {
-                "x": 0.5,
-                "y": 0.5,
-                "in": 0,
-                "out": 0,
-                "mode": "Mirrored"
-              }
-            ],
-            "Wireframe": false
-          }
-        ],
-        "Children": []
       }
     ],
     "__properties": {

@@ -2,6 +2,8 @@
 
 public class CardSlotList : OwnableListComponent<CardSlot>
 {
+	[Property, Category( "Prefabs" )] public GameObject? TargetingArrowPrefab { get; set; }
+
 	public void AddCardSlot( int amount = 1 )
 	{
 		if ( !Owner.IsValid() )
@@ -14,6 +16,14 @@ public class CardSlotList : OwnableListComponent<CardSlot>
 		{
 			var slot = Owner.AddComponent<CardSlot>();
 			slot.Owner = Owner;
+			
+			if ( TargetingArrowPrefab.IsValid() )
+			{
+				var arrow = TargetingArrowPrefab.Clone();
+				slot.LineRenderer = arrow.GetComponent<LineRenderer>();
+				slot.LineRenderer.UseVectorPoints = true;
+			}
+			
 			Add( slot );
 		}
 	}
