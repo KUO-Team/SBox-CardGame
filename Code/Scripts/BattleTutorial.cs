@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CardGame.Data;
 using Sandbox.UI;
 using CardGame.Platform;
 using CardGame.UI;
 using CardGame.UI.Tutorial;
+using CardGame.Units;
 
 namespace CardGame.Scripts;
 
@@ -15,6 +17,9 @@ public class BattleTutorial : BattleScript
 	private TaskCompletionSource<bool>? _slotSelectionTaskSource;
 	private TaskCompletionSource<bool>? _cardSelectionTaskSource;
 	private TaskCompletionSource<bool>? _slotAssignmentTaskSource;
+
+	private BattleUnitComponent? _playerUnit;
+	private BattleUnitComponent? _enemyUnit;
 
 	public override void OnUnload()
 	{
@@ -48,15 +53,34 @@ public class BattleTutorial : BattleScript
 				return;
 			}
 			
+			_playerUnit = BattleManager.GetAliveUnits( Faction.Player ).FirstOrDefault();
+			_enemyUnit = BattleManager.GetAliveUnits( Faction.Enemy ).FirstOrDefault();
+			
+			if ( _playerUnit is null || _enemyUnit is null )
+			{
+				Log.Warning( "Tutorial is missing valid units!" );
+				return;
+			}
+
+			var playerSlot = _playerUnit.Slots?.FirstOrDefault();
+			var enemySlot = _enemyUnit.Slots?.FirstOrDefault();
+			var card = CardDataList.GetById( 9 );
+			if ( card is not null )
+			{
+				var copy = card.DeepCopy();
+				enemySlot.AssignCard( copy, playerSlot! );
+			}
+			
+			
 			if ( BattleManager.IsValid() )
 			{
 				BattleManager.CanEndTurn = false;
 			}
 			
-			await DelaySeconds( 3 );
+			await DelaySeconds( 2 );
 			
 			TutorialPanel.Instance?.SetInputLock( true );
-			await ShowMessage( "Welcome! Let's walk through your first battle.", SlotTutorial );
+			await ShowMessage( "Let's walk you through your first battle.", SlotTutorial );
 		}
 		catch ( Exception e )
 		{
@@ -109,7 +133,7 @@ public class BattleTutorial : BattleScript
 		
 		TutorialPanel.Instance?.SetInputLock( true );
 		await ShowStepMessage( "This concludes the combat tutorial." );
-		await ShowStepMessage( "You can always replay this tutorial from the main menu or view the in-game manual for additional details not covered here." );
+		await ShowStepMessage( "You can replay this tutorial from the main menu or check the in-game manual for more details not covered here." );
 		await ShowStepMessage( "Good luck on your descent into the abyss!" );
 		
 		if ( BattleManager.IsValid() )
@@ -146,8 +170,7 @@ public class BattleTutorial : BattleScript
 	private async Task SlotAssignmentTutorial()
 	{
 		TutorialPanel.Instance?.SetInputLock( true );
-		await ShowStepMessage( "Selected card slots have a blue border around them." );
-		await ShowStepMessage( "When you select a card slot, its owner's hand is displayed below." );
+		await ShowStepMessage( "When a slot is selected, its unit’s hand appears below." );
 		await ShowStepMessage( "Click on a card in the unit's hand to select it." );
 
 		_cardSelectionTaskSource = new TaskCompletionSource<bool>();
@@ -161,9 +184,8 @@ public class BattleTutorial : BattleScript
 	private async Task CardPlayTutorial()
 	{
 		TutorialPanel.Instance?.SetInputLock( true );
-		await ShowStepMessage( "When you have a card selected, it will have a blue border." );
 		await ShowStepMessage( "Cards cost a resource called 'MP' (Mana Points) to play.<br>You can view each unit's available MP to the right of their health value, displayed in blue." );
-		await ShowStepMessage( "To queue the selected card for play, you must select a valid target.<br>Click on the enemy unit's card slot." );
+		await ShowStepMessage( "To queue the selected card for play, you must select a valid target.<br>Click the enemy’s card slot to select it as this slot’s target." );
 
 		_slotAssignmentTaskSource = new TaskCompletionSource<bool>();
 		TutorialPanel.Instance?.SetInputLock( false );
@@ -173,14 +195,14 @@ public class BattleTutorial : BattleScript
 
 		TutorialPanel.Instance?.SetInputLock( true );
 		await ShowStepMessage( "Notice how the card slot's background color changed.<br>You can hover over any filled card slot to view its assigned card." );
-		await ShowStepMessage( "To cancel your selection, right-click the filled card slot to unassign its card." );
+		await ShowStepMessage( "If you wish to cancel your selection, right-click the filled card slot to unassign its card." );
 		await TurnTutorial();
 	}
 	private async Task TurnTutorial()
 	{
 		await ShowStepMessage( "Turns are divided into two phases: the assignment phase and the combat phase." );
 		await ShowStepMessage( "During the assignment phase, you can assign cards to card slots and determine your turn order." );
-		await ShowStepMessage( "When you're ready, press either the End Turn button at the top of the HUD or the spacebar to begin combat." );
+		await ShowStepMessage( "When you're ready, press either the End Turn button at the top of the HUD or the spacebar key to switch to the combat phase." );
 		
 		if ( BattleManager.IsValid() )
 		{
@@ -194,7 +216,7 @@ public class BattleTutorial : BattleScript
 	{
 		TutorialPanel.Instance?.SetInputLock( true );
 		await ShowStepMessage( "During the combat phase, cards are played in order based on their assigned slot's speed — from highest to lowest." );
-		await ShowStepMessage( "If two or more slots have the same speed, one is chosen randomly to play first.<br><br>However, enemy slots are always played before player slots when speeds are tied." );
+		await ShowStepMessage( "If two or more slots share the same speed, one is chosen randomly to play first.<br><br>However, enemy slots are always played before player slots when speeds are tied." );
 		await ShowStepMessage( "Cards then activate, triggering their effects such as dealing damage or causing various effects." );
 		await ShowStepMessage( "Let's finish this fight! Use what you've learned to defeat the enemy." );
 
