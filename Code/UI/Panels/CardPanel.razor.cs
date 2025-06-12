@@ -22,7 +22,7 @@ public partial class CardPanel
 			Card?.EffectiveCost,
 			Card?.Rarity,
 			Card?.Actions.Count,
-			string.Join( ",", Card?.Actions.Select( a => a.Type + (int)a.EffectivePower + (a.Effect?.Description ?? "") ) ?? Array.Empty<string>() )
+			string.Join( ",", Card?.Actions.Select( a => a.Type + (int)a.EffectivePower + (a.ActiveEffect?.Description ?? "") ) ?? Array.Empty<string>() )
 		);
 	}
 }

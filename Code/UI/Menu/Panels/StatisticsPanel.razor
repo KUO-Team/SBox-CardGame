@@ -43,8 +43,9 @@
 				<div class="cards">
 					@foreach ( var card in cards
 						.OrderByDescending( y => y.Rarity )
-						.ThenBy( y => string.Join(",", y.Keywords.TryGetAll()) )
-						.ThenBy( y => y.Name ) )
+						.ThenBy( x => x.Type )
+						.ThenBy( x => string.Join(",", x.Keywords.TryGetAll()) )
+						.ThenBy( x => x.Name ) )
 					{
 						<CardPanel class="@( SeenCards.Contains( card.Id ) ? "" : "hide" )" Card="@card"></CardPanel>
 					}

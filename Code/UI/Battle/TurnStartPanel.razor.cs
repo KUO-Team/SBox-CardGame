@@ -34,7 +34,7 @@ public partial class TurnStartPanel
 			this.Show();
 
 			var elapsed = 0f;
-			const float duration = 2f;
+			const float duration = 1f;
 			const float interval = 0.1f;
 
 			while ( elapsed < duration && _isShowing )

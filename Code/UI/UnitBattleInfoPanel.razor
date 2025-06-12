@@ -18,12 +18,16 @@
 			<label class="unit-level">Lv.@( Unit.LevelComponent?.Level )</label>
 		</div>
 
-		<div class="health-bar">
-			<div class="inner-bar" style="width: @( Unit.HealthComponent.HealthPercentage )%"></div>
+		<div style="align-items: center;">
+			<div class="health-bar">
+				<div class="inner-bar" style="width: @( Unit.HealthComponent.HealthPercentage )%"></div>
+			</div>
 		</div>
 
-		<div class="mana-bar">
-			<div class="inner-bar" style="width: @( (float)Unit.Mana / Unit.MaxMana * 100 )%"></div>
+		<div style="align-items: center;">
+			<div class="mana-bar">
+				<div class="inner-bar" style="width: @( (float)Unit.Mana / Unit.MaxMana * 100 )%"></div>
+			</div>
 		</div>
 
 		<div class="row">

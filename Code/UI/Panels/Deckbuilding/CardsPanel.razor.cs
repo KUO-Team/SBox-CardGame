@@ -75,7 +75,7 @@ public partial class CardsPanel
 			"Rarity" => cardGroups
 				.OrderByDescending( g => Convert.ToInt32( g.First().Rarity ) ),
 			"Cost" => cardGroups
-				.OrderByDescending( g => g.First().EffectiveCost.Mp ),
+				.OrderByDescending( g => g.First().EffectiveCost ),
 			"Type" => cardGroups
 				.OrderByDescending( g => Convert.ToInt32( g.First().Type ) ),
 			_ => cardGroups
@@ -192,15 +192,10 @@ public partial class CardsPanel
 				throw new ArgumentOutOfRangeException();
 		}
 
-		var detail = new CardEffect.CardEffectDetail();
-		foreach ( var action in card.Actions )
+		if ( card.ActiveEffect is not null )
 		{
-			if ( action.Effect is null )
-			{
-				continue;
-			}
-
-			if ( !action.Effect.CanAddToDeck( detail ) )
+			var detail = new CardEffect.CardEffectDetail();
+			if ( !card.ActiveEffect.CanAddToDeck( detail ) )
 			{
 				return;
 			}

@@ -72,9 +72,13 @@ CardPanel {
     font-size: 20px;
     text-shadow: 0 1px 1px black;
     padding: 2px;
-    letter-spacing: 0.65px;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
+  }
+  
+  .card-effect {
+    padding: 0 4px;
+    font-size: 22px;
   }
   
   .card-targets, .card-targeting, .card-instant {
@@ -99,12 +103,29 @@ CardPanel {
       width: 100%;
       height: auto;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      flex-direction: row;
       padding: 0 4px;
+      
+      .action-icon {
+        width: 35px;
+        height: 35px;
+        flex-shrink: 0;
+      }
+    }
+    
+    .attack, .defense {
+      flex-shrink: 0;
     }
     
     .effect {
+      font-size: 16px;
+      margin-left: 3px;
+    }
+    
+    .effect-action {
+      font-size: 22px;
+      text-align: center;
+      justify-content: center;
     }
   }
 

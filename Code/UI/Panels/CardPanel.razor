@@ -1,4 +1,5 @@
 ﻿@using System
+@using CardGame.Effects
 @using Sandbox.UI
 
 @inherits Panel
@@ -13,77 +14,119 @@
 	<div class="header @( Card.Rarity )">
 		<label class="card-name">@Card.Name</label>
 		<div class="card-cost">
-			@if ( Card.EffectiveCost.Ep > 0 )
-			{
-				<label>@( Card.EffectiveCost.Ep )EP</label>
-			}
-
-			<label>@( Card.EffectiveCost.Mp )MP</label>
+			<label>@( Card.EffectiveCost )MP</label>
 		</div>
 	</div>
 
-	@if ( Card.Actions.Any() )
-	{
-		<div class="actions">
-			@if ( Card.IsInstant )
-			{
-				<label class="card-instant">[Instant]</label>
-			}
-			
-			@if ( Card.Targeting != Card.CardTargets.Enemy )
-			{
-				<label class="card-targeting">[Target @( Card.Targeting )]</label>
-			}
+	<div class="actions">
+		@if ( Card.IsInstant )
+		{
+			<label class="card-instant">[Instant]</label>
+		}
 
-			@if ( Card.Targets > 1 )
-			{
-				<label class="card-targets">[AOE - Targets @( Card.Targets ) Slots]</label>
-			}
+		@if ( Card.Targeting != Card.CardTargets.Enemy )
+		{
+			<label class="card-targeting">[Target @( Card.Targeting )]</label>
+		}
 
-			@foreach ( var action in Card.Actions )
+		@if ( Card.Targets > 1 )
+		{
+			<label class="card-targets">[AOE - Targets @( Card.Targets ) Slots]</label>
+		}
+
+		@if ( Card.ActiveEffect is not null )
+		{
+			if ( !string.IsNullOrWhiteSpace( Card.ActiveEffect.Description ) )
 			{
-				switch ( action.Type )
+				if ( Card.Effect.Power.IsRandom )
 				{
-					case CardGame.Action.ActionType.Attack:
-						if ( action.EffectivePower.IsRandom )
+					<label class="card-effect" IsRich="@true">
+						@Card.ActiveEffect.Description.Replace( "@", $"{Card.Effect.Power.Min}-{Card.Effect.Power.Max}" ).Replace( "\n", "<br>" ))
+					</label>
+				}
+				else
+				{
+					<label class="card-effect" IsRich="@true">
+						@Card.ActiveEffect.Description.Replace( "@", Card.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" ))
+					</label>
+				}
+			}
+		}
+
+		@foreach ( var action in Card.Actions )
+		{
+			var desc = action.ActiveEffect?.Description;
+
+			switch ( action.Type )
+			{
+				case CardGame.Action.ActionType.Attack:
+					<div class="attack-action action">
+						<img class="action-icon" src="/materials/actionicons/sword.png"/>
+						@if ( action.EffectivePower.IsRandom )
 						{
-							<label class="action">Deal @( action.EffectivePower.Min )-@( action.EffectivePower.Max ) damage</label>
+							<label class="attack">@( action.EffectivePower.Min )-@( action.EffectivePower.Max )</label>
 						}
 						else
 						{
-							<label class="action">Deal @( action.EffectivePower.Min ) damage</label>
+							<label class="attack">@( action.EffectivePower.Min )</label>
 						}
-						break;
-					case CardGame.Action.ActionType.Defense:
-					case CardGame.Action.ActionType.Effect:
-						var desc = action.Effect?.Description;
-						if ( !string.IsNullOrWhiteSpace( desc ) )
+
+						@if ( !string.IsNullOrWhiteSpace( desc ) )
 						{
-							if ( action.EffectivePower.IsRandom )
+							if ( action.Effect.Power.IsRandom )
 							{
-								<label class="action effect" IsRich="@true">
-									@desc.Replace("@", $"{action.EffectivePower.Min}-{action.EffectivePower.Max}").Replace("\n", "<br>"))
+								<label class="effect" IsRich="@true">
+									@desc.Replace( "@", $"{action.Effect.Power.Min}-{action.Effect.Power.Max}" ).Replace( "\n", "<br>" ))
 								</label>
 							}
 							else
 							{
-								<label class="action effect" IsRich="@true">
-									@desc.Replace("@", action.EffectivePower.Min.ToString()).Replace("\n", "<br>"))
+								<label class="effect" IsRich="@true">
+									@desc.Replace( "@", action.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" ))
 								</label>
 							}
 						}
-						break;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
+					</div>
+					break;
+				case CardGame.Action.ActionType.Defense:
+					<div class="defense-action action">
+						<img class="action-icon" src="/materials/actionicons/shield.png"/>
+						@if ( action.EffectivePower.IsRandom )
+						{
+							<label class="defense">@( action.EffectivePower.Min )-@( action.EffectivePower.Max )</label>
+						}
+						else
+						{
+							<label class="defense">@( action.EffectivePower.Min )</label>
+						}
+
+						@if ( !string.IsNullOrWhiteSpace( desc ) )
+						{
+							if ( action.Effect.Power.IsRandom )
+							{
+								<label class="effect" IsRich="@true">
+									@desc.Replace( "@", $"{action.Effect.Power.Min}-{action.Effect.Power.Max}" ).Replace( "\n", "<br>" ))
+								</label>
+							}
+							else
+							{
+								<label class="effect" IsRich="@true">
+									@desc.Replace( "@", action.Effect.Power.Min.ToString() ).Replace( "\n", "<br>" ))
+								</label>
+							}
+						}
+					</div>
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
-		</div>
-	}
+		}
+	</div>
 
 	@if ( HasClass( "hide" ) )
 	{
 		<img class="missing-icon" src="/materials/cards/missing.png" alt="?"/>
 	}
-	
+
 	<div class="card-type @( Card.Rarity )">- @( Card.Type ) Card -</div>
 </root>

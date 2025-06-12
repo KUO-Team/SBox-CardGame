@@ -44,12 +44,6 @@ ShopPanel {
     width: 100%;
     justify-content: center;
     flex-shrink: 0;
-
-    > .card {
-      cursor: default;
-      pointer-events: all;
-      transition: transform 0.2s ease;
-    }
   }
 
   .relics {
@@ -69,7 +63,6 @@ ShopPanel {
     background-color: gray;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, opacity 0.2s ease;
 
     &.purchased {
       animation: purchaseFlash 0.4s ease;
@@ -90,6 +83,7 @@ ShopPanel {
           cursor: pointer;
           border: 1px solid white;
           transform: scale(1.03);
+          transition: all 0.2s linear;
         }
       }
     }

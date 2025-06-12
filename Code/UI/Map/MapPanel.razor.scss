@@ -63,7 +63,6 @@ MapPanel {
 
     .player-row {
       align-items: center;
-      gap: 8px;
     }
 
     .player-name {
@@ -74,9 +73,8 @@ MapPanel {
     }
 
     .health {
-      width: 50%;
+      width: 25%;
       margin: 0 10px;
-      align-items: flex-start;
       flex-direction: column;
 
       .health-bar {
@@ -94,14 +92,11 @@ MapPanel {
       }
     }
 
-    .money {
+    .player-money {
+      margin-right: 50px;
       font-weight: 600;
       text-stroke: 1px black;
       text-shadow: 0 2px 2px black;
-    }
-
-    .button {
-      width: 500px;
     }
   }
 
@@ -115,8 +110,13 @@ MapPanel {
   }
   
   .key-button {
-    width: 50px;
-    margin-right: 25px;
+    pointer-events: all;
+    position: absolute;
+    cursor: pointer;
+    bottom: 25px;
+    right: 25px;
+    width: 200px;
+    z-index: 5;
   }
 
   .map-key {
@@ -131,7 +131,6 @@ MapPanel {
     border: 1px solid white;
     padding: 10px;
     flex-direction: column;
-    transition: all 0.2s ease;
 
     .map-key-item {
       width: 100%;
