@@ -68,9 +68,11 @@ public class BattleTutorial : BattleScript
 			if ( card is not null )
 			{
 				var copy = card.DeepCopy();
-				enemySlot.AssignCard( copy, playerSlot! );
+				if ( enemySlot.IsValid() && playerSlot.IsValid() )
+				{
+					enemySlot.AssignCard( copy, playerSlot );
+				}
 			}
-			
 			
 			if ( BattleManager.IsValid() )
 			{
