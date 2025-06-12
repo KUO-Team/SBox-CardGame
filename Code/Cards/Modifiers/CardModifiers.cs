@@ -40,7 +40,7 @@ public sealed class CardModifiers
 			.Sum( m => m.Delta );
 	}
 	
-	public int GetEffectPowerDelta( Effects.CardEffect effect )
+	public int GetEffectPowerDelta()
 	{
 		return _modifiers
 			.OfType<EffectPowerModifier>()

@@ -2,7 +2,7 @@
 
 namespace CardGame.Modifiers;
 
-public class PowerModifier : ICardModifier
+public class ActionPowerModifier : ICardModifier
 {
 	public int Delta { get; }
 
@@ -13,7 +13,7 @@ public class PowerModifier : ICardModifier
 	private int _remainingTurns;
 
 	// ReSharper disable once ConvertToPrimaryConstructor
-	public PowerModifier( int delta, Func<Action, bool> filter, int duration )
+	public ActionPowerModifier( int delta, Func<Action, bool> filter, int duration )
 	{
 		Delta = delta;
 		_filter = filter;

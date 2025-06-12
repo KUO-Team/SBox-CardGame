@@ -41,16 +41,16 @@ public class HandComponent : Component, IOwnable
 		{
 			foreach ( var card in Hand.ToArray() )
 			{
-				var newCard = card.DeepCopy();
+				var copy = card.DeepCopy();
 				Hand.Remove( card );
-				Hand.Add( newCard );
+				Hand.Add( copy );
 			}
 
 			foreach ( var card in Deck.ToArray() )
 			{
-				var newCard = card.DeepCopy();
+				var copy = card.DeepCopy();
 				Deck.Remove( card );
-				Deck.Add( newCard );
+				Deck.Add( copy );
 			}
 		}
 
@@ -127,29 +127,24 @@ public class HandComponent : Component, IOwnable
 		var selectedCards = HandPanel.SelectedCards;
 		foreach ( var card in selectedCards )
 		{
-			foreach ( var action in DiscardModeActivator.Actions )
+			if ( DiscardModeActivator.ActiveEffect is not null )
 			{
-				if ( action.Type != Action.ActionType.Effect )
-				{
-					continue;
-				}
-
 				var detail = new CardEffect.CardEffectDetail
 				{
 					Unit = Owner
 				};
 
-				action.Effect?.OnDiscardModeCardDiscard( detail, card );
+				DiscardModeActivator.ActiveEffect.OnDiscardModeCardDiscard( detail, card );
 			}
 
-			foreach ( var action in card.Actions )
+			if ( card.ActiveEffect is not null )
 			{
 				var detail = new CardEffect.CardEffectDetail
 				{
 					Unit = Owner
 				};
 
-				action.Effect?.OnDiscard( detail );
+				card.ActiveEffect?.OnDiscard( detail );
 			}
 
 			foreach ( var status in Owner?.StatusEffects ?? [] )
@@ -201,32 +196,15 @@ public class HandComponent : Component, IOwnable
 		Deck.Remove( card );
 		Hand.Add( card );
 
-		foreach ( var action in card.Actions )
+		if ( card.ActiveEffect is {} effect )
 		{
-			if ( action.Effect is not {} effect )
-			{
-				continue;
-			}
-
 			var detail = new CardEffect.CardEffectDetail
 			{
-				Unit = Owner
+				Unit = Owner 
 			};
 
 			effect.OnDraw( detail );
 		}
-	}
-
-	public void Draw( Id id )
-	{
-		var card = CardDataList.GetById( id );
-		if ( card is null )
-		{
-			return;
-		}
-
-		var copy = card.DeepCopy();
-		Hand.Add( copy );
 	}
 
 	public void Draw( Card card, bool fromDeck = false )
@@ -239,26 +217,11 @@ public class HandComponent : Component, IOwnable
 		}
 	}
 
-	public void DrawX( int x )
+	public void DrawX( int amount )
 	{
-		for ( var i = 0; i < x; i++ )
+		for ( var i = 0; i < amount; i++ )
 		{
 			Draw();
-		}
-	}
-
-	public void DrawX( Id id, int x )
-	{
-		for ( var i = 0; i < x; i++ )
-		{
-			var card = CardDataList.GetById( id );
-			if ( card is null )
-			{
-				continue;
-			}
-
-			var copy = card.DeepCopy();
-			Hand.Add( copy );
 		}
 	}
 
@@ -276,14 +239,9 @@ public class HandComponent : Component, IOwnable
 
 		Hand.Remove( card );
 		Deck.Add( card );
-
-		foreach ( var action in card.Actions )
+		
+		if ( card.ActiveEffect is {} effect )
 		{
-			if ( action.Effect is not {} effect )
-			{
-				continue;
-			}
-
 			var detail = new CardEffect.CardEffectDetail
 			{
 				Unit = Owner
@@ -358,12 +316,7 @@ public class HandComponent : Component, IOwnable
 			return false;
 		}
 
-		if ( Owner.Energy < card.EffectiveCost.Ep )
-		{
-			return false;
-		}
-
-		if ( Owner.Mana < card.EffectiveCost.Mp )
+		if ( Owner.Mana < card.EffectiveCost )
 		{
 			return false;
 		}
